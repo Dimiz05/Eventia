@@ -10,7 +10,11 @@
     <string name="catalog_error">No se pudo cargar el catálogo.</string>
     <string name="catalog_empty">Todavía no hay contenido disponible en el catálogo.</string>
     <string name="events_title">Eventos</string>
-    <string name="events_empty">Todavía no hay eventos disponibles.</string>
+    <string name="events_empty">No hay próximos eventos.</string>
+    <string name="event_date_time">%1$s · %2$s</string>
+    <string name="event_detail_empty">Este evento ya no está disponible.</string>
+    <string name="event_detail_error">No se pudo cargar el evento.</string>
+    <string name="event_description_title">Descripción</string>
     <string name="venues_title">Lugares</string>
     <string name="venues_empty">Todavía no hay lugares disponibles.</string>
     <string name="available_spots">Cupos disponibles: %1$d</string>

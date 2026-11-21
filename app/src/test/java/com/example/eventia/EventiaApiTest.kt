@@ -24,7 +24,7 @@ class EventiaApiTest {
             method.getAnnotation(GET::class.java)?.value
         }.toSet()
 
-        assertEquals(setOf("categories", "events", "venues"), routes - "me")
+        assertEquals(setOf("categories", "events", "events/{id}", "venues"), routes - "me")
     }
 
     @Test

@@ -11,13 +11,13 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 ## Proyecto y navegación base
 
 - ID de aplicación `com.example.eventia`.
-- Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. El grafo reserva `events/{id}` y `venues/{id}` con argumentos numéricos para conectar los detalles cuando exista contenido.
+- Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. Explorar abre el detalle de evento por ID mediante `events/{id}`. El grafo también reserva `venues/{id}`.
 - Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que el ViewModel publique el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
-- DataStore conserva la sesión de la cuenta. Room y Coil están declarados para los flujos que los usarán. Favoritos y el detalle son destinos base.
+- DataStore conserva la sesión de la cuenta y Coil carga las imágenes de eventos. Favoritos y el detalle de lugar son destinos base.
 
 ## Día 1 — Arquitectura y consumo de API
 
-En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `venues` y `auth/login`. El catálogo usa la fuente remota. El contrato de inicio de sesión recibe `email` y `password` y lee `token`. La caché local del catálogo corresponde a un flujo posterior.
+En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `events/{id}`, `venues` y `auth/login`. El catálogo usa la fuente remota. Explorar muestra los eventos cuyo inicio todavía está en el futuro y presenta la fecha y la hora según la configuración del dispositivo. El contrato de inicio de sesión recibe `email` y `password` y lee `token`.
 
 ### Postman
 
@@ -47,10 +47,6 @@ Los resultados autenticados de la tabla proceden de la verificación previa. La 
 
 El evento 16 devolvió `imageUrl: null`. El evento 14 devolvió `startsAt: 2026-11-22T18:00:00-04:00` con offset `-04:00`. Los DTO admiten esos nulos y el dominio conserva el offset con `OffsetDateTime`.
 
-## Día 2 — Autenticación y sesión
-
-La app lee DataStore al arrancar. En una instalación limpia abre **Iniciar sesión**, desde donde se puede **Crear cuenta**. El registro envía nombre, correo y contraseña a `auth/register`. Una vez guardado el token, se abre Explorar y se solicita la cuenta mediante `GET /me` con Bearer. Perfil muestra el correo y permite reintentar si la cuenta no carga. Un `401` de `/me` borra el token y devuelve al login. Un error temporal conserva la sesión. El archivo de sesión se excluye de las copias y transferencias de Android.
-
 ### Google Maps de prueba
 
 1. En el proyecto de Google Cloud, confirma que está vinculado a una cuenta de facturación activa y habilita **Maps SDK for Android** en la biblioteca de APIs.
@@ -61,11 +57,11 @@ La app lee DataStore al arrancar. En una instalación limpia abre **Iniciar sesi
 
 La app compila con `MAPS_API_KEY` vacío y muestra un mensaje de configuración en la pestaña Mapa. El marcador es un punto fijo de la demostración.
 
-## Día 2 — Acceso como invitado y cierre de sesión
+## Día 2 — Cuenta, acceso como invitado y catálogo
 
-- **Continuar sin cuenta** abre Explorar. Desde Perfil, **Iniciar sesión** vuelve al formulario. El acceso como invitado dura hasta que se cierra el proceso de la app.
-- El inicio de sesión y el registro guardan el token en DataStore. Al reiniciar, `GET /me` valida la sesión. Si falla temporalmente, se puede entrar y reintentar en Perfil. El catálogo de esta fase necesita red.
-- **Cerrar sesión** y un `401` de `GET /me` borran la sesión local y devuelven al formulario, donde sigue disponible el acceso como invitado.
+- En una instalación limpia, la app abre **Iniciar sesión** con las opciones **Crear cuenta** y **Continuar sin cuenta**. Una sesión guardada se valida con `GET /me` al arrancar.
+- **Continuar sin cuenta** abre Explorar. El acceso como invitado dura hasta que se cierra el proceso. Desde Perfil se puede volver al formulario.
+- **Cerrar sesión** o un `401` de `GET /me` devuelve al formulario. Si la cuenta falla temporalmente, Perfil permite reintentar.
 
 ## Cómo ejecutar el proyecto
 

@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
 import com.example.eventia.ui.screens.AccountScreen
+import com.example.eventia.ui.screens.EventDetailScreen
 import com.example.eventia.ui.screens.ExploreScreen
 import com.example.eventia.ui.screens.MapScreen
 import com.example.eventia.ui.screens.SessionUiState
@@ -36,7 +37,7 @@ private enum class Tab(val route: String, val title: Int, val icon: Int, val mes
     Profile("profile", R.string.tab_profile, R.drawable.ic_profile)
 }
 
-private const val DetailId = "id"
+internal const val DetailId = "id"
 
 enum class DetailDestination(private val path: String, val title: Int) {
     Event("events", R.string.detail_event),
@@ -104,7 +105,13 @@ fun EventiaNavigation(
         }
     ) { padding ->
         NavHost(controller, Tab.Explore.route, modifier = Modifier.padding(padding)) {
-            composable(Tab.Explore.route) { ExploreScreen() }
+            composable(Tab.Explore.route) {
+                ExploreScreen(onEventClick = { id ->
+                    controller.navigate(DetailDestination.Event.route(id)) {
+                        launchSingleTop = true
+                    }
+                })
+            }
             composable(Tab.Map.route) { MapScreen() }
             composable(Tab.Profile.route) {
                 AccountScreen(currentSession, onRetryAccount, onSignIn, onSignOut)
@@ -119,8 +126,13 @@ fun EventiaNavigation(
                     route = destination.pattern,
                     arguments = listOf(navArgument(DetailId) { type = NavType.LongType })
                 ) { detailEntry ->
-                    val id = requireNotNull(detailEntry.arguments).getLong(DetailId)
-                    Text(stringResource(R.string.detail_pending, id), Modifier.padding(24.dp))
+                    when (destination) {
+                        DetailDestination.Event -> EventDetailScreen()
+                        DetailDestination.Venue -> {
+                            val id = requireNotNull(detailEntry.arguments).getLong(DetailId)
+                            Text(stringResource(R.string.detail_pending, id), Modifier.padding(24.dp))
+                        }
+                    }
                 }
             }
         }

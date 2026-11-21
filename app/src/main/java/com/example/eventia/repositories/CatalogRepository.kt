@@ -11,6 +11,7 @@ import javax.inject.Inject
 
 interface CatalogRepository {
     suspend fun getEvents(): List<Event>
+    suspend fun getEvent(id: Long): Event
     suspend fun getVenues(): List<Venue>
 }
 
@@ -18,6 +19,7 @@ class RemoteCatalogRepository @Inject constructor(
     private val api: EventiaApi
 ) : CatalogRepository {
     override suspend fun getEvents(): List<Event> = api.getEvents().map(EventDto::toDomain)
+    override suspend fun getEvent(id: Long): Event = api.getEvent(id).toDomain()
     override suspend fun getVenues(): List<Venue> = api.getVenues().map(VenueDto::toDomain)
 }
 
