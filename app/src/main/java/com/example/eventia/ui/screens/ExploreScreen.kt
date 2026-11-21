@@ -32,18 +32,42 @@ private fun ExploreContent(state: ExploreUiState, onRetry: () -> Unit) {
         contentPadding = PaddingValues(24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        item {
-            Text(stringResource(R.string.categories_title), style = MaterialTheme.typography.titleLarge)
-        }
         when (val current = state) {
             ExploreUiState.Loading -> item { CircularProgressIndicator() }
-            is ExploreUiState.Content -> items(current.categories, key = { it.id }) { category ->
-                Text(category.name)
+            is ExploreUiState.Content -> {
+                item {
+                    Text(stringResource(R.string.categories_title), style = MaterialTheme.typography.titleLarge)
+                }
+                items(current.categories, key = { "category-${it.id}" }) { Text(it.name) }
+                if (current.categories.isEmpty()) item { Text(stringResource(R.string.categories_empty)) }
+
+                item {
+                    Text(stringResource(R.string.events_title), style = MaterialTheme.typography.titleLarge)
+                }
+                items(current.events, key = { "event-${it.id}" }) { event ->
+                    Column {
+                        Text(event.title, style = MaterialTheme.typography.titleMedium)
+                        Text(event.summary)
+                        Text(stringResource(R.string.available_spots, event.availableSpots))
+                    }
+                }
+                if (current.events.isEmpty()) item { Text(stringResource(R.string.events_empty)) }
+
+                item {
+                    Text(stringResource(R.string.venues_title), style = MaterialTheme.typography.titleLarge)
+                }
+                items(current.venues, key = { "venue-${it.id}" }) { venue ->
+                    Column {
+                        Text(venue.name, style = MaterialTheme.typography.titleMedium)
+                        Text(venue.address)
+                    }
+                }
+                if (current.venues.isEmpty()) item { Text(stringResource(R.string.venues_empty)) }
             }
-            ExploreUiState.Empty -> item { Text(stringResource(R.string.categories_empty)) }
+            ExploreUiState.Empty -> item { Text(stringResource(R.string.catalog_empty)) }
             ExploreUiState.Error -> item {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(stringResource(R.string.categories_error))
+                    Text(stringResource(R.string.catalog_error))
                     Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
                 }
             }
@@ -56,7 +80,7 @@ private fun ExploreContent(state: ExploreUiState, onRetry: () -> Unit) {
 private fun ExplorePreview() {
     EventiaTheme {
         ExploreContent(
-            state = ExploreUiState.Content(listOf(Category(1, "Música"), Category(2, "Cultura"))),
+            state = ExploreUiState.Content(listOf(Category(1, "Música"), Category(2, "Cultura")), emptyList(), emptyList()),
             onRetry = {}
         )
     }
