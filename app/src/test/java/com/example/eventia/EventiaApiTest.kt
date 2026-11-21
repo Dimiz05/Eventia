@@ -4,6 +4,7 @@ import com.example.eventia.api.EventiaApi
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 class EventiaApiTest {
@@ -23,6 +24,21 @@ class EventiaApiTest {
             method.getAnnotation(GET::class.java)?.value
         }.toSet()
 
-        assertEquals(setOf("categories", "events", "venues"), routes)
+        assertEquals(setOf("categories", "events", "events/{id}", "venues"), routes - "me")
+    }
+
+    @Test
+    fun registrationUsesRelativePostRoute() {
+        val register = EventiaApi::class.java.declaredMethods.singleOrNull { it.name == "register" }
+        assertEquals("auth/register", register?.getAnnotation(POST::class.java)?.value)
+    }
+
+    @Test
+    fun accountUsesRelativeGetWithAuthorization() {
+        val me = EventiaApi::class.java.declaredMethods.singleOrNull { it.name == "getMe" }
+        assertEquals("me", me?.getAnnotation(GET::class.java)?.value)
+        val header = me?.parameterAnnotations?.flatMap { it.toList() }
+            ?.filterIsInstance<Header>()?.singleOrNull()
+        assertEquals("Authorization", header?.value)
     }
 }

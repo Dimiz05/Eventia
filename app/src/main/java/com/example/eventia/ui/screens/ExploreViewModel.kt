@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import java.time.Instant
 import java.time.format.DateTimeParseException
 
 sealed interface ExploreUiState {
@@ -49,8 +50,10 @@ class ExploreViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = try {
                 val categoryList = categories.getCategories()
-                val events = catalog.getEvents()
+                val allEvents = catalog.getEvents()
                 val venues = catalog.getVenues()
+                val now = Instant.now()
+                val events = allEvents.filter { it.startsAt.toInstant().isAfter(now) }
                 if (categoryList.isEmpty() && events.isEmpty() && venues.isEmpty()) {
                     ExploreUiState.Empty
                 } else {

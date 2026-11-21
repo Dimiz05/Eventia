@@ -11,13 +11,13 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 ## Proyecto y navegación base
 
 - ID de aplicación `com.example.eventia`.
-- Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. El grafo reserva `events/{id}` y `venues/{id}` con argumentos numéricos para conectar los detalles cuando exista contenido.
+- Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. Explorar abre el detalle de evento por ID mediante `events/{id}`. El grafo también reserva `venues/{id}`.
 - Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que el ViewModel publique el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
-- Room, DataStore y Coil están declarados en el catálogo de versiones para los flujos que los usarán. Favoritos, Perfil y detalle son destinos base.
+- DataStore conserva la sesión de la cuenta y Coil carga las imágenes de eventos. Favoritos y el detalle de lugar son destinos base.
 
 ## Día 1 — Arquitectura y consumo de API
 
-En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `venues` y `auth/login`. El catálogo usa la fuente remota. El contrato de inicio de sesión recibe `email` y `password` y lee `token`. La UI de sesión y la caché local corresponden a flujos posteriores.
+En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `events/{id}`, `venues` y `auth/login`. El catálogo usa la fuente remota. Explorar muestra los eventos cuyo inicio todavía está en el futuro y presenta la fecha y la hora según la configuración del dispositivo. El contrato de inicio de sesión recibe `email` y `password` y lee `token`.
 
 ### Postman
 
@@ -56,6 +56,12 @@ El evento 16 devolvió `imageUrl: null`. El evento 14 devolvió `startsAt: 2026-
 5. En un dispositivo con Google Play Services, conexión a Internet y una firma autorizada, abre **Mapa**. Comprueba que carguen las teselas y que aparezca el marcador fijo **La Paz**. Si aparece un error de autorización en Logcat, revisa la clave, el SDK habilitado, el ID de aplicación y el SHA-1 de esa instalación.
 
 La app compila con `MAPS_API_KEY` vacío y muestra un mensaje de configuración en la pestaña Mapa. El marcador es un punto fijo de la demostración.
+
+## Día 2 — Cuenta, acceso como invitado y catálogo
+
+- En una instalación limpia, la app abre **Iniciar sesión** con las opciones **Crear cuenta** y **Continuar sin cuenta**. Una sesión guardada se valida con `GET /me` al arrancar.
+- **Continuar sin cuenta** abre Explorar. El acceso como invitado dura hasta que se cierra el proceso. Desde Perfil se puede volver al formulario.
+- **Cerrar sesión** o un `401` de `GET /me` devuelve al formulario. Si la cuenta falla temporalmente, Perfil permite reintentar.
 
 ## Cómo ejecutar el proyecto
 

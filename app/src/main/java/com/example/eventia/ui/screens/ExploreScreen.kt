@@ -21,13 +21,17 @@ import com.example.eventia.domain.model.Category
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable
-fun ExploreScreen(viewModel: ExploreViewModel = hiltViewModel()) {
+fun ExploreScreen(onEventClick: (Long) -> Unit, viewModel: ExploreViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    ExploreContent(state, viewModel::retry)
+    ExploreContent(state, viewModel::retry, onEventClick)
 }
 
 @Composable
-private fun ExploreContent(state: ExploreUiState, onRetry: () -> Unit) {
+private fun ExploreContent(
+    state: ExploreUiState,
+    onRetry: () -> Unit,
+    onEventClick: (Long) -> Unit
+) {
     LazyColumn(
         contentPadding = PaddingValues(24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -45,11 +49,7 @@ private fun ExploreContent(state: ExploreUiState, onRetry: () -> Unit) {
                     Text(stringResource(R.string.events_title), style = MaterialTheme.typography.titleLarge)
                 }
                 items(current.events, key = { "event-${it.id}" }) { event ->
-                    Column {
-                        Text(event.title, style = MaterialTheme.typography.titleMedium)
-                        Text(event.summary)
-                        Text(stringResource(R.string.available_spots, event.availableSpots))
-                    }
+                    EventCard(event, onEventClick)
                 }
                 if (current.events.isEmpty()) item { Text(stringResource(R.string.events_empty)) }
 
@@ -81,7 +81,8 @@ private fun ExplorePreview() {
     EventiaTheme {
         ExploreContent(
             state = ExploreUiState.Content(listOf(Category(1, "Música"), Category(2, "Cultura")), emptyList(), emptyList()),
-            onRetry = {}
+            onRetry = {},
+            onEventClick = {}
         )
     }
 }
