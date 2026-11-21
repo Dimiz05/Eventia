@@ -24,10 +24,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
 import com.example.eventia.ui.screens.ExploreScreen
+import com.example.eventia.ui.screens.MapScreen
 
 private enum class Tab(val route: String, val title: Int, val icon: Int, val message: Int? = null) {
     Explore("explore", R.string.tab_explore, R.drawable.ic_explore),
-    Map("map", R.string.tab_map, R.drawable.ic_map, R.string.map_pending),
+    Map("map", R.string.tab_map, R.drawable.ic_map),
     Favorites("favorites", R.string.tab_favorites, R.drawable.ic_favorites, R.string.favorites_pending),
     Profile("profile", R.string.tab_profile, R.drawable.ic_profile, R.string.profile_pending)
 }
@@ -95,6 +96,7 @@ fun EventiaNavigation() {
     ) { padding ->
         NavHost(controller, Tab.Explore.route, modifier = Modifier.padding(padding)) {
             composable(Tab.Explore.route) { ExploreScreen() }
+            composable(Tab.Map.route) { MapScreen() }
             Tab.entries.filter { it.message != null }.forEach { tab ->
                 composable(tab.route) {
                     Text(stringResource(requireNotNull(tab.message)), Modifier.padding(24.dp))
