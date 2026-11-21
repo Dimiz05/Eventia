@@ -49,7 +49,12 @@ enum class DetailDestination(private val path: String, val title: Int) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventiaNavigation(session: SessionUiState.Active, onRetryAccount: () -> Unit) {
+fun EventiaNavigation(
+    session: SessionUiState.Active?,
+    onRetryAccount: () -> Unit,
+    onSignIn: () -> Unit,
+    onSignOut: () -> Unit
+) {
     val controller = rememberNavController()
     val currentSession by rememberUpdatedState(session)
     val entry by controller.currentBackStackEntryAsState()
@@ -101,7 +106,9 @@ fun EventiaNavigation(session: SessionUiState.Active, onRetryAccount: () -> Unit
         NavHost(controller, Tab.Explore.route, modifier = Modifier.padding(padding)) {
             composable(Tab.Explore.route) { ExploreScreen() }
             composable(Tab.Map.route) { MapScreen() }
-            composable(Tab.Profile.route) { AccountScreen(currentSession, onRetryAccount) }
+            composable(Tab.Profile.route) {
+                AccountScreen(currentSession, onRetryAccount, onSignIn, onSignOut)
+            }
             Tab.entries.filter { it.message != null }.forEach { tab ->
                 composable(tab.route) {
                     Text(stringResource(requireNotNull(tab.message)), Modifier.padding(24.dp))

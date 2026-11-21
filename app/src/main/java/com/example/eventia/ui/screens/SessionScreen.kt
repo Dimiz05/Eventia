@@ -54,7 +54,8 @@ fun SessionForm(
     form: SessionUiState.Form,
     onSubmit: (String, String, String) -> Unit,
     onSwitch: () -> Unit,
-    onEdit: (AccountField) -> Unit
+    onEdit: (AccountField) -> Unit,
+    onGuest: () -> Unit
 ) {
     var name by rememberSaveable(form.registering) { mutableStateOf("") }
     var email by rememberSaveable(form.registering) { mutableStateOf("") }
@@ -92,6 +93,11 @@ fun SessionForm(
             Text(stringResource(if (form.submitting) R.string.auth_submitting else action))
         }
         TextButton(onClick = onSwitch, enabled = !form.submitting) { Text(stringResource(switch)) }
+        if (!form.registering) {
+            TextButton(onClick = onGuest, enabled = !form.submitting) {
+                Text(stringResource(R.string.auth_continue_guest))
+            }
+        }
     }
 }
 
@@ -120,10 +126,16 @@ private fun SessionField(
 }
 
 @Composable
-fun AccountScreen(session: SessionUiState.Active, onRetry: () -> Unit) {
+fun AccountScreen(
+    session: SessionUiState.Active?,
+    onRetry: () -> Unit,
+    onSignIn: () -> Unit,
+    onSignOut: () -> Unit
+) {
     Column(Modifier.fillMaxWidth().padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         when {
-            session.loading -> CircularProgressIndicator()
+            session == null -> Button(onClick = onSignIn) { Text(stringResource(R.string.auth_sign_in)) }
+            session.loading || session.signingOut -> CircularProgressIndicator()
             session.account != null -> {
                 Text(stringResource(R.string.auth_email), style = MaterialTheme.typography.labelLarge)
                 Text(session.account.email)
@@ -133,6 +145,14 @@ fun AccountScreen(session: SessionUiState.Active, onRetry: () -> Unit) {
                 Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
             }
         }
+        if (session != null) {
+            if (session.signOutFailed) {
+                Text(stringResource(R.string.auth_sign_out_error), color = MaterialTheme.colorScheme.error)
+            }
+            Button(onClick = onSignOut, enabled = !session.signingOut) {
+                Text(stringResource(R.string.auth_sign_out))
+            }
+        }
     }
 }
 
@@ -140,6 +160,6 @@ fun AccountScreen(session: SessionUiState.Active, onRetry: () -> Unit) {
 @Composable
 private fun SessionFormPreview() {
     EventiaTheme {
-        SessionForm(SessionUiState.Form(), { _, _, _ -> }, {}, {})
+        SessionForm(SessionUiState.Form(), { _, _, _ -> }, {}, {}, {})
     }
 }

@@ -61,6 +61,12 @@ La app lee DataStore al arrancar. En una instalación limpia abre **Iniciar sesi
 
 La app compila con `MAPS_API_KEY` vacío y muestra un mensaje de configuración en la pestaña Mapa. El marcador es un punto fijo de la demostración.
 
+## Día 2 — Acceso como invitado y cierre de sesión
+
+- **Continuar sin cuenta** abre Explorar. Desde Perfil, **Iniciar sesión** vuelve al formulario. El acceso como invitado dura hasta que se cierra el proceso de la app.
+- El inicio de sesión y el registro guardan el token en DataStore. Al reiniciar, `GET /me` valida la sesión. Si falla temporalmente, se puede entrar y reintentar en Perfil. El catálogo de esta fase necesita red.
+- **Cerrar sesión** y un `401` de `GET /me` borran la sesión local y devuelven al formulario, donde sigue disponible el acceso como invitado.
+
 ## Cómo ejecutar el proyecto
 
 1. Abre la carpeta del repositorio en Android Studio con **File > Open**.
