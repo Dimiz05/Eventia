@@ -127,7 +127,14 @@ fun EventiaNavigation(
                     arguments = listOf(navArgument(DetailId) { type = NavType.LongType })
                 ) { detailEntry ->
                     when (destination) {
-                        DetailDestination.Event -> EventDetailScreen(onBack = { controller.navigateUp() })
+                        DetailDestination.Event -> EventDetailScreen(
+                            onBack = { controller.navigateUp() },
+                            onVenueClick = { id ->
+                                controller.navigate(DetailDestination.Venue.route(id)) {
+                                    launchSingleTop = true
+                                }
+                            }
+                        )
                         DetailDestination.Venue -> {
                             val id = requireNotNull(detailEntry.arguments).getLong(DetailId)
                             Text(stringResource(R.string.detail_pending, id), Modifier.padding(24.dp))
