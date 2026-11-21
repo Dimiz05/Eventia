@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,14 +24,16 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
+import com.example.eventia.ui.screens.AccountScreen
 import com.example.eventia.ui.screens.ExploreScreen
 import com.example.eventia.ui.screens.MapScreen
+import com.example.eventia.ui.screens.SessionUiState
 
 private enum class Tab(val route: String, val title: Int, val icon: Int, val message: Int? = null) {
     Explore("explore", R.string.tab_explore, R.drawable.ic_explore),
     Map("map", R.string.tab_map, R.drawable.ic_map),
     Favorites("favorites", R.string.tab_favorites, R.drawable.ic_favorites, R.string.favorites_pending),
-    Profile("profile", R.string.tab_profile, R.drawable.ic_profile, R.string.profile_pending)
+    Profile("profile", R.string.tab_profile, R.drawable.ic_profile)
 }
 
 private const val DetailId = "id"
@@ -46,8 +49,9 @@ enum class DetailDestination(private val path: String, val title: Int) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventiaNavigation() {
+fun EventiaNavigation(session: SessionUiState.Active, onRetryAccount: () -> Unit) {
     val controller = rememberNavController()
+    val currentSession by rememberUpdatedState(session)
     val entry by controller.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
@@ -97,6 +101,7 @@ fun EventiaNavigation() {
         NavHost(controller, Tab.Explore.route, modifier = Modifier.padding(padding)) {
             composable(Tab.Explore.route) { ExploreScreen() }
             composable(Tab.Map.route) { MapScreen() }
+            composable(Tab.Profile.route) { AccountScreen(currentSession, onRetryAccount) }
             Tab.entries.filter { it.message != null }.forEach { tab ->
                 composable(tab.route) {
                     Text(stringResource(requireNotNull(tab.message)), Modifier.padding(24.dp))

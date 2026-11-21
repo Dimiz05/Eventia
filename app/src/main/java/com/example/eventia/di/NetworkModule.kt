@@ -5,6 +5,8 @@ import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CategoryRepository
 import com.example.eventia.repositories.RemoteCatalogRepository
 import com.example.eventia.repositories.RemoteCategoryRepository
+import com.example.eventia.repositories.RemoteSessionRepository
+import com.example.eventia.repositories.SessionRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -17,6 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class NetworkModule {
+    @Binds
+    abstract fun bindSessionRepository(repository: RemoteSessionRepository): SessionRepository
+
     @Binds
     abstract fun bindCategoryRepository(repository: RemoteCategoryRepository): CategoryRepository
 

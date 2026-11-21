@@ -13,11 +13,11 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 - ID de aplicación `com.example.eventia`.
 - Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. El grafo reserva `events/{id}` y `venues/{id}` con argumentos numéricos para conectar los detalles cuando exista contenido.
 - Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que el ViewModel publique el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
-- Room, DataStore y Coil están declarados en el catálogo de versiones para los flujos que los usarán. Favoritos, Perfil y detalle son destinos base.
+- DataStore conserva la sesión de la cuenta. Room y Coil están declarados para los flujos que los usarán. Favoritos y el detalle son destinos base.
 
 ## Día 1 — Arquitectura y consumo de API
 
-En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `venues` y `auth/login`. El catálogo usa la fuente remota. El contrato de inicio de sesión recibe `email` y `password` y lee `token`. La UI de sesión y la caché local corresponden a flujos posteriores.
+En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `venues` y `auth/login`. El catálogo usa la fuente remota. El contrato de inicio de sesión recibe `email` y `password` y lee `token`. La caché local del catálogo corresponde a un flujo posterior.
 
 ### Postman
 
@@ -46,6 +46,10 @@ Los resultados autenticados de la tabla proceden de la verificación previa. La 
 | `POST /auth/login` y `GET /me` | 200 con la cuenta del curso y su token. `GET /me` sin token devolvió 401. |
 
 El evento 16 devolvió `imageUrl: null`. El evento 14 devolvió `startsAt: 2026-11-22T18:00:00-04:00` con offset `-04:00`. Los DTO admiten esos nulos y el dominio conserva el offset con `OffsetDateTime`.
+
+## Día 2 — Autenticación y sesión
+
+La app lee DataStore al arrancar. En una instalación limpia abre **Iniciar sesión**, desde donde se puede **Crear cuenta**. El registro envía nombre, correo y contraseña a `auth/register`. Una vez guardado el token, se abre Explorar y se solicita la cuenta mediante `GET /me` con Bearer. Perfil muestra el correo y permite reintentar si la cuenta no carga. Un `401` de `/me` borra el token y devuelve al login. Un error temporal conserva la sesión. El archivo de sesión se excluye de las copias y transferencias de Android.
 
 ### Google Maps de prueba
 
