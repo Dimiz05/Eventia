@@ -12,8 +12,32 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 
 - ID de aplicación `com.example.eventia`.
 - Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. El grafo reserva `events/{id}` y `venues/{id}` con argumentos numéricos para conectar los detalles cuando exista contenido.
-- Explorar consulta las categorías públicas de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt conecta las dependencias.
+- Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que el ViewModel publique el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
 - Room, DataStore y Coil están declarados en el catálogo de versiones para los flujos que los usarán. Las pantallas de Mapa, Favoritos, Perfil y detalle son destinos base.
+
+## Día 1 — Arquitectura y consumo de API
+
+En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events` y `venues`. El catálogo usa la fuente remota en esta fase. La sesión y la caché local corresponden a flujos posteriores.
+
+### Postman
+
+1. Importa [la colección del Día 1](postman/Eventia-Dia-1.postman_collection.json). La variable `baseUrl` ya apunta a `https://eventia.jmacboy.dev/api`.
+2. En **Lecturas públicas**, ejecuta **Categorías**, **Eventos (catálogo completo)** y **Lugares**, en ese orden. Los scripts guardan `eventId`, `venueId` y, si aparece un evento con cero cupos, `fullEventId`. Usa el detalle de evento **sin token** con **No Auth**.
+3. Configura `courseEmail` y `coursePassword` en un entorno privado con las credenciales facilitadas por el curso. Ejecuta **Iniciar sesión**, **Usuario autenticado** y **Detalle de evento**. El script de inicio de sesión guarda `token`, que las dos lecturas envían como `Authorization: Bearer {{token}}`.
+4. Para inscribirse, cancelar o consultar inscripciones, configura `attendanceToken` con el token de una cuenta de prueba dedicada y comprueba los IDs contra el catálogo. Si `fullEventId` está vacío, queda pendiente el caso 409 por falta de cupos. Mantén las credenciales y los tokens solo en valores locales y limpia los tokens antes de compartir o exportar la colección.
+
+### Respuestas observadas el 20 de noviembre de 2026
+
+| Solicitud | Resultado observado |
+| --- | --- |
+| `GET /categories` | 200. Arreglo de 7 objetos con `id` y `name`. Ejemplo válido: categoría 7. |
+| `GET /events` | 200. Arreglo de 21 eventos con categoría y lugar anidados. El evento 8 tenía 60 cupos totales y 60 disponibles. El catálogo devuelto no contenía ningún evento con cero cupos disponibles. |
+| `GET /venues` | 200. Arreglo de objetos con dirección, descripción, horario, imagen, coordenadas y conteo de próximos eventos. El lugar 8 tenía ambas coordenadas nulas y el 10 solo longitud nula. |
+| `GET /events/8` | 200 en ambos casos. Sin encabezado de autorización se omitió `isAttending`. Con Bearer se recibió `isAttending: false`. |
+| `GET /venues/1` | 200. Devuelve un objeto con la misma forma que los elementos de la lista de lugares. |
+| `POST /auth/login` y `GET /me` | 200 con la cuenta del curso y su token. `GET /me` sin token devolvió 401. |
+
+El evento 16 devolvió `imageUrl: null`. El evento 14 devolvió `startsAt: 2026-11-22T18:00:00-04:00` con offset `-04:00`. Los DTO admiten esos nulos y el dominio conserva el offset con `OffsetDateTime`.
 
 ## Cómo ejecutar el proyecto
 

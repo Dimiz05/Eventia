@@ -1,7 +1,9 @@
 package com.example.eventia.di
 
 import com.example.eventia.api.EventiaApi
+import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CategoryRepository
+import com.example.eventia.repositories.RemoteCatalogRepository
 import com.example.eventia.repositories.RemoteCategoryRepository
 import dagger.Binds
 import dagger.Module
@@ -17,6 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 abstract class NetworkModule {
     @Binds
     abstract fun bindCategoryRepository(repository: RemoteCategoryRepository): CategoryRepository
+
+    @Binds
+    abstract fun bindCatalogRepository(repository: RemoteCatalogRepository): CatalogRepository
 
     companion object {
         @Provides

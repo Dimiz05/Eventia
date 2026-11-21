@@ -7,7 +7,13 @@
     <string name="navigate_back">Volver</string>
     <string name="categories_title">Categorías</string>
     <string name="categories_empty">Todavía no hay categorías disponibles.</string>
-    <string name="categories_error">No se pudieron cargar las categorías.</string>
+    <string name="catalog_error">No se pudo cargar el catálogo.</string>
+    <string name="catalog_empty">Todavía no hay contenido disponible en el catálogo.</string>
+    <string name="events_title">Eventos</string>
+    <string name="events_empty">Todavía no hay eventos disponibles.</string>
+    <string name="venues_title">Lugares</string>
+    <string name="venues_empty">Todavía no hay lugares disponibles.</string>
+    <string name="available_spots">Cupos disponibles: %1$d</string>
     <string name="retry">Reintentar</string>
     <string name="map_pending">El mapa aún no está disponible.</string>
     <string name="favorites_pending">Los favoritos aún no están disponibles.</string>
