@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Eventia</string>
+    <string name="tab_explore">Explorar</string>
+    <string name="tab_map">Mapa</string>
+    <string name="tab_favorites">Favoritos</string>
+    <string name="tab_profile">Perfil</string>
+    <string name="navigate_back">Volver</string>
+    <string name="categories_title">Categorías</string>
+    <string name="categories_empty">Todavía no hay categorías disponibles.</string>
+    <string name="categories_error">No se pudieron cargar las categorías.</string>
+    <string name="retry">Reintentar</string>
+    <string name="map_pending">El mapa aún no está disponible.</string>
+    <string name="favorites_pending">Los favoritos aún no están disponibles.</string>
+    <string name="profile_pending">El acceso a tu cuenta aún no está disponible.</string>
+    <string name="detail_event">Detalle del evento</string>
+    <string name="detail_venue">Detalle del lugar</string>
+    <string name="detail_pending">El detalle de este elemento (ID %1$d) aún no está disponible.</string>
 </resources>
