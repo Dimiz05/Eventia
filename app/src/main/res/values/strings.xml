@@ -8,6 +8,11 @@
     <string name="categories_title">Categorías</string>
     <string name="categories_empty">Todavía no hay categorías disponibles.</string>
     <string name="catalog_error">No se pudo cargar el catálogo.</string>
+    <string name="catalog_search">Buscar eventos</string>
+    <string name="catalog_clear_filters">Limpiar filtros</string>
+    <string name="catalog_no_matches">No hay eventos que coincidan con tu búsqueda o categoría.</string>
+    <string name="catalog_refresh">Actualizar</string>
+    <string name="catalog_refresh_error">No se pudo actualizar el catálogo. Se muestran los resultados anteriores.</string>
     <string name="catalog_empty">Todavía no hay contenido disponible en el catálogo.</string>
     <string name="events_title">Eventos</string>
     <string name="events_empty">No hay próximos eventos.</string>

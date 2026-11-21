@@ -12,13 +12,17 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface EventiaApi {
     @GET("categories")
     suspend fun getCategories(): List<CategoryDto>
 
     @GET("events")
-    suspend fun getEvents(): List<EventDto>
+    suspend fun getEvents(
+        @Query("q") query: String? = null,
+        @Query("category") categoryId: Long? = null
+    ): List<EventDto>
 
     @GET("events/{id}")
     suspend fun getEvent(@Path("id") id: Long): EventDto

@@ -6,8 +6,19 @@ import org.junit.Test
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 class EventiaApiTest {
+    @Test
+    fun catalogSupportsBothQueryParametersOnTheEventsRoute() {
+        val events = EventiaApi::class.java.declaredMethods.single { it.name == "getEvents" }
+        assertEquals("events", events.getAnnotation(GET::class.java)?.value)
+        assertEquals(
+            listOf("q", "category"),
+            events.parameterAnnotations.flatMap { it.toList() }.filterIsInstance<Query>().map { it.value }
+        )
+    }
+
     @Test
     fun loginUsesRelativePostRoute() {
         val route = EventiaApi::class.java.declaredMethods
