@@ -17,7 +17,7 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 
 ## Día 1 — Arquitectura y consumo de API
 
-En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events` y `venues`. El catálogo usa la fuente remota en esta fase. La sesión y la caché local corresponden a flujos posteriores.
+En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `venues` y `auth/login`. El catálogo usa la fuente remota. El contrato de inicio de sesión recibe `email` y `password` y lee `token`. La UI de sesión y la caché local corresponden a flujos posteriores.
 
 ### Postman
 
@@ -26,7 +26,15 @@ En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas rela
 3. Configura `courseEmail` y `coursePassword` en un entorno privado con las credenciales facilitadas por el curso. Ejecuta **Iniciar sesión**, **Usuario autenticado** y **Detalle de evento**. El script de inicio de sesión guarda `token`, que las dos lecturas envían como `Authorization: Bearer {{token}}`.
 4. Para inscribirse, cancelar o consultar inscripciones, configura `attendanceToken` con el token de una cuenta de prueba dedicada y comprueba los IDs contra el catálogo. Si `fullEventId` está vacío, queda pendiente el caso 409 por falta de cupos. Mantén las credenciales y los tokens solo en valores locales y limpia los tokens antes de compartir o exportar la colección.
 
-### Respuestas observadas el 20 de noviembre de 2026
+### Lecturas públicas repetidas el 20 de noviembre de 2026
+
+Las consultas por HTTP a **categorías → eventos → lugares** devolvieron 200 con arreglos de 7, 21 y 10 elementos. El detalle de invitado del evento 8 devolvió 200 y omitió `isAttending`. El lugar 8 tenía ambas coordenadas nulas y el 10 tenía solo la longitud nula. Se observaron imágenes nulas en los eventos 16, 21, 24 y 32. El evento 8 tenía 60 cupos totales y 60 disponibles. Ningún evento devuelto tenía cero cupos, por lo que `fullEventId` queda sin un valor verificado.
+
+El evento 14 confirmó `startsAt: 2026-11-22T18:00:00-04:00` y `endsAt: 2026-11-22T20:00:00-04:00`.
+
+### Observaciones de la ejecución anterior
+
+Los resultados autenticados de la tabla proceden de la verificación previa. La importación en Postman, el inicio de sesión y las solicitudes con Bearer quedan pendientes de repetir con un entorno privado y las cuentas de prueba autorizadas.
 
 | Solicitud | Resultado observado |
 | --- | --- |
