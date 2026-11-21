@@ -14,8 +14,10 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -32,7 +34,11 @@ import com.example.eventia.domain.model.Category
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable
-fun ExploreScreen(onEventClick: (Long) -> Unit, viewModel: ExploreViewModel = hiltViewModel()) {
+fun ExploreScreen(
+    onEventClick: (Long) -> Unit,
+    viewModel: ExploreViewModel = hiltViewModel(),
+    onFavoritesClick: (() -> Unit)? = null
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     ExploreContent(
         state = state,
@@ -40,7 +46,8 @@ fun ExploreScreen(onEventClick: (Long) -> Unit, viewModel: ExploreViewModel = hi
         onCategorySelect = viewModel::selectCategory,
         onClearFilters = viewModel::clearFilters,
         onRefresh = viewModel::refresh,
-        onEventClick = onEventClick
+        onEventClick = onEventClick,
+        onFavoritesClick = onFavoritesClick
     )
 }
 
@@ -51,12 +58,28 @@ private fun ExploreContent(
     onCategorySelect: (Long) -> Unit,
     onClearFilters: () -> Unit,
     onRefresh: () -> Unit,
-    onEventClick: (Long) -> Unit
+    onEventClick: (Long) -> Unit,
+    onFavoritesClick: (() -> Unit)? = null
 ) {
     val filters = state.filters
     val content = state.content
     val events = content?.events
     Column(Modifier.fillMaxSize()) {
+        SingleChoiceSegmentedButtonRow(
+            Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp)
+        ) {
+            SegmentedButton(
+                selected = true,
+                onClick = {},
+                shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2)
+            ) { Text(stringResource(R.string.events_title)) }
+            SegmentedButton(
+                selected = false,
+                onClick = {},
+                enabled = false,
+                shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2)
+            ) { Text(stringResource(R.string.venues_title)) }
+        }
         OutlinedTextField(
             value = filters.query,
             onValueChange = onQueryChange,
@@ -96,6 +119,9 @@ private fun ExploreContent(
                 val message = if (events == null) R.string.catalog_error else R.string.catalog_refresh_error
                 Text(stringResource(message))
                 Button(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
+                if (events == null && onFavoritesClick != null) {
+                    TextButton(onClick = onFavoritesClick) { Text(stringResource(R.string.tab_favorites)) }
+                }
             }
         }
         key(filters) {
@@ -111,25 +137,13 @@ private fun ExploreContent(
                     item { Text(stringResource(R.string.catalog_no_matches)) }
                     return@LazyColumn
                 }
-                if (content.categories.isEmpty() && events.isEmpty() && content.venues.isEmpty()) {
-                    item { Text(stringResource(R.string.catalog_empty)) }
+                if (events.isEmpty()) {
+                    val message = if (content.categories.isEmpty()) R.string.catalog_empty else R.string.events_empty
+                    item { Text(stringResource(message)) }
                     return@LazyColumn
                 }
 
-                item { Text(stringResource(R.string.events_title), style = MaterialTheme.typography.titleLarge) }
                 items(events, key = { "event-${it.id}" }) { event -> EventCard(event, onEventClick) }
-                if (events.isEmpty()) item { Text(stringResource(R.string.events_empty)) }
-
-                if (!filters.isActive) {
-                    item { Text(stringResource(R.string.venues_title), style = MaterialTheme.typography.titleLarge) }
-                    items(content.venues, key = { "venue-${it.id}" }) { venue ->
-                        Column {
-                            Text(venue.name, style = MaterialTheme.typography.titleMedium)
-                            Text(venue.address)
-                        }
-                    }
-                    if (content.venues.isEmpty()) item { Text(stringResource(R.string.venues_empty)) }
-                }
             }
         }
     }

@@ -1,21 +1,72 @@
 package com.example.eventia
 
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasSetTextAction
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.eventia.domain.model.Account
 import com.example.eventia.repositories.AccountField
 import com.example.eventia.repositories.SessionRepository
+import com.example.eventia.ui.screens.SessionForm
 import com.example.eventia.ui.screens.SessionUiState
 import com.example.eventia.ui.screens.SessionViewModel
+import com.example.eventia.ui.theme.EventiaTheme
 import java.io.IOException
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class SessionFlowTest {
+    @get:Rule
+    val compose = createComposeRule()
+
+    @Test
+    fun invalidEmailAndShortPasswordShowSupportingTextInTheirFields() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val session = onMainSession()
+        compose.setContent {
+            val state by session.state.collectAsState()
+            EventiaTheme {
+                SessionForm(
+                    form = state as SessionUiState.Form,
+                    onSubmit = session::submit,
+                    onSwitch = session::switchForm,
+                    onEdit = session::clearError,
+                    onGuest = session::continueAsGuest
+                )
+            }
+        }
+        val email = compose.onNode(hasSetTextAction() and hasText(context.getString(R.string.auth_email)))
+        email.performTextInput(context.getString(R.string.app_name))
+        compose.onNode(hasText(context.getString(R.string.auth_sign_in)) and hasClickAction()).performClick()
+
+        compose.onNode(
+            hasSetTextAction() and hasText(context.getString(R.string.auth_email)) and
+                hasText(context.getString(R.string.auth_invalid_email))
+        ).assertIsDisplayed()
+        compose.onNode(
+            hasSetTextAction() and hasText(context.getString(R.string.auth_password)) and
+                hasText(context.getString(R.string.auth_short_password))
+        ).assertIsDisplayed()
+    }
+
+    private fun onMainSession(): SessionViewModel {
+        lateinit var session: SessionViewModel
+        onMain { session = SessionViewModel(LocalSession(hasToken = false)) }
+        return session
+    }
+
     @Test
     fun figureTwoFieldsRejectBlankEmailAndShortPasswordLocally() = onMain {
         val session = SessionViewModel(LocalSession(hasToken = false))
