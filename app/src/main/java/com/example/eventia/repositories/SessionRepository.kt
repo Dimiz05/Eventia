@@ -15,6 +15,7 @@ interface SessionRepository {
     suspend fun signIn(email: String, password: String)
     suspend fun register(name: String, email: String, password: String)
     suspend fun loadAccount(): Account?
+    suspend fun signOut()
 }
 
 enum class AccountField { Name, Email, Password }
@@ -26,6 +27,8 @@ class RemoteSessionRepository @Inject constructor(
     private val store: SessionStore
 ) : SessionRepository {
     override suspend fun hasSession(): Boolean = !store.readToken().isNullOrBlank()
+
+    override suspend fun signOut() = store.clearToken()
 
     override suspend fun signIn(email: String, password: String) = authenticate {
         api.login(LoginRequestDto(email, password)).token

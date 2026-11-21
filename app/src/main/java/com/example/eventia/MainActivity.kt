@@ -26,8 +26,16 @@ class MainActivity : ComponentActivity() {
                     SessionUiState.Starting -> SessionStartup(false, session::retryStartup)
                     SessionUiState.StartupError -> SessionStartup(true, session::retryStartup)
                     is SessionUiState.Form ->
-                        SessionForm(state, session::submit, session::switchForm, session::clearError)
-                    is SessionUiState.Active -> EventiaNavigation(state, session::retryAccount)
+                        SessionForm(
+                            state, session::submit, session::switchForm,
+                            session::clearError, session::continueAsGuest
+                        )
+                    SessionUiState.Guest, is SessionUiState.Active -> EventiaNavigation(
+                        state as? SessionUiState.Active,
+                        session::retryAccount,
+                        session::openSignIn,
+                        session::signOut
+                    )
                 }
             }
         }

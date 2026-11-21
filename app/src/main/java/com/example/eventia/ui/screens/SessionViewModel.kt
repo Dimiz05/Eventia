@@ -12,6 +12,8 @@ import com.google.gson.JsonParseException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.IOException
 import javax.inject.Inject
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -20,6 +22,7 @@ import retrofit2.HttpException
 sealed interface SessionUiState {
     data object Starting : SessionUiState
     data object StartupError : SessionUiState
+    data object Guest : SessionUiState
     data class Form(
         val registering: Boolean = false,
         val submitting: Boolean = false,
@@ -27,13 +30,19 @@ sealed interface SessionUiState {
         val error: Int? = null
     ) : SessionUiState
 
-    data class Active(val account: Account? = null, val loading: Boolean = true) : SessionUiState
+    data class Active(
+        val account: Account? = null,
+        val loading: Boolean = true,
+        val signingOut: Boolean = false,
+        val signOutFailed: Boolean = false
+    ) : SessionUiState
 }
 
 @HiltViewModel
 class SessionViewModel @Inject constructor(private val repository: SessionRepository) : ViewModel() {
     private val mutableState = MutableStateFlow<SessionUiState>(SessionUiState.Starting)
     val state = mutableState.asStateFlow()
+    private var sessionRequest: Job? = null
 
     init {
         restore()
@@ -45,11 +54,36 @@ class SessionViewModel @Inject constructor(private val repository: SessionReposi
 
     private fun restore() {
         mutableState.value = SessionUiState.Starting
-        viewModelScope.launch {
+        sessionRequest = viewModelScope.launch {
             try {
                 if (repository.hasSession()) loadAccount() else mutableState.value = SessionUiState.Form()
             } catch (_: IOException) {
                 mutableState.value = SessionUiState.StartupError
+            }
+        }
+    }
+
+    fun continueAsGuest() {
+        val form = mutableState.value as? SessionUiState.Form ?: return
+        if (!form.submitting) mutableState.value = SessionUiState.Guest
+    }
+
+    fun openSignIn() {
+        if (mutableState.value == SessionUiState.Guest) mutableState.value = SessionUiState.Form()
+    }
+
+    fun signOut() {
+        val current = mutableState.value as? SessionUiState.Active ?: return
+        if (current.signingOut) return
+        mutableState.value = current.copy(signingOut = true, signOutFailed = false)
+        val pendingRequest = sessionRequest
+        sessionRequest = viewModelScope.launch {
+            pendingRequest?.cancelAndJoin()
+            try {
+                repository.signOut()
+                mutableState.value = SessionUiState.Form()
+            } catch (_: IOException) {
+                mutableState.value = current.copy(loading = false, signOutFailed = true)
             }
         }
     }
@@ -81,7 +115,7 @@ class SessionViewModel @Inject constructor(private val repository: SessionReposi
         }
         val submitting = form.copy(submitting = true, errors = emptyMap(), error = null)
         mutableState.value = submitting
-        viewModelScope.launch {
+        sessionRequest = viewModelScope.launch {
             try {
                 if (form.registering) repository.register(name.trim(), cleanEmail, password)
                 else repository.signIn(cleanEmail, password)
@@ -116,9 +150,9 @@ class SessionViewModel @Inject constructor(private val repository: SessionReposi
 
     fun retryAccount() {
         val current = mutableState.value as? SessionUiState.Active ?: return
-        if (current.loading) return
+        if (current.loading || current.signingOut) return
         mutableState.value = current.copy(loading = true)
-        viewModelScope.launch { loadAccount() }
+        sessionRequest = viewModelScope.launch { loadAccount() }
     }
 
     private suspend fun loadAccount() {
