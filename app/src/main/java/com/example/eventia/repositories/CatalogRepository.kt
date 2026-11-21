@@ -10,7 +10,7 @@ import java.time.OffsetDateTime
 import javax.inject.Inject
 
 interface CatalogRepository {
-    suspend fun getEvents(): List<Event>
+    suspend fun getEvents(query: String? = null, categoryId: Long? = null): List<Event>
     suspend fun getEvent(id: Long): Event
     suspend fun getVenues(): List<Venue>
 }
@@ -18,7 +18,8 @@ interface CatalogRepository {
 class RemoteCatalogRepository @Inject constructor(
     private val api: EventiaApi
 ) : CatalogRepository {
-    override suspend fun getEvents(): List<Event> = api.getEvents().map(EventDto::toDomain)
+    override suspend fun getEvents(query: String?, categoryId: Long?): List<Event> =
+        api.getEvents(query, categoryId).map(EventDto::toDomain)
     override suspend fun getEvent(id: Long): Event = api.getEvent(id).toDomain()
     override suspend fun getVenues(): List<Venue> = api.getVenues().map(VenueDto::toDomain)
 }

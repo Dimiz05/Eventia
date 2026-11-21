@@ -1,73 +1,133 @@
 package com.example.eventia.ui.screens
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
 import com.example.eventia.repositories.CatalogRepository
-import com.google.gson.JsonParseException
-import com.example.eventia.domain.model.Category
 import com.example.eventia.repositories.CategoryRepository
+import com.google.gson.JsonParseException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.io.IOException
+import java.time.Instant
+import java.time.format.DateTimeParseException
 import javax.inject.Inject
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.io.IOException
-import java.time.Instant
-import java.time.format.DateTimeParseException
 
-sealed interface ExploreUiState {
-    data object Loading : ExploreUiState
+data class ExploreFilters(val query: String = "", val categoryId: Long? = null) {
+    val isActive: Boolean get() = query.isNotBlank() || categoryId != null
+}
+
+data class ExploreUiState(
+    val filters: ExploreFilters = ExploreFilters(),
+    val content: Content? = null,
+    val isLoading: Boolean = true,
+    val hasError: Boolean = false
+) {
     data class Content(
         val categories: List<Category>,
-        val events: List<Event>,
+        val events: List<Event>?,
         val venues: List<Venue>
-    ) : ExploreUiState
-    data object Empty : ExploreUiState
-    data object Error : ExploreUiState
+    )
 }
 
 @HiltViewModel
 class ExploreViewModel @Inject constructor(
     private val categories: CategoryRepository,
-    private val catalog: CatalogRepository
+    private val catalog: CatalogRepository,
+    private val savedState: SavedStateHandle
 ) : ViewModel() {
-    private val _state = MutableStateFlow<ExploreUiState>(ExploreUiState.Loading)
-    val state = _state.asStateFlow()
+    private val mutableState = MutableStateFlow(
+        ExploreUiState(ExploreFilters(savedState[QUERY] ?: "", savedState[CATEGORY]))
+    )
+    val state = mutableState.asStateFlow()
+    private var request: Job? = null
 
     init {
-        loadCatalog()
+        load(reloadCatalog = true)
     }
 
-    fun retry() {
-        if (_state.value == ExploreUiState.Error) loadCatalog()
+    fun changeQuery(query: String) {
+        updateFilters(state.value.filters.copy(query = query), waitForInput = true)
     }
 
-    private fun loadCatalog() {
-        _state.value = ExploreUiState.Loading
-        viewModelScope.launch {
-            _state.value = try {
-                val categoryList = categories.getCategories()
-                val allEvents = catalog.getEvents()
-                val venues = catalog.getVenues()
-                val now = Instant.now()
-                val events = allEvents.filter { it.startsAt.toInstant().isAfter(now) }
-                if (categoryList.isEmpty() && events.isEmpty() && venues.isEmpty()) {
-                    ExploreUiState.Empty
-                } else {
-                    ExploreUiState.Content(categoryList, events, venues)
-                }
+    fun selectCategory(categoryId: Long) {
+        val filters = state.value.filters
+        val selection = categoryId.takeUnless { it == filters.categoryId }
+        updateFilters(filters.copy(categoryId = selection), waitForInput = true)
+    }
+
+    fun clearFilters() {
+        updateFilters(ExploreFilters(), waitForInput = false)
+    }
+
+    fun refresh() {
+        if (!state.value.isLoading) load(reloadCatalog = true)
+    }
+
+    private fun updateFilters(filters: ExploreFilters, waitForInput: Boolean) {
+        val previous = state.value
+        if (previous.filters == filters) return
+        savedState[QUERY] = filters.query
+        savedState[CATEGORY] = filters.categoryId
+        mutableState.value = previous.copy(
+            filters = filters,
+            content = previous.content?.copy(events = null),
+            isLoading = true,
+            hasError = false
+        )
+        load(reloadCatalog = false, waitForInput = waitForInput)
+    }
+
+    private fun load(reloadCatalog: Boolean, waitForInput: Boolean = false) {
+        request?.cancel()
+        val current = state.value.copy(isLoading = true, hasError = false)
+        mutableState.value = current
+        request = viewModelScope.launch {
+            if (waitForInput) delay(SEARCH_DELAY_MS)
+            val content = try {
+                fetchContent(current, reloadCatalog)
             } catch (_: IOException) {
-                ExploreUiState.Error
+                null
             } catch (_: HttpException) {
-                ExploreUiState.Error
+                null
             } catch (_: DateTimeParseException) {
-                ExploreUiState.Error
+                null
             } catch (_: JsonParseException) {
-                ExploreUiState.Error
+                null
             }
+            ensureActive()
+            mutableState.value = current.copy(
+                content = content ?: current.content,
+                isLoading = false,
+                hasError = content == null
+            )
         }
+    }
+
+    private suspend fun fetchContent(current: ExploreUiState, reloadCatalog: Boolean): ExploreUiState.Content {
+        val previous = current.content.takeUnless { reloadCatalog }
+        val categoryList = previous?.categories ?: categories.getCategories()
+        val filters = current.filters
+        val query = filters.query.trim().ifEmpty { null }
+        val allEvents = catalog.getEvents(query, filters.categoryId)
+        val venues = previous?.venues ?: catalog.getVenues()
+        val now = Instant.now()
+        val events = allEvents.filter { it.startsAt.toInstant().isAfter(now) }
+        return ExploreUiState.Content(categoryList, events, venues)
+    }
+
+    private companion object {
+        const val QUERY = "exploreQuery"
+        const val CATEGORY = "exploreCategory"
+        const val SEARCH_DELAY_MS = 300L
     }
 }

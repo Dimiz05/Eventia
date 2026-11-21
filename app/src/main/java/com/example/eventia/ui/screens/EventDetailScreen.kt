@@ -22,20 +22,23 @@ import com.example.eventia.R
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable
-internal fun EventDetailScreen(viewModel: EventDetailViewModel = hiltViewModel()) {
+internal fun EventDetailScreen(onBack: () -> Unit, viewModel: EventDetailViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    EventDetailContent(state, viewModel::retry)
+    EventDetailContent(state, viewModel::retry, onBack)
 }
 
 @Composable
-private fun EventDetailContent(state: EventDetailUiState, onRetry: () -> Unit) {
+private fun EventDetailContent(state: EventDetailUiState, onRetry: () -> Unit, onBack: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         when (state) {
             EventDetailUiState.Loading -> CircularProgressIndicator()
-            EventDetailUiState.Empty -> Text(stringResource(R.string.event_detail_empty))
+            EventDetailUiState.Empty -> {
+                Text(stringResource(R.string.event_detail_empty))
+                Button(onClick = onBack) { Text(stringResource(R.string.navigate_back)) }
+            }
             EventDetailUiState.Error -> {
                 Text(stringResource(R.string.event_detail_error))
                 Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
@@ -61,5 +64,5 @@ private fun EventDetailContent(state: EventDetailUiState, onRetry: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 private fun EventDetailErrorPreview() {
-    EventiaTheme { EventDetailContent(EventDetailUiState.Error, onRetry = {}) }
+    EventiaTheme { EventDetailContent(EventDetailUiState.Error, onRetry = {}, onBack = {}) }
 }
