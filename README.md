@@ -13,7 +13,7 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 - ID de aplicación `com.example.eventia`.
 - Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. El grafo reserva `events/{id}` y `venues/{id}` con argumentos numéricos para conectar los detalles cuando exista contenido.
 - Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que el ViewModel publique el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
-- Room, DataStore y Coil están declarados en el catálogo de versiones para los flujos que los usarán. Las pantallas de Mapa, Favoritos, Perfil y detalle son destinos base.
+- Room, DataStore y Coil están declarados en el catálogo de versiones para los flujos que los usarán. Favoritos, Perfil y detalle son destinos base.
 
 ## Día 1 — Arquitectura y consumo de API
 
@@ -46,6 +46,16 @@ Los resultados autenticados de la tabla proceden de la verificación previa. La 
 | `POST /auth/login` y `GET /me` | 200 con la cuenta del curso y su token. `GET /me` sin token devolvió 401. |
 
 El evento 16 devolvió `imageUrl: null`. El evento 14 devolvió `startsAt: 2026-11-22T18:00:00-04:00` con offset `-04:00`. Los DTO admiten esos nulos y el dominio conserva el offset con `OffsetDateTime`.
+
+### Google Maps de prueba
+
+1. En el proyecto de Google Cloud, confirma que está vinculado a una cuenta de facturación activa y habilita **Maps SDK for Android** en la biblioteca de APIs.
+2. Ejecuta `.\gradlew.bat :app:signingReport` en Windows o `./gradlew :app:signingReport` en macOS y Linux. Obtén el SHA-1 de cada certificado que firme una instalación de prueba. Para una instalación distribuida por Google Play, usa el SHA-1 del certificado de firma de la aplicación en Play Console.
+3. Crea una clave nueva en **APIs y servicios → Credenciales**. Limítala a **Maps SDK for Android** y selecciona **Aplicaciones Android** como restricción de aplicación. Añade un par con el `applicationId` `com.example.eventia` y el SHA-1 de cada certificado usado. Tras validar la nueva clave, retira la anterior que se compartió. [Configuración oficial de Google Maps](https://developers.google.com/maps/documentation/android-sdk/get-api-key)
+4. En la raíz del proyecto, crea o edita `secrets.properties` y asigna `MAPS_API_KEY` a la nueva clave, sin comillas. Git ignora este archivo. Gradle pasa el valor al metadato `com.google.android.geo.API_KEY` del manifiesto. Vuelve a compilar e instalar la app al cambiar el valor.
+5. En un dispositivo con Google Play Services, conexión a Internet y una firma autorizada, abre **Mapa**. Comprueba que carguen las teselas y que aparezca el marcador fijo **La Paz**. Si aparece un error de autorización en Logcat, revisa la clave, el SDK habilitado, el ID de aplicación y el SHA-1 de esa instalación.
+
+La app compila con `MAPS_API_KEY` vacío y muestra un mensaje de configuración en la pestaña Mapa. El marcador es un punto fijo de la demostración.
 
 ## Cómo ejecutar el proyecto
 
