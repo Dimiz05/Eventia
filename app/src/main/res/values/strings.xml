@@ -26,6 +26,12 @@
     <string name="event_description_title">Descripción</string>
     <string name="venues_title">Lugares</string>
     <string name="event_attend">Asistiré</string>
+    <string name="event_attending">Asistencia confirmada</string>
+    <string name="event_capacity">Cupos: %1$d de %2$d disponibles</string>
+    <string name="event_share">Compartir evento</string>
+    <string name="event_share_text">%1$s\n%2$s\n%3$s</string>
+    <string name="event_read_more">Ver más</string>
+    <string name="event_read_less">Ver menos</string>
     <string name="venues_empty">Todavía no hay lugares disponibles.</string>
     <string name="available_spots">Cupos disponibles: %1$d</string>
     <string name="retry">Reintentar</string>

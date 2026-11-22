@@ -1,6 +1,9 @@
 package com.example.eventia.ui.navigation
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -63,6 +66,7 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
+    val eventDetail = detail == DetailDestination.Event
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
     }
@@ -71,20 +75,27 @@ fun EventiaNavigation(
     }
 
     Scaffold(
+        contentWindowInsets = if (eventDetail) {
+            ScaffoldDefaults.contentWindowInsets.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
+        } else {
+            ScaffoldDefaults.contentWindowInsets
+        },
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(detail?.title ?: selectedTab.title)) },
-                navigationIcon = {
-                    if (detail != null) {
-                        IconButton(onClick = { controller.navigateUp() }) {
-                            Icon(
-                                painterResource(R.drawable.ic_back),
-                                contentDescription = stringResource(R.string.navigate_back)
-                            )
+            if (!eventDetail) {
+                TopAppBar(
+                    title = { Text(stringResource(detail?.title ?: selectedTab.title)) },
+                    navigationIcon = {
+                        if (detail != null) {
+                            IconButton(onClick = { controller.navigateUp() }) {
+                                Icon(
+                                    painterResource(R.drawable.ic_back),
+                                    contentDescription = stringResource(R.string.navigate_back)
+                                )
+                            }
                         }
                     }
-                }
-            )
+                )
+            }
         },
         bottomBar = {
             if (detail == null) {
