@@ -1,13 +1,8 @@
 package com.example.eventia.ui.screens
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -76,9 +71,8 @@ private fun TestMap(onRetry: () -> Unit) {
             )
         }
         if (!loaded) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                CircularProgressIndicator()
-                Text(stringResource(R.string.map_loading))
+            Surface {
+                LoadingScreen(stringResource(R.string.map_loading))
             }
         }
     }
@@ -86,17 +80,12 @@ private fun TestMap(onRetry: () -> Unit) {
 
 @Composable
 private fun MapMessage(message: Int, onRetry: (() -> Unit)? = null) {
-    Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(stringResource(message))
-            if (onRetry != null) {
-                Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
-            }
-        }
-    }
+    ScreenMessage(
+        title = stringResource(message),
+        isError = true,
+        actionLabel = stringResource(R.string.retry),
+        onAction = onRetry
+    )
 }
 
 @Preview(showBackground = true)
