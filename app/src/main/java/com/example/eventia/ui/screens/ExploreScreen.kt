@@ -31,6 +31,10 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -47,19 +51,49 @@ import com.example.eventia.ui.theme.EventiaTheme
 @Composable
 fun ExploreScreen(
     onEventClick: (Long) -> Unit,
+    onVenueClick: (Long) -> Unit,
     viewModel: ExploreViewModel = hiltViewModel(),
     onFavoritesClick: (() -> Unit)? = null
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    ExploreContent(
-        state = state,
-        onQueryChange = viewModel::changeQuery,
-        onCategorySelect = viewModel::selectCategory,
-        onClearFilters = viewModel::clearFilters,
-        onRefresh = viewModel::refresh,
-        onEventClick = onEventClick,
-        onFavoritesClick = onFavoritesClick
-    )
+    var showVenues by rememberSaveable { mutableStateOf(false) }
+    val sectionState = rememberSaveableStateHolder()
+    Column(Modifier.fillMaxSize()) {
+        ExploreSections(showVenues, onSelect = { showVenues = it })
+        sectionState.SaveableStateProvider(showVenues) {
+            if (showVenues) {
+                VenueListScreen(onVenueClick)
+            } else {
+                ExploreContent(
+                    state = state,
+                    onQueryChange = viewModel::changeQuery,
+                    onCategorySelect = viewModel::selectCategory,
+                    onClearFilters = viewModel::clearFilters,
+                    onRefresh = viewModel::refresh,
+                    onEventClick = onEventClick,
+                    onFavoritesClick = onFavoritesClick
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ExploreSections(showVenues: Boolean, onSelect: (Boolean) -> Unit) {
+    SingleChoiceSegmentedButtonRow(
+        Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp)
+    ) {
+        SegmentedButton(
+            selected = !showVenues,
+            onClick = { onSelect(false) },
+            shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2)
+        ) { Text(stringResource(R.string.events_title)) }
+        SegmentedButton(
+            selected = showVenues,
+            onClick = { onSelect(true) },
+            shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2)
+        ) { Text(stringResource(R.string.venues_title)) }
+    }
 }
 
 @Composable
@@ -76,21 +110,6 @@ private fun ExploreContent(
     val content = state.content
     val events = content?.events
     Column(Modifier.fillMaxSize()) {
-        SingleChoiceSegmentedButtonRow(
-            Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp)
-        ) {
-            SegmentedButton(
-                selected = true,
-                onClick = {},
-                shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2)
-            ) { Text(stringResource(R.string.events_title)) }
-            SegmentedButton(
-                selected = false,
-                onClick = {},
-                enabled = false,
-                shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2)
-            ) { Text(stringResource(R.string.venues_title)) }
-        }
         OutlinedTextField(
             shape = RoundedCornerShape(24.dp),
             leadingIcon = { Icon(painterResource(R.drawable.ic_explore), null) },
@@ -222,7 +241,6 @@ private fun ExplorePreview() {
             filters = ExploreFilters(query = "Jazz"),
             content = ExploreUiState.Content(
                 listOf(Category(1, "Música"), Category(2, "Cultura")),
-                emptyList(),
                 emptyList()
             ),
             isLoading = false
@@ -246,7 +264,10 @@ private fun ExploreErrorPreview() {
 private fun ExploreStatePreview(state: ExploreUiState) {
     EventiaTheme {
         Surface {
-            ExploreContent(state, {}, {}, {}, {}, {})
+            Column {
+                ExploreSections(showVenues = false, onSelect = {})
+                ExploreContent(state, {}, {}, {}, {}, {})
+            }
         }
     }
 }

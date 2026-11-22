@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
-import com.example.eventia.domain.model.Venue
 import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CategoryRepository
 import com.google.gson.JsonParseException
@@ -34,8 +33,7 @@ data class ExploreUiState(
 ) {
     data class Content(
         val categories: List<Category>,
-        val events: List<Event>?,
-        val venues: List<Venue>
+        val events: List<Event>?
     )
 }
 
@@ -119,10 +117,9 @@ class ExploreViewModel @Inject constructor(
         val filters = current.filters
         val query = filters.query.trim().ifEmpty { null }
         val allEvents = catalog.getEvents(query, filters.categoryId)
-        val venues = previous?.venues ?: catalog.getVenues()
         val now = Instant.now()
         val events = allEvents.filter { it.startsAt.toInstant().isAfter(now) }
-        return ExploreUiState.Content(categoryList, events, venues)
+        return ExploreUiState.Content(categoryList, events)
     }
 
     private companion object {

@@ -60,4 +60,29 @@
     <string name="auth_continue_guest">Continuar sin cuenta</string>
     <string name="auth_sign_out">Cerrar sesión</string>
     <string name="auth_sign_out_error">No se pudo cerrar la sesión. Vuelve a intentarlo.</string>
+    <string name="venue_search">Buscar por nombre de lugar</string>
+    <string name="venue_clear_search">Limpiar búsqueda</string>
+    <string name="venue_list_loading">Cargando lugares…</string>
+    <string name="venue_list_error">No se pudieron cargar los lugares</string>
+    <string name="venue_list_refresh_error">No se pudo actualizar la lista de lugares</string>
+    <string name="venue_list_empty">Todavía no hay lugares disponibles</string>
+    <string name="venue_no_matches">No encontramos lugares con ese nombre</string>
+    <string name="venue_event_count_unavailable">Conteo de próximos eventos no disponible</string>
+    <plurals name="venue_upcoming_event_count">
+        <item quantity="one">%d próximo evento</item>
+        <item quantity="other">%d próximos eventos</item>
+    </plurals>
+    <string name="venue_detail_loading">Cargando lugar…</string>
+    <string name="venue_detail_error">No se pudo cargar el lugar</string>
+    <string name="venue_detail_not_found">No encontramos este lugar</string>
+    <string name="venue_hours">Horario</string>
+    <string name="venue_hours_unavailable">Horario no disponible</string>
+    <string name="venue_location">Ubicación</string>
+    <string name="venue_address_unavailable">Dirección no disponible</string>
+    <string name="venue_directions">Cómo llegar</string>
+    <string name="venue_directions_unavailable">No se encontró una aplicación para abrir la ubicación</string>
+    <string name="venue_upcoming_events">Próximos eventos</string>
+    <string name="venue_events_loading">Cargando próximos eventos…</string>
+    <string name="venue_events_error">No se pudieron cargar los próximos eventos</string>
+    <string name="venue_events_empty">Este lugar no tiene próximos eventos</string>
 </resources>
