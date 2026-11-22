@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -17,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -41,11 +44,15 @@ import com.example.eventia.ui.theme.EventiaTheme
 fun SessionStartup(showError: Boolean, onRetry: () -> Unit) {
     Box(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing), contentAlignment = Alignment.Center) {
         if (showError) {
-            Column(Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(stringResource(R.string.auth_startup_error))
-                Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
-            }
-        } else CircularProgressIndicator()
+            ScreenMessage(
+                title = stringResource(R.string.auth_startup_error),
+                isError = true,
+                actionLabel = stringResource(R.string.retry),
+                onAction = onRetry
+            )
+        } else {
+            LoadingScreen(stringResource(R.string.auth_loading))
+        }
     }
 }
 
@@ -65,8 +72,19 @@ fun SessionForm(
     Column(
         modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)
             .imePadding().verticalScroll(rememberScrollState()).padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Surface(
+            modifier = Modifier.padding(top = 24.dp).size(64.dp),
+            shape = RoundedCornerShape(18.dp),
+            color = MaterialTheme.colorScheme.primary
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Text("E", style = MaterialTheme.typography.headlineLarge)
+            }
+        }
+        Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineLarge)
         Text(stringResource(action), style = MaterialTheme.typography.headlineMedium)
         if (form.registering) {
             SessionField(name, R.string.auth_name, form.errors[AccountField.Name], !form.submitting) {

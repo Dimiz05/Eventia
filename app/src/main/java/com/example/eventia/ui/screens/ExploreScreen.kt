@@ -1,17 +1,25 @@
 package com.example.eventia.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
@@ -24,6 +32,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -81,6 +92,8 @@ private fun ExploreContent(
             ) { Text(stringResource(R.string.venues_title)) }
         }
         OutlinedTextField(
+            shape = RoundedCornerShape(24.dp),
+            leadingIcon = { Icon(painterResource(R.drawable.ic_explore), null) },
             value = filters.query,
             onValueChange = onQueryChange,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp),
@@ -105,45 +118,97 @@ private fun ExploreContent(
             TextButton(onClick = onRefresh, enabled = !state.isLoading && !state.hasError) {
                 Text(stringResource(R.string.catalog_refresh))
             }
-            if (filters.query.isNotEmpty() || filters.categoryId != null) {
+            if (filters.isActive && (events?.isEmpty() != true || state.hasError)) {
                 TextButton(onClick = onClearFilters) {
                     Text(stringResource(R.string.catalog_clear_filters))
                 }
             }
         }
         if (state.isLoading) {
-            LinearProgressIndicator(Modifier.fillMaxWidth())
+            val loadingLabel = stringResource(R.string.catalog_loading)
+            LinearProgressIndicator(
+                Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+                    .semantics { contentDescription = loadingLabel }
+            )
         }
-        if (state.hasError) {
-            Column(Modifier.padding(horizontal = 24.dp, vertical = 8.dp)) {
-                val message = if (events == null) R.string.catalog_error else R.string.catalog_refresh_error
-                Text(stringResource(message))
-                Button(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
-                if (events == null && onFavoritesClick != null) {
-                    TextButton(onClick = onFavoritesClick) { Text(stringResource(R.string.tab_favorites)) }
+        if (state.hasError && events != null) {
+            Surface(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp),
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.errorContainer
+            ) {
+                Column(Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+                    Text(stringResource(R.string.catalog_refresh_error))
+                    Button(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
                 }
             }
         }
-        key(filters) {
-            val listState = rememberLazyListState()
-            LazyColumn(
-                state = listState,
-                contentPadding = PaddingValues(24.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                if (content == null || events == null) return@LazyColumn
-
-                if (filters.isActive && events.isEmpty()) {
-                    item { Text(stringResource(R.string.catalog_no_matches)) }
-                    return@LazyColumn
+        when {
+            state.isLoading && events.isNullOrEmpty() -> CatalogSkeleton(Modifier.weight(1f))
+            state.hasError && events == null -> {
+                Column(Modifier.weight(1f)) {
+                    ScreenMessage(
+                        title = stringResource(R.string.catalog_error),
+                        modifier = Modifier.weight(1f),
+                        description = stringResource(R.string.catalog_error_recovery),
+                        isError = true,
+                        actionLabel = stringResource(R.string.retry),
+                        onAction = onRefresh
+                    )
+                    if (onFavoritesClick != null) {
+                        TextButton(onClick = onFavoritesClick) {
+                            Text(stringResource(R.string.tab_favorites))
+                        }
+                    }
                 }
-                if (events.isEmpty()) {
-                    val message = if (content.categories.isEmpty()) R.string.catalog_empty else R.string.events_empty
-                    item { Text(stringResource(message)) }
-                    return@LazyColumn
+            }
+            events != null && events.isEmpty() && !state.hasError -> {
+                ScreenMessage(
+                    title = stringResource(
+                        when {
+                            filters.isActive -> R.string.catalog_no_matches_title
+                            content?.categories.isNullOrEmpty() -> R.string.catalog_empty
+                            else -> R.string.events_empty
+                        }
+                    ),
+                    modifier = Modifier.weight(1f),
+                    description = if (filters.isActive) stringResource(R.string.catalog_no_matches) else null,
+                    actionLabel = if (filters.isActive) stringResource(R.string.catalog_clear_filters) else null,
+                    onAction = if (filters.isActive) onClearFilters else null
+                )
+            }
+            !events.isNullOrEmpty() -> key(filters) {
+                val listState = rememberLazyListState()
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    state = listState,
+                    contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(events, key = { it.id }) { event -> EventCard(event, onEventClick) }
                 }
+            }
+        }
+    }
+}
 
-                items(events, key = { "event-${it.id}" }) { event -> EventCard(event, onEventClick) }
+@Composable
+private fun CatalogSkeleton(modifier: Modifier = Modifier) {
+    val tint = MaterialTheme.colorScheme.surfaceContainerHighest
+    val shape = RoundedCornerShape(8.dp)
+    LazyColumn(
+        modifier = modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(24.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        items(3) {
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Box(Modifier.size(88.dp).background(tint, shape))
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Box(Modifier.fillMaxWidth(0.35f).height(12.dp).background(tint, shape))
+                    Box(Modifier.fillMaxWidth(0.9f).height(18.dp).background(tint, shape))
+                    Box(Modifier.fillMaxWidth(0.6f).height(12.dp).background(tint, shape))
+                }
             }
         }
     }
@@ -152,17 +217,36 @@ private fun ExploreContent(
 @Preview(showBackground = true)
 @Composable
 private fun ExplorePreview() {
-    EventiaTheme {
-        ExploreContent(
-            state = ExploreUiState(
-                content = ExploreUiState.Content(listOf(Category(1, "Música"), Category(2, "Cultura")), emptyList(), emptyList()),
-                isLoading = false
+    ExploreStatePreview(
+        ExploreUiState(
+            filters = ExploreFilters(query = "Jazz"),
+            content = ExploreUiState.Content(
+                listOf(Category(1, "Música"), Category(2, "Cultura")),
+                emptyList(),
+                emptyList()
             ),
-            onQueryChange = {},
-            onCategorySelect = {},
-            onClearFilters = {},
-            onRefresh = {},
-            onEventClick = {}
+            isLoading = false
         )
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ExploreLoadingPreview() {
+    ExploreStatePreview(ExploreUiState())
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ExploreErrorPreview() {
+    ExploreStatePreview(ExploreUiState(isLoading = false, hasError = true))
+}
+
+@Composable
+private fun ExploreStatePreview(state: ExploreUiState) {
+    EventiaTheme {
+        Surface {
+            ExploreContent(state, {}, {}, {}, {}, {})
+        }
     }
 }
