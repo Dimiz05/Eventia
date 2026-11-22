@@ -2,7 +2,6 @@ package com.example.eventia.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.aspectRatio
@@ -12,7 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -74,11 +72,7 @@ private fun EventDetailContent(
                 TextButton(onClick = { onVenueClick(event.venue.id) }) {
                     Text(event.venue.name, style = MaterialTheme.typography.titleMedium)
                 }
-                Text(event.venue.address)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = {}, enabled = false) {
-                        Text(stringResource(R.string.event_directions))
-                    }
+                VenueLocation(event.venue) {
                     Button(onClick = {}, enabled = false) {
                         Text(stringResource(R.string.event_attend))
                     }

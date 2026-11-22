@@ -1,9 +1,5 @@
 package com.example.eventia.ui.screens
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,7 +12,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,9 +86,6 @@ private fun VenueDetailContent(
 
 @Composable
 private fun VenueInformation(venue: Venue) {
-    val context = LocalContext.current
-    val latitude = venue.latitude?.takeIf { it in -90.0..90.0 }
-    val longitude = venue.longitude?.takeIf { it in -180.0..180.0 }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         EventArtwork(venue.imageUrl)
         Text(venue.name, style = MaterialTheme.typography.headlineSmall)
@@ -101,20 +93,7 @@ private fun VenueInformation(venue: Venue) {
         Text(stringResource(R.string.venue_hours), style = MaterialTheme.typography.titleMedium)
         Text(venue.openingHours?.takeIf { it.isNotBlank() } ?: stringResource(R.string.venue_hours_unavailable))
         Text(stringResource(R.string.venue_location), style = MaterialTheme.typography.titleMedium)
-        Text(venue.address.takeIf { it.isNotBlank() } ?: stringResource(R.string.venue_address_unavailable))
-        if (latitude != null && longitude != null) {
-            TextButton(onClick = {
-                val point = "$latitude,$longitude"
-                val query = Uri.encode("$point(${venue.name})")
-                try {
-                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("geo:$point?q=$query")))
-                } catch (_: ActivityNotFoundException) {
-                    Toast.makeText(context, R.string.venue_directions_unavailable, Toast.LENGTH_SHORT).show()
-                }
-            }) {
-                Text(stringResource(R.string.venue_directions))
-            }
-        }
+        VenueLocation(venue)
     }
 }
 
