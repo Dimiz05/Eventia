@@ -25,7 +25,6 @@
     <string name="event_detail_error">No se pudo cargar el evento.</string>
     <string name="event_description_title">Descripción</string>
     <string name="venues_title">Lugares</string>
-    <string name="event_directions">Cómo llegar</string>
     <string name="event_attend">Asistiré</string>
     <string name="venues_empty">Todavía no hay lugares disponibles.</string>
     <string name="available_spots">Cupos disponibles: %1$d</string>
@@ -82,6 +81,7 @@
     <string name="venue_hours">Horario</string>
     <string name="venue_hours_unavailable">Horario no disponible</string>
     <string name="venue_location">Ubicación</string>
+    <string name="venue_location_coordinates">Latitud %1$s, longitud %2$s</string>
     <string name="venue_address_unavailable">Dirección no disponible</string>
     <string name="venue_directions">Cómo llegar</string>
     <string name="venue_directions_unavailable">No se encontró una aplicación para abrir la ubicación</string>
