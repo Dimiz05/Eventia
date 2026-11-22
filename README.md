@@ -11,9 +11,9 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 ## Proyecto y navegación base
 
 - ID de aplicación `com.example.eventia`.
-- Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. Explorar abre el detalle de evento por ID mediante `events/{id}`. El grafo también reserva `venues/{id}`.
-- Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante un ViewModel con StateFlow, un repositorio y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que el ViewModel publique el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
-- DataStore conserva la sesión de la cuenta y Coil carga las imágenes de eventos. Favoritos y el detalle de lugar son destinos base.
+- Navigation Compose presenta Explorar, Mapa, Favoritos y Perfil. Explorar abre los detalles de evento y lugar por ID mediante `events/{id}` y `venues/{id}`.
+- Explorar consulta las categorías, los eventos y los lugares públicos de `https://eventia.jmacboy.dev/api/` mediante ViewModels con StateFlow, repositorios y Retrofit con Gson. Hilt inyecta Retrofit y las interfaces de repositorio. Los repositorios convierten los DTO en modelos de dominio antes de que los ViewModels publiquen el estado de carga, contenido, vacío o error. El estado de error permite reintentar.
+- DataStore conserva la sesión de la cuenta y Coil carga las imágenes de eventos y lugares. Favoritos es un destino base.
 
 ## Día 1 — Arquitectura y consumo de API
 
@@ -62,6 +62,12 @@ La app compila con `MAPS_API_KEY` vacío y muestra un mensaje de configuración 
 - En una instalación limpia, la app abre **Iniciar sesión** con las opciones **Crear cuenta** y **Continuar sin cuenta**. Una sesión guardada se valida con `GET /me` al arrancar.
 - **Continuar sin cuenta** abre Explorar. El acceso como invitado dura hasta que se cierra el proceso. Desde Perfil se puede volver al formulario.
 - **Cerrar sesión** o un `401` de `GET /me` devuelve al formulario. Si la cuenta falla temporalmente, Perfil permite reintentar.
+
+## Día 3 — Lugares y navegación
+
+- **Explorar → Lugares** usa `GET /venues` y permite buscar por nombre sobre los datos cargados. Cada tarjeta muestra la imagen, el nombre, la dirección y el conteo informado de próximos eventos.
+- El detalle usa `GET /venues/{id}` y `GET /venues/{id}/events`. Desde el detalle de un evento se puede abrir su lugar. Desde el lugar se puede abrir cualquiera de sus próximos eventos. Atrás regresa al destino anterior.
+- **Cómo llegar** abre las coordenadas válidas del lugar en una aplicación de mapas. Si faltan coordenadas, el detalle presenta la dirección disponible.
 
 ## Cómo ejecutar el proyecto
 

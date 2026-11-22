@@ -5,6 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -35,7 +36,24 @@ class EventiaApiTest {
             method.getAnnotation(GET::class.java)?.value
         }.toSet()
 
-        assertEquals(setOf("categories", "events", "events/{id}", "venues"), routes - "me")
+        assertEquals(
+            setOf("categories", "events", "events/{id}", "venues", "venues/{id}", "venues/{id}/events"),
+            routes - "me"
+        )
+    }
+
+    @Test
+    fun venueDetailAndEventsUseTheVenueIdWithoutAuthorization() {
+        for ((methodName, route) in mapOf(
+            "getVenue" to "venues/{id}",
+            "getVenueEvents" to "venues/{id}/events"
+        )) {
+            val method = EventiaApi::class.java.declaredMethods.singleOrNull { it.name == methodName }
+            assertEquals(route, method?.getAnnotation(GET::class.java)?.value)
+            val annotations = method?.parameterAnnotations.orEmpty().flatMap { it.toList() }
+            assertEquals(listOf("id"), annotations.filterIsInstance<Path>().map { it.value })
+            assertEquals(emptyList<Header>(), annotations.filterIsInstance<Header>())
+        }
     }
 
     @Test

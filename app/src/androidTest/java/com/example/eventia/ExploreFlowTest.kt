@@ -99,7 +99,10 @@ class ExploreFlowTest {
         }
 
         override suspend fun getEvent(id: Long): Event = error("Unexpected detail request")
-        override suspend fun getVenues(): List<Venue> = emptyList()
+        override suspend fun getVenues(): List<Venue> = error("Event search must not fetch venues")
+        override suspend fun getVenue(id: Long): Venue = error("Event search must not fetch venue details")
+        override suspend fun getVenueEvents(id: Long): List<Event> =
+            error("Event search must not fetch venue events")
     }
 
     private class PendingRequest(val filters: ExploreFilters) {

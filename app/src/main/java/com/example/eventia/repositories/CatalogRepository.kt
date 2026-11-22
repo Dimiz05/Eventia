@@ -13,6 +13,8 @@ interface CatalogRepository {
     suspend fun getEvents(query: String? = null, categoryId: Long? = null): List<Event>
     suspend fun getEvent(id: Long): Event
     suspend fun getVenues(): List<Venue>
+    suspend fun getVenue(id: Long): Venue
+    suspend fun getVenueEvents(id: Long): List<Event>
 }
 
 class RemoteCatalogRepository @Inject constructor(
@@ -22,6 +24,9 @@ class RemoteCatalogRepository @Inject constructor(
         api.getEvents(query, categoryId).map(EventDto::toDomain)
     override suspend fun getEvent(id: Long): Event = api.getEvent(id).toDomain()
     override suspend fun getVenues(): List<Venue> = api.getVenues().map(VenueDto::toDomain)
+    override suspend fun getVenue(id: Long): Venue = api.getVenue(id).toDomain()
+    override suspend fun getVenueEvents(id: Long): List<Event> =
+        api.getVenueEvents(id).map(EventDto::toDomain)
 }
 
 internal fun EventDto.toDomain(): Event = Event(

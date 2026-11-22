@@ -30,6 +30,12 @@ interface EventiaApi {
     @GET("venues")
     suspend fun getVenues(): List<VenueDto>
 
+    @GET("venues/{id}")
+    suspend fun getVenue(@Path("id") id: Long): VenueDto
+
+    @GET("venues/{id}/events")
+    suspend fun getVenueEvents(@Path("id") id: Long): List<EventDto>
+
     @POST("auth/login")
     suspend fun login(@Body credentials: LoginRequestDto): LoginResponseDto
 
