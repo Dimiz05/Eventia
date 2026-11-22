@@ -34,7 +34,11 @@
     <string name="map_services_unavailable">Google Play Services debe estar disponible y actualizado para mostrar el mapa.</string>
     <string name="map_load_error">No se pudo cargar el mapa. Comprueba la conexión y vuelve a intentarlo.</string>
     <string name="map_loading">Cargando mapa…</string>
-    <string name="map_marker_title">La Paz</string>
+    <string name="map_all_categories">Todas</string>
+    <string name="map_events_empty">No hay eventos con ubicación para mostrar.</string>
+    <string name="map_retry_events">Reintentar carga de eventos</string>
+    <string name="map_shared_point">Eventos en este punto</string>
+    <string name="map_view_detail">Ver detalle</string>
     <string name="favorites_pending">Los favoritos aún no están disponibles.</string>
     <string name="profile_pending">El acceso a tu cuenta aún no está disponible.</string>
     <string name="detail_event">Detalle del evento</string>
