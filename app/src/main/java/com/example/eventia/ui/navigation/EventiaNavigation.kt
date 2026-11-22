@@ -115,7 +115,7 @@ fun EventiaNavigation(
             composable(Tab.Explore.route) {
                 ExploreScreen(onEventClick = openEvent, onVenueClick = openVenue)
             }
-            composable(Tab.Map.route) { MapScreen() }
+            composable(Tab.Map.route) { MapScreen(onEventClick = openEvent) }
             composable(Tab.Profile.route) {
                 AccountScreen(currentSession, onRetryAccount, onSignIn, onSignOut)
             }
