@@ -1,8 +1,10 @@
 package com.example.eventia.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
@@ -34,14 +36,20 @@ internal fun FavoritesScreen(
         )
         events == null -> LoadingScreen(stringResource(R.string.favorites_loading))
         events.isEmpty() -> ScreenMessage(title = stringResource(R.string.favorites_empty))
-        else -> LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(events, key = Event::id) { event ->
-                EventCard(event, onEventClick) {
-                    FavoriteButton(true, state.canChange(event.id)) { onRemove(event) }
+        else -> Column(Modifier.fillMaxSize()) {
+            CachedDataNotice(
+                stringResource(R.string.favorites_saved_data),
+                Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(events, key = Event::id) { event ->
+                    EventCard(event, onEventClick) {
+                        FavoriteButton(true, state.canChange(event.id)) { onRemove(event) }
+                    }
                 }
             }
         }

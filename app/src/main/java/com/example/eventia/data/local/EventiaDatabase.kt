@@ -64,6 +64,14 @@ data class FavoriteEntity(@PrimaryKey val id: Long, @Embedded val details: Store
 @Entity(tableName = "cached_events")
 data class CachedEventEntity(@PrimaryKey val id: Long, @Embedded val details: StoredEvent)
 
+@Entity(tableName = "catalog_download")
+data class CatalogDownloadEntity(@PrimaryKey val id: Int, val downloadedAtMillis: Long)
+
+data class CachedCatalogSnapshot(
+    val events: List<CachedEventEntity>,
+    val downloadedAtMillis: Long
+)
+
 @Dao
 abstract class FavoriteDao {
     @Query("SELECT * FROM favorites ORDER BY startsAt, id")
@@ -89,7 +97,13 @@ abstract class FavoriteDao {
 @Dao
 abstract class CatalogCacheDao {
     @Query("SELECT * FROM cached_events ORDER BY startsAt, id")
-    abstract suspend fun getAll(): List<CachedEventEntity>
+    protected abstract suspend fun getAll(): List<CachedEventEntity>
+
+    @Query("SELECT downloadedAtMillis FROM catalog_download WHERE id = 1")
+    protected abstract suspend fun getDownloadTime(): Long?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    protected abstract suspend fun saveDownload(download: CatalogDownloadEntity)
 
     @Insert
     protected abstract suspend fun insertAll(events: List<CachedEventEntity>)
@@ -98,13 +112,24 @@ abstract class CatalogCacheDao {
     protected abstract suspend fun clear()
 
     @Transaction
-    open suspend fun replaceAll(events: List<CachedEventEntity>) {
+    open suspend fun getSnapshot(): CachedCatalogSnapshot? {
+        val downloadedAtMillis = getDownloadTime() ?: return null
+        return CachedCatalogSnapshot(getAll(), downloadedAtMillis)
+    }
+
+    @Transaction
+    open suspend fun replaceAll(events: List<CachedEventEntity>, downloadedAtMillis: Long) {
         clear()
         insertAll(events)
+        saveDownload(CatalogDownloadEntity(id = 1, downloadedAtMillis = downloadedAtMillis))
     }
 }
 
-@Database(entities = [FavoriteEntity::class, CachedEventEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [FavoriteEntity::class, CachedEventEntity::class, CatalogDownloadEntity::class],
+    version = 2,
+    exportSchema = false
+)
 abstract class EventiaDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDao
     abstract fun catalogCacheDao(): CatalogCacheDao

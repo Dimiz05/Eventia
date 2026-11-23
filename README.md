@@ -17,7 +17,7 @@ Aplicación Android desarrollada en Kotlin con Jetpack Compose y Material 3. El 
 
 ## Día 1 — Arquitectura y consumo de API
 
-En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `events/{id}`, `venues` y `auth/login`. El catálogo usa la fuente remota. Explorar muestra los eventos cuyo inicio todavía está en el futuro y presenta la fecha y la hora según la configuración del dispositivo. El contrato de inicio de sesión recibe `email` y `password` y lee `token`.
+En Android, Retrofit utiliza `https://eventia.jmacboy.dev/api/` y las rutas relativas `categories`, `events`, `events/{id}`, `venues` y `auth/login`. Explorar guarda en Room la última descarga del catálogo sin filtros. Cuando la red falla, aplica la búsqueda y la categoría sobre los datos guardados y muestra su antigüedad. Si falta una descarga completa, ofrece reintentar. Explorar muestra los eventos cuyo inicio todavía está en el futuro y presenta la fecha y la hora según la configuración del dispositivo. El contrato de inicio de sesión recibe `email` y `password` y lee `token`.
 
 ### Postman
 

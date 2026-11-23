@@ -2,6 +2,9 @@ package com.example.eventia.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.eventia.data.local.CatalogCacheDao
 import com.example.eventia.data.local.EventiaDatabase
 import com.example.eventia.data.local.FavoriteDao
 import com.example.eventia.repositories.FavoritesRepository
@@ -21,12 +24,25 @@ abstract class LocalCatalogModule {
     abstract fun bindFavorites(repository: RoomFavoritesRepository): FavoritesRepository
 
     companion object {
+        internal val catalogDownloadMigration = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE catalog_download (id INTEGER NOT NULL PRIMARY KEY, downloadedAtMillis INTEGER NOT NULL)"
+                )
+            }
+        }
+
         @Provides
         @Singleton
         fun provideDatabase(@ApplicationContext context: Context): EventiaDatabase =
-            Room.databaseBuilder(context, EventiaDatabase::class.java, "eventia.db").build()
+            Room.databaseBuilder(context, EventiaDatabase::class.java, "eventia.db")
+                .addMigrations(catalogDownloadMigration)
+                .build()
 
         @Provides
         fun provideFavoriteDao(database: EventiaDatabase): FavoriteDao = database.favoriteDao()
+
+        @Provides
+        fun provideCatalogCacheDao(database: EventiaDatabase): CatalogCacheDao = database.catalogCacheDao()
     }
 }
