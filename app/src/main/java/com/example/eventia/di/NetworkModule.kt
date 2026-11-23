@@ -1,6 +1,8 @@
 package com.example.eventia.di
 
 import com.example.eventia.api.EventiaApi
+import com.example.eventia.data.connectivity.AndroidCatalogConnectivity
+import com.example.eventia.data.connectivity.CatalogConnectivity
 import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CategoryRepository
 import com.example.eventia.repositories.RemoteCatalogRepository
@@ -27,6 +29,9 @@ abstract class NetworkModule {
 
     @Binds
     abstract fun bindCatalogRepository(repository: RemoteCatalogRepository): CatalogRepository
+
+    @Binds
+    abstract fun bindCatalogConnectivity(connectivity: AndroidCatalogConnectivity): CatalogConnectivity
 
     companion object {
         @Provides

@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteException
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.eventia.data.connectivity.CatalogConnectivity
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.repositories.CatalogEvents
@@ -44,15 +45,23 @@ data class ExploreUiState(
 class ExploreViewModel @Inject constructor(
     private val categories: CategoryRepository,
     private val catalog: CatalogRepository,
-    private val savedState: SavedStateHandle
+    private val savedState: SavedStateHandle,
+    connectivity: CatalogConnectivity
 ) : ViewModel() {
     private val mutableState = MutableStateFlow(
         ExploreUiState(ExploreFilters(savedState[QUERY] ?: "", savedState[CATEGORY]))
     )
     val state = mutableState.asStateFlow()
     private var request: Job? = null
+    private var catalogRefreshPending = false
 
     init {
+        viewModelScope.launch {
+            connectivity.reconnects().collect {
+                catalogRefreshPending = true
+                load(reloadCatalog = true)
+            }
+        }
         load(reloadCatalog = true)
     }
 
@@ -95,7 +104,7 @@ class ExploreViewModel @Inject constructor(
         request = viewModelScope.launch {
             if (waitForInput) delay(SEARCH_DELAY_MS)
             val content = try {
-                fetchContent(current, reloadCatalog)
+                fetchContent(current, reloadCatalog || catalogRefreshPending)
             } catch (_: IOException) {
                 null
             } catch (_: HttpException) {
@@ -120,7 +129,14 @@ class ExploreViewModel @Inject constructor(
         val previousRemote = current.content?.takeIf { !reloadCatalog && it.downloadedAt == null }
         val filters = current.filters
         val query = filters.query.trim().ifEmpty { null }
+        val unfiltered = query == null && filters.categoryId == null
+        if (catalogRefreshPending && !unfiltered) {
+            refreshCatalogCache()
+        }
         val result = catalog.loadEvents(query, filters.categoryId)
+        if (unfiltered && result is CatalogEvents.Remote) {
+            catalogRefreshPending = false
+        }
         val now = Instant.now()
         val events = result.events.filter { it.startsAt.toInstant().isAfter(now) }
         return when (result) {
@@ -133,6 +149,12 @@ class ExploreViewModel @Inject constructor(
                 events,
                 result.downloadedAt
             )
+        }
+    }
+
+    private suspend fun refreshCatalogCache() {
+        if (catalog.loadEvents(null, null) is CatalogEvents.Remote) {
+            catalogRefreshPending = false
         }
     }
 
