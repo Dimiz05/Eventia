@@ -28,7 +28,12 @@ import java.util.Date
 import android.text.format.DateFormat
 
 @Composable
-fun EventCard(event: Event, onEventClick: (Long) -> Unit, modifier: Modifier = Modifier) {
+fun EventCard(
+    event: Event,
+    onEventClick: (Long) -> Unit,
+    modifier: Modifier = Modifier,
+    favoriteAction: (@Composable () -> Unit)? = null
+) {
     OutlinedCard(
         onClick = { onEventClick(event.id) },
         modifier = modifier.fillMaxWidth(),
@@ -59,6 +64,7 @@ fun EventCard(event: Event, onEventClick: (Long) -> Unit, modifier: Modifier = M
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+            favoriteAction?.invoke()
         }
     }
 }

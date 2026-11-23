@@ -6,8 +6,10 @@ import com.example.eventia.api.models.VenueDto
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
+import java.io.IOException
 import java.time.OffsetDateTime
 import javax.inject.Inject
+import retrofit2.HttpException
 
 interface CatalogRepository {
     suspend fun getEvents(query: String? = null, categoryId: Long? = null): List<Event>
@@ -18,11 +20,19 @@ interface CatalogRepository {
 }
 
 class RemoteCatalogRepository @Inject constructor(
-    private val api: EventiaApi
+    private val api: EventiaApi,
+    private val favorites: FavoritesRepository
 ) : CatalogRepository {
     override suspend fun getEvents(query: String?, categoryId: Long?): List<Event> =
         api.getEvents(query, categoryId).map(EventDto::toDomain)
-    override suspend fun getEvent(id: Long): Event = api.getEvent(id).toDomain()
+    override suspend fun getEvent(id: Long): Event = try {
+        api.getEvent(id).toDomain()
+    } catch (error: IOException) {
+        favorites.findFavorite(id) ?: throw error
+    } catch (error: HttpException) {
+        if (error.code() != 404 && error.code() !in 500..599) throw error
+        favorites.findFavorite(id) ?: throw error
+    }
     override suspend fun getVenues(): List<Venue> = api.getVenues().map(VenueDto::toDomain)
     override suspend fun getVenue(id: Long): Venue = api.getVenue(id).toDomain()
     override suspend fun getVenueEvents(id: Long): List<Event> =

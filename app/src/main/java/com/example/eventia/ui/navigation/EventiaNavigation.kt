@@ -10,15 +10,22 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -30,14 +37,17 @@ import com.example.eventia.R
 import com.example.eventia.ui.screens.AccountScreen
 import com.example.eventia.ui.screens.EventDetailScreen
 import com.example.eventia.ui.screens.ExploreScreen
+import com.example.eventia.ui.screens.FavoriteNotice
+import com.example.eventia.ui.screens.FavoritesScreen
+import com.example.eventia.ui.screens.FavoritesViewModel
 import com.example.eventia.ui.screens.MapScreen
 import com.example.eventia.ui.screens.SessionUiState
 import com.example.eventia.ui.screens.VenueDetailScreen
 
-private enum class Tab(val route: String, val title: Int, val icon: Int, val message: Int? = null) {
+private enum class Tab(val route: String, val title: Int, val icon: Int) {
     Explore("explore", R.string.tab_explore, R.drawable.ic_explore),
     Map("map", R.string.tab_map, R.drawable.ic_map),
-    Favorites("favorites", R.string.tab_favorites, R.drawable.ic_favorites, R.string.favorites_pending),
+    Favorites("favorites", R.string.tab_favorites, R.drawable.ic_favorites),
     Profile("profile", R.string.tab_profile, R.drawable.ic_profile)
 }
 
@@ -62,6 +72,29 @@ fun EventiaNavigation(
 ) {
     val controller = rememberNavController()
     val currentSession by rememberUpdatedState(session)
+    val favoritesViewModel: FavoritesViewModel = hiltViewModel()
+    val favorites by favoritesViewModel.state.collectAsStateWithLifecycle()
+    val snackbar = remember { SnackbarHostState() }
+    val removedMessage = stringResource(R.string.favorite_removed)
+    val undoLabel = stringResource(R.string.favorite_undo)
+    val mutationError = stringResource(R.string.favorite_change_error)
+    val retryLabel = stringResource(R.string.retry)
+    LaunchedEffect(favoritesViewModel, removedMessage, undoLabel, mutationError, retryLabel) {
+        favoritesViewModel.notices.collect { notice ->
+            when (notice) {
+                is FavoriteNotice.Removed -> {
+                    val result = snackbar.showSnackbar(removedMessage, undoLabel, duration = SnackbarDuration.Long)
+                    if (result == SnackbarResult.ActionPerformed) {
+                        favoritesViewModel.changeFavorite(notice.event, save = true)
+                    }
+                }
+                is FavoriteNotice.Failed -> {
+                    val result = snackbar.showSnackbar(mutationError, retryLabel, duration = SnackbarDuration.Long)
+                    if (result == SnackbarResult.ActionPerformed) notice.retry()
+                }
+            }
+        }
+    }
     val entry by controller.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
@@ -75,6 +108,7 @@ fun EventiaNavigation(
     }
 
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbar) },
         contentWindowInsets = if (eventDetail) {
             ScaffoldDefaults.contentWindowInsets.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
         } else {
@@ -124,16 +158,24 @@ fun EventiaNavigation(
     ) { padding ->
         NavHost(controller, Tab.Explore.route, modifier = Modifier.padding(padding)) {
             composable(Tab.Explore.route) {
-                ExploreScreen(onEventClick = openEvent, onVenueClick = openVenue)
+                ExploreScreen(
+                    onEventClick = openEvent,
+                    onVenueClick = openVenue,
+                    favorites = favorites,
+                    onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
+                )
             }
             composable(Tab.Map.route) { MapScreen(onEventClick = openEvent) }
             composable(Tab.Profile.route) {
                 AccountScreen(currentSession, onRetryAccount, onSignIn, onSignOut)
             }
-            Tab.entries.filter { it.message != null }.forEach { tab ->
-                composable(tab.route) {
-                    Text(stringResource(requireNotNull(tab.message)), Modifier.padding(24.dp))
-                }
+            composable(Tab.Favorites.route) {
+                FavoritesScreen(
+                    state = favorites,
+                    onEventClick = openEvent,
+                    onRemove = { favoritesViewModel.changeFavorite(it, save = false, offerUndo = true) },
+                    onRetry = favoritesViewModel::retry
+                )
             }
             DetailDestination.entries.forEach { destination ->
                 composable(
@@ -143,7 +185,9 @@ fun EventiaNavigation(
                     when (destination) {
                         DetailDestination.Event -> EventDetailScreen(
                             onBack = { controller.navigateUp() },
-                            onVenueClick = openVenue
+                            onVenueClick = openVenue,
+                            favorites = favorites,
+                            onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
                         )
                         DetailDestination.Venue -> VenueDetailScreen(
                             onBack = { controller.navigateUp() },

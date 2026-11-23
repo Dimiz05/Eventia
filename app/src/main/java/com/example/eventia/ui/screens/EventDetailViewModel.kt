@@ -1,5 +1,6 @@
 package com.example.eventia.ui.screens
 
+import android.database.sqlite.SQLiteException
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -52,6 +53,8 @@ class EventDetailViewModel @Inject constructor(
             } catch (_: DateTimeParseException) {
                 EventDetailUiState.Error
             } catch (_: JsonParseException) {
+                EventDetailUiState.Error
+            } catch (_: SQLiteException) {
                 EventDetailUiState.Error
             }
         }
