@@ -119,6 +119,7 @@ private fun ExploreContent(
     val filters = state.filters
     val content = state.content
     val events = content?.events
+    val downloadedAt = content?.downloadedAt
     Column(Modifier.fillMaxSize()) {
         OutlinedTextField(
             shape = RoundedCornerShape(24.dp),
@@ -152,6 +153,12 @@ private fun ExploreContent(
                     Text(stringResource(R.string.catalog_clear_filters))
                 }
             }
+        }
+        if (events != null && downloadedAt != null) {
+            CachedDataNotice(
+                cachedCatalogNotice(downloadedAt),
+                Modifier.padding(horizontal = 24.dp, vertical = 4.dp)
+            )
         }
         if (state.isLoading) {
             val loadingLabel = stringResource(R.string.catalog_loading)

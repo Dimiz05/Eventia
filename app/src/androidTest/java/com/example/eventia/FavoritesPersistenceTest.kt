@@ -3,22 +3,35 @@ package com.example.eventia
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.eventia.api.EventiaApi
 import com.example.eventia.data.local.CachedEventEntity
 import com.example.eventia.data.local.EventiaDatabase
 import com.example.eventia.data.local.StoredEvent
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
+import com.example.eventia.repositories.CatalogEvents
+import com.example.eventia.repositories.RemoteCatalogRepository
 import com.example.eventia.repositories.RoomFavoritesRepository
+import java.io.IOException
+import java.time.Instant
 import java.time.OffsetDateTime
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Protocol
+import okhttp3.Response
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @RunWith(AndroidJUnit4::class)
 class FavoritesPersistenceTest {
@@ -47,12 +60,63 @@ class FavoritesPersistenceTest {
                 )
 
                 val cached = CachedEventEntity(event.id, StoredEvent.from(event))
-                cache.replaceAll(listOf(cached))
-                assertEquals(listOf(cached), cache.getAll())
-                favorites.addFavorite(event)
-                cache.replaceAll(emptyList())
+                val downloadedAt = event.startsAt.toInstant()
+                assertNull(cache.getSnapshot())
 
-                assertTrue(cache.getAll().isEmpty())
+                val networkAvailable = AtomicBoolean(false)
+                val api = Retrofit.Builder()
+                    .baseUrl("https://example.invalid/")
+                    .client(OkHttpClient.Builder().addInterceptor { chain ->
+                        if (!networkAvailable.get()) throw IOException()
+                        Response.Builder()
+                            .request(chain.request())
+                            .protocol(Protocol.HTTP_1_1)
+                            .code(200)
+                            .message("OK")
+                            .body("[]".toResponseBody("application/json".toMediaType()))
+                            .build()
+                    }.build())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(EventiaApi::class.java)
+                val catalog = RemoteCatalogRepository(api, favorites, cache)
+                val firstFailure = runCatching { catalog.loadEvents(null, null) }.exceptionOrNull()
+                assertTrue(firstFailure is IOException)
+                assertNull(cache.getSnapshot())
+
+                cache.replaceAll(listOf(cached), downloadedAt.toEpochMilli())
+                val snapshot = requireNotNull(cache.getSnapshot())
+                assertEquals(listOf(cached), snapshot.events)
+                assertEquals(downloadedAt.toEpochMilli(), snapshot.downloadedAtMillis)
+
+                networkAvailable.set(true)
+                assertEquals(CatalogEvents.Remote(emptyList()), catalog.loadEvents(event.title, null))
+                assertEquals(CatalogEvents.Remote(emptyList()), catalog.loadEvents(null, event.category.id))
+                assertEquals(snapshot, cache.getSnapshot())
+
+                networkAvailable.set(false)
+                val offline = CatalogEvents.Cached(listOf(event), listOf(event.category), downloadedAt)
+                assertEquals(offline, catalog.loadEvents(event.title.lowercase(), event.category.id))
+                assertEquals(offline.copy(events = emptyList()), catalog.loadEvents(event.venue.address, null))
+                assertEquals(snapshot, cache.getSnapshot())
+
+                favorites.addFavorite(event)
+                networkAvailable.set(true)
+                val beforeDownload = System.currentTimeMillis()
+                assertEquals(CatalogEvents.Remote(emptyList()), catalog.loadEvents(null, null))
+                val emptyDownload = requireNotNull(cache.getSnapshot())
+
+                assertTrue(emptyDownload.events.isEmpty())
+                assertTrue(emptyDownload.downloadedAtMillis in beforeDownload..System.currentTimeMillis())
+                networkAvailable.set(false)
+                assertEquals(
+                    CatalogEvents.Cached(
+                        emptyList(),
+                        emptyList(),
+                        Instant.ofEpochMilli(emptyDownload.downloadedAtMillis)
+                    ),
+                    catalog.loadEvents(null, null)
+                )
                 assertEquals(listOf(event), favorites.observeFavorites().first())
                 val removed = requireNotNull(favorites.removeFavorite(event.id))
                 assertEquals(event, removed)

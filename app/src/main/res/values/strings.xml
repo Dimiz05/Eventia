@@ -102,4 +102,12 @@
     <string name="venue_events_loading">Cargando próximos eventos…</string>
     <string name="venue_events_error">No se pudieron cargar los próximos eventos</string>
     <string name="venue_events_empty">Este lugar no tiene próximos eventos</string>
+    <string name="favorites_saved_data">Datos guardados en este dispositivo</string>
+    <string name="catalog_offline_recent">Sin conexión · datos de hace menos de 1 min</string>
+    <string name="catalog_offline_minutes">Sin conexión · datos de hace %1$d min</string>
+    <string name="catalog_offline_hours">Sin conexión · datos de hace %1$d h</string>
+    <plurals name="catalog_offline_days">
+        <item quantity="one">Sin conexión · datos de hace %1$d día</item>
+        <item quantity="other">Sin conexión · datos de hace %1$d días</item>
+    </plurals>
 </resources>

@@ -1,10 +1,12 @@
 package com.example.eventia.ui.screens
 
+import android.database.sqlite.SQLiteException
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
+import com.example.eventia.repositories.CatalogEvents
 import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CategoryRepository
 import com.google.gson.JsonParseException
@@ -33,7 +35,8 @@ data class ExploreUiState(
 ) {
     data class Content(
         val categories: List<Category>,
-        val events: List<Event>?
+        val events: List<Event>?,
+        val downloadedAt: Instant? = null
     )
 }
 
@@ -101,6 +104,8 @@ class ExploreViewModel @Inject constructor(
                 null
             } catch (_: JsonParseException) {
                 null
+            } catch (_: SQLiteException) {
+                null
             }
             ensureActive()
             mutableState.value = current.copy(
@@ -112,14 +117,23 @@ class ExploreViewModel @Inject constructor(
     }
 
     private suspend fun fetchContent(current: ExploreUiState, reloadCatalog: Boolean): ExploreUiState.Content {
-        val previous = current.content.takeUnless { reloadCatalog }
-        val categoryList = previous?.categories ?: categories.getCategories()
+        val previousRemote = current.content?.takeIf { !reloadCatalog && it.downloadedAt == null }
         val filters = current.filters
         val query = filters.query.trim().ifEmpty { null }
-        val allEvents = catalog.getEvents(query, filters.categoryId)
+        val result = catalog.loadEvents(query, filters.categoryId)
         val now = Instant.now()
-        val events = allEvents.filter { it.startsAt.toInstant().isAfter(now) }
-        return ExploreUiState.Content(categoryList, events)
+        val events = result.events.filter { it.startsAt.toInstant().isAfter(now) }
+        return when (result) {
+            is CatalogEvents.Remote -> ExploreUiState.Content(
+                previousRemote?.categories ?: categories.getCategories(),
+                events
+            )
+            is CatalogEvents.Cached -> ExploreUiState.Content(
+                result.categories,
+                events,
+                result.downloadedAt
+            )
+        }
     }
 
     private companion object {

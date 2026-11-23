@@ -6,6 +6,7 @@ import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
 import com.example.eventia.repositories.CatalogRepository
+import com.example.eventia.repositories.CatalogEvents
 import com.example.eventia.repositories.CategoryRepository
 import com.example.eventia.ui.screens.ExploreFilters
 import com.example.eventia.ui.screens.ExploreViewModel
@@ -87,6 +88,9 @@ class ExploreFlowTest {
 
     private class PendingCatalog : CatalogRepository {
         val requests = Channel<PendingRequest>(Channel.UNLIMITED)
+
+        override suspend fun loadEvents(query: String?, categoryId: Long?): CatalogEvents =
+            CatalogEvents.Remote(getEvents(query, categoryId))
 
         override suspend fun getEvents(query: String?, categoryId: Long?): List<Event> {
             val request = PendingRequest(ExploreFilters(query.orEmpty(), categoryId))
