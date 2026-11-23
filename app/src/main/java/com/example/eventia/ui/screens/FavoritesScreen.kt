@@ -1,0 +1,70 @@
+package com.example.eventia.ui.screens
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.eventia.R
+import com.example.eventia.domain.model.Event
+import com.example.eventia.ui.theme.EventiaTheme
+
+@Composable
+internal fun FavoritesScreen(
+    state: FavoritesUiState,
+    onEventClick: (Long) -> Unit,
+    onRemove: (Event) -> Unit,
+    onRetry: () -> Unit
+) {
+    val events = state.events
+    when {
+        state.hasError -> ScreenMessage(
+            title = stringResource(R.string.favorites_load_error),
+            isError = true,
+            actionLabel = stringResource(R.string.retry),
+            onAction = onRetry
+        )
+        events == null -> LoadingScreen(stringResource(R.string.favorites_loading))
+        events.isEmpty() -> ScreenMessage(title = stringResource(R.string.favorites_empty))
+        else -> LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(events, key = Event::id) { event ->
+                EventCard(event, onEventClick) {
+                    FavoriteButton(true, state.canChange(event.id)) { onRemove(event) }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+internal fun FavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
+    IconButton(enabled = enabled, onClick = onClick) {
+        Icon(painterResource(favoriteIcon(selected)), stringResource(favoriteLabel(selected)))
+    }
+}
+
+internal fun favoriteIcon(selected: Boolean): Int =
+    if (selected) R.drawable.ic_favorites else R.drawable.ic_favorite_outline
+
+internal fun favoriteLabel(selected: Boolean): Int =
+    if (selected) R.string.favorite_remove else R.string.favorite_add
+
+@Preview(showBackground = true)
+@Composable
+private fun FavoritesEmptyPreview() {
+    EventiaTheme {
+        FavoritesScreen(FavoritesUiState(events = emptyList()), {}, {}, {})
+    }
+}

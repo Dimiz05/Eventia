@@ -49,10 +49,20 @@ import java.time.OffsetDateTime
 internal fun EventDetailScreen(
     onBack: () -> Unit,
     onVenueClick: (Long) -> Unit,
+    favorites: FavoritesUiState,
+    onFavoriteChange: (Event, Boolean) -> Unit,
     viewModel: EventDetailViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    EventDetailContent(state, viewModel::retry, onBack, onVenueClick)
+    EventDetailContent(state, viewModel::retry, onBack, onVenueClick) { event ->
+        val selected = event.id in favorites.ids
+        EventCoverAction(
+            favoriteIcon(selected),
+            stringResource(favoriteLabel(selected)),
+            onClick = { onFavoriteChange(event, !selected) },
+            enabled = favorites.canChange(event.id)
+        )
+    }
 }
 
 @Composable
@@ -60,10 +70,11 @@ private fun EventDetailContent(
     state: EventDetailUiState,
     onRetry: () -> Unit,
     onBack: () -> Unit,
-    onVenueClick: (Long) -> Unit
+    onVenueClick: (Long) -> Unit,
+    favoriteAction: (@Composable (Event) -> Unit)? = null
 ) {
     if (state is EventDetailUiState.Content) {
-        EventDetails(state.event, onBack, onVenueClick)
+        EventDetails(state.event, onBack, onVenueClick, favoriteAction)
         return
     }
 
@@ -95,7 +106,12 @@ private fun EventDetailContent(
 }
 
 @Composable
-private fun EventDetails(event: Event, onBack: () -> Unit, onVenueClick: (Long) -> Unit) {
+private fun EventDetails(
+    event: Event,
+    onBack: () -> Unit,
+    onVenueClick: (Long) -> Unit,
+    favoriteAction: (@Composable (Event) -> Unit)? = null
+) {
     val point = MapPoint.from(event.venue.latitude, event.venue.longitude)
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
@@ -120,12 +136,7 @@ private fun EventDetails(event: Event, onBack: () -> Unit, onVenueClick: (Long) 
                         }
                         context.startActivity(Intent.createChooser(intent, shareLabel))
                     })
-                    EventCoverAction(
-                        R.drawable.ic_favorites,
-                        stringResource(R.string.favorites_pending),
-                        onClick = {},
-                        enabled = false
-                    )
+                    favoriteAction?.invoke(event)
                 }
             }
         }

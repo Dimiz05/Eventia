@@ -46,12 +46,15 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
 import com.example.eventia.domain.model.Category
+import com.example.eventia.domain.model.Event
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable
-fun ExploreScreen(
+internal fun ExploreScreen(
     onEventClick: (Long) -> Unit,
     onVenueClick: (Long) -> Unit,
+    favorites: FavoritesUiState,
+    onFavoriteChange: (Event, Boolean) -> Unit,
     viewModel: ExploreViewModel = hiltViewModel(),
     onFavoritesClick: (() -> Unit)? = null
 ) {
@@ -71,7 +74,13 @@ fun ExploreScreen(
                     onClearFilters = viewModel::clearFilters,
                     onRefresh = viewModel::refresh,
                     onEventClick = onEventClick,
-                    onFavoritesClick = onFavoritesClick
+                    onFavoritesClick = onFavoritesClick,
+                    favoriteAction = { event ->
+                        val selected = event.id in favorites.ids
+                        FavoriteButton(selected, favorites.canChange(event.id)) {
+                            onFavoriteChange(event, !selected)
+                        }
+                    }
                 )
             }
         }
@@ -104,7 +113,8 @@ private fun ExploreContent(
     onClearFilters: () -> Unit,
     onRefresh: () -> Unit,
     onEventClick: (Long) -> Unit,
-    onFavoritesClick: (() -> Unit)? = null
+    onFavoritesClick: (() -> Unit)? = null,
+    favoriteAction: (@Composable (Event) -> Unit)? = null
 ) {
     val filters = state.filters
     val content = state.content
@@ -204,7 +214,9 @@ private fun ExploreContent(
                     contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(events, key = { it.id }) { event -> EventCard(event, onEventClick) }
+                    items(events, key = { it.id }) { event ->
+                        EventCard(event, onEventClick) { favoriteAction?.invoke(event) }
+                    }
                 }
             }
         }
