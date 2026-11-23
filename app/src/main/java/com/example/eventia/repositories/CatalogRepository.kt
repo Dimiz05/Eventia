@@ -83,11 +83,18 @@ class RemoteCatalogRepository @Inject constructor(
     override suspend fun getEvent(id: Long): Event = try {
         api.getEvent(id).toDomain()
     } catch (error: IOException) {
-        favorites.findFavorite(id) ?: throw error
+        findSavedEvent(id) ?: throw error
     } catch (error: HttpException) {
-        if (error.code() != 404 && error.code() !in 500..599) throw error
-        favorites.findFavorite(id) ?: throw error
+        when (error.code()) {
+            404 -> favorites.findFavorite(id)
+            in 500..599 -> findSavedEvent(id)
+            else -> null
+        } ?: throw error
     }
+
+    private suspend fun findSavedEvent(id: Long): Event? =
+        favorites.findFavorite(id) ?: cache.find(id)?.details?.toDomain(id)
+
     override suspend fun getVenues(): List<Venue> = api.getVenues().map(VenueDto::toDomain)
     override suspend fun getVenue(id: Long): Venue = api.getVenue(id).toDomain()
     override suspend fun getVenueEvents(id: Long): List<Event> =

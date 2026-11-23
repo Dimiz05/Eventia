@@ -96,6 +96,9 @@ abstract class FavoriteDao {
 
 @Dao
 abstract class CatalogCacheDao {
+    @Query("SELECT * FROM cached_events WHERE id = :id")
+    abstract suspend fun find(id: Long): CachedEventEntity?
+
     @Query("SELECT * FROM cached_events ORDER BY startsAt, id")
     protected abstract suspend fun getAll(): List<CachedEventEntity>
 

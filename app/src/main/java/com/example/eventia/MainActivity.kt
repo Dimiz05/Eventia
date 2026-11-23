@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Surface
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.eventia.data.connectivity.AndroidCatalogConnectivity
 import com.example.eventia.ui.navigation.EventiaNavigation
 import com.example.eventia.ui.screens.SessionForm
 import com.example.eventia.ui.screens.SessionStartup
@@ -14,9 +15,12 @@ import com.example.eventia.ui.screens.SessionUiState
 import com.example.eventia.ui.screens.SessionViewModel
 import com.example.eventia.ui.theme.EventiaTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject lateinit var connectivity: AndroidCatalogConnectivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +40,8 @@ class MainActivity : ComponentActivity() {
                             state as? SessionUiState.Active,
                             session::retryAccount,
                             session::openSignIn,
-                            session::signOut
+                            session::signOut,
+                            connectivity.online
                         )
                     }
                 }

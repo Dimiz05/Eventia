@@ -13,6 +13,7 @@ import com.example.eventia.domain.model.Venue
 import com.example.eventia.repositories.CatalogEvents
 import com.example.eventia.repositories.RemoteCatalogRepository
 import com.example.eventia.repositories.RoomFavoritesRepository
+import java.io.File
 import java.io.IOException
 import java.time.Instant
 import java.time.OffsetDateTime
@@ -38,7 +39,11 @@ class FavoritesPersistenceTest {
     @Test
     fun replacingCatalogAndUndoingRemovalKeepTheSavedDetail() = runBlocking {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val database = Room.inMemoryDatabaseBuilder(context, EventiaDatabase::class.java).build()
+        val databaseFile = File.createTempFile("eventia-favorites-", ".db", context.cacheDir)
+        fun openDatabase() = Room.databaseBuilder(
+            context, EventiaDatabase::class.java, databaseFile.absolutePath
+        ).build()
+        var database = openDatabase()
         try {
             withTimeout(15_000) {
                 val cache = database.catalogCacheDao()
@@ -95,12 +100,17 @@ class FavoritesPersistenceTest {
                 assertEquals(snapshot, cache.getSnapshot())
 
                 networkAvailable.set(false)
+                assertEquals(event, catalog.getEvent(event.id))
                 val offline = CatalogEvents.Cached(listOf(event), listOf(event.category), downloadedAt)
                 assertEquals(offline, catalog.loadEvents(event.title.lowercase(), event.category.id))
                 assertEquals(offline.copy(events = emptyList()), catalog.loadEvents(event.venue.address, null))
                 assertEquals(snapshot, cache.getSnapshot())
 
                 favorites.addFavorite(event)
+                assertEquals(offline, catalog.loadEvents(event.title, event.category.id))
+                assertEquals(offline.copy(events = emptyList()), catalog.loadEvents(event.venue.address, null))
+                assertEquals(listOf(event), favorites.observeFavorites().first())
+
                 networkAvailable.set(true)
                 val beforeDownload = System.currentTimeMillis()
                 assertEquals(CatalogEvents.Remote(emptyList()), catalog.loadEvents(null, null))
@@ -118,6 +128,7 @@ class FavoritesPersistenceTest {
                     catalog.loadEvents(null, null)
                 )
                 assertEquals(listOf(event), favorites.observeFavorites().first())
+                assertEquals(event, catalog.getEvent(event.id))
                 val removed = requireNotNull(favorites.removeFavorite(event.id))
                 assertEquals(event, removed)
                 assertTrue(favorites.observeFavorites().first().isEmpty())
@@ -126,9 +137,17 @@ class FavoritesPersistenceTest {
                 favorites.addFavorite(removed)
                 assertEquals(listOf(event), favorites.observeFavorites().first())
                 assertEquals(event, favorites.findFavorite(event.id))
+
+                database.close()
+                database = openDatabase()
+                val reopenedFavorites = RoomFavoritesRepository(database.favoriteDao())
+                val reopenedCatalog = RemoteCatalogRepository(api, reopenedFavorites, database.catalogCacheDao())
+                assertEquals(listOf(event), reopenedFavorites.observeFavorites().first())
+                assertEquals(event, reopenedCatalog.getEvent(event.id))
             }
         } finally {
             database.close()
+            context.deleteDatabase(databaseFile.absolutePath)
         }
     }
 }

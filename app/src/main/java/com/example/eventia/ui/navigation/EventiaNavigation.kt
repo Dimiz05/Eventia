@@ -1,6 +1,8 @@
 package com.example.eventia.ui.navigation
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.material3.ScaffoldDefaults
@@ -34,6 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
+import kotlinx.coroutines.flow.Flow
 import com.example.eventia.ui.screens.AccountScreen
 import com.example.eventia.ui.screens.EventDetailScreen
 import com.example.eventia.ui.screens.ExploreScreen
@@ -68,13 +71,16 @@ fun EventiaNavigation(
     session: SessionUiState.Active?,
     onRetryAccount: () -> Unit,
     onSignIn: () -> Unit,
-    onSignOut: () -> Unit
+    onSignOut: () -> Unit,
+    online: Flow<Boolean>
 ) {
     val controller = rememberNavController()
     val currentSession by rememberUpdatedState(session)
     val favoritesViewModel: FavoritesViewModel = hiltViewModel()
     val favorites by favoritesViewModel.state.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
+    val connectionNotice by remember(online) { online.connectionNotices() }
+        .collectAsStateWithLifecycle(initialValue = null)
     val removedMessage = stringResource(R.string.favorite_removed)
     val undoLabel = stringResource(R.string.favorite_undo)
     val mutationError = stringResource(R.string.favorite_change_error)
@@ -132,26 +138,31 @@ fun EventiaNavigation(
             }
         },
         bottomBar = {
-            if (detail == null) {
-                NavigationBar {
-                    Tab.entries.forEach { tab ->
-                        NavigationBarItem(
-                            selected = tab == selectedTab,
-                            onClick = {
-                                if (tab != selectedTab) {
-                                    controller.navigate(tab.route) {
-                                        popUpTo(controller.graph.findStartDestination().id) {
-                                            saveState = true
+            if (detail == null || connectionNotice != null) {
+                Column(Modifier.navigationBarsPadding()) {
+                    if (detail == null) {
+                        NavigationBar {
+                            Tab.entries.forEach { tab ->
+                                NavigationBarItem(
+                                    selected = tab == selectedTab,
+                                    onClick = {
+                                        if (tab != selectedTab) {
+                                            controller.navigate(tab.route) {
+                                                popUpTo(controller.graph.findStartDestination().id) {
+                                                    saveState = true
+                                                }
+                                                launchSingleTop = true
+                                                restoreState = true
+                                            }
                                         }
-                                        launchSingleTop = true
-                                        restoreState = true
-                                    }
-                                }
-                            },
-                            icon = { Icon(painterResource(tab.icon), contentDescription = null) },
-                            label = { Text(stringResource(tab.title)) }
-                        )
+                                    },
+                                    icon = { Icon(painterResource(tab.icon), contentDescription = null) },
+                                    label = { Text(stringResource(tab.title)) }
+                                )
+                            }
+                        }
                     }
+                    connectionNotice?.let { ConnectionBanner(it) }
                 }
             }
         }

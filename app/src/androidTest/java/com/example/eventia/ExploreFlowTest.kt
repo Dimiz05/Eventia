@@ -8,13 +8,16 @@ import com.example.eventia.domain.model.Venue
 import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CatalogEvents
 import com.example.eventia.repositories.CategoryRepository
+import com.example.eventia.data.connectivity.CatalogConnectivity
 import com.example.eventia.ui.screens.ExploreFilters
 import com.example.eventia.ui.screens.ExploreViewModel
 import java.io.IOException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
@@ -30,7 +33,7 @@ class ExploreFlowTest {
     fun filtersCoalesceCancelAndRestore() = onMain {
         val repository = PendingCatalog()
         val saved = SavedStateHandle()
-        val viewModel = ExploreViewModel(NoCategories, repository, saved)
+        val viewModel = ExploreViewModel(NoCategories, repository, saved, Offline)
         val initial = repository.requests.receive()
 
         viewModel.changeQuery("Co")
@@ -43,7 +46,7 @@ class ExploreFlowTest {
         filtered.result.complete(emptyList())
         viewModel.state.first { !it.isLoading }
 
-        val restored = ExploreViewModel(NoCategories, repository, saved)
+        val restored = ExploreViewModel(NoCategories, repository, saved, Offline)
         assertEquals(filtered.filters, restored.state.value.filters)
         val restoredRequest = repository.requests.receive()
         assertEquals(filtered.filters, restoredRequest.filters)
@@ -59,7 +62,7 @@ class ExploreFlowTest {
     @Test
     fun refreshKeepsPreviousResultOnFailureAndCanRetry() = onMain {
         val repository = PendingCatalog()
-        val viewModel = ExploreViewModel(NoCategories, repository, SavedStateHandle())
+        val viewModel = ExploreViewModel(NoCategories, repository, SavedStateHandle(), Offline)
         repository.requests.receive().result.complete(emptyList())
         val previous = viewModel.state.first { !it.isLoading }.content
 
@@ -78,9 +81,39 @@ class ExploreFlowTest {
         assertEquals(previous, retried.content)
     }
 
+    @Test
+    fun reconnectDownloadsFullCatalogAndKeepsTheLatestFilters() = onMain {
+        val repository = PendingCatalog()
+        val reconnects = Channel<Unit>(Channel.UNLIMITED)
+        val saved = SavedStateHandle(mapOf("exploreQuery" to "Compose"))
+        val viewModel = ExploreViewModel(
+            NoCategories, repository, saved, CatalogConnectivity { reconnects.receiveAsFlow() }
+        )
+        val initial = repository.requests.receive()
+        assertEquals(ExploreFilters("Compose"), initial.filters)
+
+        reconnects.send(Unit)
+        initial.finished.await()
+        val download = repository.requests.receive()
+        assertEquals(ExploreFilters(), download.filters)
+
+        viewModel.selectCategory(7)
+        download.finished.await()
+        val restartedDownload = repository.requests.receive()
+        assertEquals(ExploreFilters(), restartedDownload.filters)
+        restartedDownload.result.complete(emptyList())
+        val filtered = repository.requests.receive()
+        assertEquals(ExploreFilters("Compose", 7), filtered.filters)
+        filtered.result.complete(emptyList())
+        assertEquals(filtered.filters, viewModel.state.first { !it.isLoading }.filters)
+        reconnects.close()
+    }
+
     private fun onMain(test: suspend () -> Unit) = runBlocking {
         withTimeout(15_000) { withContext(Dispatchers.Main.immediate) { test() } }
     }
+
+    private val Offline = CatalogConnectivity { emptyFlow() }
 
     private object NoCategories : CategoryRepository {
         override suspend fun getCategories(): List<Category> = emptyList()
