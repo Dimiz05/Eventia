@@ -148,15 +148,19 @@ fun AccountScreen(
     session: SessionUiState.Active?,
     onRetry: () -> Unit,
     onSignIn: () -> Unit,
-    onSignOut: () -> Unit
+    onSignOut: () -> Unit,
+    modifier: Modifier = Modifier.fillMaxWidth().padding(24.dp)
 ) {
-    Column(Modifier.fillMaxWidth().padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         when {
             session == null -> Button(onClick = onSignIn) { Text(stringResource(R.string.auth_sign_in)) }
             session.signingOut -> CircularProgressIndicator()
             session.account != null -> {
-                Text(stringResource(R.string.auth_email), style = MaterialTheme.typography.labelLarge)
-                Text(session.account.email)
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    session.account.name?.let { Text(it, style = MaterialTheme.typography.titleLarge) }
+                    Text(stringResource(R.string.auth_email), style = MaterialTheme.typography.labelLarge)
+                    Text(session.account.email)
+                }
                 if (session.loading) CircularProgressIndicator()
                 if (session.refreshFailed) {
                     Text(stringResource(R.string.auth_account_error), color = MaterialTheme.colorScheme.error)

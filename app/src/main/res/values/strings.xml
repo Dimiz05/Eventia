@@ -42,6 +42,13 @@
     <string name="venues_empty">Todavía no hay lugares disponibles.</string>
     <string name="available_spots">Cupos disponibles: %1$d</string>
     <string name="retry">Reintentar</string>
+    <string name="profile_attendances">Mis inscripciones</string>
+    <string name="profile_upcoming">Próximas</string>
+    <string name="profile_past">Pasadas</string>
+    <string name="profile_attendances_loading">Cargando inscripciones…</string>
+    <string name="profile_attendances_error">No se pudieron cargar tus inscripciones.</string>
+    <string name="profile_upcoming_empty">No tienes inscripciones próximas.</string>
+    <string name="profile_past_empty">No tienes inscripciones pasadas.</string>
     <string name="map_not_configured">El mapa aún no está configurado en esta instalación.</string>
     <string name="map_services_unavailable">Google Play Services debe estar disponible y actualizado para mostrar el mapa.</string>
     <string name="map_load_error">No se pudo cargar el mapa. Comprueba la conexión y vuelve a intentarlo.</string>

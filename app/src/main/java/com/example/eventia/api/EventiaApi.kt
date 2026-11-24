@@ -61,4 +61,7 @@ interface EventiaApi {
 
     @GET("me")
     suspend fun getMe(@Header("Authorization") authorization: String): AccountDto
+
+    @GET("me/attendances")
+    suspend fun getMyAttendances(@Header("Authorization") authorization: String): List<EventDto>
 }

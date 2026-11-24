@@ -151,6 +151,18 @@ class SessionFlowTest {
     }
 
     @Test
+    fun expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo() = onMain {
+        val repository = LocalSession(hasToken = true)
+        val session = SessionViewModel(repository, SavedStateHandle())
+
+        session.expireSession()
+
+        assertEquals(SessionUiState.Form(error = R.string.auth_expired), session.state.value)
+        assertFalse(repository.hasToken)
+        assertEquals(null, session.returnEventId)
+    }
+
+    @Test
     fun attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange() = onMain {
         val catalog = AttendanceCatalog()
         val original = catalog.event

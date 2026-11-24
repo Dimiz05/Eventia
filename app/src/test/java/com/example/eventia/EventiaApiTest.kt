@@ -41,7 +41,7 @@ class EventiaApiTest {
 
         assertEquals(
             setOf("categories", "events", "events/{id}", "venues", "venues/{id}", "venues/{id}/events"),
-            routes - "me"
+            routes - setOf("me", "me/attendances")
         )
     }
 
@@ -72,6 +72,16 @@ class EventiaApiTest {
         val header = me?.parameterAnnotations?.flatMap { it.toList() }
             ?.filterIsInstance<Header>()?.singleOrNull()
         assertEquals("Authorization", header?.value)
+    }
+
+    @Test
+    fun attendancesUseRelativeGetWithAuthorization() {
+        val attendances = EventiaApi::class.java.declaredMethods
+            .singleOrNull { it.name == "getMyAttendances" }
+        assertEquals("me/attendances", attendances?.getAnnotation(GET::class.java)?.value)
+        val headers = attendances?.parameterAnnotations.orEmpty().flatMap { it.toList() }
+            .filterIsInstance<Header>()
+        assertEquals(listOf("Authorization"), headers.map { it.value })
     }
 
     @Test
