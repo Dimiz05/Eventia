@@ -53,6 +53,7 @@ class MainActivity : ComponentActivity() {
                                 EventiaNavigation(
                                     currentSession = state as? SessionUiState.Active,
                                     onRetryAccount = session::retryAccount,
+                                    onProfileSessionExpired = { session.expireSession() },
                                     onSignIn = session::openSignIn,
                                     onSignOut = session::signOut,
                                     online = connectivity.online,

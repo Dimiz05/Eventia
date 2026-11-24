@@ -37,13 +37,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
 import kotlinx.coroutines.flow.Flow
-import com.example.eventia.ui.screens.AccountScreen
 import com.example.eventia.ui.screens.EventDetailScreen
 import com.example.eventia.ui.screens.ExploreScreen
 import com.example.eventia.ui.screens.FavoriteNotice
 import com.example.eventia.ui.screens.FavoritesScreen
 import com.example.eventia.ui.screens.FavoritesViewModel
 import com.example.eventia.ui.screens.MapScreen
+import com.example.eventia.ui.screens.ProfileRoute
 import com.example.eventia.ui.screens.SessionUiState
 import com.example.eventia.ui.screens.VenueDetailScreen
 
@@ -70,6 +70,7 @@ enum class DetailDestination(private val path: String, val title: Int) {
 fun EventiaNavigation(
     currentSession: SessionUiState.Active?,
     onRetryAccount: () -> Unit,
+    onProfileSessionExpired: () -> Unit,
     onSignIn: () -> Unit,
     onSignOut: () -> Unit,
     online: Flow<Boolean>,
@@ -194,7 +195,7 @@ fun EventiaNavigation(
             }
             composable(Tab.Map.route) { MapScreen(onEventClick = openEvent) }
             composable(Tab.Profile.route) {
-                AccountScreen(session, onRetryAccount, onSignIn, onSignOut)
+                ProfileRoute(session, onRetryAccount, onSignIn, onSignOut, openEvent, onProfileSessionExpired)
             }
             composable(Tab.Favorites.route) {
                 FavoritesScreen(

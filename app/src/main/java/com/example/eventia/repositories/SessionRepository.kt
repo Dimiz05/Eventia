@@ -57,9 +57,10 @@ class RemoteSessionRepository @Inject constructor(
     override suspend fun loadAccount(): Account? {
         val token = store.readToken()?.takeIf(String::isNotBlank) ?: return null
         return try {
-            val email = api.getMe("Bearer $token").email?.takeIf(String::isNotBlank)
+            val account = api.getMe("Bearer $token")
+            val email = account.email?.takeIf(String::isNotBlank)
                 ?: throw IOException("Missing account email")
-            Account(email)
+            Account(email, account.name?.takeIf(String::isNotBlank))
         } catch (error: HttpException) {
             if (error.code() != 401) throw error
             store.clearToken()

@@ -84,7 +84,9 @@ class SessionViewModel @Inject constructor(
         openSignIn()
     }
 
-    fun expireEventSession(eventId: Long) {
+    fun expireEventSession(eventId: Long) = expireSession(eventId)
+
+    fun expireSession(eventId: Long? = null) {
         val current = mutableState.value as? SessionUiState.Active ?: return
         if (current.signingOut) return
         savedStateHandle[ReturnEventId] = eventId

@@ -3,8 +3,10 @@ package com.example.eventia.di
 import com.example.eventia.api.EventiaApi
 import com.example.eventia.data.connectivity.AndroidCatalogConnectivity
 import com.example.eventia.data.connectivity.CatalogConnectivity
+import com.example.eventia.repositories.AttendanceRepository
 import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CategoryRepository
+import com.example.eventia.repositories.RemoteAttendanceRepository
 import com.example.eventia.repositories.RemoteCatalogRepository
 import com.example.eventia.repositories.RemoteCategoryRepository
 import com.example.eventia.repositories.RemoteSessionRepository
@@ -23,6 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 abstract class NetworkModule {
     @Binds
     abstract fun bindSessionRepository(repository: RemoteSessionRepository): SessionRepository
+
+    @Binds
+    abstract fun bindAttendanceRepository(repository: RemoteAttendanceRepository): AttendanceRepository
 
     @Binds
     abstract fun bindCategoryRepository(repository: RemoteCategoryRepository): CategoryRepository
