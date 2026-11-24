@@ -7,6 +7,7 @@ import com.example.eventia.api.models.LoginRequestDto
 import com.example.eventia.api.models.LoginResponseDto
 import com.example.eventia.api.models.RegisterRequestDto
 import com.example.eventia.api.models.VenueDto
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -25,7 +26,16 @@ interface EventiaApi {
     ): List<EventDto>
 
     @GET("events/{id}")
-    suspend fun getEvent(@Path("id") id: Long): EventDto
+    suspend fun getEvent(
+        @Path("id") id: Long,
+        @Header("Authorization") authorization: String? = null
+    ): EventDto
+
+    @POST("events/{id}/attendance")
+    suspend fun attendEvent(
+        @Path("id") id: Long,
+        @Header("Authorization") authorization: String
+    ): Response<Void>
 
     @GET("venues")
     suspend fun getVenues(): List<VenueDto>

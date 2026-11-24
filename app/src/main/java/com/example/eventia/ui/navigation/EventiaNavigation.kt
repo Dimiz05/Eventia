@@ -68,14 +68,18 @@ enum class DetailDestination(private val path: String, val title: Int) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EventiaNavigation(
-    session: SessionUiState.Active?,
+    currentSession: SessionUiState.Active?,
     onRetryAccount: () -> Unit,
     onSignIn: () -> Unit,
     onSignOut: () -> Unit,
-    online: Flow<Boolean>
+    online: Flow<Boolean>,
+    returnEventId: Long?,
+    onEventReturnHandled: (Long) -> Unit,
+    onEventSignIn: (Long) -> Unit,
+    onEventSessionExpired: (Long) -> Unit
 ) {
     val controller = rememberNavController()
-    val currentSession by rememberUpdatedState(session)
+    val session by rememberUpdatedState(currentSession)
     val favoritesViewModel: FavoritesViewModel = hiltViewModel()
     val favorites by favoritesViewModel.state.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
@@ -111,6 +115,17 @@ fun EventiaNavigation(
     }
     val openVenue: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Venue.route(id)) { launchSingleTop = true }
+    }
+    LaunchedEffect(returnEventId) {
+        if (returnEventId != null) {
+            val current = controller.currentBackStackEntry
+            if (current?.destination?.route != DetailDestination.Event.pattern ||
+                current.arguments?.getLong(DetailId) != returnEventId
+            ) {
+                openEvent(returnEventId)
+            }
+            onEventReturnHandled(returnEventId)
+        }
     }
 
     Scaffold(
@@ -178,7 +193,7 @@ fun EventiaNavigation(
             }
             composable(Tab.Map.route) { MapScreen(onEventClick = openEvent) }
             composable(Tab.Profile.route) {
-                AccountScreen(currentSession, onRetryAccount, onSignIn, onSignOut)
+                AccountScreen(session, onRetryAccount, onSignIn, onSignOut)
             }
             composable(Tab.Favorites.route) {
                 FavoritesScreen(
@@ -192,9 +207,14 @@ fun EventiaNavigation(
                 composable(
                     route = destination.pattern,
                     arguments = listOf(navArgument(DetailId) { type = NavType.LongType })
-                ) {
+                ) { detailEntry ->
                     when (destination) {
                         DetailDestination.Event -> EventDetailScreen(
+                            authenticated = session != null,
+                            onEventSignIn = onEventSignIn,
+                            onSessionExpired = { id ->
+                                if (controller.currentBackStackEntry == detailEntry) onEventSessionExpired(id)
+                            },
                             onBack = { controller.navigateUp() },
                             onVenueClick = openVenue,
                             favorites = favorites,

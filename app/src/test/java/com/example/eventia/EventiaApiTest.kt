@@ -2,7 +2,9 @@ package com.example.eventia
 
 import com.example.eventia.api.EventiaApi
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Test
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -69,5 +71,24 @@ class EventiaApiTest {
         val header = me?.parameterAnnotations?.flatMap { it.toList() }
             ?.filterIsInstance<Header>()?.singleOrNull()
         assertEquals("Authorization", header?.value)
+    }
+
+    @Test
+    fun eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath() {
+        val detail = EventiaApi::class.java.declaredMethods.single { it.name == "getEvent" }
+        val parameters = detail.parameterAnnotations.flatMap { it.toList() }
+        assertEquals("events/{id}", detail.getAnnotation(GET::class.java)?.value)
+        assertEquals("id", parameters.filterIsInstance<Path>().single().value)
+        assertEquals("Authorization", parameters.filterIsInstance<Header>().single().value)
+    }
+
+    @Test
+    fun attendancePostsTheEventIdWithAuthorizationAndWithoutABody() {
+        val attendance = EventiaApi::class.java.declaredMethods.single { it.name == "attendEvent" }
+        val parameters = attendance.parameterAnnotations.flatMap { it.toList() }
+        assertEquals("events/{id}/attendance", attendance.getAnnotation(POST::class.java)?.value)
+        assertEquals("id", parameters.filterIsInstance<Path>().single().value)
+        assertEquals("Authorization", parameters.filterIsInstance<Header>().single().value)
+        assertFalse(parameters.any { it is Body })
     }
 }

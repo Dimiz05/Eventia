@@ -47,6 +47,9 @@ import java.time.OffsetDateTime
 
 @Composable
 internal fun EventDetailScreen(
+    authenticated: Boolean,
+    onEventSignIn: (Long) -> Unit,
+    onSessionExpired: (Long) -> Unit,
     onBack: () -> Unit,
     onVenueClick: (Long) -> Unit,
     favorites: FavoritesUiState,
@@ -54,7 +57,24 @@ internal fun EventDetailScreen(
     viewModel: EventDetailViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    EventDetailContent(state, viewModel::retry, onBack, onVenueClick) { event ->
+    LaunchedEffect(viewModel, authenticated) { viewModel.load(authenticated, onSessionExpired) }
+    DisposableEffect(viewModel) {
+        onDispose(viewModel::cancelRequest)
+    }
+    val current = state
+    val visible = if (current is EventDetailUiState.Content && current.authenticated != authenticated) {
+        EventDetailUiState.Loading
+    } else current
+    EventDetailContent(
+        visible,
+        onRetry = { viewModel.load(authenticated, onSessionExpired) },
+        onBack = onBack,
+        onVenueClick = onVenueClick,
+        onAttend = { event ->
+            if (authenticated) viewModel.attend(onSessionExpired) else onEventSignIn(event.id)
+        },
+        onRefresh = { viewModel.refresh(onSessionExpired) }
+    ) { event ->
         val selected = event.id in favorites.ids
         EventCoverAction(
             favoriteIcon(selected),
@@ -71,10 +91,12 @@ private fun EventDetailContent(
     onRetry: () -> Unit,
     onBack: () -> Unit,
     onVenueClick: (Long) -> Unit,
+    onAttend: ((Event) -> Unit)? = null,
+    onRefresh: () -> Unit = {},
     favoriteAction: (@Composable (Event) -> Unit)? = null
 ) {
     if (state is EventDetailUiState.Content) {
-        EventDetails(state.event, onBack, onVenueClick, favoriteAction)
+        EventDetails(state, onBack, onVenueClick, onAttend, onRefresh, favoriteAction)
         return
     }
 
@@ -107,11 +129,14 @@ private fun EventDetailContent(
 
 @Composable
 private fun EventDetails(
-    event: Event,
+    state: EventDetailUiState.Content,
     onBack: () -> Unit,
     onVenueClick: (Long) -> Unit,
+    onAttend: ((Event) -> Unit)?,
+    onRefresh: () -> Unit,
     favoriteAction: (@Composable (Event) -> Unit)? = null
 ) {
+    val event = state.event
     val point = MapPoint.from(event.venue.latitude, event.venue.longitude)
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
@@ -229,13 +254,25 @@ private fun EventDetails(
                     Text(stringResource(R.string.venue_directions))
                 }
                 Button(
-                    onClick = {},
-                    enabled = false,
+                    onClick = { onAttend?.invoke(event) },
+                    enabled = onAttend != null && !state.updating && !state.refreshRequired &&
+                        (!state.authenticated || event.isAttending == false),
                     modifier = Modifier.weight(1.15f),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
                 ) {
-                    Text(stringResource(if (event.isAttending == true) R.string.event_attending else R.string.event_attend))
+                    Text(stringResource(when {
+                        state.updating -> R.string.event_attendance_updating
+                        event.isAttending == true -> R.string.event_attending
+                        else -> R.string.event_attend
+                    }))
                 }
+            }
+            if (state.refreshRequired && !state.updating) {
+                Text(
+                    stringResource(if (state.attendanceError) R.string.event_attendance_error else R.string.event_detail_error),
+                    color = MaterialTheme.colorScheme.error
+                )
+                TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
             }
         }
     }
@@ -336,8 +373,8 @@ private fun EventLocationPreview(venue: Venue, point: MapPoint?) {
 private fun EventDetailPreview() {
     EventiaTheme {
         Surface {
-            EventDetails(
-                event = Event(
+            EventDetailContent(
+                state = EventDetailUiState.Content(Event(
                     id = 1,
                     title = "Noche de jazz en la plaza",
                     summary = "Un recorrido por los clásicos del jazz con músicos invitados de la región. Trae abrigo para disfrutar de la música al aire libre.",
@@ -350,7 +387,8 @@ private fun EventDetailPreview() {
                     capacity = 50,
                     availableSpots = 36,
                     isAttending = false
-                ),
+                )),
+                onRetry = {},
                 onBack = {},
                 onVenueClick = {}
             )

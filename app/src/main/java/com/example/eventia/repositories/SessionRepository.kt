@@ -15,12 +15,15 @@ interface SessionRepository {
     suspend fun signIn(email: String, password: String)
     suspend fun register(name: String, email: String, password: String)
     suspend fun loadAccount(): Account?
+    suspend fun attendEvent(id: Long)
     suspend fun signOut()
 }
 
 enum class AccountField { Name, Email, Password }
 
 class AuthenticationRejected(val fields: Set<AccountField> = emptySet()) : Exception()
+
+internal class EventSessionExpired : Exception()
 
 class RemoteSessionRepository @Inject constructor(
     private val api: EventiaApi,
@@ -36,6 +39,13 @@ class RemoteSessionRepository @Inject constructor(
 
     override suspend fun register(name: String, email: String, password: String) = authenticate {
         api.register(RegisterRequestDto(name, email, password)).token
+    }
+
+    override suspend fun attendEvent(id: Long) {
+        val token = store.readToken()?.takeIf(String::isNotBlank) ?: throw EventSessionExpired()
+        val response = api.attendEvent(id, "Bearer $token")
+        if (response.code() == 401) throw EventSessionExpired()
+        if (!response.isSuccessful) throw HttpException(response)
     }
 
     override suspend fun loadAccount(): Account? {

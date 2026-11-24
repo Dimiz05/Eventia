@@ -5,6 +5,7 @@ import com.example.eventia.api.models.EventDto
 import com.example.eventia.api.models.VenueDto
 import com.example.eventia.data.local.CachedEventEntity
 import com.example.eventia.data.local.CatalogCacheDao
+import com.example.eventia.data.local.SessionStore
 import com.example.eventia.data.local.StoredEvent
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
@@ -18,7 +19,7 @@ import retrofit2.HttpException
 interface CatalogRepository {
     suspend fun getEvents(query: String? = null, categoryId: Long? = null): List<Event>
     suspend fun loadEvents(query: String?, categoryId: Long?): CatalogEvents
-    suspend fun getEvent(id: Long): Event
+    suspend fun getEvent(id: Long, authenticated: Boolean = false, allowSaved: Boolean = true): Event
     suspend fun getVenues(): List<Venue>
     suspend fun getVenue(id: Long): Venue
     suspend fun getVenueEvents(id: Long): List<Event>
@@ -39,7 +40,8 @@ sealed interface CatalogEvents {
 class RemoteCatalogRepository @Inject constructor(
     private val api: EventiaApi,
     private val favorites: FavoritesRepository,
-    private val cache: CatalogCacheDao
+    private val cache: CatalogCacheDao,
+    private val sessionStore: SessionStore
 ) : CatalogRepository {
     override suspend fun getEvents(query: String?, categoryId: Long?): List<Event> =
         api.getEvents(query, categoryId).map(EventDto::toDomain)
@@ -80,16 +82,26 @@ class RemoteCatalogRepository @Inject constructor(
         )
     }
 
-    override suspend fun getEvent(id: Long): Event = try {
-        api.getEvent(id).toDomain()
-    } catch (error: IOException) {
-        findSavedEvent(id) ?: throw error
-    } catch (error: HttpException) {
-        when (error.code()) {
-            404 -> favorites.findFavorite(id)
-            in 500..599 -> findSavedEvent(id)
-            else -> null
-        } ?: throw error
+    override suspend fun getEvent(id: Long, authenticated: Boolean, allowSaved: Boolean): Event {
+        val authorization = if (authenticated) {
+            val token = sessionStore.readToken()?.takeIf(String::isNotBlank) ?: throw EventSessionExpired()
+            "Bearer $token"
+        } else null
+
+        return try {
+            api.getEvent(id, authorization).toDomain()
+        } catch (error: IOException) {
+            if (!allowSaved) throw error
+            findSavedEvent(id) ?: throw error
+        } catch (error: HttpException) {
+            if (authenticated && error.code() == 401) throw EventSessionExpired()
+            if (!allowSaved) throw error
+            when (error.code()) {
+                404 -> favorites.findFavorite(id)
+                in 500..599 -> findSavedEvent(id)
+                else -> null
+            } ?: throw error
+        }
     }
 
     private suspend fun findSavedEvent(id: Long): Event? =
