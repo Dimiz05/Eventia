@@ -153,11 +153,17 @@ fun AccountScreen(
     Column(Modifier.fillMaxWidth().padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         when {
             session == null -> Button(onClick = onSignIn) { Text(stringResource(R.string.auth_sign_in)) }
-            session.loading || session.signingOut -> CircularProgressIndicator()
+            session.signingOut -> CircularProgressIndicator()
             session.account != null -> {
                 Text(stringResource(R.string.auth_email), style = MaterialTheme.typography.labelLarge)
                 Text(session.account.email)
+                if (session.loading) CircularProgressIndicator()
+                if (session.refreshFailed) {
+                    Text(stringResource(R.string.auth_account_error), color = MaterialTheme.colorScheme.error)
+                    Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
+                }
             }
+            session.loading -> CircularProgressIndicator()
             else -> {
                 Text(stringResource(R.string.auth_account_error))
                 Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }

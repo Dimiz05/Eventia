@@ -35,7 +35,8 @@ sealed interface SessionUiState {
         val account: Account? = null,
         val loading: Boolean = true,
         val signingOut: Boolean = false,
-        val signOutFailed: Boolean = false
+        val signOutFailed: Boolean = false,
+        val refreshFailed: Boolean = false
     ) : SessionUiState
 }
 
@@ -184,12 +185,14 @@ class SessionViewModel @Inject constructor(
     fun retryAccount() {
         val current = mutableState.value as? SessionUiState.Active ?: return
         if (current.loading || current.signingOut) return
-        mutableState.value = current.copy(loading = true)
+        mutableState.value = current.copy(loading = true, refreshFailed = false)
         sessionRequest = viewModelScope.launch { loadAccount() }
     }
 
     private suspend fun loadAccount() {
-        if (mutableState.value !is SessionUiState.Form || returnEventId == null) {
+        if (mutableState.value !is SessionUiState.Active &&
+            (mutableState.value !is SessionUiState.Form || returnEventId == null)
+        ) {
             mutableState.value = SessionUiState.Active()
         }
         try {
@@ -206,7 +209,9 @@ class SessionViewModel @Inject constructor(
     }
 
     private fun accountLoadFailed() {
-        mutableState.value = SessionUiState.Active(loading = false)
+        val current = mutableState.value as? SessionUiState.Active
+        mutableState.value = current?.copy(loading = false, refreshFailed = current.account != null)
+            ?: SessionUiState.Active(loading = false)
     }
 
     private companion object {

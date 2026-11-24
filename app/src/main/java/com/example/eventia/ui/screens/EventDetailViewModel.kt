@@ -27,10 +27,15 @@ internal sealed interface EventDetailUiState {
         val authenticated: Boolean = false,
         val updating: Boolean = false,
         val attendanceError: Boolean = false,
-        val refreshRequired: Boolean = false
+        val refreshRequired: Boolean = false,
+        val conflict: AttendanceConflict? = null
     ) : EventDetailUiState
     data object Empty : EventDetailUiState
     data object Error : EventDetailUiState
+}
+
+internal enum class AttendanceConflict {
+    PendingRegistration, Full, AlreadyRegistered, Unconfirmed
 }
 
 @HiltViewModel
@@ -61,26 +66,37 @@ class EventDetailViewModel @Inject constructor(
         request = viewModelScope.launch { loadEvent(true, onSessionExpired, content) }
     }
 
-    fun attend(onSessionExpired: (Long) -> Unit) {
+    fun dismissConflict() {
         val content = mutableState.value as? EventDetailUiState.Content ?: return
-        if (!content.authenticated || content.updating || content.refreshRequired ||
-            content.event.isAttending != false
-        ) return
-        val previous = content.copy(attendanceError = false)
+        mutableState.value = content.copy(conflict = null)
+    }
+
+    fun attend(onSessionExpired: (Long) -> Unit, onAttendanceChanged: () -> Unit = {}) {
+        val content = mutableState.value as? EventDetailUiState.Content ?: return
+        val attending = content.event.isAttending ?: return
+        if (!content.authenticated || content.updating || content.refreshRequired) return
+        val previous = content.copy(attendanceError = false, conflict = null)
         mutableState.value = previous.copy(updating = true)
         request = viewModelScope.launch {
             try {
-                session.attendEvent(eventId)
+                if (attending) session.cancelAttendance(eventId) else session.attendEvent(eventId)
             } catch (_: EventSessionExpired) {
                 onSessionExpired(eventId)
                 return@launch
             } catch (_: IOException) {
                 mutableState.value = previous.copy(attendanceError = true, refreshRequired = true)
                 return@launch
-            } catch (_: HttpException) {
-                mutableState.value = previous.copy(attendanceError = true, refreshRequired = true)
+            } catch (error: HttpException) {
+                if (error.code() == 409) {
+                    val conflict = if (attending) AttendanceConflict.Unconfirmed
+                    else AttendanceConflict.PendingRegistration
+                    loadEvent(true, onSessionExpired, previous.copy(conflict = conflict))
+                } else {
+                    mutableState.value = previous.copy(attendanceError = true, refreshRequired = true)
+                }
                 return@launch
             }
+            onAttendanceChanged()
             loadEvent(true, onSessionExpired, previous)
         }
     }
@@ -96,7 +112,14 @@ class EventDetailViewModel @Inject constructor(
             EventDetailUiState.Content(
                 event,
                 authenticated,
-                refreshRequired = authenticated && event.isAttending == null
+                refreshRequired = authenticated && event.isAttending == null,
+                conflict = when {
+                    previous?.conflict != AttendanceConflict.PendingRegistration -> previous?.conflict
+                    event.isAttending == null -> AttendanceConflict.PendingRegistration
+                    event.isAttending -> AttendanceConflict.AlreadyRegistered
+                    event.availableSpots <= 0 -> AttendanceConflict.Full
+                    else -> AttendanceConflict.Unconfirmed
+                }
             )
         } catch (_: EventSessionExpired) {
             onSessionExpired(eventId)

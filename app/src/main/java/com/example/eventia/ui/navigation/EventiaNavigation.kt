@@ -76,7 +76,8 @@ fun EventiaNavigation(
     returnEventId: Long?,
     onEventReturnHandled: (Long) -> Unit,
     onEventSignIn: (Long) -> Unit,
-    onEventSessionExpired: (Long) -> Unit
+    onEventSessionExpired: (Long) -> Unit,
+    onAttendanceChanged: () -> Unit
 ) {
     val controller = rememberNavController()
     val session by rememberUpdatedState(currentSession)
@@ -216,6 +217,8 @@ fun EventiaNavigation(
                                 if (controller.currentBackStackEntry == detailEntry) onEventSessionExpired(id)
                             },
                             onBack = { controller.navigateUp() },
+                            onExplore = { controller.popBackStack(Tab.Explore.route, inclusive = false) },
+                            onAttendanceChanged = onAttendanceChanged,
                             onVenueClick = openVenue,
                             favorites = favorites,
                             onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
