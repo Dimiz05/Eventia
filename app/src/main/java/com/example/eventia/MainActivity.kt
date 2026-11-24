@@ -59,7 +59,8 @@ class MainActivity : ComponentActivity() {
                                     returnEventId = returnEventId,
                                     onEventReturnHandled = session::eventReturnHandled,
                                     onEventSignIn = session::requestEventSignIn,
-                                    onEventSessionExpired = session::expireEventSession
+                                    onEventSessionExpired = session::expireEventSession,
+                                    onAttendanceChanged = session::retryAccount
                                 )
                             }
                         }

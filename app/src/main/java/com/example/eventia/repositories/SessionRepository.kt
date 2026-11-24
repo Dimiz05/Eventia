@@ -9,6 +9,7 @@ import com.google.gson.JsonParser
 import java.io.IOException
 import javax.inject.Inject
 import retrofit2.HttpException
+import retrofit2.Response
 
 interface SessionRepository {
     suspend fun hasSession(): Boolean
@@ -16,6 +17,7 @@ interface SessionRepository {
     suspend fun register(name: String, email: String, password: String)
     suspend fun loadAccount(): Account?
     suspend fun attendEvent(id: Long)
+    suspend fun cancelAttendance(id: Long)
     suspend fun signOut()
 }
 
@@ -41,9 +43,13 @@ class RemoteSessionRepository @Inject constructor(
         api.register(RegisterRequestDto(name, email, password)).token
     }
 
-    override suspend fun attendEvent(id: Long) {
+    override suspend fun attendEvent(id: Long) = updateAttendance(id, api::attendEvent)
+
+    override suspend fun cancelAttendance(id: Long) = updateAttendance(id, api::cancelAttendance)
+
+    private suspend fun updateAttendance(id: Long, request: suspend (Long, String) -> Response<Void>) {
         val token = store.readToken()?.takeIf(String::isNotBlank) ?: throw EventSessionExpired()
-        val response = api.attendEvent(id, "Bearer $token")
+        val response = request(id, "Bearer $token")
         if (response.code() == 401) throw EventSessionExpired()
         if (!response.isSuccessful) throw HttpException(response)
     }

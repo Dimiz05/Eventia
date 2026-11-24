@@ -9,6 +9,7 @@ import com.example.eventia.api.models.RegisterRequestDto
 import com.example.eventia.api.models.VenueDto
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -33,6 +34,12 @@ interface EventiaApi {
 
     @POST("events/{id}/attendance")
     suspend fun attendEvent(
+        @Path("id") id: Long,
+        @Header("Authorization") authorization: String
+    ): Response<Void>
+
+    @DELETE("events/{id}/attendance")
+    suspend fun cancelAttendance(
         @Path("id") id: Long,
         @Header("Authorization") authorization: String
     ): Response<Void>

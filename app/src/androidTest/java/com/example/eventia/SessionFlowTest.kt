@@ -22,18 +22,23 @@ import com.example.eventia.repositories.EventSessionExpired
 import com.example.eventia.repositories.SessionRepository
 import com.example.eventia.ui.navigation.DetailId
 import com.example.eventia.ui.screens.EventDetailViewModel
+import com.example.eventia.ui.screens.AttendanceConflict
+import com.example.eventia.ui.screens.EventDetailUiState
 import com.example.eventia.ui.screens.SessionForm
 import com.example.eventia.ui.screens.SessionUiState
 import com.example.eventia.ui.screens.SessionViewModel
 import com.example.eventia.ui.theme.EventiaTheme
 import java.io.IOException
 import java.time.OffsetDateTime
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import retrofit2.HttpException
+import retrofit2.Response
 
 @RunWith(AndroidJUnit4::class)
 class SessionFlowTest {
@@ -146,6 +151,70 @@ class SessionFlowTest {
     }
 
     @Test
+    fun attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange() = onMain {
+        val catalog = AttendanceCatalog()
+        val original = catalog.event
+        val repository = LocalSession(hasToken = true)
+        repository.onAttend = {
+            catalog.event = original.copy(isAttending = true, availableSpots = original.availableSpots - 1)
+        }
+        repository.onCancel = {
+            assertEquals(original.id, it)
+            catalog.event = original
+        }
+        val detail = EventDetailViewModel(
+            SavedStateHandle(mapOf(DetailId to original.id)), catalog, repository
+        )
+        val onExpired: (Long) -> Unit = { error("Unexpected session expiration") }
+        var profileRefreshes = 0
+        detail.load(true, onExpired)
+
+        detail.attend(onExpired) { profileRefreshes++ }
+        assertEquals(original.id, repository.attendanceEventId)
+        assertEquals(1, profileRefreshes)
+        assertFalse(catalog.allowedSavedDetail)
+        assertEquals(catalog.event, (detail.state.value as EventDetailUiState.Content).event)
+
+        detail.attend(onExpired) { profileRefreshes++ }
+        assertEquals(2, profileRefreshes)
+        assertFalse(catalog.allowedSavedDetail)
+        assertEquals(original, (detail.state.value as EventDetailUiState.Content).event)
+    }
+
+    @Test
+    fun conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost() = onMain {
+        val catalog = AttendanceCatalog()
+        val original = catalog.event
+        val onExpired: (Long) -> Unit = { error("Unexpected session expiration") }
+        for ((alreadyRegistered, expected) in listOf(
+            false to AttendanceConflict.Full, true to AttendanceConflict.AlreadyRegistered
+        )) {
+            catalog.event = original
+            val repository = LocalSession(hasToken = true)
+            var posts = 0
+            repository.onAttend = {
+                posts++
+                catalog.event = original.copy(isAttending = alreadyRegistered, availableSpots = 0)
+                throw HttpException(Response.error<Void>(409, "".toResponseBody()))
+            }
+            val detail = EventDetailViewModel(
+                SavedStateHandle(mapOf(DetailId to original.id)), catalog, repository
+            )
+            detail.load(true, onExpired)
+
+            detail.attend(onExpired) { error("Unexpected profile refresh") }
+
+            val state = detail.state.value as EventDetailUiState.Content
+            assertEquals(1, posts)
+            assertTrue(catalog.authenticatedRequest)
+            assertFalse(catalog.allowedSavedDetail)
+            assertEquals(catalog.event, state.event)
+            assertEquals(expected, state.conflict)
+            assertFalse(state.updating)
+        }
+    }
+
+    @Test
     fun offlineValidationKeepsSessionUntilLogout() = onMain {
         val repository = LocalSession(hasToken = true, offline = true)
         val session = SessionViewModel(repository, SavedStateHandle())
@@ -181,6 +250,8 @@ class SessionFlowTest {
             private set
         var attendanceEventId: Long? = null
             private set
+        var onAttend: (Long) -> Unit = { throw EventSessionExpired() }
+        var onCancel: (Long) -> Unit = { error("Unexpected cancellation") }
 
         override suspend fun hasSession() = hasToken
 
@@ -190,8 +261,9 @@ class SessionFlowTest {
             error("Unexpected registration")
         override suspend fun attendEvent(id: Long) {
             attendanceEventId = id
-            throw EventSessionExpired()
+            onAttend(id)
         }
+        override suspend fun cancelAttendance(id: Long) = onCancel(id)
 
         override suspend fun loadAccount(): Account? {
             accountRequests++
@@ -206,7 +278,7 @@ class SessionFlowTest {
     }
 
     private class AttendanceCatalog : CatalogRepository {
-        val event = Event(
+        var event = Event(
             id = 42,
             title = "Noche de jazz en la plaza",
             summary = "Clásicos del jazz con músicos invitados.",
@@ -222,10 +294,13 @@ class SessionFlowTest {
         )
         var authenticatedRequest = false
             private set
+        var allowedSavedDetail = true
+            private set
 
         override suspend fun getEvent(id: Long, authenticated: Boolean, allowSaved: Boolean): Event {
             assertEquals(event.id, id)
             authenticatedRequest = authenticated
+            allowedSavedDetail = allowSaved
             return event
         }
 

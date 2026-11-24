@@ -5,6 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Test
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -87,6 +88,17 @@ class EventiaApiTest {
         val attendance = EventiaApi::class.java.declaredMethods.single { it.name == "attendEvent" }
         val parameters = attendance.parameterAnnotations.flatMap { it.toList() }
         assertEquals("events/{id}/attendance", attendance.getAnnotation(POST::class.java)?.value)
+        assertEquals("id", parameters.filterIsInstance<Path>().single().value)
+        assertEquals("Authorization", parameters.filterIsInstance<Header>().single().value)
+        assertFalse(parameters.any { it is Body })
+    }
+
+    @Test
+    fun cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody() {
+        val cancellation = EventiaApi::class.java.declaredMethods
+            .singleOrNull { it.name == "cancelAttendance" }
+        val parameters = cancellation?.parameterAnnotations.orEmpty().flatMap { it.toList() }
+        assertEquals("events/{id}/attendance", cancellation?.getAnnotation(DELETE::class.java)?.value)
         assertEquals("id", parameters.filterIsInstance<Path>().single().value)
         assertEquals("Authorization", parameters.filterIsInstance<Header>().single().value)
         assertFalse(parameters.any { it is Body })

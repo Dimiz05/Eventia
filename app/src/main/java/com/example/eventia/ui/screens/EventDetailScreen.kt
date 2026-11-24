@@ -51,6 +51,8 @@ internal fun EventDetailScreen(
     onEventSignIn: (Long) -> Unit,
     onSessionExpired: (Long) -> Unit,
     onBack: () -> Unit,
+    onExplore: () -> Unit,
+    onAttendanceChanged: () -> Unit,
     onVenueClick: (Long) -> Unit,
     favorites: FavoritesUiState,
     onFavoriteChange: (Event, Boolean) -> Unit,
@@ -71,7 +73,8 @@ internal fun EventDetailScreen(
         onBack = onBack,
         onVenueClick = onVenueClick,
         onAttend = { event ->
-            if (authenticated) viewModel.attend(onSessionExpired) else onEventSignIn(event.id)
+            if (authenticated) viewModel.attend(onSessionExpired, onAttendanceChanged)
+            else onEventSignIn(event.id)
         },
         onRefresh = { viewModel.refresh(onSessionExpired) }
     ) { event ->
@@ -81,6 +84,21 @@ internal fun EventDetailScreen(
             stringResource(favoriteLabel(selected)),
             onClick = { onFavoriteChange(event, !selected) },
             enabled = favorites.canChange(event.id)
+        )
+    }
+    if (visible is EventDetailUiState.Content && visible.conflict == AttendanceConflict.Full) {
+        AlertDialog(
+            onDismissRequest = viewModel::dismissConflict,
+            title = { Text(stringResource(R.string.event_no_spots)) },
+            text = { Text(eventCapacityLabel(visible.event)) },
+            confirmButton = {
+                TextButton(onClick = viewModel::dismissConflict) {
+                    Text(stringResource(R.string.understood))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = onExplore) { Text(stringResource(R.string.event_browse_others)) }
+            }
         )
     }
 }
@@ -206,11 +224,7 @@ private fun EventDetails(
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 val hasCapacity = event.capacity > 0
                 Text(
-                    if (hasCapacity) {
-                        stringResource(R.string.event_capacity, event.availableSpots, event.capacity)
-                    } else {
-                        stringResource(R.string.available_spots, event.availableSpots)
-                    },
+                    eventCapacityLabel(event),
                     style = MaterialTheme.typography.bodySmall
                 )
                 if (hasCapacity) {
@@ -256,26 +270,42 @@ private fun EventDetails(
                 Button(
                     onClick = { onAttend?.invoke(event) },
                     enabled = onAttend != null && !state.updating && !state.refreshRequired &&
-                        (!state.authenticated || event.isAttending == false),
+                        (!state.authenticated || event.isAttending != null),
                     modifier = Modifier.weight(1.15f),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
                 ) {
                     Text(stringResource(when {
                         state.updating -> R.string.event_attendance_updating
-                        event.isAttending == true -> R.string.event_attending
+                        event.isAttending == true -> R.string.event_cancel_attendance
                         else -> R.string.event_attend
                     }))
                 }
             }
-            if (state.refreshRequired && !state.updating) {
-                Text(
-                    stringResource(if (state.attendanceError) R.string.event_attendance_error else R.string.event_detail_error),
-                    color = MaterialTheme.colorScheme.error
-                )
-                TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
+            if (!state.updating) {
+                when (state.conflict) {
+                    AttendanceConflict.AlreadyRegistered ->
+                        Text(stringResource(R.string.event_already_registered))
+                    AttendanceConflict.PendingRegistration, AttendanceConflict.Unconfirmed ->
+                        Text(stringResource(R.string.event_attendance_conflict), color = MaterialTheme.colorScheme.error)
+                    else -> if (state.refreshRequired) {
+                        val message = if (state.attendanceError) R.string.event_attendance_error
+                        else R.string.event_detail_error
+                        Text(stringResource(message), color = MaterialTheme.colorScheme.error)
+                    }
+                }
+                if (state.refreshRequired) {
+                    TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
+                }
             }
         }
     }
+}
+
+@Composable
+private fun eventCapacityLabel(event: Event): String = if (event.capacity > 0) {
+    stringResource(R.string.event_capacity, event.availableSpots, event.capacity)
+} else {
+    stringResource(R.string.available_spots, event.availableSpots)
 }
 
 @Composable
