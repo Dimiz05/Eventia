@@ -135,7 +135,8 @@ class ExploreFlowTest {
             }
         }
 
-        override suspend fun getEvent(id: Long): Event = error("Unexpected detail request")
+        override suspend fun getEvent(id: Long, authenticated: Boolean, allowSaved: Boolean): Event =
+            error("Unexpected detail request")
         override suspend fun getVenues(): List<Venue> = error("Event search must not fetch venues")
         override suspend fun getVenue(id: Long): Venue = error("Event search must not fetch venue details")
         override suspend fun getVenueEvents(id: Long): List<Event> =

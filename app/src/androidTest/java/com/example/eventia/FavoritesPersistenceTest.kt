@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.eventia.api.EventiaApi
+import com.example.eventia.data.local.SessionStore
 import com.example.eventia.data.local.CachedEventEntity
 import com.example.eventia.data.local.EventiaDatabase
 import com.example.eventia.data.local.StoredEvent
@@ -84,7 +85,7 @@ class FavoritesPersistenceTest {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(EventiaApi::class.java)
-                val catalog = RemoteCatalogRepository(api, favorites, cache)
+                val catalog = RemoteCatalogRepository(api, favorites, cache, SessionStore(context))
                 val firstFailure = runCatching { catalog.loadEvents(null, null) }.exceptionOrNull()
                 assertTrue(firstFailure is IOException)
                 assertNull(cache.getSnapshot())
@@ -141,7 +142,9 @@ class FavoritesPersistenceTest {
                 database.close()
                 database = openDatabase()
                 val reopenedFavorites = RoomFavoritesRepository(database.favoriteDao())
-                val reopenedCatalog = RemoteCatalogRepository(api, reopenedFavorites, database.catalogCacheDao())
+                val reopenedCatalog = RemoteCatalogRepository(
+                    api, reopenedFavorites, database.catalogCacheDao(), SessionStore(context)
+                )
                 assertEquals(listOf(event), reopenedFavorites.observeFavorites().first())
                 assertEquals(event, reopenedCatalog.getEvent(event.id))
             }

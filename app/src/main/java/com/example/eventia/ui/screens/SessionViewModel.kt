@@ -1,6 +1,7 @@
 package com.example.eventia.ui.screens
 
 import android.util.Patterns
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventia.R
@@ -39,10 +40,14 @@ sealed interface SessionUiState {
 }
 
 @HiltViewModel
-class SessionViewModel @Inject constructor(private val repository: SessionRepository) : ViewModel() {
+class SessionViewModel @Inject constructor(
+    private val repository: SessionRepository,
+    private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
     private val mutableState = MutableStateFlow<SessionUiState>(SessionUiState.Starting)
     val state = mutableState.asStateFlow()
     private var sessionRequest: Job? = null
+    val returnEventId: Long? get() = savedStateHandle[ReturnEventId]
 
     init {
         restore()
@@ -70,6 +75,34 @@ class SessionViewModel @Inject constructor(private val repository: SessionReposi
 
     fun openSignIn() {
         if (mutableState.value == SessionUiState.Guest) mutableState.value = SessionUiState.Form()
+    }
+
+    fun requestEventSignIn(eventId: Long) {
+        if (mutableState.value != SessionUiState.Guest) return
+        savedStateHandle[ReturnEventId] = eventId
+        openSignIn()
+    }
+
+    fun expireEventSession(eventId: Long) {
+        val current = mutableState.value as? SessionUiState.Active ?: return
+        if (current.signingOut) return
+        savedStateHandle[ReturnEventId] = eventId
+        val expired = SessionUiState.Form(error = R.string.auth_expired)
+        mutableState.value = expired.copy(submitting = true)
+        val pendingRequest = sessionRequest
+        sessionRequest = viewModelScope.launch {
+            pendingRequest?.cancelAndJoin()
+            try {
+                repository.signOut()
+                mutableState.value = expired
+            } catch (_: IOException) {
+                mutableState.value = expired.copy(error = R.string.auth_sign_out_error)
+            }
+        }
+    }
+
+    fun eventReturnHandled(eventId: Long) {
+        if (returnEventId == eventId) savedStateHandle[ReturnEventId] = null
     }
 
     fun signOut() {
@@ -156,7 +189,9 @@ class SessionViewModel @Inject constructor(private val repository: SessionReposi
     }
 
     private suspend fun loadAccount() {
-        mutableState.value = SessionUiState.Active()
+        if (mutableState.value !is SessionUiState.Form || returnEventId == null) {
+            mutableState.value = SessionUiState.Active()
+        }
         try {
             val account = repository.loadAccount()
             mutableState.value = if (account == null) SessionUiState.Form(error = R.string.auth_expired)
@@ -172,5 +207,9 @@ class SessionViewModel @Inject constructor(private val repository: SessionReposi
 
     private fun accountLoadFailed() {
         mutableState.value = SessionUiState.Active(loading = false)
+    }
+
+    private companion object {
+        const val ReturnEventId = "returnEventId"
     }
 }

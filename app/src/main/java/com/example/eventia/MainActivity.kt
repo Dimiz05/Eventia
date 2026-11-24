@@ -2,9 +2,12 @@ package com.example.eventia
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.data.connectivity.AndroidCatalogConnectivity
@@ -28,21 +31,38 @@ class MainActivity : ComponentActivity() {
             EventiaTheme {
                 Surface {
                     val session: SessionViewModel = hiltViewModel()
-                    when (val state = session.state.collectAsStateWithLifecycle().value) {
+                    val navigationState = rememberSaveableStateHolder()
+                    val state = session.state.collectAsStateWithLifecycle().value
+                    val returnEventId = session.returnEventId
+                    when (state) {
                         SessionUiState.Starting -> SessionStartup(false, session::retryStartup)
                         SessionUiState.StartupError -> SessionStartup(true, session::retryStartup)
-                        is SessionUiState.Form ->
+                        is SessionUiState.Form -> {
+                            if (returnEventId == null) {
+                                LaunchedEffect(navigationState) { navigationState.removeState("catalog") }
+                            } else {
+                                BackHandler(onBack = session::continueAsGuest)
+                            }
                             SessionForm(
                                 state, session::submit, session::switchForm,
                                 session::clearError, session::continueAsGuest
                             )
-                        SessionUiState.Guest, is SessionUiState.Active -> EventiaNavigation(
-                            state as? SessionUiState.Active,
-                            session::retryAccount,
-                            session::openSignIn,
-                            session::signOut,
-                            connectivity.online
-                        )
+                        }
+                        SessionUiState.Guest, is SessionUiState.Active -> {
+                            navigationState.SaveableStateProvider("catalog") {
+                                EventiaNavigation(
+                                    currentSession = state as? SessionUiState.Active,
+                                    onRetryAccount = session::retryAccount,
+                                    onSignIn = session::openSignIn,
+                                    onSignOut = session::signOut,
+                                    online = connectivity.online,
+                                    returnEventId = returnEventId,
+                                    onEventReturnHandled = session::eventReturnHandled,
+                                    onEventSignIn = session::requestEventSignIn,
+                                    onEventSessionExpired = session::expireEventSession
+                                )
+                            }
+                        }
                     }
                 }
             }
