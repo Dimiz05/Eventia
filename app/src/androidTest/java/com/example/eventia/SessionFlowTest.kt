@@ -2,15 +2,25 @@ package com.example.eventia
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -50,6 +60,78 @@ class SessionFlowTest {
     val compose = createComposeRule()
 
     @Test
+    fun registrationRequiresMatchingPasswordsBeforeSubmitting() {
+        var submitted: Triple<String, String, String>? = null
+        compose.setContent {
+            EventiaTheme {
+                SessionForm(
+                    form = SessionUiState.Form(registering = true),
+                    onSubmit = { name, email, password -> submitted = Triple(name, email, password) },
+                    onSwitch = {},
+                    onEdit = {},
+                    onGuest = {}
+                )
+            }
+        }
+        fun field(label: String) = compose.onNode(hasSetTextAction() and hasContentDescription(label))
+        fun displayedText(value: String) =
+            SemanticsMatcher.expectValue(SemanticsProperties.EditableText, AnnotatedString(value))
+
+        field("Confirmar contraseña").performScrollTo().performTextInput("diferente")
+        field("Nombre completo").performScrollTo().performTextInput("Camila Rodríguez")
+        field("Correo electrónico").performScrollTo().performTextInput("camila@example.com")
+        field("Contraseña").performScrollTo().performTextInput("eventia123")
+        val maskedPassword = displayedText("•".repeat("eventia123".length))
+        val maskedConfirmation = displayedText("•".repeat("diferente".length))
+        field("Contraseña").assert(maskedPassword)
+        field("Confirmar contraseña").assert(maskedConfirmation)
+        compose.onNode(hasContentDescription("Mostrar contraseña")).performScrollTo().performClick()
+        field("Contraseña").assert(displayedText("eventia123"))
+        field("Confirmar contraseña").assert(maskedConfirmation)
+        compose.onNode(hasContentDescription("Ocultar contraseña")).performScrollTo().performClick()
+        field("Contraseña").assert(maskedPassword)
+
+        val submit = compose.onNode(hasText("Crear cuenta") and hasClickAction())
+        submit.performScrollTo().performClick()
+        compose.runOnIdle { assertEquals(null, submitted) }
+        compose.onNode(hasText("Las contraseñas no coinciden.")).performScrollTo().assertIsDisplayed()
+
+        field("Confirmar contraseña").performScrollTo().performTextClearance()
+        field("Confirmar contraseña").performTextInput("eventia123")
+        submit.performScrollTo().performClick()
+        compose.runOnIdle {
+            assertEquals(Triple("Camila Rodríguez", "camila@example.com", "eventia123"), submitted)
+        }
+    }
+
+    @Test
+    fun changingAccessModeHidesPasswordAndClearsItsInput() {
+        compose.setContent {
+            var registering by remember { mutableStateOf(false) }
+            EventiaTheme {
+                SessionForm(
+                    form = SessionUiState.Form(registering = registering),
+                    onSubmit = { _, _, _ -> },
+                    onSwitch = { registering = !registering },
+                    onEdit = {},
+                    onGuest = {}
+                )
+            }
+        }
+        val password = compose.onNode(hasSetTextAction() and hasContentDescription("Contraseña"))
+        password.performScrollTo().performTextInput("eventia123")
+        compose.onNode(hasContentDescription("Mostrar contraseña")).performClick()
+        password.assert(SemanticsMatcher.expectValue(SemanticsProperties.EditableText, AnnotatedString("eventia123")))
+
+        compose.onNode(
+            hasText("Crear cuenta") and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab)
+        ).performScrollTo().performClick()
+
+        password.assert(SemanticsMatcher.keyIsDefined(SemanticsProperties.Password))
+        password.assert(SemanticsMatcher.expectValue(SemanticsProperties.EditableText, AnnotatedString("")))
+    }
+
+    @Test
     fun invalidEmailAndShortPasswordShowSupportingTextInTheirFields() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val session = onMainSession()
@@ -65,18 +147,19 @@ class SessionFlowTest {
                 )
             }
         }
-        val email = compose.onNode(hasSetTextAction() and hasText(context.getString(R.string.auth_email)))
+        val email = compose.onNode(hasSetTextAction() and hasContentDescription(context.getString(R.string.auth_email)))
         email.performTextInput(context.getString(R.string.app_name))
-        compose.onNode(hasText(context.getString(R.string.auth_sign_in)) and hasClickAction()).performClick()
+        compose.onNode(
+            hasText(context.getString(R.string.auth_sign_in)) and
+                SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Button)
+        ).performScrollTo().performClick()
 
         compose.onNode(
-            hasSetTextAction() and hasText(context.getString(R.string.auth_email)) and
-                hasText(context.getString(R.string.auth_invalid_email))
-        ).assertIsDisplayed()
+            hasText(context.getString(R.string.auth_invalid_email))
+        ).performScrollTo().assertIsDisplayed()
         compose.onNode(
-            hasSetTextAction() and hasText(context.getString(R.string.auth_password)) and
-                hasText(context.getString(R.string.auth_short_password))
-        ).assertIsDisplayed()
+            hasText(context.getString(R.string.auth_short_password))
+        ).performScrollTo().assertIsDisplayed()
     }
 
     private fun onMainSession(): SessionViewModel {
