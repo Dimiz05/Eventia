@@ -1,8 +1,8 @@
 package com.example.eventia.repositories
 
-import com.example.eventia.data.local.FavoriteDao
-import com.example.eventia.data.local.FavoriteEntity
-import com.example.eventia.data.local.StoredEvent
+import com.example.eventia.data.local.dao.FavoriteDao
+import com.example.eventia.data.local.entity.FavoriteEntity
+import com.example.eventia.data.local.model.StoredEvent
 import com.example.eventia.domain.model.Event
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
