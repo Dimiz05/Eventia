@@ -1,6 +1,7 @@
 package com.example.eventia.repositories
 
 import com.example.eventia.api.EventiaApi
+import com.example.eventia.api.mappers.toDomain
 import com.example.eventia.api.models.EventDto
 import com.example.eventia.data.local.SessionStore
 import com.example.eventia.domain.model.Event

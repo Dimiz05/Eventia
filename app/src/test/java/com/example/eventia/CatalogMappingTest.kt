@@ -1,8 +1,8 @@
 package com.example.eventia
 
+import com.example.eventia.api.mappers.toDomain
 import com.example.eventia.api.models.EventDto
 import com.example.eventia.data.local.model.StoredEvent
-import com.example.eventia.repositories.toDomain
 import com.google.gson.Gson
 import java.time.ZoneOffset
 import org.junit.Assert.assertEquals
