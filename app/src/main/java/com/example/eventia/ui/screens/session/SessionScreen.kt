@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.session
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,6 +38,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.eventia.R
 import com.example.eventia.repositories.AccountField
+import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable

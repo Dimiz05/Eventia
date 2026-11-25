@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.venue
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.eventia.R
 import com.example.eventia.domain.model.Venue
+import com.example.eventia.ui.screens.map.MapPoint
 
 @Composable
 internal fun VenueLocation(

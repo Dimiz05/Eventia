@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.venue
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,10 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
 import com.example.eventia.domain.model.Venue
+import com.example.eventia.ui.components.EventArtwork
+import com.example.eventia.ui.components.EventCard
+import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable

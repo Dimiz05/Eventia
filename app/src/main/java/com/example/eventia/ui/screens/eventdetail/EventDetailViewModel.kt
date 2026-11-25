@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.eventdetail
 
 import android.database.sqlite.SQLiteException
 import androidx.lifecycle.SavedStateHandle

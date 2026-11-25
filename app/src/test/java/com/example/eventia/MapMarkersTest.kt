@@ -1,6 +1,6 @@
 package com.example.eventia
 
-import com.example.eventia.ui.screens.MapPoint
+import com.example.eventia.ui.screens.map.MapPoint
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

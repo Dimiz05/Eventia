@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.eventdetail
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -32,6 +32,15 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
+import com.example.eventia.ui.components.EventArtwork
+import com.example.eventia.ui.components.EventCategoryLabel
+import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.ScreenMessage
+import com.example.eventia.ui.components.eventLocalDateTime
+import com.example.eventia.ui.components.favoriteIcon
+import com.example.eventia.ui.components.favoriteLabel
+import com.example.eventia.ui.screens.favorites.FavoritesUiState
+import com.example.eventia.ui.screens.map.MapPoint
 import com.example.eventia.ui.theme.EventiaTheme
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability

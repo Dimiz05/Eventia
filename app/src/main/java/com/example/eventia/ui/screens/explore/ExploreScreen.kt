@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.explore
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,6 +47,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
+import com.example.eventia.ui.components.CachedDataNotice
+import com.example.eventia.ui.components.EventCard
+import com.example.eventia.ui.components.FavoriteButton
+import com.example.eventia.ui.components.ScreenMessage
+import com.example.eventia.ui.components.cachedCatalogNotice
+import com.example.eventia.ui.screens.favorites.FavoritesUiState
+import com.example.eventia.ui.screens.venue.VenueListScreen
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable

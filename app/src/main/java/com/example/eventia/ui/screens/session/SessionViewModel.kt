@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.session
 
 import android.util.Patterns
 import androidx.lifecycle.SavedStateHandle
