@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.venue
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

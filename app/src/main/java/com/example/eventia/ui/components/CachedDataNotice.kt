@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

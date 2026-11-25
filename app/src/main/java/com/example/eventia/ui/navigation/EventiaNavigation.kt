@@ -36,16 +36,16 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
+import com.example.eventia.ui.screens.eventdetail.EventDetailScreen
+import com.example.eventia.ui.screens.explore.ExploreScreen
+import com.example.eventia.ui.screens.favorites.FavoriteNotice
+import com.example.eventia.ui.screens.favorites.FavoritesScreen
+import com.example.eventia.ui.screens.favorites.FavoritesViewModel
+import com.example.eventia.ui.screens.map.MapScreen
+import com.example.eventia.ui.screens.profile.ProfileRoute
+import com.example.eventia.ui.screens.session.SessionUiState
+import com.example.eventia.ui.screens.venue.VenueDetailScreen
 import kotlinx.coroutines.flow.Flow
-import com.example.eventia.ui.screens.EventDetailScreen
-import com.example.eventia.ui.screens.ExploreScreen
-import com.example.eventia.ui.screens.FavoriteNotice
-import com.example.eventia.ui.screens.FavoritesScreen
-import com.example.eventia.ui.screens.FavoritesViewModel
-import com.example.eventia.ui.screens.MapScreen
-import com.example.eventia.ui.screens.ProfileRoute
-import com.example.eventia.ui.screens.SessionUiState
-import com.example.eventia.ui.screens.VenueDetailScreen
 
 private enum class Tab(val route: String, val title: Int, val icon: Int) {
     Explore("explore", R.string.tab_explore, R.drawable.ic_explore),

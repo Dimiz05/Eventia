@@ -9,8 +9,8 @@ import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.CatalogEvents
 import com.example.eventia.repositories.CategoryRepository
 import com.example.eventia.data.connectivity.CatalogConnectivity
-import com.example.eventia.ui.screens.ExploreFilters
-import com.example.eventia.ui.screens.ExploreViewModel
+import com.example.eventia.ui.screens.explore.ExploreFilters
+import com.example.eventia.ui.screens.explore.ExploreViewModel
 import java.io.IOException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers

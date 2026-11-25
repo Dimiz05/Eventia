@@ -2,7 +2,7 @@ package com.example.eventia
 
 import com.example.eventia.api.models.EventDto
 import com.example.eventia.repositories.toDomain
-import com.example.eventia.ui.screens.AttendanceGroups
+import com.example.eventia.ui.screens.profile.AttendanceGroups
 import com.google.gson.Gson
 import java.time.Instant
 import org.junit.Assert.assertEquals

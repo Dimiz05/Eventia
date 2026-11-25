@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.map
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,6 +35,10 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
 import com.example.eventia.domain.model.Event
+import com.example.eventia.ui.components.EventCategoryLabel
+import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.ScreenMessage
+import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.theme.EventiaTheme
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition

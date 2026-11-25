@@ -12,10 +12,10 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.data.connectivity.AndroidCatalogConnectivity
 import com.example.eventia.ui.navigation.EventiaNavigation
-import com.example.eventia.ui.screens.SessionForm
-import com.example.eventia.ui.screens.SessionStartup
-import com.example.eventia.ui.screens.SessionUiState
-import com.example.eventia.ui.screens.SessionViewModel
+import com.example.eventia.ui.screens.session.SessionForm
+import com.example.eventia.ui.screens.session.SessionStartup
+import com.example.eventia.ui.screens.session.SessionUiState
+import com.example.eventia.ui.screens.session.SessionViewModel
 import com.example.eventia.ui.theme.EventiaTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,6 +34,9 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
 import com.example.eventia.domain.model.Event
+import com.example.eventia.ui.components.EventCard
+import com.example.eventia.ui.screens.session.AccountScreen
+import com.example.eventia.ui.screens.session.SessionUiState
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable

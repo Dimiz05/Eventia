@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.favorites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

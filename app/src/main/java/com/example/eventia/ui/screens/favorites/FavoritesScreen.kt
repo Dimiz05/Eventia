@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.favorites
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,16 +7,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.eventia.R
 import com.example.eventia.domain.model.Event
+import com.example.eventia.ui.components.CachedDataNotice
+import com.example.eventia.ui.components.EventCard
+import com.example.eventia.ui.components.FavoriteButton
+import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.theme.EventiaTheme
 
 @Composable
@@ -55,19 +57,6 @@ internal fun FavoritesScreen(
         }
     }
 }
-
-@Composable
-internal fun FavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
-    IconButton(enabled = enabled, onClick = onClick) {
-        Icon(painterResource(favoriteIcon(selected)), stringResource(favoriteLabel(selected)))
-    }
-}
-
-internal fun favoriteIcon(selected: Boolean): Int =
-    if (selected) R.drawable.ic_favorites else R.drawable.ic_favorite_outline
-
-internal fun favoriteLabel(selected: Boolean): Int =
-    if (selected) R.string.favorite_remove else R.string.favorite_add
 
 @Preview(showBackground = true)
 @Composable

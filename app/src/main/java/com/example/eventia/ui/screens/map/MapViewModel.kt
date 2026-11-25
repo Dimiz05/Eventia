@@ -1,4 +1,4 @@
-package com.example.eventia.ui.screens
+package com.example.eventia.ui.screens.map
 
 import android.content.Context
 import android.content.pm.PackageManager
