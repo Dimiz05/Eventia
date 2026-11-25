@@ -3,11 +3,13 @@ package com.example.eventia
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -22,8 +24,10 @@ import com.example.eventia.repositories.EventSessionExpired
 import com.example.eventia.repositories.SessionRepository
 import com.example.eventia.ui.navigation.DetailId
 import com.example.eventia.ui.screens.eventdetail.AttendanceConflict
+import com.example.eventia.ui.screens.eventdetail.EventDetailScreen
 import com.example.eventia.ui.screens.eventdetail.EventDetailUiState
 import com.example.eventia.ui.screens.eventdetail.EventDetailViewModel
+import com.example.eventia.ui.screens.favorites.FavoritesUiState
 import com.example.eventia.ui.screens.session.SessionForm
 import com.example.eventia.ui.screens.session.SessionUiState
 import com.example.eventia.ui.screens.session.SessionViewModel
@@ -194,6 +198,64 @@ class SessionFlowTest {
     }
 
     @Test
+    fun pastEventsRejectBothAttendanceChanges() = onMain {
+        val catalog = AttendanceCatalog()
+        val pastEvent = catalog.event.copy(startsAt = OffsetDateTime.now().minusDays(1))
+        val onExpired: (Long) -> Unit = { error("Unexpected session expiration") }
+
+        for (attending in listOf(false, true)) {
+            catalog.event = pastEvent.copy(isAttending = attending)
+            val repository = LocalSession(hasToken = true)
+            var requests = 0
+            var refreshes = 0
+            repository.onAttend = { requests++ }
+            repository.onCancel = { requests++ }
+            val detail = EventDetailViewModel(
+                SavedStateHandle(mapOf(DetailId to pastEvent.id)), catalog, repository
+            )
+            detail.load(true, onExpired)
+            val loaded = detail.state.value
+
+            detail.attend(onExpired) { refreshes++ }
+
+            assertEquals(0, requests)
+            assertEquals(0, refreshes)
+            assertEquals(loaded, detail.state.value)
+        }
+    }
+
+    @Test
+    fun pastEventDetailShowsWhyAttendanceCannotBeChanged() {
+        val catalog = AttendanceCatalog()
+        catalog.event = catalog.event.copy(startsAt = OffsetDateTime.now().minusDays(1), isAttending = true)
+        val detail = EventDetailViewModel(
+            SavedStateHandle(mapOf(DetailId to catalog.event.id)), catalog, LocalSession(hasToken = true)
+        )
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        compose.setContent {
+            EventiaTheme {
+                EventDetailScreen(
+                    authenticated = true,
+                    onEventSignIn = { error("Unexpected sign-in") },
+                    onSessionExpired = { error("Unexpected session expiration") },
+                    onBack = {},
+                    onExplore = {},
+                    onAttendanceChanged = { error("Unexpected attendance change") },
+                    onVenueClick = {},
+                    favorites = FavoritesUiState(),
+                    onFavoriteChange = { _, _ -> },
+                    viewModel = detail
+                )
+            }
+        }
+
+        compose.onNode(hasText(context.getString(R.string.event_cancel_attendance)))
+            .performScrollTo().assertIsNotEnabled()
+        compose.onNode(hasText("Este evento ya pasó y no puedes cambiar tu asistencia."))
+            .performScrollTo().assertIsDisplayed()
+    }
+
+    @Test
     fun conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost() = onMain {
         val catalog = AttendanceCatalog()
         val original = catalog.event
@@ -295,7 +357,7 @@ class SessionFlowTest {
             title = "Noche de jazz en la plaza",
             summary = "Clásicos del jazz con músicos invitados.",
             description = null,
-            startsAt = OffsetDateTime.parse("2026-11-14T20:00:00-04:00"),
+            startsAt = OffsetDateTime.now().plusDays(1),
             endsAt = null,
             category = Category(3, "Música"),
             imageUrl = null,

@@ -1,5 +1,6 @@
 package com.example.eventia.domain.model
 
+import java.time.Instant
 import java.time.OffsetDateTime
 
 data class Event(
@@ -16,3 +17,5 @@ data class Event(
     val availableSpots: Int,
     val isAttending: Boolean?
 )
+
+internal fun Event.hasStarted(now: Instant): Boolean = startsAt.toInstant().isBefore(now)

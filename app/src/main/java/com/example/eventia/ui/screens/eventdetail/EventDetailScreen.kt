@@ -32,6 +32,7 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
+import com.example.eventia.domain.model.hasStarted
 import com.example.eventia.ui.components.EventArtwork
 import com.example.eventia.ui.components.EventCategoryLabel
 import com.example.eventia.ui.components.LoadingScreen
@@ -52,7 +53,9 @@ import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberUpdatedMarkerState
+import java.time.Instant
 import java.time.OffsetDateTime
+import kotlinx.coroutines.delay
 
 @Composable
 internal fun EventDetailScreen(
@@ -83,7 +86,7 @@ internal fun EventDetailScreen(
         onVenueClick = onVenueClick,
         onAttend = { event ->
             if (authenticated) viewModel.attend(onSessionExpired, onAttendanceChanged)
-            else onEventSignIn(event.id)
+            else if (!event.hasStarted(Instant.now())) onEventSignIn(event.id)
         },
         onRefresh = { viewModel.refresh(onSessionExpired) }
     ) { event ->
@@ -95,7 +98,9 @@ internal fun EventDetailScreen(
             enabled = favorites.canChange(event.id)
         )
     }
-    if (visible is EventDetailUiState.Content && visible.conflict == AttendanceConflict.Full) {
+    if (visible is EventDetailUiState.Content && visible.conflict == AttendanceConflict.Full &&
+        !visible.event.hasStarted(Instant.now())
+    ) {
         AlertDialog(
             onDismissRequest = viewModel::dismissConflict,
             title = { Text(stringResource(R.string.event_no_spots)) },
@@ -170,7 +175,19 @@ private fun EventDetails(
     val accent = MaterialTheme.colorScheme.primary
     val dateTime = eventLocalDateTime(event)
     val shareLabel = stringResource(R.string.event_share)
-    val shareText = stringResource(R.string.event_share_text, event.title, dateTime, event.venue.name)
+    val shareText = stringResource(
+        R.string.event_share_text, event.title, dateTime, event.venue.name, venueMapUrl(event.venue)
+    )
+    val attendanceClosed by produceState(event.hasStarted(Instant.now()), event.startsAt) {
+        var now = Instant.now()
+        while (!event.hasStarted(now)) {
+            value = false
+            val millisUntilStart = event.startsAt.toInstant().toEpochMilli() - now.toEpochMilli()
+            delay((millisUntilStart + 1).coerceIn(1L, 60_000L))
+            now = Instant.now()
+        }
+        value = true
+    }
 
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         Box {
@@ -278,7 +295,7 @@ private fun EventDetails(
                 }
                 Button(
                     onClick = { onAttend?.invoke(event) },
-                    enabled = onAttend != null && !state.updating && !state.refreshRequired &&
+                    enabled = onAttend != null && !attendanceClosed && !state.updating && !state.refreshRequired &&
                         (!state.authenticated || event.isAttending != null),
                     modifier = Modifier.weight(1.15f),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
@@ -290,7 +307,13 @@ private fun EventDetails(
                     }))
                 }
             }
-            if (!state.updating) {
+            if (attendanceClosed) {
+                Text(
+                    stringResource(R.string.event_attendance_closed),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            } else if (!state.updating) {
                 when (state.conflict) {
                     AttendanceConflict.AlreadyRegistered ->
                         Text(stringResource(R.string.event_already_registered))
