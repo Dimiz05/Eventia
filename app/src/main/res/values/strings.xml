@@ -29,14 +29,15 @@
     <string name="event_cancel_attendance">Cancelar inscripción</string>
     <string name="event_attendance_updating">Actualizando…</string>
     <string name="event_attendance_error">No se pudo confirmar el cambio de inscripción.</string>
-    <string name="event_attendance_conflict">No se pudo confirmar el cambio por un conflicto de inscripción.</string>
+    <string name="event_attendance_conflict">No pudimos confirmar el cambio de asistencia. Inténtalo de nuevo.</string>
+    <string name="event_attendance_closed">Este evento ya pasó y no puedes cambiar tu asistencia.</string>
     <string name="event_already_registered">Ya tienes una inscripción para este evento.</string>
     <string name="event_no_spots">Sin cupos disponibles</string>
     <string name="event_browse_others">Ver otros eventos</string>
     <string name="understood">Entendido</string>
     <string name="event_capacity">Cupos: %1$d de %2$d disponibles</string>
     <string name="event_share">Compartir evento</string>
-    <string name="event_share_text">%1$s\n%2$s\n%3$s</string>
+    <string name="event_share_text">%1$s\n%2$s\n%3$s\n%4$s</string>
     <string name="event_read_more">Ver más</string>
     <string name="event_read_less">Ver menos</string>
     <string name="venues_empty">Todavía no hay lugares disponibles.</string>

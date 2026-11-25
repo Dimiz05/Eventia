@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventia.domain.model.Event
+import com.example.eventia.domain.model.hasStarted
 import com.example.eventia.repositories.CatalogRepository
 import com.example.eventia.repositories.EventSessionExpired
 import com.example.eventia.repositories.SessionRepository
@@ -12,6 +13,7 @@ import com.example.eventia.ui.navigation.DetailId
 import com.google.gson.JsonParseException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.IOException
+import java.time.Instant
 import java.time.format.DateTimeParseException
 import javax.inject.Inject
 import kotlinx.coroutines.Job
@@ -75,6 +77,7 @@ class EventDetailViewModel @Inject constructor(
         val content = mutableState.value as? EventDetailUiState.Content ?: return
         val attending = content.event.isAttending ?: return
         if (!content.authenticated || content.updating || content.refreshRequired) return
+        if (content.event.hasStarted(Instant.now())) return
         val previous = content.copy(attendanceError = false, conflict = null)
         mutableState.value = previous.copy(updating = true)
         request = viewModelScope.launch {

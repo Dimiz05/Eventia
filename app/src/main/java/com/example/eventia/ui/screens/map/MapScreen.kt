@@ -40,6 +40,7 @@ import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.theme.EventiaTheme
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -51,6 +52,7 @@ import kotlinx.coroutines.delay
 
 private val DefaultMapCenter = LatLng(-16.4957, -68.1336)
 private const val MapLoadTimeoutMillis = 20_000L
+private const val SelectedMarkerZoom = 17f
 
 @Composable
 fun MapScreen(onEventClick: (Long) -> Unit, viewModel: MapViewModel = hiltViewModel()) {
@@ -178,7 +180,9 @@ private fun EventMap(
                         title = events.first().title,
                         icon = remember(hue) { BitmapDescriptorFactory.defaultMarker(hue) },
                         zIndex = if (selected) 1f else 0f,
-                        onClick = {
+                        onClick = { marker ->
+                            val zoom = maxOf(camera.position.zoom, SelectedMarkerZoom)
+                            camera.move(CameraUpdateFactory.newLatLngZoom(marker.position, zoom))
                             onPointSelected(point)
                             true
                         }
