@@ -1,0 +1,31 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 0,
+  "filesSkipped": [
+    "app/src/main/res/drawable/ic_back.xml",
+    "app/src/main/res/drawable/ic_event_calendar.xml",
+    "app/src/main/res/drawable/ic_event_placeholder.xml",
+    "app/src/main/res/drawable/ic_event_share.xml",
+    "app/src/main/res/drawable/ic_explore.xml",
+    "app/src/main/res/drawable/ic_favorite_outline.xml",
+    "app/src/main/res/drawable/ic_favorites.xml",
+    "app/src/main/res/drawable/ic_launcher_background.xml",
+    "app/src/main/res/drawable/ic_launcher_foreground.xml",
+    "app/src/main/res/drawable/ic_map.xml",
+    "app/src/main/res/drawable/ic_profile.xml",
+    "app/src/main/res/drawable/ic_status_error.xml"
+  ],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 0,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": []
+}

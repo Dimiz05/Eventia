@@ -1,0 +1,1514 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-25T18:48:56.519Z",
+  "files": {
+    "README.md": {
+      "overview": "Presenta el proyecto Android, su navegación y los requisitos de ejecución. Reúne la descripción de los flujos con los pasos para comprobarlos.",
+      "sections": [
+        {
+          "title": "Arquitectura y catálogo",
+          "lineRange": [
+            1,
+            20
+          ],
+          "explanation": "Aquí se describen los destinos principales y el recorrido del catálogo por ViewModels, repositorios y Retrofit. Room conserva la última descarga sin filtros para recuperar resultados cuando falla la red.",
+          "tourOrder": 1
+        },
+        {
+          "title": "Comprobaciones de integración",
+          "lineRange": [
+            22,
+            58
+          ],
+          "explanation": "La colección de Postman distingue las lecturas públicas de las operaciones que requieren una cuenta. Las observaciones sobre fechas y campos nulos dan ejemplos que los mapeos deben admitir. Para Maps, Gradle toma la clave de un archivo local y la pasa al manifiesto.",
+          "tourOrder": 1
+        },
+        {
+          "title": "Flujos y pruebas",
+          "lineRange": [
+            60,
+            96
+          ],
+          "explanation": "Las secciones de cuenta y lugares describen el acceso como invitado y la navegación entre detalles. Los comandos del final separan compilación, pruebas unitarias y pruebas que requieren un dispositivo Android.",
+          "tourOrder": 1
+        }
+      ]
+    },
+    "app/build.gradle.kts": {
+      "overview": "Configura el módulo Android y sus bibliotecas. Conecta los plugins, la configuración de Maps y las dependencias que aparecen en el recorrido.",
+      "sections": [
+        {
+          "title": "Plugins y clave local",
+          "lineRange": [
+            3,
+            14
+          ],
+          "explanation": "Los alias aplican los plugins de Android, Compose, Hilt y KSP desde el catálogo de versiones. El proveedor lee `MAPS_API_KEY` de `secrets.properties` y usa una cadena vacía si falta el valor.",
+          "tourOrder": 1
+        },
+        {
+          "title": "Configuración del módulo",
+          "lineRange": [
+            16,
+            48
+          ],
+          "explanation": "El bloque `android` define el identificador, las versiones del SDK y el ejecutor de pruebas instrumentadas. También habilita Compose y asigna el marcador de posición que usa el manifiesto para Google Maps.",
+          "tourOrder": 1
+        },
+        {
+          "title": "Dependencias por uso",
+          "lineRange": [
+            50,
+            81
+          ],
+          "explanation": "Las bibliotecas de interfaz, red y persistencia se declaran por aquí. KSP ejecuta los procesadores de Hilt y Room, mientras `testImplementation` y `androidTestImplementation` mantienen separadas las dependencias de cada tipo de prueba.",
+          "tourOrder": 1
+        }
+      ]
+    },
+    "app/src/main/AndroidManifest.xml": {
+      "overview": "Declara los permisos y los componentes con los que Android inicia Eventia. También conecta la configuración de Google Maps con el resultado de la compilación.",
+      "sections": [
+        {
+          "title": "Permisos y aplicación",
+          "lineRange": [
+            5,
+            17
+          ],
+          "explanation": "Los permisos `INTERNET` y `ACCESS_NETWORK_STATE` permiten la conexión y la lectura de su estado, respectivamente. El elemento `application` selecciona `EventiaApplication`, su tema, sus iconos y sus reglas de copias de seguridad.",
+          "tourOrder": 2
+        },
+        {
+          "title": "Mapas y actividad inicial",
+          "lineRange": [
+            18,
+            32
+          ],
+          "explanation": "El metadato de Maps referencia el valor que Gradle asigna a `MAPS_API_KEY`. El filtro `MAIN` y `LAUNCHER` hace que el iniciador de Android abra `MainActivity`, que se declara exportada para ese propósito.",
+          "tourOrder": 2
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/EventiaApplication.kt": {
+      "overview": "Define la clase que Android crea para el proceso de Eventia. Su anotación establece el punto de partida de la inyección de dependencias.",
+      "sections": [
+        {
+          "title": "Clase base de Android",
+          "lineRange": [
+            1,
+            4
+          ],
+          "explanation": "El archivo importa `Application`, que representa a la aplicación dentro del proceso. También importa la anotación que conecta esa clase con Hilt.",
+          "tourOrder": 2
+        },
+        {
+          "title": "Punto de inicio Hilt",
+          "lineRange": [
+            6,
+            7
+          ],
+          "explanation": "`@HiltAndroidApp` marca el tipo que Hilt utiliza para generar la infraestructura de inyección. El cuerpo está vacío porque la clase solo declara esa integración y hereda el comportamiento de `Application`.",
+          "tourOrder": 2
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/MainActivity.kt": {
+      "overview": "Es la entrada de la interfaz Compose. Observa la sesión para seleccionar el arranque, el formulario de acceso o la navegación principal.",
+      "sections": [
+        {
+          "title": "Arranque de Compose",
+          "lineRange": [
+            23,
+            36
+          ],
+          "explanation": "`@AndroidEntryPoint` habilita la inyección de `AndroidCatalogConnectivity`. `onCreate` activa la presentación de borde a borde, aplica el tema y obtiene el ViewModel de sesión. El estado se recoge según el ciclo de vida.",
+          "tourOrder": 2
+        },
+        {
+          "title": "Arranque y formulario",
+          "lineRange": [
+            37,
+            50
+          ],
+          "explanation": "Los estados iniciales muestran progreso o un error con reintento. Si el usuario abre el formulario sin un evento pendiente, se elimina el estado guardado del catálogo. Con un evento pendiente, Atrás permite continuar como invitado.",
+          "tourOrder": 2
+        },
+        {
+          "title": "Navegación de la sesión",
+          "lineRange": [
+            51,
+            72
+          ],
+          "explanation": "El invitado y la sesión activa pasan al catálogo dentro del mismo proveedor de estado guardable. Los callbacks conectan las acciones de sesión, el retorno a un evento y los cambios de asistencia con el ViewModel.",
+          "tourOrder": 2
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt": {
+      "overview": "Centraliza las cuatro pestañas y los detalles de evento y lugar. Comparte favoritos entre los destinos que los muestran y gestiona el retorno a un evento pendiente.",
+      "sections": [
+        {
+          "title": "Tipos de destino",
+          "lineRange": [
+            50,
+            66
+          ],
+          "explanation": "`Tab` asocia cada pantalla principal con su ruta, su título y su icono. `DetailDestination` ofrece tanto el patrón con `{id}` como la ruta concreta con un identificador.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Favoritos y avisos",
+          "lineRange": [
+            83,
+            109
+          ],
+          "explanation": "El grafo recoge el estado de un único ViewModel de favoritos. Sus avisos pueden ofrecer deshacer una eliminación o volver a ejecutar un cambio fallido desde el `SnackbarHost`.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Retorno al evento",
+          "lineRange": [
+            110,
+            131
+          ],
+          "explanation": "El código observa la ruta actual para identificar el destino visible. El efecto de retorno compara el patrón y el identificador antes de navegar para evitar abrir un detalle que ya está visible.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Barras y estado guardado",
+          "lineRange": [
+            133,
+            186
+          ],
+          "explanation": "El contenedor adapta las barras al destino actual. Al cambiar de pestaña, guarda y restaura estado para recuperar el contexto de la sección al volver.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Grafo y argumentos",
+          "lineRange": [
+            187,
+            236
+          ],
+          "explanation": "`NavHost` comienza en Explorar y registra las cuatro pestañas y los dos detalles. Cada detalle recibe un argumento `Long` para abrir un evento o lugar por identificador.",
+          "tourOrder": 3
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt": {
+      "overview": "Presenta el catálogo de eventos y el listado de lugares. Conecta los filtros, los favoritos y la actualización con el estado que publican los ViewModels.",
+      "sections": [
+        {
+          "title": "Eventos y lugares",
+          "lineRange": [
+            59,
+            113
+          ],
+          "explanation": "La pantalla recoge el estado del catálogo según el ciclo de vida. Un selector guarda qué sección está visible y el proveedor de estado guardable separa los estados de Eventos y Lugares.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Filtros y datos guardados",
+          "lineRange": [
+            115,
+            169
+          ],
+          "explanation": "El valor de búsqueda y la categoría seleccionada llegan desde el estado de exploración. Sus callbacks modifican el filtro o piden una actualización. Si hay fecha de descarga, se muestra la antigüedad de la caché.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Progreso y recuperación",
+          "lineRange": [
+            170,
+            222
+          ],
+          "explanation": "Una actualización fallida con datos visibles permite reintentar desde la misma lista. Cuando no hay resultados se distingue entre una búsqueda sin coincidencias y un catálogo vacío.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Lista y carga inicial",
+          "lineRange": [
+            223,
+            260
+          ],
+          "explanation": "Los identificadores de evento sirven como claves de las tarjetas. `key(filters)` vincula el estado de desplazamiento al filtro activo, mientras el esqueleto ocupa el espacio de tres filas durante la carga inicial.",
+          "tourOrder": 3
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt": {
+      "overview": "Presenta la ficha del evento y las acciones de favoritos, asistencia y navegación. Adapta lo que muestra al estado de carga, sesión y disponibilidad de coordenadas.",
+      "sections": [
+        {
+          "title": "Detalle y autenticación",
+          "lineRange": [
+            57,
+            113
+          ],
+          "explanation": "El detalle vuelve a cargar al cambiar la autenticación y cancela su petición al salir de la composición. La acción de asistencia llama al ViewModel si hay sesión o abre el acceso con el identificador del evento. Si no hay cupos, se muestra un diálogo.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Carga y error",
+          "lineRange": [
+            115,
+            155
+          ],
+          "explanation": "Los datos listos se delegan a un composable de contenido. Los estados de carga, vacío y error usan componentes compartidos y ofrecen las acciones de volver o reintentar según corresponda.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Contenido del evento",
+          "lineRange": [
+            157,
+            256
+          ],
+          "explanation": "La portada combina la imagen con acciones para volver, compartir y guardar. El contenido muestra la fecha y el lugar, y calcula la proporción de cupos disponibles cuando el total es mayor que cero.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Acciones y conflictos",
+          "lineRange": [
+            258,
+            308
+          ],
+          "explanation": "Cómo llegar abre un enlace `geo:` si hay coordenadas. El botón de asistencia responde al estado de la petición y los conflictos que requieren confirmación permiten volver a consultar.",
+          "tourOrder": 3
+        },
+        {
+          "title": "Descripción y mapa",
+          "lineRange": [
+            344,
+            408
+          ],
+          "explanation": "La descripción usa el resumen cuando falta el texto completo y se puede expandir si se corta. La ubicación usa un mapa ligero si hay coordenadas, clave y Google Play Services, o presenta la dirección disponible.",
+          "tourOrder": 3
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/di/NetworkModule.kt": {
+      "overview": "Indica a Hilt qué servicios de red debe inyectar y cómo construirlos. Así se puede pedir un repositorio por su interfaz desde los ViewModels.",
+      "sections": [
+        {
+          "title": "Enlaces de inyección",
+          "lineRange": [
+            23,
+            39
+          ],
+          "explanation": "`@InstallIn(SingletonComponent::class)` instala el módulo en el componente de aplicación. Cada `@Binds` vincula una interfaz de repositorio o conectividad con su implementación.",
+          "tourOrder": 4
+        },
+        {
+          "title": "Proveedor de la API",
+          "lineRange": [
+            41,
+            49
+          ],
+          "explanation": "`@Provides` construye Retrofit con la URL base de Eventia y el conversor Gson. `@Singleton` comparte el resultado de `create(EventiaApi::class.java)` dentro del componente de aplicación.",
+          "tourOrder": 4
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/api/EventiaApi.kt": {
+      "overview": "Define el contrato de Retrofit para el servidor de Eventia. Las anotaciones identifican los métodos HTTP, parámetros y tipos de respuesta.",
+      "sections": [
+        {
+          "title": "Consultas del catálogo",
+          "lineRange": [
+            19,
+            33
+          ],
+          "explanation": "El listado de eventos admite filtros opcionales por texto y categoría mediante `@Query`. El detalle recibe su identificador mediante `@Path` y permite enviar un encabezado de autorización opcional.",
+          "tourOrder": 4
+        },
+        {
+          "title": "Alta y baja",
+          "lineRange": [
+            35,
+            45
+          ],
+          "explanation": "La asistencia usa la misma ruta para `POST` y `DELETE`. Ambas llamadas requieren el encabezado de autorización y devuelven `Response<Void>` para que quien llama pueda examinar el estado HTTP.",
+          "tourOrder": 4
+        },
+        {
+          "title": "Lugares y cuenta",
+          "lineRange": [
+            47,
+            66
+          ],
+          "explanation": "Las rutas de lugares exponen el listado, el detalle y sus eventos. El acceso y el registro envían DTO de solicitud en el cuerpo, mientras las consultas de cuenta e inscripciones requieren autorización.",
+          "tourOrder": 4
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt": {
+      "overview": "Convierte los DTO del catálogo a los modelos de dominio. Las funciones de extensión se invocan sobre los valores de red y concentran la conversión en un archivo.",
+      "sections": [
+        {
+          "title": "Conversión del evento",
+          "lineRange": [
+            10,
+            23
+          ],
+          "explanation": "El mapeo interpreta las fechas como `OffsetDateTime` y conserva `null` cuando no hay hora de fin. Construye la categoría, delega la conversión del lugar y mantiene la imagen y el estado de asistencia que recibe.",
+          "tourOrder": 4
+        },
+        {
+          "title": "Conversión del lugar",
+          "lineRange": [
+            25,
+            35
+          ],
+          "explanation": "El mapeo de `VenueDto` traduce `lat` y `lng` a las propiedades de `Venue`. También conserva los datos de dirección, horario, imagen y conteo de próximos eventos.",
+          "tourOrder": 4
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/domain/model/Event.kt": {
+      "overview": "Define los datos de un evento que usa la aplicación. Sus tipos representan fechas con desplazamiento, un lugar asociado y los valores que pueden estar ausentes.",
+      "sections": [
+        {
+          "title": "Identidad y contexto",
+          "lineRange": [
+            5,
+            14
+          ],
+          "explanation": "La `data class` reúne el identificador, textos, fechas, categoría y lugar. `OffsetDateTime` conserva el desplazamiento de la hora, mientras `?` indica que la descripción, el fin y la URL de imagen son opcionales.",
+          "tourOrder": 4
+        },
+        {
+          "title": "Cupos y asistencia",
+          "lineRange": [
+            15,
+            18
+          ],
+          "explanation": "La capacidad total y los cupos disponibles se almacenan por separado. El campo `isAttending` admite `null`, lo que distingue la ausencia de información de una respuesta explícita `false`.",
+          "tourOrder": 4
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt": {
+      "overview": "La interfaz reúne las operaciones con las que la aplicación consulta eventos y lugares. El resultado de un listado distingue entre datos del servidor y una descarga local e incluye información adicional cuando se usa la caché.",
+      "sections": [
+        {
+          "title": "Operaciones del catálogo",
+          "lineRange": [
+            8,
+            15
+          ],
+          "explanation": "Las funciones suspendidas ofrecen consultas de listado y detalle de eventos y lugares. En el detalle de un evento, los parámetros `authenticated` y `allowSaved` permiten solicitar información de sesión y decidir si se admite una copia local.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Origen de los eventos",
+          "lineRange": [
+            17,
+            27
+          ],
+          "explanation": "`CatalogEvents.Remote` contiene la lista recibida desde la API. `CatalogEvents.Cached` añade las categorías y el momento de descarga, información que la pantalla puede usar para explicar la antigüedad de los datos.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt": {
+      "overview": "Este repositorio convierte las respuestas del catálogo en modelos de dominio y coordina el acceso a la red, la caché y los favoritos. La estrategia de recuperación varía entre el listado y el detalle de un evento.",
+      "sections": [
+        {
+          "title": "Descarga del catálogo",
+          "lineRange": [
+            19,
+            46
+          ],
+          "explanation": "El repositorio limpia el texto de búsqueda y consulta el servidor. Solo una respuesta sin búsqueda ni categoría reemplaza la caché completa. Si hay un `IOException` o una respuesta HTTP 5xx, se intenta usar la descarga guardada.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Filtros sobre la caché",
+          "lineRange": [
+            48,
+            62
+          ],
+          "explanation": "El repositorio recupera la instantánea y convierte los registros en eventos. Aplica el filtro de categoría y busca en el título, el resumen o la descripción sin distinguir mayúsculas. Devuelve las categorías derivadas de toda la descarga y la fecha original.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Recuperación del detalle",
+          "lineRange": [
+            64,
+            87
+          ],
+          "explanation": "La consulta autenticada incluye el token `Bearer` y traduce un HTTP 401 a `EventSessionExpired`. Si se permiten copias locales, un HTTP 404 puede recuperar un favorito y un error de red o HTTP 5xx consulta primero favoritos y luego caché.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Consultas de lugares",
+          "lineRange": [
+            89,
+            93
+          ],
+          "explanation": "El listado y el detalle de los lugares se consultan directamente a través de la API. Los eventos asociados a un lugar también se convierten a sus modelos de dominio antes de devolverlos.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt": {
+      "overview": "El ViewModel de Explorar coordina el estado de búsqueda, los filtros y el contenido del catálogo. Combina resultados remotos y locales y solicita una nueva descarga al restablecerse la conexión.",
+      "sections": [
+        {
+          "title": "Estado de la pantalla",
+          "lineRange": [
+            27,
+            56
+          ],
+          "explanation": "`ExploreUiState` separa los filtros de los resultados, la carga y el error. El contenido puede conservar las categorías aunque aún falte el listado filtrado. El ViewModel restaura filtros desde `SavedStateHandle` y expone el estado como `StateFlow` de solo lectura.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Filtros y reconexión",
+          "lineRange": [
+            58,
+            98
+          ],
+          "explanation": "La suscripción a `reconnects()` solicita regenerar el catálogo y mantiene los filtros seleccionados. Al cambiar un filtro, el ViewModel lo guarda, retira el listado anterior y solicita el nuevo resultado. Pulsar una categoría activa la desmarca.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Carga cancelable",
+          "lineRange": [
+            100,
+            126
+          ],
+          "explanation": "Cada solicitud cancela la anterior y la búsqueda espera 300 ms cuando se pide retrasar la entrada. El estado conserva el contenido disponible si falla la carga y señala el error. `ensureActive()` evita publicar resultados después de una cancelación.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Contenido remoto y local",
+          "lineRange": [
+            128,
+            165
+          ],
+          "explanation": "Los resultados excluyen los eventos cuyo inicio ya pasó. Las categorías y la fecha se toman de la descarga si se está usando la caché. Al reconectar con filtros activos, el ViewModel intenta primero refrescar la descarga completa y luego obtiene el resultado filtrado.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt": {
+      "overview": "Esta interfaz expone los cambios de conectividad que interesan al catálogo. La implementación de Android traduce los callbacks del sistema a un flujo que el ViewModel puede observar.",
+      "sections": [
+        {
+          "title": "Señal de reconexión",
+          "lineRange": [
+            17,
+            26
+          ],
+          "explanation": "`CatalogConnectivity` devuelve un `Flow<Unit>` para señalar la recuperación de la conexión. La implementación descarta el estado inicial y emite cuando el flujo informa de una red validada tras un cambio.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Callbacks de Android",
+          "lineRange": [
+            28,
+            47
+          ],
+          "explanation": "`callbackFlow` registra un callback de la red predeterminada, publica el estado inicial y responde a cambios de validación o pérdida. `distinctUntilChanged()` elimina valores booleanos consecutivos iguales. `awaitClose` desregistra el callback cuando se cancela la colección.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt": {
+      "overview": "Esta clase declara la base de datos Room de Eventia. Reúne las tablas de favoritos y catálogo y ofrece acceso a los DAO que operan sobre ellas.",
+      "sections": [
+        {
+          "title": "Esquema de Room",
+          "lineRange": [
+            11,
+            15
+          ],
+          "explanation": "La anotación `@Database` registra tres entidades y fija la versión del esquema en 2. La entidad de descargas guarda el momento asociado a la instantánea del catálogo.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Acceso a los DAO",
+          "lineRange": [
+            16,
+            19
+          ],
+          "explanation": "La clase abstracta expone un DAO para favoritos y otro para la caché del catálogo. Room genera la implementación concreta a partir de estas declaraciones.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt": {
+      "overview": "Este DAO almacena el catálogo descargado y el momento de su última descarga. Sus transacciones mantienen juntos el listado y la fecha al leer o reemplazar una instantánea.",
+      "sections": [
+        {
+          "title": "Consultas de la caché",
+          "lineRange": [
+            12,
+            21
+          ],
+          "explanation": "Se puede buscar un evento por identificador o leer todos los registros ordenados por fecha e identificador. La fecha de descarga se busca en la fila de metadatos con identificador 1.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Lectura de la instantánea",
+          "lineRange": [
+            23,
+            36
+          ],
+          "explanation": "Las operaciones protegidas insertan eventos y actualizan la fila de metadatos. `getSnapshot()` lee la fecha y la lista en una transacción y devuelve `null` cuando no hay registro de descarga.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Reemplazo del catálogo",
+          "lineRange": [
+            38,
+            44
+          ],
+          "explanation": "`replaceAll()` borra el listado anterior, inserta el nuevo y guarda su fecha en una sola transacción. Estas operaciones se limitan a la caché del catálogo y a sus metadatos.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt": {
+      "overview": "Este DAO controla los eventos guardados en la tabla de favoritos. Sirve tanto para observar la colección como para recuperar una copia individual desde el almacenamiento local.",
+      "sections": [
+        {
+          "title": "Lectura y guardado",
+          "lineRange": [
+            11,
+            20
+          ],
+          "explanation": "`observeAll()` devuelve un `Flow` con los favoritos ordenados por fecha e identificador. `find()` busca un registro por ID y la inserción ignora conflictos, por lo que un favorito repetido conserva el registro existente.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Eliminación con resultado",
+          "lineRange": [
+            22,
+            31
+          ],
+          "explanation": "`remove()` busca el registro y lo elimina dentro de una transacción. Devuelve la entidad anterior, que el llamador puede recuperar para deshacer la eliminación, o `null` si el favorito no existía.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt": {
+      "overview": "Este módulo configura en Hilt el almacenamiento local del catálogo y los favoritos. Define la migración al esquema actual y proporciona ambos DAO a partir de una instancia de Room.",
+      "sections": [
+        {
+          "title": "Enlace del repositorio",
+          "lineRange": [
+            20,
+            24
+          ],
+          "explanation": "`@Binds` asocia la interfaz `FavoritesRepository` con `RoomFavoritesRepository`. Hilt puede así inyectar el contrato donde se necesiten operaciones sobre favoritos.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Migración de la base",
+          "lineRange": [
+            26,
+            40
+          ],
+          "explanation": "La migración de la versión 1 a la 2 crea la tabla `catalog_download` con el identificador y la fecha de descarga. El módulo registra esa migración al construir la base `eventia.db` y conserva una sola instancia por el alcance de Hilt.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Provisión de los DAO",
+          "lineRange": [
+            42,
+            48
+          ],
+          "explanation": "Cada método `@Provides` obtiene un DAO desde la base compartida. Los consumidores reciben el DAO correspondiente mediante inyección sin construir otra base de datos.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt": {
+      "overview": "El ViewModel administra el formulario, el modo invitado, la restauración de cuenta y los cambios de sesión. También conserva la referencia al evento que se debe volver a abrir después de iniciar sesión.",
+      "sections": [
+        {
+          "title": "Estados de sesión",
+          "lineRange": [
+            23,
+            51
+          ],
+          "explanation": "La interfaz sellada distingue arranque, error de arranque, modo invitado, formulario y cuenta activa. Los estados del formulario y de la cuenta llevan sus propios indicadores de actividad y error. El identificador del evento pendiente se conserva en `SavedStateHandle`.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Arranque y acceso invitado",
+          "lineRange": [
+            53,
+            85
+          ],
+          "explanation": "Al iniciar, el ViewModel consulta si existe una sesión y carga la cuenta o presenta un formulario. También permite saltar al modo invitado y, si un evento solicita iniciar sesión, guarda su identificador antes de volver al formulario.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Expiración y cierre",
+          "lineRange": [
+            87,
+            125
+          ],
+          "explanation": "La expiración conserva el evento de retorno cuando corresponde e intenta borrar la sesión después de cancelar la solicitud previa. El cierre voluntario usa su propio estado de progreso y conserva la cuenta en pantalla si el borrado falla. Una vez que se atiende el retorno al evento, su identificador se limpia.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Validación y envío",
+          "lineRange": [
+            127,
+            185
+          ],
+          "explanation": "El formulario valida correo y contraseña, y exige nombre durante el registro. Una vez enviados los datos, el ViewModel traduce los campos rechazados por el repositorio a mensajes de interfaz. La carga de cuenta comienza tras un acceso o registro exitoso.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Carga de la cuenta",
+          "lineRange": [
+            187,
+            222
+          ],
+          "explanation": "El reintento evita iniciar otro trabajo mientras ya se carga la cuenta o se cierra la sesión. Si el repositorio devuelve una cuenta nula, el flujo vuelve al formulario con un aviso de expiración. Ante fallos de carga, una cuenta ya visible puede seguir en pantalla.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt": {
+      "overview": "El repositorio de sesión enlaza la API con el almacenamiento del token. Además de iniciar o cerrar sesión, recupera la cuenta y autentica las operaciones de inscripción y cancelación.",
+      "sections": [
+        {
+          "title": "Contrato e inicio de sesión",
+          "lineRange": [
+            14,
+            44
+          ],
+          "explanation": "La interfaz ofrece operaciones suspendidas para la sesión, la cuenta y la asistencia. Su implementación comprueba la presencia del token en el almacén y obtiene uno nuevo llamando a los endpoints de inicio de sesión o registro.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Operaciones de asistencia",
+          "lineRange": [
+            46,
+            55
+          ],
+          "explanation": "Inscribirse y cancelar usan el mismo método interno con distintas llamadas de la API. La ausencia de token o una respuesta HTTP 401 producen `EventSessionExpired` y las demás respuestas fallidas se propagan como `HttpException`.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Recuperación de la cuenta",
+          "lineRange": [
+            57,
+            69
+          ],
+          "explanation": "`loadAccount()` devuelve `null` si falta el token y consulta `getMe` cuando lo tiene. Exige un correo válido en el sentido de que exista y no esté en blanco. Si el servidor responde HTTP 401, borra el token y devuelve `null`.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Errores de autenticación",
+          "lineRange": [
+            71,
+            96
+          ],
+          "explanation": "El método compartido guarda el token únicamente cuando la respuesta lo contiene y no está en blanco. Los errores HTTP 400 y 422 pueden indicar campos rechazados, mientras que un HTTP 401 produce un rechazo sin campos. El lector de errores reconoce las claves de nombre, correo y contraseña.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/SessionStore.kt": {
+      "overview": "Esta clase encapsula la persistencia del token de sesión en las preferencias de DataStore. Ofrece operaciones suspendidas que el repositorio usa para leer, guardar o borrar ese valor.",
+      "sections": [
+        {
+          "title": "Lectura del token",
+          "lineRange": [
+            12,
+            19
+          ],
+          "explanation": "La propiedad delegada de `Context` enlaza la instancia de preferencias llamada `session`. `readToken()` obtiene la primera emisión del flujo de datos y lee la clave `token`, que puede estar ausente.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Cambios en preferencias",
+          "lineRange": [
+            21,
+            28
+          ],
+          "explanation": "`saveToken()` escribe el valor mediante `edit`, la operación de modificación de DataStore. `clearToken()` usa el mismo mecanismo para retirar la clave de las preferencias.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": {
+      "overview": "Este ViewModel carga el detalle de un evento y administra los cambios de asistencia. Coordina la información del catálogo, las solicitudes autenticadas y los estados que explican un conflicto o piden actualizar el detalle.",
+      "sections": [
+        {
+          "title": "Estado del detalle",
+          "lineRange": [
+            23,
+            50
+          ],
+          "explanation": "El estado sellado distingue carga, contenido, ausencia y error. El contenido conserva el evento y los indicadores para asistencia y actualización, y `SavedStateHandle` proporciona el identificador del evento desde la navegación.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Carga y actualización",
+          "lineRange": [
+            52,
+            72
+          ],
+          "explanation": "Al cargar, se cancela la solicitud anterior y se publica el estado de carga. La actualización manual requiere que el contenido pida una nueva consulta y evita iniciarla simultáneamente con otra actualización. El usuario también puede cerrar el aviso de conflicto.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Cambios de asistencia",
+          "lineRange": [
+            74,
+            102
+          ],
+          "explanation": "La inscripción o cancelación exige una sesión y un estado de asistencia conocido. Al recibir HTTP 409, el ViewModel vuelve a consultar el detalle para interpretar el conflicto. Si la operación resulta exitosa, notifica el cambio y actualiza el evento desde el servidor.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Reconciliación del resultado",
+          "lineRange": [
+            104,
+            139
+          ],
+          "explanation": "Las recargas con contenido previo deshabilitan el uso de copias locales para confirmar el estado de asistencia. Los datos nuevos determinan si sigue pendiente la confirmación, ya existe la inscripción o se agotaron las plazas. Un HTTP 404 muestra ausencia y otros fallos conservan el contenido anterior si está disponible.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt": {
+      "overview": "ProfileViewModel carga las inscripciones de la cuenta y expone el estado que consume la pantalla de perfil. AttendanceGroups organiza los eventos según su instante de inicio para presentar los próximos y el historial en órdenes distintos.",
+      "sections": [
+        {
+          "title": "Próximos eventos e historial",
+          "lineRange": [
+            20,
+            28
+          ],
+          "explanation": "`AttendanceGroups.from` ordena los eventos por su instante de inicio y los separa usando el `now` que recibe. Los que empiezan exactamente en ese instante quedan entre los próximos. Se invierte el grupo pasado para mostrar primero los eventos más recientes.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Estado observable del perfil",
+          "lineRange": [
+            30,
+            43
+          ],
+          "explanation": "`ProfileUiState` reúne los grupos de asistencia y tres indicadores de carga, error y rechazo de sesión. El ViewModel recibe `AttendanceRepository` por inyección y expone el flujo de estado en modo lectura. `request` conserva la referencia al trabajo de actualización actual.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Actualización de inscripciones",
+          "lineRange": [
+            45,
+            64
+          ],
+          "explanation": "`refresh` cancela el trabajo anterior, marca la carga y solicita las inscripciones dentro de `viewModelScope`. Al obtener los eventos, los agrupa con el instante actual. Un HTTP 401 y una sesión local no disponible toman la vía de sesión rechazada; errores de red, JSON o fechas toman la vía de carga fallida.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Tratamiento de los fallos",
+          "lineRange": [
+            66,
+            73
+          ],
+          "explanation": "`loadFailed` conserva las inscripciones que ya estaban en el estado y cambia los indicadores de carga y fallo. `sessionRejected` crea un estado sin esos grupos y activa además el indicador de rechazo, que permite a la pantalla distinguir ambos casos.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt": {
+      "overview": "Los dos ViewModels de lugares comparten CatalogRepository. El listado conserva la búsqueda en SavedStateHandle, mientras el detalle usa el argumento de navegación para cargar el lugar y, a continuación, sus próximos eventos.",
+      "sections": [
+        {
+          "title": "Búsqueda local de lugares",
+          "lineRange": [
+            22,
+            47
+          ],
+          "explanation": "`VenueListUiState.matches` filtra por nombre, ignora mayúsculas y minúsculas y recorta los espacios de la consulta. El ViewModel restaura el texto de `SavedStateHandle` al crearse, solicita los lugares y actualiza el filtro local cada vez que cambia el texto.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Recarga del listado",
+          "lineRange": [
+            49,
+            67
+          ],
+          "explanation": "`refresh` evita solapar recargas cuando ya hay una en curso. Al terminar, sustituye la lista si obtuvo un resultado y conserva el valor anterior si la solicitud falló. El indicador de error permite a la UI ofrecer un reintento.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Estados del detalle",
+          "lineRange": [
+            69,
+            104
+          ],
+          "explanation": "El detalle tiene estados de carga, ausencia, error y contenido. Una segunda interfaz sellada permite representar independientemente la carga de eventos cuando el lugar ya está visible. El reintento vuelve a buscar el lugar tras un error general, o recarga solamente sus eventos si falló esa parte.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Lugar y próximos eventos",
+          "lineRange": [
+            106,
+            130
+          ],
+          "explanation": "Primero se obtiene el lugar por su ID y se publica como contenido con los eventos aún en carga. Un 404 aparece como ausencia del lugar. Después, `loadEvents` conserva solo los eventos con inicio estrictamente posterior al instante de la consulta y actualiza su estado sin perder el lugar.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Errores de las solicitudes",
+          "lineRange": [
+            132,
+            142
+          ],
+          "explanation": "`venueRequest` convierte errores de E/S, HTTP, JSON y fechas en `Result.failure`. El detalle puede recuperar la excepción HTTP para distinguir un 404. La función captura solo esos tipos, de modo que la cancelación de una corrutina se sigue propagando.",
+          "tourOrder": 8
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt": {
+      "overview": "Esta pantalla compone la información de un lugar y el listado de próximos eventos. El contenido recibe estados y callbacks, lo que permite representar el lugar aunque sus eventos todavía se estén cargando.",
+      "sections": [
+        {
+          "title": "Conexión con el ViewModel",
+          "lineRange": [
+            28,
+            36
+          ],
+          "explanation": "`VenueDetailScreen` obtiene el ViewModel de Hilt y recoge su flujo respetando el ciclo de vida. Delega el renderizado en `VenueDetailContent`, al que pasa el reintento y los callbacks de navegación.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Estados de pantalla",
+          "lineRange": [
+            38,
+            62
+          ],
+          "explanation": "El `when` traduce carga, ausencia y fallo en componentes reutilizables. Un lugar inexistente ofrece volver, mientras que el error ofrece reintentar. El estado de contenido abre una `LazyColumn` para el lugar y sus eventos.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Lista de próximos eventos",
+          "lineRange": [
+            63,
+            89
+          ],
+          "explanation": "Después de la información del lugar, la UI muestra un estado de carga, un botón de reintento o los resultados. Una lista vacía tiene su propio mensaje. Las tarjetas usan el ID del evento como clave y envían el toque al callback de detalle.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Datos y vista previa",
+          "lineRange": [
+            91,
+            108
+          ],
+          "explanation": "`VenueInformation` muestra la imagen, el nombre y los campos opcionales, con un texto alternativo si falta el horario. Delega los datos de ubicación en `VenueLocation`. La vista previa construye directamente un estado de error con callbacks vacíos, sin depender del ViewModel.",
+          "tourOrder": 8
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt": {
+      "overview": "MapViewModel prepara los eventos para Maps Compose. Comprueba si el mapa puede iniciarse, conserva el filtro elegido y agrupa en un marcador los eventos que comparten coordenadas.",
+      "sections": [
+        {
+          "title": "Estados y coordenadas válidas",
+          "lineRange": [
+            24,
+            50
+          ],
+          "explanation": "`MapUiState` distingue una configuración ausente, servicios no disponibles y un mapa listo. `MapPoint.from` descarta coordenadas nulas o fuera de rango. Normaliza los ceros con signo y agrupa las longitudes de 180 y −180 grados en la misma clave.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Carga y controles de reintento",
+          "lineRange": [
+            52,
+            82
+          ],
+          "explanation": "El ViewModel inicializa el flujo con el resultado de la comprobación de disponibilidad y carga eventos solo si el mapa está listo. Reintentar el mapa incrementa el número de intento y, cuando ya existía un estado listo, conserva los datos y limpia la selección. El reintento de eventos se evita si ya hay una carga en marcha.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Filtro y marcador seleccionado",
+          "lineRange": [
+            84,
+            97
+          ],
+          "explanation": "`selectCategory` guarda el ID en `SavedStateHandle`, recalcula los marcadores y limpia la selección. `selectPoint` comprueba que el punto siga presente entre los marcadores antes de guardarlo. Esto evita que una selección se refiera a un marcador fuera del conjunto visible.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Respuesta del catálogo",
+          "lineRange": [
+            99,
+            132
+          ],
+          "explanation": "`loadEvents` consulta `CatalogRepository` dentro de `viewModelScope`. Si falla, activa el estado de error y deja los marcadores anteriores. Si obtiene datos, renueva las categorías y conserva el filtro o la selección solo si siguen siendo válidos.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Agrupación y disponibilidad",
+          "lineRange": [
+            134,
+            161
+          ],
+          "explanation": "`markersFor` aplica el filtro por categoría, descarta coordenadas inválidas y agrupa los eventos por `MapPoint`. `checkAvailability` distingue la ausencia de la clave en el manifiesto de Google Play Services no disponible. Si ambos requisitos se cumplen, restaura la categoría guardada.",
+          "tourOrder": 8
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt": {
+      "overview": "MapScreen vincula el estado del ViewModel con un mapa, filtros de categoría y una hoja inferior de eventos. La pantalla distingue los problemas al obtener eventos de los fallos al cargar el mapa.",
+      "sections": [
+        {
+          "title": "Disponibilidad y nuevo intento",
+          "lineRange": [
+            52,
+            76
+          ],
+          "explanation": "La pantalla recoge `MapUiState` con el ciclo de vida de Compose y muestra mensajes cuando faltan la configuración o los servicios. En el estado listo, `key(current.attempt)` permite recrear el contenido para un nuevo intento. Al abrir un evento se cierra antes la selección del marcador.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Filtros y estados visibles",
+          "lineRange": [
+            78,
+            135
+          ],
+          "explanation": "`MapContent` construye chips para todas las categorías y para cada categoría disponible. Si falló la consulta pero ya existen marcadores, ofrece recargar eventos sin ocultar el mapa. Cuando hay un marcador seleccionado, busca sus eventos para mostrar la hoja inferior.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Cámara y marcadores de Maps",
+          "lineRange": [
+            137,
+            195
+          ],
+          "explanation": "La posición inicial de cámara toma el primer marcador o el centro predeterminado. Un `LaunchedEffect` activa el mensaje de reintento si `onMapLoaded` no responde a tiempo. El color y el orden visual del marcador indican si es el punto seleccionado.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Resumen de eventos por punto",
+          "lineRange": [
+            197,
+            235
+          ],
+          "explanation": "La hoja inferior indica cuando varios eventos comparten la ubicación. Para cada evento muestra el título, la fecha local, la categoría y un resumen cuando está disponible. El botón delega la apertura del detalle al callback recibido.",
+          "tourOrder": 8
+        },
+        {
+          "title": "Mensaje de error reutilizable",
+          "lineRange": [
+            237,
+            251
+          ],
+          "explanation": "`MapMessage` encapsula `ScreenMessage` con el texto y el reintento opcional del mapa. La vista previa muestra ese componente de error de forma aislada.",
+          "tourOrder": 8
+        }
+      ]
+    },
+    "app/src/test/java/com/example/eventia/CatalogMappingTest.kt": {
+      "overview": "Estas pruebas unitarias pasan un evento de ejemplo por Gson y el mapeo de EventDto al dominio. También verifican que StoredEvent conserva los datos que necesita la interfaz al reconstruir un evento guardado.",
+      "sections": [
+        {
+          "title": "Evento invitado de prueba",
+          "lineRange": [
+            12,
+            22
+          ],
+          "explanation": "El JSON de ejemplo contiene una fecha con desplazamiento explícito, disponibilidad cero y campos opcionales, incluida una longitud nula. Sirve de base común para verificar el mapeo de red y el de datos guardados.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Fecha y asistencia opcional",
+          "lineRange": [
+            24,
+            41
+          ],
+          "explanation": "La prueba convierte primero el JSON invitado y luego una variante con `isAttending` establecido en `false`. Comprueba que el mapeo conserva la hora, el desplazamiento y los valores nulos. También diferencia la ausencia de información de asistencia de una respuesta explícita negativa.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Datos guardados sin asistencia",
+          "lineRange": [
+            43,
+            50
+          ],
+          "explanation": "`StoredEvent.from` recibe el evento con asistencia `false`, pero al reconstruir el dominio el resultado se compara con el evento de invitado original. La comparación verifica que se preservan los campos de tarjeta y detalle sin arrastrar el estado de asistencia de una cuenta.",
+          "tourOrder": 9
+        }
+      ]
+    },
+    "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt": {
+      "overview": "Estas pruebas instrumentadas ejercitan ExploreViewModel con un catálogo simulado cuyas solicitudes pueden completarse una a una. Permiten observar el orden de las solicitudes, sus cancelaciones y el estado que queda tras un fallo o una reconexión.",
+      "sections": [
+        {
+          "title": "Filtros, cancelación y restauración",
+          "lineRange": [
+            30,
+            60
+          ],
+          "explanation": "La prueba cambia el texto de búsqueda dos veces y selecciona una categoría mientras existe una solicitud pendiente. Comprueba que la primera solicitud termina y que la siguiente usa los filtros definitivos. Al recrear el ViewModel con el mismo `SavedStateHandle`, también verifica que los filtros se restauran y se pueden limpiar.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Conservación del resultado anterior",
+          "lineRange": [
+            62,
+            82
+          ],
+          "explanation": "Tras una carga inicial, una actualización simulada falla con `IOException`. La prueba verifica que el mismo contenido se mantiene durante la petición y después del fallo. Un nuevo intento exitoso debe limpiar el indicador de error.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Descarga completa al reconectar",
+          "lineRange": [
+            84,
+            110
+          ],
+          "explanation": "Un canal emite un aviso de reconexión que cancela la búsqueda inicial e inicia una descarga sin filtros. La categoría cambia durante la descarga y la prueba comprueba que vuelve a solicitarse primero el catálogo completo. Después debe aplicarse la búsqueda con la última selección de categoría.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Control de respuestas y cancelaciones",
+          "lineRange": [
+            112,
+            150
+          ],
+          "explanation": "El auxiliar ejecuta la prueba en el hilo principal con un límite de tiempo. `PendingCatalog` envía cada solicitud observada a un canal y espera su resultado diferido. Su `finally` permite comprobar la terminación incluso si la corrutina que esperaba es cancelada.",
+          "tourOrder": 9
+        }
+      ]
+    },
+    "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": {
+      "overview": "Esta prueba instrumentada combina Room, el repositorio de favoritos y el catálogo con una red simulada. Comprueba que una descarga completa reemplaza la caché pero conserva los favoritos, y que se puede restaurar un favorito eliminado.",
+      "sections": [
+        {
+          "title": "Base temporal y evento",
+          "lineRange": [
+            38,
+            70
+          ],
+          "explanation": "La prueba crea una base Room temporal en el directorio de caché y obtiene sus DAO. El evento de ejemplo se convierte en `CachedEventEntity` usando `StoredEvent.from`. Antes de sembrar los datos se comprueba que no hay una instantánea del catálogo.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Red simulada y caché inicial",
+          "lineRange": [
+            72,
+            101
+          ],
+          "explanation": "Un interceptor de OkHttp devuelve un listado vacío o lanza `IOException` según una bandera. El catálogo debe propagar el primer fallo cuando todavía no existe una instantánea. Después de guardar una copia local, comprueba que las consultas remotas por título o categoría no la sustituyen.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Consultas locales y favoritos",
+          "lineRange": [
+            103,
+            113
+          ],
+          "explanation": "Sin conexión, el detalle del catálogo se recupera de los datos guardados y la búsqueda aplica el filtro por título sin distinguir mayúsculas. Buscar por la dirección de ejemplo no produce coincidencias, y ambas consultas preservan la instantánea. `observeFavorites` permite verificar el guardado por separado.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Actualización completa y borrado",
+          "lineRange": [
+            115,
+            136
+          ],
+          "explanation": "Una descarga completa vacía reemplaza los eventos de la caché y registra la fecha de descarga. Al perder de nuevo la conexión, el catálogo sigue mostrando esa instantánea vacía, pero el favorito y su detalle permanecen accesibles. Al quitar el favorito, el repositorio devuelve el evento eliminado y las consultas posteriores dejan de encontrarlo.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Restauración y reapertura de Room",
+          "lineRange": [
+            138,
+            156
+          ],
+          "explanation": "La prueba vuelve a guardar el evento eliminado, comprueba que reaparece y cierra la base. Tras reabrirla, crea nuevos repositorios y verifica que el favorito y su detalle se conservan sin conexión. El bloque `finally` cierra y elimina la base temporal.",
+          "tourOrder": 9
+        }
+      ]
+    },
+    "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt": {
+      "overview": "Estas pruebas instrumentadas cubren el formulario, los estados de sesión y los cambios de asistencia desde el detalle. Emplean sustitutos de SessionRepository y CatalogRepository para controlar el token, las respuestas del catálogo y los errores.",
+      "sections": [
+        {
+          "title": "Validación del formulario de acceso",
+          "lineRange": [
+            43,
+            99
+          ],
+          "explanation": "La regla de Compose renderiza el formulario con el estado de `SessionViewModel`. La prueba escribe un correo inválido y comprueba los mensajes de apoyo de ambos campos mediante nodos semánticos. Otro caso verifica directamente que el ViewModel asigna los errores a los campos correctos.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Invitado y evento pendiente",
+          "lineRange": [
+            101,
+            132
+          ],
+          "explanation": "Un arranque sin token permite entrar como invitado y volver al formulario de acceso. Al solicitar acceso desde un evento y cancelar, el usuario sigue como invitado y se conserva el ID hasta que navegación confirma que lo ha consumido.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Sesión vencida según origen",
+          "lineRange": [
+            134,
+            163
+          ],
+          "explanation": "Una sesión que vence al inscribirse borra el token, abre el formulario de acceso y conserva el evento para el retorno. Si el vencimiento se produce desde el perfil, la prueba espera el mismo formulario y borrado, pero sin un evento pendiente.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Inscripción, baja y perfil",
+          "lineRange": [
+            165,
+            194
+          ],
+          "explanation": "El doble de catálogo simula la respuesta actualizada al inscribirse o darse de baja, con un recálculo de las plazas disponibles. La prueba verifica que el detalle refleja el nuevo evento después de cada cambio y que se emite el callback de actualización del perfil. También comprueba que la recarga pide datos sin usar el detalle guardado.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Conflicto y una sola solicitud",
+          "lineRange": [
+            196,
+            227
+          ],
+          "explanation": "El repositorio simulado emite un HTTP 409 mientras cambia lo que informa el catálogo. El detalle distingue entre aforo completo e inscripción ya confirmada mediante la recarga autenticada. El contador confirma que el POST se realiza una sola vez.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Sesión restaurada y cierre",
+          "lineRange": [
+            229,
+            254
+          ],
+          "explanation": "Un fallo de conexión al validar la cuenta conserva el token y permite volver a intentar la carga. El cierre de sesión borra el token y devuelve al formulario. Si la cuenta restaurada es rechazada, también se abre el formulario y sigue disponible el acceso como invitado.",
+          "tourOrder": 9
+        },
+        {
+          "title": "Repositorios de prueba controlados",
+          "lineRange": [
+            256,
+            325
+          ],
+          "explanation": "`onMain` ejecuta las operaciones del ViewModel en el hilo principal. `LocalSession` simula el token y parametriza las acciones de inscripción y baja, mientras `AttendanceCatalog` devuelve un evento mutable y registra si la consulta es autenticada y si admite datos guardados.",
+          "tourOrder": 9
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/domain/model/Venue.kt": {
+      "overview": "Modelo de dominio de un lugar que incluye dirección, horario, imagen, coordenadas opcionales y conteo de eventos próximos.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt": {
+      "overview": "Define la consulta de inscripciones propias y su implementación remota. Usa la sesión almacenada para autenticar la solicitud y reutiliza el conversor de eventos de la API.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt": {
+      "overview": "Presenta un aviso accesible de datos guardados y calcula la antigüedad de la última descarga para mostrarla en minutos, horas o días.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/components/EventCard.kt": {
+      "overview": "Reúne los componentes compartidos para una tarjeta de evento, sus etiquetas de categoría, imágenes y formato local de fecha y hora.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt": {
+      "overview": "Agrupa el botón de favorito y sus recursos de icono y etiqueta según el estado actual de guardado.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt": {
+      "overview": "Comparte vistas Compose para carga y mensajes de pantalla con icono, descripción y acción opcional de recuperación.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt": {
+      "overview": "Presenta el listado de eventos guardados, con mensajes para carga, error y colección vacía. Delega la eliminación mediante acciones de cada tarjeta.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt": {
+      "overview": "Observa los favoritos persistidos y coordina altas y bajas. Mantiene estados de carga y error, bloquea cambios repetidos por evento y publica avisos de deshacer o reintento.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt": {
+      "overview": "Compone el perfil y la información de cuenta junto a las inscripciones agrupadas. Solicita actualización al volver a la pantalla y comunica la expiración de sesión.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt": {
+      "overview": "Presenta arranque, formularios de acceso y registro, y controles de cuenta. Incluye invitado, reintento y salida según el estado de sesión.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt": {
+      "overview": "Presenta la búsqueda de lugares con listado de tarjetas, estados de carga y opciones de actualización o reintento.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt": {
+      "overview": "Muestra dirección o coordenadas y abre indicaciones mediante un intent geo cuando hay una ubicación válida. Informa si el dispositivo no ofrece una aplicación compatible.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt": {
+      "overview": "Representa una fila de cached_events con el identificador y los detalles de un evento almacenado.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt": {
+      "overview": "Registra la fecha de descarga del catálogo en milisegundos desde el origen Unix.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt": {
+      "overview": "Representa una fila de favorites, con un identificador y los mismos detalles guardados que utiliza la caché.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt": {
+      "overview": "Reúne los eventos en caché y su fecha de descarga en un único valor que retorna el DAO.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt": {
+      "overview": "Contiene los datos compartidos por eventos de caché y favoritos. Convierte fechas a texto ISO al guardar y reconstruye el evento de dominio sin estado de asistencia asociado a una cuenta.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt": {
+      "overview": "Define la interfaz para observar y modificar favoritos. La implementación Room convierte entre la entidad local y el evento de dominio.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/api/models/AccountDto.kt": {
+      "overview": "Agrupa los datos enviados para registrar una cuenta y los datos de cuenta devueltos por el servicio.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt": {
+      "overview": "Representa una categoría de eventos devuelta por la API.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/api/models/EventDto.kt": {
+      "overview": "Representa los datos de un evento recibido de la API, incluyendo categoría, lugar, fechas y estado de asistencia opcional.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/api/models/VenueDto.kt": {
+      "overview": "Representa un lugar recibido de la API, con ubicación y campos informativos opcionales.",
+      "sections": []
+    },
+    "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt": {
+      "overview": "Verifica el límite entre inscripciones próximas y pasadas comparando instantes equivalentes con diferentes desplazamientos horarios.",
+      "sections": []
+    },
+    "app/src/test/java/com/example/eventia/EventiaApiTest.kt": {
+      "overview": "Verifica las anotaciones de Retrofit para rutas relativas, métodos HTTP, parámetros de consulta y autorización en el catálogo, el perfil y las inscripciones.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/domain/model/Category.kt": {
+      "overview": "Representa una categoría del catálogo por su identificador y nombre.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt": {
+      "overview": "Define la consulta de categorías y convierte las categorías devueltas por la API en modelos de dominio.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/domain/model/Account.kt": {
+      "overview": "Representa la cuenta de dominio mediante el correo electrónico y un nombre opcional.",
+      "sections": []
+    },
+    "AGENTS.md": {
+      "overview": "Describe la arquitectura esperada de Eventia y las convenciones de navegación, persistencia, mapas, vistas previas y pruebas.",
+      "sections": []
+    },
+    "gradle.properties": {
+      "overview": "Configura los argumentos de la JVM de Gradle, la caché de configuración y el estilo de código de Kotlin.",
+      "sections": []
+    },
+    "gradlew.bat": {
+      "overview": "Inicia el Gradle Wrapper desde Windows, localiza Java y devuelve el código de salida del proceso.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_back.xml": {
+      "overview": "Dibuja la flecha para regresar en la navegación y en el detalle de un evento.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_event_calendar.xml": {
+      "overview": "Dibuja el calendario que identifica la fecha y hora en el detalle de un evento.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_event_placeholder.xml": {
+      "overview": "Proporciona la ilustración de reemplazo cuando una imagen de evento o lugar falta o no se puede cargar.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_event_share.xml": {
+      "overview": "Dibuja el icono de la acción de compartir un evento desde su detalle.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_explore.xml": {
+      "overview": "Dibuja el icono de exploración que la app reutiliza en las pestañas, los filtros y los mensajes de pantalla.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_favorite_outline.xml": {
+      "overview": "Dibuja el marcador de contorno para un evento que aún no está en favoritos.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_favorites.xml": {
+      "overview": "Dibuja el marcador activo de favoritos en la navegación y en el control de un evento guardado.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_launcher_background.xml": {
+      "overview": "Define la capa de fondo de los iconos adaptativos de la aplicación.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_launcher_foreground.xml": {
+      "overview": "Define la capa de primer plano de los iconos adaptativos de la aplicación.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_map.xml": {
+      "overview": "Dibuja el icono de mapa usado por la navegación y por la ubicación en el detalle del evento.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_profile.xml": {
+      "overview": "Dibuja el icono de perfil para el destino de cuenta de la navegación principal.",
+      "sections": []
+    },
+    "app/src/main/res/drawable/ic_status_error.xml": {
+      "overview": "Dibuja el icono que ScreenMessage usa para señalar un estado de error.",
+      "sections": []
+    },
+    "app/src/main/res/values/colors.xml": {
+      "overview": "Declara colores disponibles como recursos Android en el módulo de la aplicación.",
+      "sections": []
+    },
+    "app/src/main/res/values/strings.xml": {
+      "overview": "Centraliza los textos en español, etiquetas accesibles, mensajes de error y plurales utilizados por catálogo, mapa, favoritos, perfil y sesión.",
+      "sections": []
+    },
+    "app/src/main/res/values/themes.xml": {
+      "overview": "Define el tema Android Theme.Eventia, basado en Material Light sin barra de acción, que referencia el manifiesto.",
+      "sections": []
+    },
+    "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt": {
+      "overview": "Comprueba en Android que el contexto de la aplicación instrumentada tiene el identificador de paquete de Eventia.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/api/models/LoginDto.kt": {
+      "overview": "Define los objetos de intercambio de inicio de sesión, con credenciales en la solicitud y un token en la respuesta.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt": {
+      "overview": "Traduce cambios de conectividad en avisos de desconexión o restauración y proporciona el banner accesible de Compose que los presenta.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/theme/Color.kt": {
+      "overview": "Declara constantes de color en tonos púrpura y rosa disponibles en el paquete de tema de Compose.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/theme/Theme.kt": {
+      "overview": "Aplica los colores claros u oscuros y la tipografía de Material 3 a la composición. Puede adoptar colores dinámicos de Android en versiones compatibles.",
+      "sections": []
+    },
+    "app/src/main/java/com/example/eventia/ui/theme/Type.kt": {
+      "overview": "Define la configuración tipográfica de Material 3 y personaliza el estilo bodyLarge con tamaño, interlineado y espaciado.",
+      "sections": []
+    },
+    "app/src/main/keepRules/rules.keep": {
+      "overview": "Reserva un archivo para reglas del reductor de código R8. El ejemplo presente está comentado y no activa reglas adicionales.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-anydpi/ic_launcher.xml": {
+      "overview": "Define el icono adaptativo principal mediante capas de fondo y primer plano, con una variante monocromática.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml": {
+      "overview": "Define la variante adaptativa redonda del icono de inicio, incluida su capa monocromática.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-hdpi/ic_launcher.webp": {
+      "overview": "Variante WebP principal del icono de inicio para la densidad Android hdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp": {
+      "overview": "Variante WebP redonda del icono de inicio para la densidad Android hdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-mdpi/ic_launcher.webp": {
+      "overview": "Variante WebP principal del icono de inicio para la densidad Android mdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp": {
+      "overview": "Variante WebP redonda del icono de inicio para la densidad Android mdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-xhdpi/ic_launcher.webp": {
+      "overview": "Variante WebP principal del icono de inicio para la densidad Android xhdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp": {
+      "overview": "Variante WebP redonda del icono de inicio para la densidad Android xhdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp": {
+      "overview": "Variante WebP principal del icono de inicio para la densidad Android xxhdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp": {
+      "overview": "Variante WebP redonda del icono de inicio para la densidad Android xxhdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp": {
+      "overview": "Variante WebP principal del icono de inicio para la densidad Android xxxhdpi.",
+      "sections": []
+    },
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp": {
+      "overview": "Variante WebP redonda del icono de inicio para la densidad Android xxxhdpi.",
+      "sections": []
+    },
+    "app/src/main/res/xml/backup_rules.xml": {
+      "overview": "Declara las reglas de copia de seguridad de archivos y excluye las preferencias locales de sesión de DataStore.",
+      "sections": []
+    },
+    "app/src/main/res/xml/data_extraction_rules.xml": {
+      "overview": "Excluye las preferencias locales de sesión tanto de la copia de seguridad en la nube como de la transferencia entre dispositivos.",
+      "sections": []
+    },
+    "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt": {
+      "overview": "Verifica con JUnit que el aviso de desconexión persiste, que el de restauración desaparece y que una caída posterior vuelve a mostrar el aviso.",
+      "sections": []
+    },
+    "app/src/test/java/com/example/eventia/ExampleUnitTest.kt": {
+      "overview": "Incluye una aserción aritmética mínima para comprobar el entorno de pruebas unitarias con JUnit.",
+      "sections": []
+    },
+    "app/src/test/java/com/example/eventia/MapMarkersTest.kt": {
+      "overview": "Valida las coordenadas empleadas por marcadores de mapa y verifica el tratamiento del límite de longitud.",
+      "sections": []
+    },
+    "build.gradle.kts": {
+      "overview": "Declara los plugins compartidos en el proyecto raíz para que el módulo Android los aplique de forma selectiva.",
+      "sections": []
+    },
+    "gradle/gradle-daemon-jvm.properties": {
+      "overview": "Fija Java 25 como versión de la JVM del daemon de Gradle y define propiedades de resolución de su toolchain.",
+      "sections": []
+    },
+    "gradle/libs.versions.toml": {
+      "overview": "Centraliza las versiones, las bibliotecas y los plugins usados por los scripts de Gradle de Eventia.",
+      "sections": []
+    },
+    "gradle/wrapper/gradle-wrapper.jar": {
+      "overview": "Contiene el ejecutable Java del Gradle Wrapper, que inicia la distribución de Gradle seleccionada por el proyecto.",
+      "sections": []
+    },
+    "gradle/wrapper/gradle-wrapper.properties": {
+      "overview": "Fija la distribución binaria de Gradle 9.6.0 y los parámetros de descarga del Wrapper.",
+      "sections": []
+    },
+    "gradlew": {
+      "overview": "Inicia el Gradle Wrapper desde entornos POSIX y prepara Java, argumentos y rutas antes de delegar al ejecutable Java.",
+      "sections": []
+    },
+    "postman/Eventia-Dia-1.postman_collection.json": {
+      "overview": "Describe las solicitudes Postman para consultas públicas, acceso de cuenta e inscripciones, incluida una comprobación de conflicto por falta de cupos.",
+      "sections": []
+    },
+    "settings.gradle.kts": {
+      "overview": "Configura repositorios de plugins y dependencias, identifica el proyecto raíz e incluye el módulo Android app.",
+      "sections": []
+    }
+  }
+}

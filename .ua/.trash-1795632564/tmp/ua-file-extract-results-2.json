@@ -1,0 +1,2148 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 13,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 13,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 13,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 156,
+      "nonEmptyLines": 144,
+      "functions": [
+        {
+          "name": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "startLine": 40,
+          "endLine": 155,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "FavoritesPersistenceTest",
+          "startLine": 38,
+          "endLine": 156,
+          "methods": [
+            "replacingCatalogAndUndoingRemovalKeepTheSavedDetail"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "FavoritesPersistenceTest",
+          "line": 38,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "runBlocking",
+          "lineNumber": 41
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getInstrumentation",
+          "lineNumber": 42
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "createTempFile",
+          "lineNumber": 43
+        },
+        {
+          "caller": "openDatabase",
+          "callee": "build",
+          "lineNumber": 44
+        },
+        {
+          "caller": "openDatabase",
+          "callee": "databaseBuilder",
+          "lineNumber": 44
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "openDatabase",
+          "lineNumber": 47
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "withTimeout",
+          "lineNumber": 49
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "catalogCacheDao",
+          "lineNumber": 50
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "RoomFavoritesRepository",
+          "lineNumber": 51
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "favoriteDao",
+          "lineNumber": 51
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Event",
+          "lineNumber": 53
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "parse",
+          "lineNumber": 58
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Category",
+          "lineNumber": 60
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Venue",
+          "lineNumber": 62
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "CachedEventEntity",
+          "lineNumber": 68
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "from",
+          "lineNumber": 68
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "toInstant",
+          "lineNumber": 69
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertNull",
+          "lineNumber": 70
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getSnapshot",
+          "lineNumber": 70
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "AtomicBoolean",
+          "lineNumber": 72
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "create",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "build",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "addConverterFactory",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "client",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "baseUrl",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Builder",
+          "lineNumber": 73
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "build",
+          "lineNumber": 75
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "addInterceptor",
+          "lineNumber": 75
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Builder",
+          "lineNumber": 75
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "get",
+          "lineNumber": 76
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "IOException",
+          "lineNumber": 76
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "build",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "body",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "message",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "code",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "protocol",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "request",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Builder",
+          "lineNumber": 77
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "request",
+          "lineNumber": 78
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "toResponseBody",
+          "lineNumber": 82
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "toMediaType",
+          "lineNumber": 82
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "create",
+          "lineNumber": 85
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "RemoteCatalogRepository",
+          "lineNumber": 88
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "SessionStore",
+          "lineNumber": 88
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "exceptionOrNull",
+          "lineNumber": 89
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "runCatching",
+          "lineNumber": 89
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 89
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertTrue",
+          "lineNumber": 90
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertNull",
+          "lineNumber": 91
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getSnapshot",
+          "lineNumber": 91
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "replaceAll",
+          "lineNumber": 93
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 93
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "toEpochMilli",
+          "lineNumber": 93
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "requireNotNull",
+          "lineNumber": 94
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getSnapshot",
+          "lineNumber": 94
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 95
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 95
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 96
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "toEpochMilli",
+          "lineNumber": 96
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "set",
+          "lineNumber": 98
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 99
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Remote",
+          "lineNumber": 99
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 99
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 99
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 100
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Remote",
+          "lineNumber": 100
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 100
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 100
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 101
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getSnapshot",
+          "lineNumber": 101
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "set",
+          "lineNumber": 103
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 104
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getEvent",
+          "lineNumber": 104
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Cached",
+          "lineNumber": 105
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 105
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 105
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 106
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 106
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "lowercase",
+          "lineNumber": 106
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 107
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "copy",
+          "lineNumber": 107
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 107
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 107
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 108
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getSnapshot",
+          "lineNumber": 108
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "addFavorite",
+          "lineNumber": 110
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 111
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 111
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 112
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "copy",
+          "lineNumber": 112
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 112
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 112
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 113
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 113
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "first",
+          "lineNumber": 113
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "observeFavorites",
+          "lineNumber": 113
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "set",
+          "lineNumber": 115
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "currentTimeMillis",
+          "lineNumber": 116
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 117
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Remote",
+          "lineNumber": 117
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 117
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 117
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "requireNotNull",
+          "lineNumber": 118
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getSnapshot",
+          "lineNumber": 118
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertTrue",
+          "lineNumber": 120
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "isEmpty",
+          "lineNumber": 120
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertTrue",
+          "lineNumber": 121
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "currentTimeMillis",
+          "lineNumber": 121
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "set",
+          "lineNumber": 122
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 123
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "Cached",
+          "lineNumber": 124
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 125
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "emptyList",
+          "lineNumber": 126
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "ofEpochMilli",
+          "lineNumber": 127
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "loadEvents",
+          "lineNumber": 129
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 131
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 131
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "first",
+          "lineNumber": 131
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "observeFavorites",
+          "lineNumber": 131
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 132
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getEvent",
+          "lineNumber": 132
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "requireNotNull",
+          "lineNumber": 133
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "removeFavorite",
+          "lineNumber": 133
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 134
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertTrue",
+          "lineNumber": 135
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "isEmpty",
+          "lineNumber": 135
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "first",
+          "lineNumber": 135
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "observeFavorites",
+          "lineNumber": 135
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertNull",
+          "lineNumber": 136
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "findFavorite",
+          "lineNumber": 136
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "addFavorite",
+          "lineNumber": 138
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 139
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 139
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "first",
+          "lineNumber": 139
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "observeFavorites",
+          "lineNumber": 139
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 140
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "findFavorite",
+          "lineNumber": 140
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "close",
+          "lineNumber": 142
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "openDatabase",
+          "lineNumber": 143
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "RoomFavoritesRepository",
+          "lineNumber": 144
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "favoriteDao",
+          "lineNumber": 144
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "RemoteCatalogRepository",
+          "lineNumber": 145
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "catalogCacheDao",
+          "lineNumber": 146
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "SessionStore",
+          "lineNumber": 146
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 148
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "listOf",
+          "lineNumber": 148
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "first",
+          "lineNumber": 148
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "observeFavorites",
+          "lineNumber": 148
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "assertEquals",
+          "lineNumber": 149
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "getEvent",
+          "lineNumber": 149
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "close",
+          "lineNumber": 152
+        },
+        {
+          "caller": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+          "callee": "deleteDatabase",
+          "lineNumber": 153
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "favoriteDao",
+          "startLine": 17,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "catalogCacheDao",
+          "startLine": 18,
+          "endLine": 18,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "EventiaDatabase",
+          "startLine": 11,
+          "endLine": 19,
+          "methods": [
+            "favoriteDao",
+            "catalogCacheDao"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "favoriteDao",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "catalogCacheDao",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "EventiaDatabase",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "readToken",
+          "startLine": 19,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "saveToken",
+          "startLine": 21,
+          "endLine": 23,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "clearToken",
+          "startLine": 25,
+          "endLine": 27,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "SessionStore",
+          "startLine": 14,
+          "endLine": 28,
+          "methods": [
+            "readToken",
+            "saveToken",
+            "clearToken"
+          ],
+          "properties": [
+            "store",
+            "token"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "readToken",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "saveToken",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "clearToken",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "SessionStore",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "readToken",
+          "callee": "first",
+          "lineNumber": 19
+        },
+        {
+          "caller": "saveToken",
+          "callee": "edit",
+          "lineNumber": 22
+        },
+        {
+          "caller": "clearToken",
+          "callee": "edit",
+          "lineNumber": 26
+        },
+        {
+          "caller": "clearToken",
+          "callee": "remove",
+          "lineNumber": 26
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "find",
+          "startLine": 14,
+          "endLine": 15,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "getAll",
+          "startLine": 17,
+          "endLine": 18,
+          "params": []
+        },
+        {
+          "name": "getDownloadTime",
+          "startLine": 20,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "saveDownload",
+          "startLine": 23,
+          "endLine": 24,
+          "params": [
+            "download"
+          ]
+        },
+        {
+          "name": "insertAll",
+          "startLine": 26,
+          "endLine": 27,
+          "params": [
+            "events"
+          ]
+        },
+        {
+          "name": "clear",
+          "startLine": 29,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "getSnapshot",
+          "startLine": 32,
+          "endLine": 36,
+          "params": []
+        },
+        {
+          "name": "replaceAll",
+          "startLine": 38,
+          "endLine": 43,
+          "params": [
+            "events",
+            "downloadedAtMillis"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "CatalogCacheDao",
+          "startLine": 12,
+          "endLine": 44,
+          "methods": [
+            "find",
+            "getAll",
+            "getDownloadTime",
+            "saveDownload",
+            "insertAll",
+            "clear",
+            "getSnapshot",
+            "replaceAll"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "find",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "getAll",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "getDownloadTime",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "saveDownload",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "insertAll",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "clear",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "getSnapshot",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "replaceAll",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "CatalogCacheDao",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getSnapshot",
+          "callee": "getDownloadTime",
+          "lineNumber": 34
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "CachedCatalogSnapshot",
+          "lineNumber": 35
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "getAll",
+          "lineNumber": 35
+        },
+        {
+          "caller": "replaceAll",
+          "callee": "clear",
+          "lineNumber": 40
+        },
+        {
+          "caller": "replaceAll",
+          "callee": "insertAll",
+          "lineNumber": 41
+        },
+        {
+          "caller": "replaceAll",
+          "callee": "saveDownload",
+          "lineNumber": 42
+        },
+        {
+          "caller": "replaceAll",
+          "callee": "CatalogDownloadEntity",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 31,
+      "nonEmptyLines": 25,
+      "functions": [
+        {
+          "name": "observeAll",
+          "startLine": 13,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "find",
+          "startLine": 16,
+          "endLine": 17,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "insert",
+          "startLine": 19,
+          "endLine": 20,
+          "params": [
+            "favorite"
+          ]
+        },
+        {
+          "name": "delete",
+          "startLine": 22,
+          "endLine": 23,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "remove",
+          "startLine": 25,
+          "endLine": 30,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "FavoriteDao",
+          "startLine": 11,
+          "endLine": 31,
+          "methods": [
+            "observeAll",
+            "find",
+            "insert",
+            "delete",
+            "remove"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "observeAll",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "find",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "insert",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "delete",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "remove",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "FavoriteDao",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "remove",
+          "callee": "find",
+          "lineNumber": 27
+        },
+        {
+          "caller": "remove",
+          "callee": "delete",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 12,
+      "classes": [
+        {
+          "name": "CachedEventEntity",
+          "startLine": 8,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "id",
+            "details"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CachedEventEntity",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 10,
+      "classes": [
+        {
+          "name": "CatalogDownloadEntity",
+          "startLine": 6,
+          "endLine": 12,
+          "methods": [],
+          "properties": [
+            "id",
+            "downloadedAtMillis"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CatalogDownloadEntity",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "classes": [
+        {
+          "name": "FavoriteEntity",
+          "startLine": 8,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "id",
+            "details"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FavoriteEntity",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "classes": [
+        {
+          "name": "CachedCatalogSnapshot",
+          "startLine": 5,
+          "endLine": 8,
+          "methods": [],
+          "properties": [
+            "events",
+            "downloadedAtMillis"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CachedCatalogSnapshot",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 49,
+      "nonEmptyLines": 46,
+      "functions": [
+        {
+          "name": "toDomain",
+          "startLine": 21,
+          "endLine": 33,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "StoredEvent",
+          "startLine": 9,
+          "endLine": 49,
+          "methods": [
+            "toDomain"
+          ],
+          "properties": [
+            "title",
+            "summary",
+            "description",
+            "startsAt",
+            "endsAt",
+            "category",
+            "imageUrl",
+            "venue",
+            "capacity",
+            "availableSpots"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "toDomain",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "StoredEvent",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toDomain",
+          "callee": "Event",
+          "lineNumber": 21
+        },
+        {
+          "caller": "toDomain",
+          "callee": "parse",
+          "lineNumber": 25
+        },
+        {
+          "caller": "toDomain",
+          "callee": "let",
+          "lineNumber": 26
+        },
+        {
+          "caller": "from",
+          "callee": "StoredEvent",
+          "lineNumber": 36
+        },
+        {
+          "caller": "from",
+          "callee": "toString",
+          "lineNumber": 40
+        },
+        {
+          "caller": "from",
+          "callee": "toString",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 42,
+      "functions": [
+        {
+          "name": "bindFavorites",
+          "startLine": 23,
+          "endLine": 24,
+          "params": [
+            "repository"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "LocalCatalogModule",
+          "startLine": 20,
+          "endLine": 48,
+          "methods": [
+            "bindFavorites"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "bindFavorites",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "LocalCatalogModule",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "migrate",
+          "callee": "execSQL",
+          "lineNumber": 29
+        },
+        {
+          "caller": "provideDatabase",
+          "callee": "build",
+          "lineNumber": 38
+        },
+        {
+          "caller": "provideDatabase",
+          "callee": "addMigrations",
+          "lineNumber": 38
+        },
+        {
+          "caller": "provideDatabase",
+          "callee": "databaseBuilder",
+          "lineNumber": 38
+        },
+        {
+          "caller": "provideFavoriteDao",
+          "callee": "favoriteDao",
+          "lineNumber": 43
+        },
+        {
+          "caller": "provideCatalogCacheDao",
+          "callee": "catalogCacheDao",
+          "lineNumber": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "observeFavorites",
+          "startLine": 12,
+          "endLine": 12,
+          "params": []
+        },
+        {
+          "name": "findFavorite",
+          "startLine": 13,
+          "endLine": 13,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "addFavorite",
+          "startLine": 14,
+          "endLine": 14,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "removeFavorite",
+          "startLine": 15,
+          "endLine": 15,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "observeFavorites",
+          "startLine": 21,
+          "endLine": 22,
+          "params": []
+        },
+        {
+          "name": "findFavorite",
+          "startLine": 24,
+          "endLine": 25,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "addFavorite",
+          "startLine": 27,
+          "endLine": 29,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "removeFavorite",
+          "startLine": 31,
+          "endLine": 32,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "FavoritesRepository",
+          "startLine": 11,
+          "endLine": 16,
+          "methods": [
+            "observeFavorites",
+            "findFavorite",
+            "addFavorite",
+            "removeFavorite"
+          ],
+          "properties": []
+        },
+        {
+          "name": "RoomFavoritesRepository",
+          "startLine": 18,
+          "endLine": 33,
+          "methods": [
+            "observeFavorites",
+            "findFavorite",
+            "addFavorite",
+            "removeFavorite"
+          ],
+          "properties": [
+            "favorites"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "observeFavorites",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "findFavorite",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "addFavorite",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "removeFavorite",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "FavoritesRepository",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "observeFavorites",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "findFavorite",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "addFavorite",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "removeFavorite",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "RoomFavoritesRepository",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "observeFavorites",
+          "callee": "map",
+          "lineNumber": 22
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "observeAll",
+          "lineNumber": 22
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "map",
+          "lineNumber": 22
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "toDomain",
+          "lineNumber": 22
+        },
+        {
+          "caller": "findFavorite",
+          "callee": "let",
+          "lineNumber": 25
+        },
+        {
+          "caller": "findFavorite",
+          "callee": "find",
+          "lineNumber": 25
+        },
+        {
+          "caller": "findFavorite",
+          "callee": "toDomain",
+          "lineNumber": 25
+        },
+        {
+          "caller": "addFavorite",
+          "callee": "insert",
+          "lineNumber": 28
+        },
+        {
+          "caller": "addFavorite",
+          "callee": "FavoriteEntity",
+          "lineNumber": 28
+        },
+        {
+          "caller": "addFavorite",
+          "callee": "from",
+          "lineNumber": 28
+        },
+        {
+          "caller": "removeFavorite",
+          "callee": "let",
+          "lineNumber": 32
+        },
+        {
+          "caller": "removeFavorite",
+          "callee": "remove",
+          "lineNumber": 32
+        },
+        {
+          "caller": "removeFavorite",
+          "callee": "toDomain",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 10,
+        "functionCount": 8,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 93,
+      "nonEmptyLines": 85,
+      "functions": [
+        {
+          "name": "getEvents",
+          "startLine": 25,
+          "endLine": 26,
+          "params": [
+            "query",
+            "categoryId"
+          ]
+        },
+        {
+          "name": "loadEvents",
+          "startLine": 28,
+          "endLine": 46,
+          "params": [
+            "query",
+            "categoryId"
+          ]
+        },
+        {
+          "name": "loadCachedEvents",
+          "startLine": 48,
+          "endLine": 62,
+          "params": [
+            "query",
+            "categoryId"
+          ]
+        },
+        {
+          "name": "getEvent",
+          "startLine": 64,
+          "endLine": 84,
+          "params": [
+            "id",
+            "authenticated",
+            "allowSaved"
+          ]
+        },
+        {
+          "name": "findSavedEvent",
+          "startLine": 86,
+          "endLine": 87,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "getVenues",
+          "startLine": 89,
+          "endLine": 89,
+          "params": []
+        },
+        {
+          "name": "getVenue",
+          "startLine": 90,
+          "endLine": 90,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "getVenueEvents",
+          "startLine": 91,
+          "endLine": 92,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "RemoteCatalogRepository",
+          "startLine": 19,
+          "endLine": 93,
+          "methods": [
+            "getEvents",
+            "loadEvents",
+            "loadCachedEvents",
+            "getEvent",
+            "findSavedEvent",
+            "getVenues",
+            "getVenue",
+            "getVenueEvents"
+          ],
+          "properties": [
+            "api",
+            "favorites",
+            "cache",
+            "sessionStore"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getEvents",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "loadEvents",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "getEvent",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "getVenues",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "getVenue",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "getVenueEvents",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "RemoteCatalogRepository",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getEvents",
+          "callee": "map",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getEvents",
+          "callee": "getEvents",
+          "lineNumber": 26
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "takeIf",
+          "lineNumber": 29
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "trim",
+          "lineNumber": 29
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "getEvents",
+          "lineNumber": 31
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "loadCachedEvents",
+          "lineNumber": 33
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "code",
+          "lineNumber": 35
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "loadCachedEvents",
+          "lineNumber": 36
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "currentTimeMillis",
+          "lineNumber": 39
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "replaceAll",
+          "lineNumber": 40
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "map",
+          "lineNumber": 41
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "CachedEventEntity",
+          "lineNumber": 41
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "from",
+          "lineNumber": 41
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "Remote",
+          "lineNumber": 45
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "getSnapshot",
+          "lineNumber": 49
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "map",
+          "lineNumber": 50
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "toDomain",
+          "lineNumber": 50
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "filter",
+          "lineNumber": 51
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "contains",
+          "lineNumber": 53
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "contains",
+          "lineNumber": 54
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "contains",
+          "lineNumber": 55
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "Cached",
+          "lineNumber": 57
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "distinctBy",
+          "lineNumber": 59
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "map",
+          "lineNumber": 59
+        },
+        {
+          "caller": "loadCachedEvents",
+          "callee": "ofEpochMilli",
+          "lineNumber": 60
+        },
+        {
+          "caller": "getEvent",
+          "callee": "takeIf",
+          "lineNumber": 66
+        },
+        {
+          "caller": "getEvent",
+          "callee": "readToken",
+          "lineNumber": 66
+        },
+        {
+          "caller": "getEvent",
+          "callee": "EventSessionExpired",
+          "lineNumber": 66
+        },
+        {
+          "caller": "getEvent",
+          "callee": "toDomain",
+          "lineNumber": 71
+        },
+        {
+          "caller": "getEvent",
+          "callee": "getEvent",
+          "lineNumber": 71
+        },
+        {
+          "caller": "getEvent",
+          "callee": "findSavedEvent",
+          "lineNumber": 74
+        },
+        {
+          "caller": "getEvent",
+          "callee": "code",
+          "lineNumber": 76
+        },
+        {
+          "caller": "getEvent",
+          "callee": "EventSessionExpired",
+          "lineNumber": 76
+        },
+        {
+          "caller": "getEvent",
+          "callee": "code",
+          "lineNumber": 78
+        },
+        {
+          "caller": "getEvent",
+          "callee": "findFavorite",
+          "lineNumber": 79
+        },
+        {
+          "caller": "getEvent",
+          "callee": "findSavedEvent",
+          "lineNumber": 80
+        },
+        {
+          "caller": "findSavedEvent",
+          "callee": "findFavorite",
+          "lineNumber": 87
+        },
+        {
+          "caller": "findSavedEvent",
+          "callee": "toDomain",
+          "lineNumber": 87
+        },
+        {
+          "caller": "findSavedEvent",
+          "callee": "find",
+          "lineNumber": 87
+        },
+        {
+          "caller": "getVenues",
+          "callee": "map",
+          "lineNumber": 89
+        },
+        {
+          "caller": "getVenues",
+          "callee": "getVenues",
+          "lineNumber": 89
+        },
+        {
+          "caller": "getVenue",
+          "callee": "toDomain",
+          "lineNumber": 90
+        },
+        {
+          "caller": "getVenue",
+          "callee": "getVenue",
+          "lineNumber": 90
+        },
+        {
+          "caller": "getVenueEvents",
+          "callee": "map",
+          "lineNumber": 92
+        },
+        {
+          "caller": "getVenueEvents",
+          "callee": "getVenueEvents",
+          "lineNumber": 92
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 7,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    }
+  ]
+}

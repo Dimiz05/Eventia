@@ -1,0 +1,803 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "type": "file",
+      "name": "MainActivity.kt",
+      "filePath": "app/src/main/java/com/example/eventia/MainActivity.kt",
+      "summary": "Inicia la interfaz Compose, observa el estado de sesión y alterna entre arranque, formulario y navegación del catálogo. Conserva el estado de navegación durante la autenticación iniciada desde un evento.",
+      "tags": [
+        "android",
+        "compose",
+        "sesión",
+        "arranque"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Recoge el estado con el ciclo de vida de Compose y acota el estado guardable al flujo del catálogo."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity",
+      "type": "class",
+      "name": "MainActivity",
+      "filePath": "app/src/main/java/com/example/eventia/MainActivity.kt",
+      "lineRange": [
+        23,
+        73
+      ],
+      "summary": "Actividad Android que monta Compose y conecta el ciclo de vida de la aplicación con los flujos de sesión y catálogo.",
+      "tags": [
+        "android",
+        "compose",
+        "sesión",
+        "arranque"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "type": "function",
+      "name": "onCreate",
+      "filePath": "app/src/main/java/com/example/eventia/MainActivity.kt",
+      "lineRange": [
+        27,
+        72
+      ],
+      "summary": "Configura la ventana y monta la jerarquía Compose que responde al estado de sesión.",
+      "tags": [
+        "android",
+        "compose",
+        "sesión",
+        "arranque"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "file",
+      "name": "Event.kt",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "summary": "Modelo de dominio del evento con horario, categoría, lugar, aforo, disponibilidad y estado opcional de asistencia de la cuenta.",
+      "tags": [
+        "dominio",
+        "eventos",
+        "modelo"
+      ],
+      "complexity": "simple",
+      "languageNotes": "OffsetDateTime conserva el desplazamiento horario y el booleano nullable representa una asistencia desconocida."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/domain/model/Event.kt:Event",
+      "type": "class",
+      "name": "Event",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "lineRange": [
+        5,
+        18
+      ],
+      "summary": "Entidad de dominio que conserva tiempos con desplazamiento, metadatos del evento y asistencia opcional.",
+      "tags": [
+        "dominio",
+        "eventos",
+        "modelo"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "file",
+      "name": "Venue.kt",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "summary": "Modelo de dominio de un lugar que incluye dirección, horario, imagen, coordenadas opcionales y conteo de eventos próximos.",
+      "tags": [
+        "dominio",
+        "lugares",
+        "modelo"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/domain/model/Venue.kt:Venue",
+      "type": "class",
+      "name": "Venue",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "lineRange": [
+        3,
+        13
+      ],
+      "summary": "Entidad de dominio que modela un lugar y admite datos de ubicación incompletos.",
+      "tags": [
+        "dominio",
+        "lugares",
+        "modelo"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "type": "file",
+      "name": "AttendanceRepository.kt",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "summary": "Define la consulta de inscripciones propias y su implementación remota. Usa la sesión almacenada para autenticar la solicitud y reutiliza el conversor de eventos de la API.",
+      "tags": [
+        "repositorio",
+        "sesiones",
+        "inscripciones",
+        "retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceSessionUnavailable",
+      "type": "class",
+      "name": "AttendanceSessionUnavailable",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "lineRange": [
+        10,
+        10
+      ],
+      "summary": "Identifica la falta de una sesión utilizable para consultar inscripciones.",
+      "tags": [
+        "repositorio",
+        "sesiones",
+        "inscripciones",
+        "retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository",
+      "type": "class",
+      "name": "AttendanceRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "lineRange": [
+        12,
+        14
+      ],
+      "summary": "Contrato suspendido para obtener los eventos a los que está inscrita la cuenta.",
+      "tags": [
+        "repositorio",
+        "sesiones",
+        "inscripciones",
+        "retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository",
+      "type": "class",
+      "name": "RemoteAttendanceRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "lineRange": [
+        16,
+        25
+      ],
+      "summary": "Implementación inyectable que autentica la consulta y convierte los DTO a eventos de dominio.",
+      "tags": [
+        "repositorio",
+        "sesiones",
+        "inscripciones",
+        "retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository.getMyAttendances",
+      "type": "function",
+      "name": "getMyAttendances",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "lineRange": [
+        13,
+        13
+      ],
+      "summary": "Expone la consulta de inscripciones propias como operación suspendida.",
+      "tags": [
+        "repositorio",
+        "sesiones",
+        "inscripciones",
+        "retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository.getMyAttendances",
+      "type": "function",
+      "name": "getMyAttendances",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "lineRange": [
+        20,
+        24
+      ],
+      "summary": "Lee el token activo, llama al endpoint de inscripciones y convierte cada DTO a dominio.",
+      "tags": [
+        "repositorio",
+        "sesiones",
+        "inscripciones",
+        "retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "type": "file",
+      "name": "CachedDataNotice.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "summary": "Presenta un aviso accesible de datos guardados y calcula la antigüedad de la última descarga para mostrarla en minutos, horas o días.",
+      "tags": [
+        "compose",
+        "caché",
+        "accesibilidad",
+        "offline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "produceState integra una actualización periódica con el ciclo de vida del composable."
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:CachedDataNotice",
+      "type": "function",
+      "name": "CachedDataNotice",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "lineRange": [
+        23,
+        36
+      ],
+      "summary": "Dibuja una superficie de aviso con región activa cortés para accesibilidad.",
+      "tags": [
+        "compose",
+        "caché",
+        "accesibilidad",
+        "offline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:cachedCatalogNotice",
+      "type": "function",
+      "name": "cachedCatalogNotice",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "lineRange": [
+        38,
+        54
+      ],
+      "summary": "Actualiza el indicador de antigüedad de la caché y selecciona el texto pluralizado correspondiente.",
+      "tags": [
+        "compose",
+        "caché",
+        "accesibilidad",
+        "offline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "type": "file",
+      "name": "EventCard.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "summary": "Reúne los componentes compartidos para una tarjeta de evento, sus etiquetas de categoría, imágenes y formato local de fecha y hora.",
+      "tags": [
+        "compose",
+        "eventos",
+        "componente"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "function",
+      "name": "EventCard",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "lineRange": [
+        30,
+        70
+      ],
+      "summary": "Muestra imagen, categoría, título, horario, lugar y disponibilidad, y permite insertar una acción de favorito.",
+      "tags": [
+        "compose",
+        "eventos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCategoryLabel",
+      "type": "function",
+      "name": "EventCategoryLabel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "lineRange": [
+        72,
+        84
+      ],
+      "summary": "Presenta la categoría en una etiqueta de estilo destacado.",
+      "tags": [
+        "compose",
+        "eventos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "function",
+      "name": "EventArtwork",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "lineRange": [
+        86,
+        101
+      ],
+      "summary": "Carga y presenta la imagen remota o los recursos visuales de reemplazo del evento.",
+      "tags": [
+        "compose",
+        "eventos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:eventLocalDateTime",
+      "type": "function",
+      "name": "eventLocalDateTime",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "lineRange": [
+        103,
+        112
+      ],
+      "summary": "Formatea la hora inicial del evento en la zona y el formato local del dispositivo.",
+      "tags": [
+        "compose",
+        "eventos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "type": "file",
+      "name": "FavoriteButton.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "summary": "Agrupa el botón de favorito y sus recursos de icono y etiqueta según el estado actual de guardado.",
+      "tags": [
+        "compose",
+        "favoritos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "type": "function",
+      "name": "FavoriteButton",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "lineRange": [
+        10,
+        15
+      ],
+      "summary": "Muestra un botón accesible cuyo icono y etiqueta reflejan la selección.",
+      "tags": [
+        "compose",
+        "favoritos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteIcon",
+      "type": "function",
+      "name": "favoriteIcon",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "lineRange": [
+        17,
+        18
+      ],
+      "summary": "Selecciona el recurso gráfico según el evento esté guardado.",
+      "tags": [
+        "compose",
+        "favoritos",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteLabel",
+      "type": "function",
+      "name": "favoriteLabel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "lineRange": [
+        20,
+        21
+      ],
+      "summary": "Resuelve el identificador de la acción de guardar o eliminar un favorito.",
+      "tags": [
+        "compose",
+        "favoritos",
+        "componente"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "target": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity",
+      "target": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "target": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Event.kt:Event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Event.kt:Event",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Venue.kt:Venue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Venue.kt:Venue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceSessionUnavailable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceSessionUnavailable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository.getMyAttendances",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository.getMyAttendances",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository.getMyAttendances",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository.getMyAttendances",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository.getMyAttendances",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository.getMyAttendances",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:CachedDataNotice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:CachedDataNotice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:cachedCatalogNotice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:cachedCatalogNotice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCategoryLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCategoryLabel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:eventLocalDateTime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:eventLocalDateTime",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteIcon",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteIcon",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteLabel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCategoryLabel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:eventLocalDateTime",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteIcon",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteLabel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionStartup",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/MainActivity.kt:MainActivity.onCreate",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionForm",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:RemoteAttendanceRepository",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    }
+  ]
+}

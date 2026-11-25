@@ -1,0 +1,310 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "type": "file",
+      "name": "ExampleUnitTest.kt",
+      "filePath": "app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "summary": "Incluye una aserción aritmética mínima para comprobar el entorno de pruebas unitarias con JUnit.",
+      "tags": [
+        "pruebas",
+        "junit",
+        "plantilla"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/test/java/com/example/eventia/ExampleUnitTest.kt:ExampleUnitTest",
+      "type": "class",
+      "name": "ExampleUnitTest",
+      "filePath": "app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "lineRange": [
+        12,
+        17
+      ],
+      "summary": "Contiene la prueba de ejemplo del entorno local de JUnit.",
+      "tags": [
+        "pruebas",
+        "junit",
+        "plantilla"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/test/java/com/example/eventia/ExampleUnitTest.kt:addition_isCorrect",
+      "type": "function",
+      "name": "addition_isCorrect",
+      "filePath": "app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "lineRange": [
+        13,
+        16
+      ],
+      "summary": "Verifica una suma simple como prueba mínima de ejecución de JUnit.",
+      "tags": [
+        "pruebas",
+        "junit",
+        "aserción"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "type": "file",
+      "name": "MapMarkersTest.kt",
+      "filePath": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "summary": "Valida las coordenadas empleadas por marcadores de mapa y verifica el tratamiento del límite de longitud.",
+      "tags": [
+        "pruebas",
+        "mapas",
+        "coordenadas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/test/java/com/example/eventia/MapMarkersTest.kt:MapMarkersTest",
+      "type": "class",
+      "name": "MapMarkersTest",
+      "filePath": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "lineRange": [
+        8,
+        19
+      ],
+      "summary": "Agrupa las comprobaciones de validez de las coordenadas de marcadores.",
+      "tags": [
+        "pruebas",
+        "mapas",
+        "coordenadas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/test/java/com/example/eventia/MapMarkersTest.kt:pointRequiresTwoCoordinatesInRange",
+      "type": "function",
+      "name": "pointRequiresTwoCoordinatesInRange",
+      "filePath": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "lineRange": [
+        9,
+        18
+      ],
+      "summary": "Comprueba el rechazo de coordenadas ausentes, no finitas o fuera de rango y la normalización de la longitud de 180 grados.",
+      "tags": [
+        "pruebas",
+        "mapas",
+        "validación"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:build.gradle.kts",
+      "type": "file",
+      "name": "build.gradle.kts",
+      "filePath": "build.gradle.kts",
+      "summary": "Declara los plugins compartidos en el proyecto raíz para que el módulo Android los aplique de forma selectiva.",
+      "tags": [
+        "gradle",
+        "compilación",
+        "plugins"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:gradle/gradle-daemon-jvm.properties",
+      "type": "config",
+      "name": "gradle-daemon-jvm.properties",
+      "filePath": "gradle/gradle-daemon-jvm.properties",
+      "summary": "Fija Java 25 como versión de la JVM del daemon de Gradle y define propiedades de resolución de su toolchain.",
+      "tags": [
+        "gradle",
+        "java",
+        "toolchain"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:gradle/libs.versions.toml",
+      "type": "config",
+      "name": "libs.versions.toml",
+      "filePath": "gradle/libs.versions.toml",
+      "summary": "Centraliza las versiones, las bibliotecas y los plugins usados por los scripts de Gradle de Eventia.",
+      "tags": [
+        "gradle",
+        "dependencias",
+        "versiones"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:gradle/wrapper/gradle-wrapper.jar",
+      "type": "file",
+      "name": "gradle-wrapper.jar",
+      "filePath": "gradle/wrapper/gradle-wrapper.jar",
+      "summary": "Contiene el ejecutable Java del Gradle Wrapper, que inicia la distribución de Gradle seleccionada por el proyecto.",
+      "tags": [
+        "gradle",
+        "wrapper",
+        "compilación"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:gradle/wrapper/gradle-wrapper.properties",
+      "type": "config",
+      "name": "gradle-wrapper.properties",
+      "filePath": "gradle/wrapper/gradle-wrapper.properties",
+      "summary": "Fija la distribución binaria de Gradle 9.6.0 y los parámetros de descarga del Wrapper.",
+      "tags": [
+        "gradle",
+        "wrapper",
+        "configuración"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:gradlew",
+      "type": "file",
+      "name": "gradlew",
+      "filePath": "gradlew",
+      "summary": "Inicia el Gradle Wrapper desde entornos POSIX y prepara Java, argumentos y rutas antes de delegar al ejecutable Java.",
+      "tags": [
+        "gradle",
+        "shell",
+        "compilación"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:postman/Eventia-Dia-1.postman_collection.json",
+      "type": "config",
+      "name": "Eventia-Dia-1.postman_collection.json",
+      "filePath": "postman/Eventia-Dia-1.postman_collection.json",
+      "summary": "Describe las solicitudes Postman para consultas públicas, acceso de cuenta e inscripciones, incluida una comprobación de conflicto por falta de cupos.",
+      "tags": [
+        "postman",
+        "api",
+        "inscripciones",
+        "documentación"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:settings.gradle.kts",
+      "type": "file",
+      "name": "settings.gradle.kts",
+      "filePath": "settings.gradle.kts",
+      "summary": "Configura repositorios de plugins y dependencias, identifica el proyecto raíz e incluye el módulo Android app.",
+      "tags": [
+        "gradle",
+        "repositorios",
+        "configuración"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "target": "class:app/src/test/java/com/example/eventia/ExampleUnitTest.kt:ExampleUnitTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "target": "class:app/src/test/java/com/example/eventia/ExampleUnitTest.kt:ExampleUnitTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "target": "function:app/src/test/java/com/example/eventia/ExampleUnitTest.kt:addition_isCorrect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "target": "function:app/src/test/java/com/example/eventia/ExampleUnitTest.kt:addition_isCorrect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "target": "class:app/src/test/java/com/example/eventia/MapMarkersTest.kt:MapMarkersTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "target": "class:app/src/test/java/com/example/eventia/MapMarkersTest.kt:MapMarkersTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "target": "function:app/src/test/java/com/example/eventia/MapMarkersTest.kt:pointRequiresTwoCoordinatesInRange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "target": "function:app/src/test/java/com/example/eventia/MapMarkersTest.kt:pointRequiresTwoCoordinatesInRange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:gradle/libs.versions.toml",
+      "target": "file:app/build.gradle.kts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:gradle/libs.versions.toml",
+      "target": "file:build.gradle.kts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:gradle/wrapper/gradle-wrapper.properties",
+      "target": "file:gradle/wrapper/gradle-wrapper.jar",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:gradlew",
+      "target": "file:gradle/wrapper/gradle-wrapper.jar",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:settings.gradle.kts",
+      "target": "file:app/build.gradle.kts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:postman/Eventia-Dia-1.postman_collection.json",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

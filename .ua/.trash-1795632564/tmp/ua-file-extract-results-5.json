@@ -1,0 +1,2492 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 5,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 5,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 325,
+      "nonEmptyLines": 284,
+      "functions": [
+        {
+          "name": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "startLine": 48,
+          "endLine": 76,
+          "params": []
+        },
+        {
+          "name": "onMainSession",
+          "startLine": 78,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "startLine": 84,
+          "endLine": 99,
+          "params": []
+        },
+        {
+          "name": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "startLine": 101,
+          "endLine": 114,
+          "params": []
+        },
+        {
+          "name": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "startLine": 116,
+          "endLine": 132,
+          "params": []
+        },
+        {
+          "name": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "startLine": 134,
+          "endLine": 151,
+          "params": []
+        },
+        {
+          "name": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "startLine": 153,
+          "endLine": 163,
+          "params": []
+        },
+        {
+          "name": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "startLine": 165,
+          "endLine": 194,
+          "params": []
+        },
+        {
+          "name": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "startLine": 196,
+          "endLine": 227,
+          "params": []
+        },
+        {
+          "name": "offlineValidationKeepsSessionUntilLogout",
+          "startLine": 229,
+          "endLine": 243,
+          "params": []
+        },
+        {
+          "name": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "startLine": 245,
+          "endLine": 254,
+          "params": []
+        },
+        {
+          "name": "onMain",
+          "startLine": 256,
+          "endLine": 258,
+          "params": [
+            "test"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SessionFlowTest",
+          "startLine": 43,
+          "endLine": 325,
+          "methods": [
+            "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+            "onMainSession",
+            "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+            "cleanStartAllowsGuestEntryAndReturnToSignIn",
+            "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+            "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+            "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+            "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+            "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+            "offlineValidationKeepsSessionUntilLogout",
+            "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+            "onMain"
+          ],
+          "properties": [
+            "compose"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "compose",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "line": 134,
+          "isDefault": false
+        },
+        {
+          "name": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "line": 153,
+          "isDefault": false
+        },
+        {
+          "name": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "line": 165,
+          "isDefault": false
+        },
+        {
+          "name": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "line": 196,
+          "isDefault": false
+        },
+        {
+          "name": "offlineValidationKeepsSessionUntilLogout",
+          "line": 229,
+          "isDefault": false
+        },
+        {
+          "name": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "line": 245,
+          "isDefault": false
+        },
+        {
+          "name": "SessionFlowTest",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getInstrumentation",
+          "lineNumber": 50
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "onMainSession",
+          "lineNumber": 51
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "setContent",
+          "lineNumber": 52
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "collectAsState",
+          "lineNumber": 53
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "EventiaTheme",
+          "lineNumber": 54
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "SessionForm",
+          "lineNumber": 55
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "onNode",
+          "lineNumber": 64
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasSetTextAction",
+          "lineNumber": 64
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasText",
+          "lineNumber": 64
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 64
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "performTextInput",
+          "lineNumber": 65
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 65
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "performClick",
+          "lineNumber": 66
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "onNode",
+          "lineNumber": 66
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasText",
+          "lineNumber": 66
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 66
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasClickAction",
+          "lineNumber": 66
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "assertIsDisplayed",
+          "lineNumber": 68
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "onNode",
+          "lineNumber": 68
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasSetTextAction",
+          "lineNumber": 69
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasText",
+          "lineNumber": 69
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 69
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasText",
+          "lineNumber": 70
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 70
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "assertIsDisplayed",
+          "lineNumber": 72
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "onNode",
+          "lineNumber": 72
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasSetTextAction",
+          "lineNumber": 73
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasText",
+          "lineNumber": 73
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 73
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "hasText",
+          "lineNumber": 74
+        },
+        {
+          "caller": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+          "callee": "getString",
+          "lineNumber": 74
+        },
+        {
+          "caller": "onMainSession",
+          "callee": "onMain",
+          "lineNumber": 80
+        },
+        {
+          "caller": "onMainSession",
+          "callee": "SessionViewModel",
+          "lineNumber": 80
+        },
+        {
+          "caller": "onMainSession",
+          "callee": "LocalSession",
+          "lineNumber": 80
+        },
+        {
+          "caller": "onMainSession",
+          "callee": "SavedStateHandle",
+          "lineNumber": 80
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "onMain",
+          "lineNumber": 85
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "SessionViewModel",
+          "lineNumber": 86
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "LocalSession",
+          "lineNumber": 86
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "SavedStateHandle",
+          "lineNumber": 86
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "submit",
+          "lineNumber": 88
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "assertEquals",
+          "lineNumber": 90
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "Form",
+          "lineNumber": 91
+        },
+        {
+          "caller": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+          "callee": "mapOf",
+          "lineNumber": 92
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "onMain",
+          "lineNumber": 102
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "LocalSession",
+          "lineNumber": 103
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "SessionViewModel",
+          "lineNumber": 104
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "SavedStateHandle",
+          "lineNumber": 104
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "assertEquals",
+          "lineNumber": 106
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "Form",
+          "lineNumber": 106
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "continueAsGuest",
+          "lineNumber": 107
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "assertEquals",
+          "lineNumber": 108
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "assertFalse",
+          "lineNumber": 109
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "assertEquals",
+          "lineNumber": 110
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "openSignIn",
+          "lineNumber": 112
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "assertEquals",
+          "lineNumber": 113
+        },
+        {
+          "caller": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+          "callee": "Form",
+          "lineNumber": 113
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "onMain",
+          "lineNumber": 117
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "LocalSession",
+          "lineNumber": 118
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "SessionViewModel",
+          "lineNumber": 119
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "SavedStateHandle",
+          "lineNumber": 119
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "continueAsGuest",
+          "lineNumber": 120
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "requestEventSignIn",
+          "lineNumber": 122
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "assertEquals",
+          "lineNumber": 123
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "Form",
+          "lineNumber": 123
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "assertEquals",
+          "lineNumber": 124
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "continueAsGuest",
+          "lineNumber": 126
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "assertEquals",
+          "lineNumber": 127
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "assertFalse",
+          "lineNumber": 128
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "assertEquals",
+          "lineNumber": 129
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "eventReturnHandled",
+          "lineNumber": 130
+        },
+        {
+          "caller": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+          "callee": "assertEquals",
+          "lineNumber": 131
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "onMain",
+          "lineNumber": 135
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "LocalSession",
+          "lineNumber": 136
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "SessionViewModel",
+          "lineNumber": 137
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "SavedStateHandle",
+          "lineNumber": 137
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "AttendanceCatalog",
+          "lineNumber": 138
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "EventDetailViewModel",
+          "lineNumber": 139
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "SavedStateHandle",
+          "lineNumber": 140
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "mapOf",
+          "lineNumber": 140
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "load",
+          "lineNumber": 143
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "assertTrue",
+          "lineNumber": 144
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "attend",
+          "lineNumber": 145
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "assertEquals",
+          "lineNumber": 147
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "assertEquals",
+          "lineNumber": 148
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "Form",
+          "lineNumber": 148
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "assertFalse",
+          "lineNumber": 149
+        },
+        {
+          "caller": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+          "callee": "assertEquals",
+          "lineNumber": 150
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "onMain",
+          "lineNumber": 154
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "LocalSession",
+          "lineNumber": 155
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "SessionViewModel",
+          "lineNumber": 156
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "SavedStateHandle",
+          "lineNumber": 156
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "expireSession",
+          "lineNumber": 158
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "assertEquals",
+          "lineNumber": 160
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "Form",
+          "lineNumber": 160
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "assertFalse",
+          "lineNumber": 161
+        },
+        {
+          "caller": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+          "callee": "assertEquals",
+          "lineNumber": 162
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "onMain",
+          "lineNumber": 166
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "AttendanceCatalog",
+          "lineNumber": 167
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "LocalSession",
+          "lineNumber": 169
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "copy",
+          "lineNumber": 171
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertEquals",
+          "lineNumber": 174
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "EventDetailViewModel",
+          "lineNumber": 177
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "SavedStateHandle",
+          "lineNumber": 178
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "mapOf",
+          "lineNumber": 178
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "error",
+          "lineNumber": 180
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "load",
+          "lineNumber": 182
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "attend",
+          "lineNumber": 184
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertEquals",
+          "lineNumber": 185
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertEquals",
+          "lineNumber": 186
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertFalse",
+          "lineNumber": 187
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertEquals",
+          "lineNumber": 188
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "attend",
+          "lineNumber": 190
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertEquals",
+          "lineNumber": 191
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertFalse",
+          "lineNumber": 192
+        },
+        {
+          "caller": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+          "callee": "assertEquals",
+          "lineNumber": 193
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "onMain",
+          "lineNumber": 197
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "AttendanceCatalog",
+          "lineNumber": 198
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "error",
+          "lineNumber": 200
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "listOf",
+          "lineNumber": 201
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "LocalSession",
+          "lineNumber": 205
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "copy",
+          "lineNumber": 209
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "HttpException",
+          "lineNumber": 210
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "error",
+          "lineNumber": 210
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "toResponseBody",
+          "lineNumber": 210
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "EventDetailViewModel",
+          "lineNumber": 212
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "SavedStateHandle",
+          "lineNumber": 213
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "mapOf",
+          "lineNumber": 213
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "load",
+          "lineNumber": 215
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "attend",
+          "lineNumber": 217
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "error",
+          "lineNumber": 217
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "assertEquals",
+          "lineNumber": 220
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "assertTrue",
+          "lineNumber": 221
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "assertFalse",
+          "lineNumber": 222
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "assertEquals",
+          "lineNumber": 223
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "assertEquals",
+          "lineNumber": 224
+        },
+        {
+          "caller": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+          "callee": "assertFalse",
+          "lineNumber": 225
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "onMain",
+          "lineNumber": 230
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "LocalSession",
+          "lineNumber": 231
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "SessionViewModel",
+          "lineNumber": 232
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "SavedStateHandle",
+          "lineNumber": 232
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "assertEquals",
+          "lineNumber": 234
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "Active",
+          "lineNumber": 234
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "assertTrue",
+          "lineNumber": 235
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "retryAccount",
+          "lineNumber": 236
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "assertEquals",
+          "lineNumber": 237
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "signOut",
+          "lineNumber": 239
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "assertFalse",
+          "lineNumber": 240
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "assertEquals",
+          "lineNumber": 241
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "Form",
+          "lineNumber": 241
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "assertEquals",
+          "lineNumber": 242
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "Form",
+          "lineNumber": 242
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "SessionViewModel",
+          "lineNumber": 242
+        },
+        {
+          "caller": "offlineValidationKeepsSessionUntilLogout",
+          "callee": "SavedStateHandle",
+          "lineNumber": 242
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "onMain",
+          "lineNumber": 246
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "LocalSession",
+          "lineNumber": 247
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "SessionViewModel",
+          "lineNumber": 248
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "SavedStateHandle",
+          "lineNumber": 248
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "assertEquals",
+          "lineNumber": 250
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "Form",
+          "lineNumber": 250
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "assertFalse",
+          "lineNumber": 251
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "continueAsGuest",
+          "lineNumber": 252
+        },
+        {
+          "caller": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+          "callee": "assertEquals",
+          "lineNumber": 253
+        },
+        {
+          "caller": "onMain",
+          "callee": "runOnMainSync",
+          "lineNumber": 257
+        },
+        {
+          "caller": "onMain",
+          "callee": "getInstrumentation",
+          "lineNumber": 257
+        },
+        {
+          "caller": "onMain",
+          "callee": "test",
+          "lineNumber": 257
+        },
+        {
+          "caller": "signIn",
+          "callee": "error",
+          "lineNumber": 270
+        },
+        {
+          "caller": "register",
+          "callee": "error",
+          "lineNumber": 273
+        },
+        {
+          "caller": "attendEvent",
+          "callee": "onAttend",
+          "lineNumber": 276
+        },
+        {
+          "caller": "cancelAttendance",
+          "callee": "onCancel",
+          "lineNumber": 278
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "IOException",
+          "lineNumber": 282
+        },
+        {
+          "caller": "getEvent",
+          "callee": "assertEquals",
+          "lineNumber": 313
+        },
+        {
+          "caller": "getEvents",
+          "callee": "error",
+          "lineNumber": 319
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "error",
+          "lineNumber": 320
+        },
+        {
+          "caller": "getVenues",
+          "callee": "error",
+          "lineNumber": 321
+        },
+        {
+          "caller": "getVenue",
+          "callee": "error",
+          "lineNumber": 322
+        },
+        {
+          "caller": "getVenueEvents",
+          "callee": "error",
+          "lineNumber": 323
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 12,
+        "functionCount": 12,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "classes": [
+        {
+          "name": "Account",
+          "startLine": 3,
+          "endLine": 3,
+          "methods": [],
+          "properties": [
+            "email",
+            "name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Account",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 81,
+      "functions": [
+        {
+          "name": "hasSession",
+          "startLine": 15,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "signIn",
+          "startLine": 16,
+          "endLine": 16,
+          "params": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "register",
+          "startLine": 17,
+          "endLine": 17,
+          "params": [
+            "name",
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "loadAccount",
+          "startLine": 18,
+          "endLine": 18,
+          "params": []
+        },
+        {
+          "name": "attendEvent",
+          "startLine": 19,
+          "endLine": 19,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "cancelAttendance",
+          "startLine": 20,
+          "endLine": 20,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "signOut",
+          "startLine": 21,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "hasSession",
+          "startLine": 34,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "signOut",
+          "startLine": 36,
+          "endLine": 36,
+          "params": []
+        },
+        {
+          "name": "signIn",
+          "startLine": 38,
+          "endLine": 40,
+          "params": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "register",
+          "startLine": 42,
+          "endLine": 44,
+          "params": [
+            "name",
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "attendEvent",
+          "startLine": 46,
+          "endLine": 46,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "cancelAttendance",
+          "startLine": 48,
+          "endLine": 48,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "updateAttendance",
+          "startLine": 50,
+          "endLine": 55,
+          "params": [
+            "id",
+            "request"
+          ]
+        },
+        {
+          "name": "loadAccount",
+          "startLine": 57,
+          "endLine": 69,
+          "params": []
+        },
+        {
+          "name": "authenticate",
+          "startLine": 71,
+          "endLine": 83,
+          "params": [
+            "request"
+          ]
+        },
+        {
+          "name": "validationFields",
+          "startLine": 85,
+          "endLine": 95,
+          "params": [
+            "error"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SessionRepository",
+          "startLine": 14,
+          "endLine": 22,
+          "methods": [
+            "hasSession",
+            "signIn",
+            "register",
+            "loadAccount",
+            "attendEvent",
+            "cancelAttendance",
+            "signOut"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AccountField",
+          "startLine": 24,
+          "endLine": 24,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "AuthenticationRejected",
+          "startLine": 26,
+          "endLine": 26,
+          "methods": [],
+          "properties": [
+            "fields"
+          ]
+        },
+        {
+          "name": "EventSessionExpired",
+          "startLine": 28,
+          "endLine": 28,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "RemoteSessionRepository",
+          "startLine": 30,
+          "endLine": 96,
+          "methods": [
+            "hasSession",
+            "signOut",
+            "signIn",
+            "register",
+            "attendEvent",
+            "cancelAttendance",
+            "updateAttendance",
+            "loadAccount",
+            "authenticate",
+            "validationFields"
+          ],
+          "properties": [
+            "api",
+            "store"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "hasSession",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "signIn",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "register",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "loadAccount",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "attendEvent",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "cancelAttendance",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "signOut",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "SessionRepository",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "AccountField",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "AuthenticationRejected",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "EventSessionExpired",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "hasSession",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "signOut",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "signIn",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "register",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "attendEvent",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "cancelAttendance",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "loadAccount",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "RemoteSessionRepository",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hasSession",
+          "callee": "isNullOrBlank",
+          "lineNumber": 34
+        },
+        {
+          "caller": "hasSession",
+          "callee": "readToken",
+          "lineNumber": 34
+        },
+        {
+          "caller": "signOut",
+          "callee": "clearToken",
+          "lineNumber": 36
+        },
+        {
+          "caller": "signIn",
+          "callee": "authenticate",
+          "lineNumber": 38
+        },
+        {
+          "caller": "signIn",
+          "callee": "login",
+          "lineNumber": 39
+        },
+        {
+          "caller": "signIn",
+          "callee": "LoginRequestDto",
+          "lineNumber": 39
+        },
+        {
+          "caller": "register",
+          "callee": "authenticate",
+          "lineNumber": 42
+        },
+        {
+          "caller": "register",
+          "callee": "register",
+          "lineNumber": 43
+        },
+        {
+          "caller": "register",
+          "callee": "RegisterRequestDto",
+          "lineNumber": 43
+        },
+        {
+          "caller": "attendEvent",
+          "callee": "updateAttendance",
+          "lineNumber": 46
+        },
+        {
+          "caller": "cancelAttendance",
+          "callee": "updateAttendance",
+          "lineNumber": 48
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "takeIf",
+          "lineNumber": 51
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "readToken",
+          "lineNumber": 51
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "EventSessionExpired",
+          "lineNumber": 51
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "request",
+          "lineNumber": 52
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "code",
+          "lineNumber": 53
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "EventSessionExpired",
+          "lineNumber": 53
+        },
+        {
+          "caller": "updateAttendance",
+          "callee": "HttpException",
+          "lineNumber": 54
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "takeIf",
+          "lineNumber": 58
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "readToken",
+          "lineNumber": 58
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "getMe",
+          "lineNumber": 60
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "takeIf",
+          "lineNumber": 61
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "IOException",
+          "lineNumber": 62
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "Account",
+          "lineNumber": 63
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "takeIf",
+          "lineNumber": 63
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "code",
+          "lineNumber": 65
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "clearToken",
+          "lineNumber": 66
+        },
+        {
+          "caller": "authenticate",
+          "callee": "request",
+          "lineNumber": 73
+        },
+        {
+          "caller": "authenticate",
+          "callee": "code",
+          "lineNumber": 75
+        },
+        {
+          "caller": "authenticate",
+          "callee": "AuthenticationRejected",
+          "lineNumber": 76
+        },
+        {
+          "caller": "authenticate",
+          "callee": "validationFields",
+          "lineNumber": 76
+        },
+        {
+          "caller": "authenticate",
+          "callee": "AuthenticationRejected",
+          "lineNumber": 77
+        },
+        {
+          "caller": "authenticate",
+          "callee": "isNullOrBlank",
+          "lineNumber": 81
+        },
+        {
+          "caller": "authenticate",
+          "callee": "IOException",
+          "lineNumber": 81
+        },
+        {
+          "caller": "authenticate",
+          "callee": "saveToken",
+          "lineNumber": 82
+        },
+        {
+          "caller": "validationFields",
+          "callee": "orEmpty",
+          "lineNumber": 86
+        },
+        {
+          "caller": "validationFields",
+          "callee": "getOrNull",
+          "lineNumber": 86
+        },
+        {
+          "caller": "validationFields",
+          "callee": "runCatching",
+          "lineNumber": 86
+        },
+        {
+          "caller": "validationFields",
+          "callee": "string",
+          "lineNumber": 87
+        },
+        {
+          "caller": "validationFields",
+          "callee": "errorBody",
+          "lineNumber": 87
+        },
+        {
+          "caller": "validationFields",
+          "callee": "response",
+          "lineNumber": 87
+        },
+        {
+          "caller": "validationFields",
+          "callee": "emptySet",
+          "lineNumber": 87
+        },
+        {
+          "caller": "validationFields",
+          "callee": "keySet",
+          "lineNumber": 88
+        },
+        {
+          "caller": "validationFields",
+          "callee": "getAsJsonObject",
+          "lineNumber": 88
+        },
+        {
+          "caller": "validationFields",
+          "callee": "parseString",
+          "lineNumber": 88
+        },
+        {
+          "caller": "validationFields",
+          "callee": "buildSet",
+          "lineNumber": 90
+        },
+        {
+          "caller": "validationFields",
+          "callee": "add",
+          "lineNumber": 91
+        },
+        {
+          "caller": "validationFields",
+          "callee": "add",
+          "lineNumber": 92
+        },
+        {
+          "caller": "validationFields",
+          "callee": "add",
+          "lineNumber": 93
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 19,
+        "functionCount": 17,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 139,
+      "nonEmptyLines": 129,
+      "functions": [
+        {
+          "name": "load",
+          "startLine": 52,
+          "endLine": 56,
+          "params": [
+            "authenticated",
+            "onSessionExpired"
+          ]
+        },
+        {
+          "name": "cancelRequest",
+          "startLine": 58,
+          "endLine": 60,
+          "params": []
+        },
+        {
+          "name": "refresh",
+          "startLine": 62,
+          "endLine": 67,
+          "params": [
+            "onSessionExpired"
+          ]
+        },
+        {
+          "name": "dismissConflict",
+          "startLine": 69,
+          "endLine": 72,
+          "params": []
+        },
+        {
+          "name": "attend",
+          "startLine": 74,
+          "endLine": 102,
+          "params": [
+            "onSessionExpired",
+            "onAttendanceChanged"
+          ]
+        },
+        {
+          "name": "loadEvent",
+          "startLine": 104,
+          "endLine": 138,
+          "params": [
+            "authenticated",
+            "onSessionExpired",
+            "previous"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "EventDetailUiState",
+          "startLine": 23,
+          "endLine": 35,
+          "methods": [],
+          "properties": [
+            "Loading",
+            "Empty",
+            "Error"
+          ]
+        },
+        {
+          "name": "AttendanceConflict",
+          "startLine": 37,
+          "endLine": 39,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "EventDetailViewModel",
+          "startLine": 41,
+          "endLine": 139,
+          "methods": [
+            "load",
+            "cancelRequest",
+            "refresh",
+            "dismissConflict",
+            "attend",
+            "loadEvent"
+          ],
+          "properties": [
+            "catalog",
+            "session",
+            "eventId",
+            "mutableState",
+            "state",
+            "request"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "EventDetailUiState",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "AttendanceConflict",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "load",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "cancelRequest",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "refresh",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "dismissConflict",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "attend",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "EventDetailViewModel",
+          "line": 41,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "load",
+          "callee": "cancelRequest",
+          "lineNumber": 53
+        },
+        {
+          "caller": "load",
+          "callee": "launch",
+          "lineNumber": 55
+        },
+        {
+          "caller": "load",
+          "callee": "loadEvent",
+          "lineNumber": 55
+        },
+        {
+          "caller": "cancelRequest",
+          "callee": "cancel",
+          "lineNumber": 59
+        },
+        {
+          "caller": "refresh",
+          "callee": "copy",
+          "lineNumber": 65
+        },
+        {
+          "caller": "refresh",
+          "callee": "launch",
+          "lineNumber": 66
+        },
+        {
+          "caller": "refresh",
+          "callee": "loadEvent",
+          "lineNumber": 66
+        },
+        {
+          "caller": "dismissConflict",
+          "callee": "copy",
+          "lineNumber": 71
+        },
+        {
+          "caller": "attend",
+          "callee": "copy",
+          "lineNumber": 78
+        },
+        {
+          "caller": "attend",
+          "callee": "copy",
+          "lineNumber": 79
+        },
+        {
+          "caller": "attend",
+          "callee": "launch",
+          "lineNumber": 80
+        },
+        {
+          "caller": "attend",
+          "callee": "cancelAttendance",
+          "lineNumber": 82
+        },
+        {
+          "caller": "attend",
+          "callee": "attendEvent",
+          "lineNumber": 82
+        },
+        {
+          "caller": "attend",
+          "callee": "onSessionExpired",
+          "lineNumber": 84
+        },
+        {
+          "caller": "attend",
+          "callee": "copy",
+          "lineNumber": 87
+        },
+        {
+          "caller": "attend",
+          "callee": "code",
+          "lineNumber": 90
+        },
+        {
+          "caller": "attend",
+          "callee": "loadEvent",
+          "lineNumber": 93
+        },
+        {
+          "caller": "attend",
+          "callee": "copy",
+          "lineNumber": 93
+        },
+        {
+          "caller": "attend",
+          "callee": "copy",
+          "lineNumber": 95
+        },
+        {
+          "caller": "attend",
+          "callee": "onAttendanceChanged",
+          "lineNumber": 99
+        },
+        {
+          "caller": "attend",
+          "callee": "loadEvent",
+          "lineNumber": 100
+        },
+        {
+          "caller": "loadEvent",
+          "callee": "copy",
+          "lineNumber": 109
+        },
+        {
+          "caller": "loadEvent",
+          "callee": "getEvent",
+          "lineNumber": 111
+        },
+        {
+          "caller": "loadEvent",
+          "callee": "Content",
+          "lineNumber": 112
+        },
+        {
+          "caller": "loadEvent",
+          "callee": "onSessionExpired",
+          "lineNumber": 125
+        },
+        {
+          "caller": "loadEvent",
+          "callee": "code",
+          "lineNumber": 128
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 6,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 222,
+      "nonEmptyLines": 200,
+      "functions": [
+        {
+          "name": "retryStartup",
+          "startLine": 57,
+          "endLine": 59,
+          "params": []
+        },
+        {
+          "name": "restore",
+          "startLine": 61,
+          "endLine": 70,
+          "params": []
+        },
+        {
+          "name": "continueAsGuest",
+          "startLine": 72,
+          "endLine": 75,
+          "params": []
+        },
+        {
+          "name": "openSignIn",
+          "startLine": 77,
+          "endLine": 79,
+          "params": []
+        },
+        {
+          "name": "requestEventSignIn",
+          "startLine": 81,
+          "endLine": 85,
+          "params": [
+            "eventId"
+          ]
+        },
+        {
+          "name": "expireEventSession",
+          "startLine": 87,
+          "endLine": 87,
+          "params": [
+            "eventId"
+          ]
+        },
+        {
+          "name": "expireSession",
+          "startLine": 89,
+          "endLine": 105,
+          "params": [
+            "eventId"
+          ]
+        },
+        {
+          "name": "eventReturnHandled",
+          "startLine": 107,
+          "endLine": 109,
+          "params": [
+            "eventId"
+          ]
+        },
+        {
+          "name": "signOut",
+          "startLine": 111,
+          "endLine": 125,
+          "params": []
+        },
+        {
+          "name": "switchForm",
+          "startLine": 127,
+          "endLine": 130,
+          "params": []
+        },
+        {
+          "name": "clearError",
+          "startLine": 132,
+          "endLine": 135,
+          "params": [
+            "field"
+          ]
+        },
+        {
+          "name": "submit",
+          "startLine": 137,
+          "endLine": 181,
+          "params": [
+            "name",
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "submitFailed",
+          "startLine": 183,
+          "endLine": 185,
+          "params": [
+            "form"
+          ]
+        },
+        {
+          "name": "retryAccount",
+          "startLine": 187,
+          "endLine": 192,
+          "params": []
+        },
+        {
+          "name": "loadAccount",
+          "startLine": 194,
+          "endLine": 211,
+          "params": []
+        },
+        {
+          "name": "accountLoadFailed",
+          "startLine": 213,
+          "endLine": 217,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "SessionUiState",
+          "startLine": 23,
+          "endLine": 41,
+          "methods": [],
+          "properties": [
+            "Starting",
+            "StartupError",
+            "Guest"
+          ]
+        },
+        {
+          "name": "SessionViewModel",
+          "startLine": 43,
+          "endLine": 222,
+          "methods": [
+            "retryStartup",
+            "restore",
+            "continueAsGuest",
+            "openSignIn",
+            "requestEventSignIn",
+            "expireEventSession",
+            "expireSession",
+            "eventReturnHandled",
+            "signOut",
+            "switchForm",
+            "clearError",
+            "submit",
+            "submitFailed",
+            "retryAccount",
+            "loadAccount",
+            "accountLoadFailed"
+          ],
+          "properties": [
+            "repository",
+            "savedStateHandle",
+            "mutableState",
+            "state",
+            "sessionRequest",
+            "returnEventId"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "SessionUiState",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "returnEventId",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "retryStartup",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "continueAsGuest",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "openSignIn",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "requestEventSignIn",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "expireEventSession",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "expireSession",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "eventReturnHandled",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "signOut",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "switchForm",
+          "line": 127,
+          "isDefault": false
+        },
+        {
+          "name": "clearError",
+          "line": 132,
+          "isDefault": false
+        },
+        {
+          "name": "submit",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "retryAccount",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "SessionViewModel",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "retryStartup",
+          "callee": "restore",
+          "lineNumber": 58
+        },
+        {
+          "caller": "restore",
+          "callee": "launch",
+          "lineNumber": 63
+        },
+        {
+          "caller": "restore",
+          "callee": "hasSession",
+          "lineNumber": 65
+        },
+        {
+          "caller": "restore",
+          "callee": "loadAccount",
+          "lineNumber": 65
+        },
+        {
+          "caller": "restore",
+          "callee": "Form",
+          "lineNumber": 65
+        },
+        {
+          "caller": "openSignIn",
+          "callee": "Form",
+          "lineNumber": 78
+        },
+        {
+          "caller": "requestEventSignIn",
+          "callee": "openSignIn",
+          "lineNumber": 84
+        },
+        {
+          "caller": "expireEventSession",
+          "callee": "expireSession",
+          "lineNumber": 87
+        },
+        {
+          "caller": "expireSession",
+          "callee": "Form",
+          "lineNumber": 93
+        },
+        {
+          "caller": "expireSession",
+          "callee": "copy",
+          "lineNumber": 94
+        },
+        {
+          "caller": "expireSession",
+          "callee": "launch",
+          "lineNumber": 96
+        },
+        {
+          "caller": "expireSession",
+          "callee": "cancelAndJoin",
+          "lineNumber": 97
+        },
+        {
+          "caller": "expireSession",
+          "callee": "signOut",
+          "lineNumber": 99
+        },
+        {
+          "caller": "expireSession",
+          "callee": "copy",
+          "lineNumber": 102
+        },
+        {
+          "caller": "signOut",
+          "callee": "copy",
+          "lineNumber": 114
+        },
+        {
+          "caller": "signOut",
+          "callee": "launch",
+          "lineNumber": 116
+        },
+        {
+          "caller": "signOut",
+          "callee": "cancelAndJoin",
+          "lineNumber": 117
+        },
+        {
+          "caller": "signOut",
+          "callee": "signOut",
+          "lineNumber": 119
+        },
+        {
+          "caller": "signOut",
+          "callee": "Form",
+          "lineNumber": 120
+        },
+        {
+          "caller": "signOut",
+          "callee": "copy",
+          "lineNumber": 122
+        },
+        {
+          "caller": "switchForm",
+          "callee": "Form",
+          "lineNumber": 129
+        },
+        {
+          "caller": "clearError",
+          "callee": "copy",
+          "lineNumber": 134
+        },
+        {
+          "caller": "submit",
+          "callee": "trim",
+          "lineNumber": 140
+        },
+        {
+          "caller": "submit",
+          "callee": "buildMap",
+          "lineNumber": 141
+        },
+        {
+          "caller": "submit",
+          "callee": "isBlank",
+          "lineNumber": 142
+        },
+        {
+          "caller": "submit",
+          "callee": "put",
+          "lineNumber": 142
+        },
+        {
+          "caller": "submit",
+          "callee": "matches",
+          "lineNumber": 143
+        },
+        {
+          "caller": "submit",
+          "callee": "matcher",
+          "lineNumber": 143
+        },
+        {
+          "caller": "submit",
+          "callee": "put",
+          "lineNumber": 144
+        },
+        {
+          "caller": "submit",
+          "callee": "put",
+          "lineNumber": 146
+        },
+        {
+          "caller": "submit",
+          "callee": "isNotEmpty",
+          "lineNumber": 148
+        },
+        {
+          "caller": "submit",
+          "callee": "copy",
+          "lineNumber": 149
+        },
+        {
+          "caller": "submit",
+          "callee": "copy",
+          "lineNumber": 152
+        },
+        {
+          "caller": "submit",
+          "callee": "emptyMap",
+          "lineNumber": 152
+        },
+        {
+          "caller": "submit",
+          "callee": "launch",
+          "lineNumber": 154
+        },
+        {
+          "caller": "submit",
+          "callee": "register",
+          "lineNumber": 156
+        },
+        {
+          "caller": "submit",
+          "callee": "trim",
+          "lineNumber": 156
+        },
+        {
+          "caller": "submit",
+          "callee": "signIn",
+          "lineNumber": 157
+        },
+        {
+          "caller": "submit",
+          "callee": "loadAccount",
+          "lineNumber": 158
+        },
+        {
+          "caller": "submit",
+          "callee": "filter",
+          "lineNumber": 160
+        },
+        {
+          "caller": "submit",
+          "callee": "copy",
+          "lineNumber": 161
+        },
+        {
+          "caller": "submit",
+          "callee": "associateWith",
+          "lineNumber": 163
+        },
+        {
+          "caller": "submit",
+          "callee": "isEmpty",
+          "lineNumber": 168
+        },
+        {
+          "caller": "submit",
+          "callee": "submitFailed",
+          "lineNumber": 174
+        },
+        {
+          "caller": "submit",
+          "callee": "submitFailed",
+          "lineNumber": 176
+        },
+        {
+          "caller": "submit",
+          "callee": "submitFailed",
+          "lineNumber": 178
+        },
+        {
+          "caller": "submitFailed",
+          "callee": "copy",
+          "lineNumber": 184
+        },
+        {
+          "caller": "retryAccount",
+          "callee": "copy",
+          "lineNumber": 190
+        },
+        {
+          "caller": "retryAccount",
+          "callee": "launch",
+          "lineNumber": 191
+        },
+        {
+          "caller": "retryAccount",
+          "callee": "loadAccount",
+          "lineNumber": 191
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "Active",
+          "lineNumber": 198
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "loadAccount",
+          "lineNumber": 201
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "Form",
+          "lineNumber": 202
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "Active",
+          "lineNumber": 203
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "accountLoadFailed",
+          "lineNumber": 205
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "accountLoadFailed",
+          "lineNumber": 207
+        },
+        {
+          "caller": "loadAccount",
+          "callee": "accountLoadFailed",
+          "lineNumber": 209
+        },
+        {
+          "caller": "accountLoadFailed",
+          "callee": "copy",
+          "lineNumber": 215
+        },
+        {
+          "caller": "accountLoadFailed",
+          "callee": "Active",
+          "lineNumber": 216
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 16,
+        "functionCount": 16,
+        "classCount": 2
+      }
+    }
+  ]
+}

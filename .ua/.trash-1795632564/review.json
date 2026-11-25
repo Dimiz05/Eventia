@@ -1,0 +1,50 @@
+{
+  "issues": [],
+  "warnings": [
+    "14 archivos no tienen relaciones verificadas."
+  ],
+  "stats": {
+    "totalFiles": 110,
+    "filesByCategory": {
+      "docs": 2,
+      "code": 82,
+      "config": 25,
+      "script": 1
+    },
+    "totalNodes": 383,
+    "nodeTypes": {
+      "file": 83,
+      "class": 76,
+      "function": 197,
+      "document": 2,
+      "config": 25
+    },
+    "totalEdges": 998,
+    "edgeTypes": {
+      "imports": 146,
+      "contains": 415,
+      "exports": 214,
+      "calls": 146,
+      "implements": 6,
+      "tested_by": 14,
+      "depends_on": 31,
+      "configures": 19,
+      "reads_from": 1,
+      "writes_to": 1,
+      "documents": 5
+    },
+    "layers": [
+      "Presentación y navegación",
+      "Repositorios",
+      "Modelos de dominio",
+      "API y mapeo de datos",
+      "Persistencia y conectividad",
+      "Inyección de dependencias",
+      "Recursos de Android",
+      "Pruebas",
+      "Configuración y documentación"
+    ],
+    "tourSteps": 9,
+    "orphanFiles": 14
+  }
+}

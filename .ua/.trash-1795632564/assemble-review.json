@@ -1,0 +1,13 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Se verificaron los 110 archivos del inventario, las 146 importaciones internas y los rangos de símbolos contra el código fuente.",
+    "Se retiró una relación de cobertura atribuida a EventiaApplication. ExampleInstrumentedTest solo compara el nombre del paquete del contexto Android.",
+    "Quedan 14 archivos sin relaciones comprobadas, principalmente imágenes de recursos y archivos de configuración."
+  ]
+}

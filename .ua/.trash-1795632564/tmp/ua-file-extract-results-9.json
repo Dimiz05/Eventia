@@ -1,0 +1,578 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [
+    "app/src/main/AndroidManifest.xml",
+    "app/src/main/keepRules/rules.keep",
+    "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+    "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+    "app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+    "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+    "app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+    "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+    "app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+    "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp",
+    "app/src/main/res/xml/backup_rules.xml",
+    "app/src/main/res/xml/data_extraction_rules.xml"
+  ],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 9,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 9,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/build.gradle.kts",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 81,
+      "nonEmptyLines": 74,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "useAppContext",
+          "startLine": 18,
+          "endLine": 23,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ExampleInstrumentedTest",
+          "startLine": 16,
+          "endLine": 24,
+          "methods": [
+            "useAppContext"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useAppContext",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "ExampleInstrumentedTest",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "useAppContext",
+          "callee": "getInstrumentation",
+          "lineNumber": 21
+        },
+        {
+          "caller": "useAppContext",
+          "callee": "assertEquals",
+          "lineNumber": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "classes": [
+        {
+          "name": "EventiaApplication",
+          "startLine": 6,
+          "endLine": 7,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EventiaApplication",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 9,
+      "classes": [
+        {
+          "name": "LoginRequestDto",
+          "startLine": 5,
+          "endLine": 8,
+          "methods": [],
+          "properties": [
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "LoginResponseDto",
+          "startLine": 10,
+          "endLine": 12,
+          "methods": [],
+          "properties": [
+            "token"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "LoginRequestDto",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "LoginResponseDto",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 63,
+      "nonEmptyLines": 59,
+      "functions": [
+        {
+          "name": "connectionNotices",
+          "startLine": 26,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "ConnectionBanner",
+          "startLine": 45,
+          "endLine": 63,
+          "params": [
+            "notice"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ConnectionNotice",
+          "startLine": 24,
+          "endLine": 24,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ConnectionNotice",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "connectionNotices",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "ConnectionBanner",
+          "line": 45,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "connectionNotices",
+          "callee": "flow",
+          "lineNumber": 28
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "collect",
+          "lineNumber": 30
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "transformLatest",
+          "lineNumber": 30
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "distinctUntilChanged",
+          "lineNumber": 30
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "emit",
+          "lineNumber": 34
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "emit",
+          "lineNumber": 36
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "delay",
+          "lineNumber": 37
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "emit",
+          "lineNumber": 38
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "emit",
+          "lineNumber": 40
+        },
+        {
+          "caller": "connectionNotices",
+          "callee": "emit",
+          "lineNumber": 42
+        },
+        {
+          "caller": "ConnectionBanner",
+          "callee": "Surface",
+          "lineNumber": 49
+        },
+        {
+          "caller": "ConnectionBanner",
+          "callee": "semantics",
+          "lineNumber": 50
+        },
+        {
+          "caller": "ConnectionBanner",
+          "callee": "fillMaxWidth",
+          "lineNumber": 50
+        },
+        {
+          "caller": "ConnectionBanner",
+          "callee": "Text",
+          "lineNumber": 54
+        },
+        {
+          "caller": "ConnectionBanner",
+          "callee": "stringResource",
+          "lineNumber": 55
+        },
+        {
+          "caller": "ConnectionBanner",
+          "callee": "padding",
+          "lineNumber": 58
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/theme/Color.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 8,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "EventiaTheme",
+          "startLine": 54,
+          "endLine": 71,
+          "params": [
+            "darkTheme",
+            "dynamicColor",
+            "content"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "EventiaTheme",
+          "line": 54,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "EventiaTheme",
+          "callee": "isSystemInDarkTheme",
+          "lineNumber": 56
+        },
+        {
+          "caller": "EventiaTheme",
+          "callee": "dynamicDarkColorScheme",
+          "lineNumber": 62
+        },
+        {
+          "caller": "EventiaTheme",
+          "callee": "dynamicLightColorScheme",
+          "lineNumber": 62
+        },
+        {
+          "caller": "EventiaTheme",
+          "callee": "MaterialTheme",
+          "lineNumber": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/theme/Type.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 32,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "startLine": 15,
+          "endLine": 36,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ConnectionNoticeTest",
+          "startLine": 14,
+          "endLine": 37,
+          "methods": [
+            "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "ConnectionNoticeTest",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "runBlocking",
+          "lineNumber": 16
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "withTimeout",
+          "lineNumber": 17
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "Channel",
+          "lineNumber": 18
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "Channel",
+          "lineNumber": 19
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "launch",
+          "lineNumber": 20
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "collect",
+          "lineNumber": 21
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "connectionNotices",
+          "lineNumber": 21
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receiveAsFlow",
+          "lineNumber": 21
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "send",
+          "lineNumber": 21
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "send",
+          "lineNumber": 23
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "assertNull",
+          "lineNumber": 24
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receive",
+          "lineNumber": 24
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "send",
+          "lineNumber": 25
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "assertEquals",
+          "lineNumber": 26
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receive",
+          "lineNumber": 26
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "send",
+          "lineNumber": 27
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "assertEquals",
+          "lineNumber": 28
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receive",
+          "lineNumber": 28
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "send",
+          "lineNumber": 29
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "assertEquals",
+          "lineNumber": 30
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receive",
+          "lineNumber": 30
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "send",
+          "lineNumber": 31
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "assertEquals",
+          "lineNumber": 32
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receive",
+          "lineNumber": 32
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "assertNull",
+          "lineNumber": 33
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "receive",
+          "lineNumber": 33
+        },
+        {
+          "caller": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+          "callee": "cancel",
+          "lineNumber": 34
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    }
+  ]
+}

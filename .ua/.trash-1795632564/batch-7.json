@@ -1,0 +1,302 @@
+{
+  "nodes": [
+    {
+      "id": "config:app/src/main/res/drawable/ic_back.xml",
+      "type": "config",
+      "name": "ic_back.xml",
+      "filePath": "app/src/main/res/drawable/ic_back.xml",
+      "summary": "Dibuja la flecha para regresar en la navegación y en el detalle de un evento.",
+      "tags": [
+        "drawable",
+        "navegación",
+        "icono"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_event_calendar.xml",
+      "type": "config",
+      "name": "ic_event_calendar.xml",
+      "filePath": "app/src/main/res/drawable/ic_event_calendar.xml",
+      "summary": "Dibuja el calendario que identifica la fecha y hora en el detalle de un evento.",
+      "tags": [
+        "drawable",
+        "eventos",
+        "calendario"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_event_placeholder.xml",
+      "type": "config",
+      "name": "ic_event_placeholder.xml",
+      "filePath": "app/src/main/res/drawable/ic_event_placeholder.xml",
+      "summary": "Proporciona la ilustración de reemplazo cuando una imagen de evento o lugar falta o no se puede cargar.",
+      "tags": [
+        "drawable",
+        "imágenes",
+        "eventos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_event_share.xml",
+      "type": "config",
+      "name": "ic_event_share.xml",
+      "filePath": "app/src/main/res/drawable/ic_event_share.xml",
+      "summary": "Dibuja el icono de la acción de compartir un evento desde su detalle.",
+      "tags": [
+        "drawable",
+        "eventos",
+        "compartir"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_explore.xml",
+      "type": "config",
+      "name": "ic_explore.xml",
+      "filePath": "app/src/main/res/drawable/ic_explore.xml",
+      "summary": "Dibuja el icono de exploración que la app reutiliza en las pestañas, los filtros y los mensajes de pantalla.",
+      "tags": [
+        "drawable",
+        "exploración",
+        "búsqueda"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_favorite_outline.xml",
+      "type": "config",
+      "name": "ic_favorite_outline.xml",
+      "filePath": "app/src/main/res/drawable/ic_favorite_outline.xml",
+      "summary": "Dibuja el marcador de contorno para un evento que aún no está en favoritos.",
+      "tags": [
+        "drawable",
+        "favoritos",
+        "icono"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_favorites.xml",
+      "type": "config",
+      "name": "ic_favorites.xml",
+      "filePath": "app/src/main/res/drawable/ic_favorites.xml",
+      "summary": "Dibuja el marcador activo de favoritos en la navegación y en el control de un evento guardado.",
+      "tags": [
+        "drawable",
+        "favoritos",
+        "navegación"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_launcher_background.xml",
+      "type": "config",
+      "name": "ic_launcher_background.xml",
+      "filePath": "app/src/main/res/drawable/ic_launcher_background.xml",
+      "summary": "Define la capa de fondo de los iconos adaptativos de la aplicación.",
+      "tags": [
+        "drawable",
+        "lanzador",
+        "Android"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "type": "config",
+      "name": "ic_launcher_foreground.xml",
+      "filePath": "app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "summary": "Define la capa de primer plano de los iconos adaptativos de la aplicación.",
+      "tags": [
+        "drawable",
+        "lanzador",
+        "Android"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_map.xml",
+      "type": "config",
+      "name": "ic_map.xml",
+      "filePath": "app/src/main/res/drawable/ic_map.xml",
+      "summary": "Dibuja el icono de mapa usado por la navegación y por la ubicación en el detalle del evento.",
+      "tags": [
+        "drawable",
+        "mapas",
+        "navegación"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_profile.xml",
+      "type": "config",
+      "name": "ic_profile.xml",
+      "filePath": "app/src/main/res/drawable/ic_profile.xml",
+      "summary": "Dibuja el icono de perfil para el destino de cuenta de la navegación principal.",
+      "tags": [
+        "drawable",
+        "perfil",
+        "navegación"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/drawable/ic_status_error.xml",
+      "type": "config",
+      "name": "ic_status_error.xml",
+      "filePath": "app/src/main/res/drawable/ic_status_error.xml",
+      "summary": "Dibuja el icono que ScreenMessage usa para señalar un estado de error.",
+      "tags": [
+        "drawable",
+        "errores",
+        "estado"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "config:app/src/main/res/drawable/ic_back.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "config:app/src/main/res/drawable/ic_back.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "config:app/src/main/res/drawable/ic_event_calendar.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "target": "config:app/src/main/res/drawable/ic_event_placeholder.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "config:app/src/main/res/drawable/ic_event_share.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "config:app/src/main/res/drawable/ic_explore.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "target": "config:app/src/main/res/drawable/ic_explore.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "config:app/src/main/res/drawable/ic_explore.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "config:app/src/main/res/drawable/ic_explore.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "config:app/src/main/res/drawable/ic_favorite_outline.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "config:app/src/main/res/drawable/ic_favorites.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "target": "config:app/src/main/res/drawable/ic_favorites.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "config:app/src/main/res/drawable/ic_map.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "config:app/src/main/res/drawable/ic_map.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "config:app/src/main/res/drawable/ic_profile.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "target": "config:app/src/main/res/drawable/ic_status_error.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_background.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_background.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

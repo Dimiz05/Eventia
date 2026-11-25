@@ -1,0 +1,151 @@
+{
+  "projectRoot": "C:\\Users\\jeiso\\AndroidStudioProjects\\Eventia",
+  "batchFiles": [
+    {
+      "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "language": "kotlin",
+      "sizeLines": 156,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "language": "kotlin",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "language": "kotlin",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "language": "kotlin",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "language": "kotlin",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "language": "kotlin",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "language": "kotlin",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "language": "kotlin",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "language": "kotlin",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "language": "kotlin",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "language": "kotlin",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "language": "kotlin",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "language": "kotlin",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": [
+      "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt": [
+      "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/SessionStore.kt": [],
+    "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt": [
+      "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt": [
+      "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt": [
+      "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt": [],
+    "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt": [
+      "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt": [
+      "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
+    "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt": [
+      "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt": [
+      "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt": [
+      "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+      "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ]
+  }
+}

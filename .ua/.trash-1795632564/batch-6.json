@@ -1,0 +1,169 @@
+{
+  "nodes": [
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Describe la arquitectura esperada de Eventia y las convenciones de navegación, persistencia, mapas, vistas previas y pruebas.",
+      "tags": [
+        "documentación",
+        "arquitectura",
+        "convenciones"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Explica los requisitos, la configuración del entorno y la API, los flujos de cuenta y catálogo y los comandos de compilación y pruebas.",
+      "tags": [
+        "documentación",
+        "compilación",
+        "configuración"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:gradle.properties",
+      "type": "config",
+      "name": "gradle.properties",
+      "filePath": "gradle.properties",
+      "summary": "Configura los argumentos de la JVM de Gradle, la caché de configuración y el estilo de código de Kotlin.",
+      "tags": [
+        "configuración",
+        "Gradle",
+        "Kotlin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:gradlew.bat",
+      "type": "file",
+      "name": "gradlew.bat",
+      "filePath": "gradlew.bat",
+      "summary": "Inicia el Gradle Wrapper desde Windows, localiza Java y devuelve el código de salida del proceso.",
+      "tags": [
+        "Windows",
+        "Gradle",
+        "compilación"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:gradlew.bat:findJavaFromJavaHome",
+      "type": "function",
+      "name": "findJavaFromJavaHome",
+      "filePath": "gradlew.bat",
+      "summary": "Comprueba el ejecutable Java de JAVA_HOME y deriva el fallo al tratamiento de errores.",
+      "tags": [
+        "Kotlin",
+        "Windows"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        56,
+        68
+      ]
+    },
+    {
+      "id": "function:gradlew.bat:execute",
+      "type": "function",
+      "name": "execute",
+      "filePath": "gradlew.bat",
+      "summary": "Invoca el JAR del Gradle Wrapper y le pasa las opciones de la JVM y los argumentos del usuario.",
+      "tags": [
+        "Kotlin",
+        "Windows"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        70,
+        77
+      ]
+    },
+    {
+      "id": "function:gradlew.bat:fail",
+      "type": "function",
+      "name": "fail",
+      "filePath": "gradlew.bat",
+      "summary": "Traduce el resultado de Gradle a un código de salida utilizable desde Windows.",
+      "tags": [
+        "Kotlin",
+        "Windows"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        83,
+        89
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:gradlew.bat",
+      "target": "function:gradlew.bat:findJavaFromJavaHome",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:gradlew.bat",
+      "target": "function:gradlew.bat:execute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:gradlew.bat",
+      "target": "function:gradlew.bat:fail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:app/build.gradle.kts",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:gradle.properties",
+      "target": "file:app/build.gradle.kts",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:gradlew.bat",
+      "target": "config:gradle/wrapper/gradle-wrapper.properties",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

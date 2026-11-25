@@ -1,0 +1,247 @@
+[
+  {
+    "layerId": "layer:ui",
+    "labels": [
+      {
+        "name": "Inicio y navegación",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+          "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+          "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt"
+        ]
+      },
+      {
+        "name": "Componentes compartidos",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+          "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+          "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+          "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ]
+      },
+      {
+        "name": "Exploración y detalle",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt"
+        ]
+      },
+      {
+        "name": "Favoritos",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt"
+        ]
+      },
+      {
+        "name": "Mapas y lugares",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt"
+        ]
+      },
+      {
+        "name": "Cuenta y sesión",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+          "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt"
+        ]
+      },
+      {
+        "name": "Tema y tipografía",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/ui/theme/Color.kt",
+          "file:app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+          "file:app/src/main/java/com/example/eventia/ui/theme/Type.kt"
+        ]
+      }
+    ]
+  },
+  {
+    "layerId": "layer:api",
+    "labels": [
+      {
+        "name": "Contrato de la API",
+        "nodeIds": [
+          "config:postman/Eventia-Dia-1.postman_collection.json",
+          "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt"
+        ]
+      },
+      {
+        "name": "Datos del catálogo",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+          "file:app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+          "file:app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "file:app/src/main/java/com/example/eventia/api/models/VenueDto.kt"
+        ]
+      },
+      {
+        "name": "Datos de autenticación",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+          "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt"
+        ]
+      }
+    ]
+  },
+  {
+    "layerId": "layer:local-data",
+    "labels": [
+      {
+        "name": "Catálogo sin conexión",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+          "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+          "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+          "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt"
+        ]
+      },
+      {
+        "name": "Favoritos locales",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+          "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt"
+        ]
+      },
+      {
+        "name": "Base y datos compartidos",
+        "nodeIds": [
+          "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+          "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+        ]
+      }
+    ]
+  },
+  {
+    "layerId": "layer:resources",
+    "labels": [
+      {
+        "name": "Navegación y estados",
+        "nodeIds": [
+          "config:app/src/main/res/drawable/ic_back.xml",
+          "config:app/src/main/res/drawable/ic_explore.xml",
+          "config:app/src/main/res/drawable/ic_favorite_outline.xml",
+          "config:app/src/main/res/drawable/ic_favorites.xml",
+          "config:app/src/main/res/drawable/ic_map.xml",
+          "config:app/src/main/res/drawable/ic_profile.xml",
+          "config:app/src/main/res/drawable/ic_status_error.xml"
+        ]
+      },
+      {
+        "name": "Gráficos de eventos",
+        "nodeIds": [
+          "config:app/src/main/res/drawable/ic_event_calendar.xml",
+          "config:app/src/main/res/drawable/ic_event_placeholder.xml",
+          "config:app/src/main/res/drawable/ic_event_share.xml"
+        ]
+      },
+      {
+        "name": "Iconos del lanzador",
+        "nodeIds": [
+          "config:app/src/main/res/drawable/ic_launcher_background.xml",
+          "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+          "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+          "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+          "file:app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+          "file:app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+          "file:app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+          "file:app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+          "file:app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+          "file:app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+          "file:app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+          "file:app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+          "file:app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+          "file:app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp"
+        ]
+      },
+      {
+        "name": "Tema y textos",
+        "nodeIds": [
+          "config:app/src/main/res/values/colors.xml",
+          "config:app/src/main/res/values/strings.xml",
+          "config:app/src/main/res/values/themes.xml"
+        ]
+      },
+      {
+        "name": "Reglas de respaldo",
+        "nodeIds": [
+          "config:app/src/main/res/xml/backup_rules.xml",
+          "config:app/src/main/res/xml/data_extraction_rules.xml"
+        ]
+      }
+    ]
+  },
+  {
+    "layerId": "layer:tests",
+    "labels": [
+      {
+        "name": "Pruebas instrumentadas",
+        "nodeIds": [
+          "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+          "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+          "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+          "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt"
+        ]
+      },
+      {
+        "name": "Pruebas unitarias",
+        "nodeIds": [
+          "file:app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt",
+          "file:app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+          "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+          "file:app/src/test/java/com/example/eventia/EventiaApiTest.kt",
+          "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+          "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt"
+        ]
+      }
+    ]
+  },
+  {
+    "layerId": "layer:project",
+    "labels": [
+      {
+        "name": "Configuración de Gradle",
+        "nodeIds": [
+          "config:gradle.properties",
+          "config:gradle/gradle-daemon-jvm.properties",
+          "config:gradle/libs.versions.toml",
+          "file:build.gradle.kts",
+          "file:settings.gradle.kts"
+        ]
+      },
+      {
+        "name": "Gradle Wrapper",
+        "nodeIds": [
+          "config:gradle/wrapper/gradle-wrapper.properties",
+          "file:gradle/wrapper/gradle-wrapper.jar",
+          "file:gradlew",
+          "file:gradlew.bat"
+        ]
+      },
+      {
+        "name": "Módulo Android",
+        "nodeIds": [
+          "config:app/src/main/AndroidManifest.xml",
+          "file:app/build.gradle.kts",
+          "file:app/src/main/keepRules/rules.keep"
+        ]
+      },
+      {
+        "name": "Guías del proyecto",
+        "nodeIds": [
+          "document:AGENTS.md",
+          "document:README.md"
+        ]
+      }
+    ]
+  }
+]

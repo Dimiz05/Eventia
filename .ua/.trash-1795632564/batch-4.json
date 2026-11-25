@@ -1,0 +1,2073 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "type": "file",
+      "name": "ExploreFlowTest.kt",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "summary": "Prueba en Android la búsqueda con espera, la restauración de filtros y la recarga del catálogo al recuperar la conexión.",
+      "tags": [
+        "pruebas",
+        "exploración",
+        "corrutinas"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:ExploreFlowTest",
+      "type": "class",
+      "name": "ExploreFlowTest",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "summary": "Ejecuta escenarios de exploración en el hilo principal con solicitudes de catálogo controladas por la prueba.",
+      "tags": [
+        "pruebas",
+        "exploración",
+        "corrutinas"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        30,
+        150
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:filtersCoalesceCancelAndRestore",
+      "type": "function",
+      "name": "filtersCoalesceCancelAndRestore",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "summary": "Verifica que las búsquedas sucesivas se agrupen, cancelen solicitudes obsoletas y recuperen los filtros guardados.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        32,
+        60
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:refreshKeepsPreviousResultOnFailureAndCanRetry",
+      "type": "function",
+      "name": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "summary": "Confirma que un error de actualización conserve el resultado anterior y permita reintentar.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        62,
+        82
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+      "type": "function",
+      "name": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "summary": "Comprueba que al reconectar se actualice el catálogo sin filtros y se respete la selección vigente.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        84,
+        110
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "type": "file",
+      "name": "CatalogConnectivity.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "summary": "Convierte las notificaciones de conectividad de Android en un flujo de estados y emite un evento al recuperar una red validada.",
+      "tags": [
+        "conectividad",
+        "corrutinas",
+        "Android"
+      ],
+      "complexity": "simple",
+      "languageNotes": "callbackFlow adapta NetworkCallback a Flow y awaitClose retira el callback al dejar de observarlo."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:CatalogConnectivity",
+      "type": "class",
+      "name": "CatalogConnectivity",
+      "filePath": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "summary": "Expone un flujo de eventos de reconexión para consumidores del catálogo.",
+      "tags": [
+        "conectividad",
+        "corrutinas",
+        "Android"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        17,
+        19
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity",
+      "type": "class",
+      "name": "AndroidCatalogConnectivity",
+      "filePath": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "summary": "Observa la red activa con ConnectivityManager y traduce la conectividad validada a flujos reactivos.",
+      "tags": [
+        "conectividad",
+        "corrutinas",
+        "Android"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        21,
+        48
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity.reconnects",
+      "type": "function",
+      "name": "reconnects",
+      "filePath": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "summary": "Emite una notificación al volver a estar en línea después del estado inicial.",
+      "tags": [
+        "Kotlin",
+        "conectividad"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        26,
+        26
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "type": "file",
+      "name": "NetworkModule.kt",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Enlaza los repositorios y la conectividad mediante Hilt. Proporciona una instancia de Retrofit con Gson para EventiaApi.",
+      "tags": [
+        "inyección",
+        "Hilt",
+        "Retrofit"
+      ],
+      "complexity": "simple",
+      "languageNotes": "@Binds vincula interfaces con implementaciones. @Provides construye el cliente externo que Hilt no puede crear de forma automática."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "type": "class",
+      "name": "NetworkModule",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Declara los enlaces de Hilt y el proveedor de Retrofit que usan los repositorios.",
+      "tags": [
+        "inyección",
+        "Hilt",
+        "Retrofit"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        23,
+        50
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindSessionRepository",
+      "type": "function",
+      "name": "bindSessionRepository",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Enlaza SessionRepository con RemoteSessionRepository mediante Hilt.",
+      "tags": [
+        "Kotlin",
+        "inyección"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        26,
+        27
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindAttendanceRepository",
+      "type": "function",
+      "name": "bindAttendanceRepository",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Enlaza AttendanceRepository con RemoteAttendanceRepository mediante Hilt.",
+      "tags": [
+        "Kotlin",
+        "inyección"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        29,
+        30
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCategoryRepository",
+      "type": "function",
+      "name": "bindCategoryRepository",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Enlaza CategoryRepository con RemoteCategoryRepository mediante Hilt.",
+      "tags": [
+        "Kotlin",
+        "inyección"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        32,
+        33
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogRepository",
+      "type": "function",
+      "name": "bindCatalogRepository",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Enlaza CatalogRepository con RemoteCatalogRepository mediante Hilt.",
+      "tags": [
+        "Kotlin",
+        "inyección"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        35,
+        36
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogConnectivity",
+      "type": "function",
+      "name": "bindCatalogConnectivity",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Proporciona AndroidCatalogConnectivity a consumidores de la interfaz CatalogConnectivity.",
+      "tags": [
+        "Kotlin",
+        "inyección"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        38,
+        39
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:provideEventiaApi",
+      "type": "function",
+      "name": "provideEventiaApi",
+      "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "summary": "Construye y comparte el cliente Retrofit con el convertidor Gson para EventiaApi.",
+      "tags": [
+        "Kotlin",
+        "inyección"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        42,
+        48
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "file",
+      "name": "Category.kt",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "summary": "Representa una categoría del catálogo por su identificador y nombre.",
+      "tags": [
+        "dominio",
+        "categorías",
+        "Kotlin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/domain/model/Category.kt:Category",
+      "type": "class",
+      "name": "Category",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "summary": "Modelo de dominio de una categoría con identificador y nombre.",
+      "tags": [
+        "dominio",
+        "categorías",
+        "Kotlin"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "file",
+      "name": "CatalogRepository.kt",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Define el acceso a eventos y lugares y distingue los resultados remotos de la copia local con fecha de descarga.",
+      "tags": [
+        "catálogo",
+        "contrato",
+        "Kotlin"
+      ],
+      "complexity": "simple",
+      "languageNotes": "La interfaz sellada CatalogEvents permite distinguir de forma exhaustiva entre resultados remotos y guardados."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "type": "class",
+      "name": "CatalogRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Contrato suspendido para consultar eventos, lugares y resultados del catálogo.",
+      "tags": [
+        "catálogo",
+        "contrato",
+        "Kotlin"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        8,
+        15
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogEvents",
+      "type": "class",
+      "name": "CatalogEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Resultado que distingue datos remotos y datos guardados con categorías y momento de descarga.",
+      "tags": [
+        "catálogo",
+        "contrato",
+        "Kotlin"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        17,
+        27
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvents",
+      "type": "function",
+      "name": "getEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Declara la consulta de eventos con búsqueda y categoría opcionales.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        9,
+        9
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:loadEvents",
+      "type": "function",
+      "name": "loadEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Declara la carga del catálogo y comunica si proviene de la red o de una copia local.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        10,
+        10
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvent",
+      "type": "function",
+      "name": "getEvent",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Declara la carga de un evento por ID y permite indicar si se requiere sesión o se acepta una copia guardada.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        11,
+        11
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenues",
+      "type": "function",
+      "name": "getVenues",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Declara la consulta del listado de lugares.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        12,
+        12
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenue",
+      "type": "function",
+      "name": "getVenue",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Declara la consulta de un lugar por ID.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        13,
+        13
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenueEvents",
+      "type": "function",
+      "name": "getVenueEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "summary": "Declara la consulta de eventos asociados a un lugar.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        14,
+        14
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "type": "file",
+      "name": "CategoryRepository.kt",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "summary": "Define la consulta de categorías y convierte las categorías devueltas por la API en modelos de dominio.",
+      "tags": [
+        "catálogo",
+        "categorías",
+        "Retrofit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:CategoryRepository",
+      "type": "class",
+      "name": "CategoryRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "summary": "Contrato para consultar categorías como modelos de dominio.",
+      "tags": [
+        "catálogo",
+        "categorías",
+        "Retrofit"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository",
+      "type": "class",
+      "name": "RemoteCategoryRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "summary": "Implementación que consulta EventiaApi y proyecta cada categoría al dominio.",
+      "tags": [
+        "catálogo",
+        "categorías",
+        "Retrofit"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        11,
+        16
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository.getCategories",
+      "type": "function",
+      "name": "getCategories",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "summary": "Consulta EventiaApi y convierte las categorías a identificadores y nombres del dominio.",
+      "tags": [
+        "Kotlin",
+        "catálogo"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "type": "file",
+      "name": "ExploreViewModel.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Coordina filtros, carga y reintentos de Explorar. Actualiza la caché al reconectar y mantiene el contenido anterior cuando una actualización falla.",
+      "tags": [
+        "exploración",
+        "catálogo",
+        "caché"
+      ],
+      "complexity": "complex",
+      "languageNotes": "SavedStateHandle conserva los filtros, StateFlow publica el estado y una corrutina cancelable aplica la espera de búsqueda."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreFilters",
+      "type": "class",
+      "name": "ExploreFilters",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Agrupa el texto de búsqueda y la categoría seleccionada.",
+      "tags": [
+        "exploración",
+        "catálogo",
+        "caché"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        27,
+        29
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreUiState",
+      "type": "class",
+      "name": "ExploreUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Agrupa filtros, contenido y señales de carga o error de Explorar.",
+      "tags": [
+        "exploración",
+        "catálogo",
+        "caché"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        31,
+        42
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "type": "class",
+      "name": "ExploreViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Coordina las solicitudes cancelables y mantiene los filtros de Explorar en SavedStateHandle.",
+      "tags": [
+        "exploración",
+        "catálogo",
+        "caché"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        44,
+        166
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:changeQuery",
+      "type": "function",
+      "name": "changeQuery",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Recibe cambios del texto de búsqueda y aplica una espera antes de recargar.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        68,
+        70
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:selectCategory",
+      "type": "function",
+      "name": "selectCategory",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Activa o desactiva el filtro de categoría seleccionado.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        72,
+        76
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:clearFilters",
+      "type": "function",
+      "name": "clearFilters",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Restablece ambos filtros y recarga de inmediato.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        78,
+        80
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refresh",
+      "type": "function",
+      "name": "refresh",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Solicita una actualización del catálogo cuando no hay una carga activa.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        82,
+        84
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "type": "function",
+      "name": "updateFilters",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Persiste cambios en los filtros y prepara el estado para cargar los resultados.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        86,
+        98
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Cancela la solicitud anterior y conserva el contenido existente cuando la nueva carga falla.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        100,
+        126
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:fetchContent",
+      "type": "function",
+      "name": "fetchContent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Carga los resultados filtrados y las categorías y excluye eventos cuyo inicio ya pasó.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        128,
+        153
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refreshCatalogCache",
+      "type": "function",
+      "name": "refreshCatalogCache",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "summary": "Solicita el catálogo completo para actualizar la copia local después de recuperar la conexión.",
+      "tags": [
+        "Kotlin",
+        "exploración"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        155,
+        159
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "type": "file",
+      "name": "MapViewModel.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Comprueba la configuración del mapa y agrupa los eventos por coordenadas válidas. Mantiene el filtro de categoría y la selección de marcador.",
+      "tags": [
+        "mapa",
+        "marcadores",
+        "estado"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapUiState",
+      "type": "class",
+      "name": "MapUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Distingue un mapa disponible, uno sin configuración y uno sin servicios de Google disponibles.",
+      "tags": [
+        "mapa",
+        "marcadores",
+        "estado"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        24,
+        36
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint",
+      "type": "class",
+      "name": "MapPoint",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Representa coordenadas y ofrece una fábrica que valida su rango y normaliza sus equivalencias.",
+      "tags": [
+        "mapa",
+        "marcadores",
+        "estado"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        38,
+        50
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "type": "class",
+      "name": "MapViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Carga eventos para el mapa y actualiza categorías, marcadores y selección.",
+      "tags": [
+        "mapa",
+        "marcadores",
+        "estado"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        52,
+        161
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint.from",
+      "type": "function",
+      "name": "from",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Valida ambas coordenadas y normaliza el antimeridiano y el cero con signo.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        40,
+        48
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryMap",
+      "type": "function",
+      "name": "retryMap",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Revalida la disponibilidad de Maps e inicia otro intento de presentación.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        67,
+        77
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryEvents",
+      "type": "function",
+      "name": "retryEvents",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Reintenta cargar eventos si el mapa está listo y no hay una carga activa.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        79,
+        82
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectCategory",
+      "type": "function",
+      "name": "selectCategory",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Persiste la categoría escogida y vuelve a calcular los marcadores correspondientes.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        84,
+        92
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectPoint",
+      "type": "function",
+      "name": "selectPoint",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Mantiene la selección solo cuando sus coordenadas corresponden a un marcador.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        94,
+        97
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "type": "function",
+      "name": "loadEvents",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Consulta el catálogo y actualiza las categorías, puntos y estado de carga del mapa.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        99,
+        132
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:markersFor",
+      "type": "function",
+      "name": "markersFor",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Agrupa los eventos con coordenadas válidas y respeta la categoría activa.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        134,
+        140
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:checkAvailability",
+      "type": "function",
+      "name": "checkAvailability",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "summary": "Comprueba la configuración de Maps y la disponibilidad de Google Play Services.",
+      "tags": [
+        "Kotlin",
+        "mapa"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        142,
+        156
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:ExploreFlowTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:ExploreFlowTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:filtersCoalesceCancelAndRestore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:ExploreFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:filtersCoalesceCancelAndRestore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:filtersCoalesceCancelAndRestore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:refreshKeepsPreviousResultOnFailureAndCanRetry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:ExploreFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:refreshKeepsPreviousResultOnFailureAndCanRetry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:refreshKeepsPreviousResultOnFailureAndCanRetry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:ExploreFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt:reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:CatalogConnectivity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:CatalogConnectivity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity.reconnects",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity",
+      "target": "function:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity.reconnects",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity.reconnects",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindSessionRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindSessionRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindSessionRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindAttendanceRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindAttendanceRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindAttendanceRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCategoryRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCategoryRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCategoryRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogConnectivity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogConnectivity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:bindCatalogConnectivity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:provideEventiaApi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/NetworkModule.kt:NetworkModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:provideEventiaApi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/NetworkModule.kt:provideEventiaApi",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Category.kt:Category",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Category.kt:Category",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenues",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenues",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenues",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenueEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenueEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getVenueEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:CategoryRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:CategoryRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository.getCategories",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository.getCategories",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository.getCategories",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:changeQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:changeQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:changeQuery",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:selectCategory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:selectCategory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:selectCategory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:clearFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:clearFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:clearFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refresh",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:fetchContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:fetchContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refreshCatalogCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:ExploreViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refreshCatalogCache",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:changeQuery",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:selectCategory",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:clearFilters",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refresh",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:load",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:updateFilters",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:load",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:load",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:fetchContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:fetchContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refreshCatalogCache",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint.from",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint.from",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint.from",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectCategory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectCategory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectCategory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectPoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectPoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:markersFor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:markersFor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:checkAvailability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:checkAvailability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryMap",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:checkAvailability",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryMap",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:retryEvents",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:selectCategory",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:markersFor",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:markersFor",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:markersFor",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:MapPoint.from",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:AndroidCatalogConnectivity",
+      "target": "class:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt:CatalogConnectivity",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:RemoteCategoryRepository",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt:CategoryRepository",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt:loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:fetchContent",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:loadEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt:refreshCatalogCache",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:loadEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

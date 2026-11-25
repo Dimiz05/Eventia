@@ -1,0 +1,284 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [
+    "gradle/gradle-daemon-jvm.properties",
+    "gradle/wrapper/gradle-wrapper.jar",
+    "gradle/wrapper/gradle-wrapper.properties",
+    "gradlew"
+  ],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 6,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 4,
+      "failed": 0,
+      "skipped": 2
+    }
+  },
+  "results": [
+    {
+      "path": "app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 14,
+      "functions": [
+        {
+          "name": "addition_isCorrect",
+          "startLine": 13,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ExampleUnitTest",
+          "startLine": 12,
+          "endLine": 17,
+          "methods": [
+            "addition_isCorrect"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "addition_isCorrect",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "ExampleUnitTest",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "addition_isCorrect",
+          "callee": "assertEquals",
+          "lineNumber": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "pointRequiresTwoCoordinatesInRange",
+          "startLine": 9,
+          "endLine": 18,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MapMarkersTest",
+          "startLine": 8,
+          "endLine": 19,
+          "methods": [
+            "pointRequiresTwoCoordinatesInRange"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "pointRequiresTwoCoordinatesInRange",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "MapMarkersTest",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertNull",
+          "lineNumber": 11
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 11
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertNull",
+          "lineNumber": 12
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 12
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertNull",
+          "lineNumber": 13
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 13
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertNull",
+          "lineNumber": 14
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 14
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertNull",
+          "lineNumber": 15
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 15
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertNull",
+          "lineNumber": 16
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 16
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "assertEquals",
+          "lineNumber": 17
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "MapPoint",
+          "lineNumber": 17
+        },
+        {
+          "caller": "pointRequiresTwoCoordinatesInRange",
+          "callee": "from",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "build.gradle.kts",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "gradle/libs.versions.toml",
+      "language": "toml",
+      "fileCategory": "config",
+      "totalLines": 58,
+      "nonEmptyLines": 55,
+      "sections": [
+        {
+          "heading": "versions",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "libraries",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "plugins",
+          "level": 1,
+          "line": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "postman/Eventia-Dia-1.postman_collection.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 480,
+      "nonEmptyLines": 480,
+      "sections": [
+        {
+          "heading": "info",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "item",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "variable",
+          "level": 1,
+          "line": 454
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "settings.gradle.kts",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 25,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,2548 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 110,
+  "totalBatches": 10,
+  "exportsByPath": {
+    "app/build.gradle.kts": [],
+    "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt": [
+      "useAppContext",
+      "ExampleInstrumentedTest"
+    ],
+    "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt": [
+      "filtersCoalesceCancelAndRestore",
+      "refreshKeepsPreviousResultOnFailureAndCanRetry",
+      "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+      "ExploreFlowTest"
+    ],
+    "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": [
+      "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+      "FavoritesPersistenceTest"
+    ],
+    "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt": [
+      "compose",
+      "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+      "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+      "cleanStartAllowsGuestEntryAndReturnToSignIn",
+      "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+      "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+      "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+      "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+      "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+      "offlineValidationKeepsSessionUntilLogout",
+      "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+      "SessionFlowTest"
+    ],
+    "app/src/main/java/com/example/eventia/EventiaApplication.kt": [
+      "EventiaApplication"
+    ],
+    "app/src/main/java/com/example/eventia/MainActivity.kt": [
+      "connectivity",
+      "onCreate",
+      "MainActivity"
+    ],
+    "app/src/main/java/com/example/eventia/api/EventiaApi.kt": [
+      "getCategories",
+      "getEvents",
+      "getEvent",
+      "attendEvent",
+      "cancelAttendance",
+      "getVenues",
+      "getVenue",
+      "getVenueEvents",
+      "login",
+      "register",
+      "getMe",
+      "getMyAttendances",
+      "EventiaApi"
+    ],
+    "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt": [
+      "toDomain",
+      "toDomain"
+    ],
+    "app/src/main/java/com/example/eventia/api/models/AccountDto.kt": [
+      "RegisterRequestDto",
+      "AccountDto"
+    ],
+    "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt": [
+      "CategoryDto"
+    ],
+    "app/src/main/java/com/example/eventia/api/models/EventDto.kt": [
+      "EventDto"
+    ],
+    "app/src/main/java/com/example/eventia/api/models/LoginDto.kt": [
+      "LoginRequestDto",
+      "LoginResponseDto"
+    ],
+    "app/src/main/java/com/example/eventia/api/models/VenueDto.kt": [
+      "VenueDto"
+    ],
+    "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt": [
+      "reconnects",
+      "CatalogConnectivity",
+      "reconnects",
+      "online",
+      "AndroidCatalogConnectivity"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt": [
+      "favoriteDao",
+      "catalogCacheDao",
+      "EventiaDatabase"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/SessionStore.kt": [
+      "readToken",
+      "saveToken",
+      "clearToken",
+      "SessionStore"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt": [
+      "find",
+      "getAll",
+      "getDownloadTime",
+      "saveDownload",
+      "insertAll",
+      "clear",
+      "getSnapshot",
+      "replaceAll",
+      "CatalogCacheDao"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt": [
+      "observeAll",
+      "find",
+      "insert",
+      "delete",
+      "remove",
+      "FavoriteDao"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt": [
+      "CachedEventEntity"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt": [
+      "CatalogDownloadEntity"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt": [
+      "FavoriteEntity"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt": [
+      "CachedCatalogSnapshot"
+    ],
+    "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt": [
+      "toDomain",
+      "StoredEvent"
+    ],
+    "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt": [
+      "bindFavorites",
+      "LocalCatalogModule"
+    ],
+    "app/src/main/java/com/example/eventia/di/NetworkModule.kt": [
+      "bindSessionRepository",
+      "bindAttendanceRepository",
+      "bindCategoryRepository",
+      "bindCatalogRepository",
+      "bindCatalogConnectivity",
+      "NetworkModule"
+    ],
+    "app/src/main/java/com/example/eventia/domain/model/Account.kt": [
+      "Account"
+    ],
+    "app/src/main/java/com/example/eventia/domain/model/Category.kt": [
+      "Category"
+    ],
+    "app/src/main/java/com/example/eventia/domain/model/Event.kt": [
+      "Event"
+    ],
+    "app/src/main/java/com/example/eventia/domain/model/Venue.kt": [
+      "Venue"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt": [
+      "AttendanceSessionUnavailable",
+      "getMyAttendances",
+      "AttendanceRepository",
+      "getMyAttendances",
+      "RemoteAttendanceRepository"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt": [
+      "getEvents",
+      "loadEvents",
+      "getEvent",
+      "getVenues",
+      "getVenue",
+      "getVenueEvents",
+      "CatalogRepository",
+      "events",
+      "CatalogEvents"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt": [
+      "getCategories",
+      "CategoryRepository",
+      "getCategories",
+      "RemoteCategoryRepository"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt": [
+      "observeFavorites",
+      "findFavorite",
+      "addFavorite",
+      "removeFavorite",
+      "FavoritesRepository",
+      "observeFavorites",
+      "findFavorite",
+      "addFavorite",
+      "removeFavorite",
+      "RoomFavoritesRepository"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt": [
+      "getEvents",
+      "loadEvents",
+      "getEvent",
+      "getVenues",
+      "getVenue",
+      "getVenueEvents",
+      "RemoteCatalogRepository"
+    ],
+    "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt": [
+      "hasSession",
+      "signIn",
+      "register",
+      "loadAccount",
+      "attendEvent",
+      "cancelAttendance",
+      "signOut",
+      "SessionRepository",
+      "AccountField",
+      "AuthenticationRejected",
+      "EventSessionExpired",
+      "hasSession",
+      "signOut",
+      "signIn",
+      "register",
+      "attendEvent",
+      "cancelAttendance",
+      "loadAccount",
+      "RemoteSessionRepository"
+    ],
+    "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt": [
+      "CachedDataNotice",
+      "cachedCatalogNotice"
+    ],
+    "app/src/main/java/com/example/eventia/ui/components/EventCard.kt": [
+      "EventCard",
+      "EventCategoryLabel",
+      "EventArtwork",
+      "eventLocalDateTime"
+    ],
+    "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt": [
+      "FavoriteButton",
+      "favoriteIcon",
+      "favoriteLabel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt": [
+      "ScreenMessage",
+      "LoadingScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt": [
+      "ConnectionNotice",
+      "connectionNotices",
+      "ConnectionBanner"
+    ],
+    "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt": [
+      "DetailDestination",
+      "EventiaNavigation"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt": [
+      "EventDetailScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": [
+      "EventDetailUiState",
+      "AttendanceConflict",
+      "state",
+      "load",
+      "cancelRequest",
+      "refresh",
+      "dismissConflict",
+      "attend",
+      "EventDetailViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt": [
+      "ExploreScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt": [
+      "isActive",
+      "ExploreFilters",
+      "ExploreUiState",
+      "state",
+      "changeQuery",
+      "selectCategory",
+      "clearFilters",
+      "refresh",
+      "ExploreViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt": [
+      "FavoritesScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt": [
+      "canChange",
+      "FavoritesUiState",
+      "FavoriteNotice",
+      "state",
+      "notices",
+      "retry",
+      "changeFavorite",
+      "FavoritesViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt": [
+      "MapScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt": [
+      "MapUiState",
+      "MapPoint",
+      "state",
+      "retryMap",
+      "retryEvents",
+      "selectCategory",
+      "selectPoint",
+      "MapViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt": [
+      "ProfileRoute"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt": [
+      "AttendanceGroups",
+      "ProfileUiState",
+      "state",
+      "refresh",
+      "ProfileViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt": [
+      "SessionStartup",
+      "SessionForm",
+      "AccountScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt": [
+      "SessionUiState",
+      "state",
+      "returnEventId",
+      "retryStartup",
+      "continueAsGuest",
+      "openSignIn",
+      "requestEventSignIn",
+      "expireEventSession",
+      "expireSession",
+      "eventReturnHandled",
+      "signOut",
+      "switchForm",
+      "clearError",
+      "submit",
+      "retryAccount",
+      "SessionViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt": [
+      "VenueDetailScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt": [
+      "VenueListScreen"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt": [
+      "VenueLocation"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt": [
+      "matches",
+      "VenueListUiState",
+      "state",
+      "changeQuery",
+      "refresh",
+      "VenueListViewModel",
+      "VenueDetailUiState",
+      "VenueEventsUiState",
+      "state",
+      "retry",
+      "VenueDetailViewModel"
+    ],
+    "app/src/main/java/com/example/eventia/ui/theme/Color.kt": [],
+    "app/src/main/java/com/example/eventia/ui/theme/Theme.kt": [
+      "EventiaTheme"
+    ],
+    "app/src/main/java/com/example/eventia/ui/theme/Type.kt": [],
+    "app/src/main/keepRules/rules.keep": [],
+    "app/src/main/res/mipmap-hdpi/ic_launcher.webp": [],
+    "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp": [],
+    "app/src/main/res/mipmap-mdpi/ic_launcher.webp": [],
+    "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp": [],
+    "app/src/main/res/mipmap-xhdpi/ic_launcher.webp": [],
+    "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp": [],
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp": [],
+    "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp": [],
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp": [],
+    "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp": [],
+    "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt": [
+      "usesTheStartInstantAcrossTimeZones",
+      "AttendanceGroupsTest"
+    ],
+    "app/src/test/java/com/example/eventia/CatalogMappingTest.kt": [
+      "eventPreservesOffsetNullCoordinatesAndAttendance",
+      "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+      "CatalogMappingTest"
+    ],
+    "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt": [
+      "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+      "ConnectionNoticeTest"
+    ],
+    "app/src/test/java/com/example/eventia/EventiaApiTest.kt": [
+      "catalogSupportsBothQueryParametersOnTheEventsRoute",
+      "loginUsesRelativePostRoute",
+      "catalogKeepsExistingRelativeGetRoutes",
+      "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+      "registrationUsesRelativePostRoute",
+      "accountUsesRelativeGetWithAuthorization",
+      "attendancesUseRelativeGetWithAuthorization",
+      "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+      "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+      "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+      "EventiaApiTest"
+    ],
+    "app/src/test/java/com/example/eventia/ExampleUnitTest.kt": [
+      "addition_isCorrect",
+      "ExampleUnitTest"
+    ],
+    "app/src/test/java/com/example/eventia/MapMarkersTest.kt": [
+      "pointRequiresTwoCoordinatesInRange",
+      "MapMarkersTest"
+    ],
+    "build.gradle.kts": [],
+    "gradle/wrapper/gradle-wrapper.jar": [],
+    "gradlew": [],
+    "settings.gradle.kts": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "app/src/main/java/com/example/eventia/MainActivity.kt",
+          "language": "kotlin",
+          "sizeLines": 73,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "language": "kotlin",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "language": "kotlin",
+          "sizeLines": 13,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+          "language": "kotlin",
+          "sizeLines": 25,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+          "language": "kotlin",
+          "sizeLines": 54,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+          "language": "kotlin",
+          "sizeLines": 112,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+          "language": "kotlin",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+          "language": "kotlin",
+          "sizeLines": 81,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+          "language": "kotlin",
+          "sizeLines": 236,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 444,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 299,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 67,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+          "language": "kotlin",
+          "sizeLines": 82,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 251,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 154,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+          "language": "kotlin",
+          "sizeLines": 73,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 195,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 108,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+          "language": "kotlin",
+          "sizeLines": 137,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+          "language": "kotlin",
+          "sizeLines": 61,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+          "language": "kotlin",
+          "sizeLines": 142,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/src/main/java/com/example/eventia/MainActivity.kt": [
+          "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt"
+        ],
+        "app/src/main/java/com/example/eventia/domain/model/Event.kt": [],
+        "app/src/main/java/com/example/eventia/domain/model/Venue.kt": [],
+        "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt": [],
+        "app/src/main/java/com/example/eventia/ui/components/EventCard.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt": [],
+        "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt": [],
+        "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt": [
+          "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+          "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+          "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+          "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+          "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/ui/components/EventCard.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt": [
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt"
+        ]
+      },
+      "neighborMap": {
+        "app/src/main/java/com/example/eventia/MainActivity.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "SessionUiState",
+              "state",
+              "returnEventId",
+              "retryStartup",
+              "continueAsGuest",
+              "openSignIn",
+              "requestEventSignIn",
+              "expireEventSession",
+              "expireSession",
+              "eventReturnHandled",
+              "signOut",
+              "switchForm",
+              "clearError",
+              "submit",
+              "retryAccount",
+              "SessionViewModel"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/domain/model/Event.kt": [
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "filtersCoalesceCancelAndRestore",
+              "refreshKeepsPreviousResultOnFailureAndCanRetry",
+              "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+              "ExploreFlowTest"
+            ]
+          },
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+              "FavoritesPersistenceTest"
+            ]
+          },
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "compose",
+              "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+              "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+              "cleanStartAllowsGuestEntryAndReturnToSignIn",
+              "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+              "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+              "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+              "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+              "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+              "offlineValidationKeepsSessionUntilLogout",
+              "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+              "SessionFlowTest"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "toDomain",
+              "toDomain"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "toDomain",
+              "StoredEvent"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "CatalogRepository",
+              "events",
+              "CatalogEvents"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "observeFavorites",
+              "findFavorite",
+              "addFavorite",
+              "removeFavorite",
+              "FavoritesRepository",
+              "observeFavorites",
+              "findFavorite",
+              "addFavorite",
+              "removeFavorite",
+              "RoomFavoritesRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "EventDetailUiState",
+              "AttendanceConflict",
+              "state",
+              "load",
+              "cancelRequest",
+              "refresh",
+              "dismissConflict",
+              "attend",
+              "EventDetailViewModel"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "isActive",
+              "ExploreFilters",
+              "ExploreUiState",
+              "state",
+              "changeQuery",
+              "selectCategory",
+              "clearFilters",
+              "refresh",
+              "ExploreViewModel"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "MapUiState",
+              "MapPoint",
+              "state",
+              "retryMap",
+              "retryEvents",
+              "selectCategory",
+              "selectPoint",
+              "MapViewModel"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/domain/model/Venue.kt": [
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "filtersCoalesceCancelAndRestore",
+              "refreshKeepsPreviousResultOnFailureAndCanRetry",
+              "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+              "ExploreFlowTest"
+            ]
+          },
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+              "FavoritesPersistenceTest"
+            ]
+          },
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "compose",
+              "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+              "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+              "cleanStartAllowsGuestEntryAndReturnToSignIn",
+              "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+              "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+              "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+              "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+              "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+              "offlineValidationKeepsSessionUntilLogout",
+              "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+              "SessionFlowTest"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "toDomain",
+              "toDomain"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "toDomain",
+              "StoredEvent"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "CatalogRepository",
+              "events",
+              "CatalogEvents"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "getCategories",
+              "getEvents",
+              "getEvent",
+              "attendEvent",
+              "cancelAttendance",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "login",
+              "register",
+              "getMe",
+              "getMyAttendances",
+              "EventiaApi"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "EventDto"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "readToken",
+              "saveToken",
+              "clearToken",
+              "SessionStore"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "bindSessionRepository",
+              "bindAttendanceRepository",
+              "bindCategoryRepository",
+              "bindCatalogRepository",
+              "bindCatalogConnectivity",
+              "NetworkModule"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "observeFavorites",
+              "findFavorite",
+              "addFavorite",
+              "removeFavorite",
+              "FavoritesRepository",
+              "observeFavorites",
+              "findFavorite",
+              "addFavorite",
+              "removeFavorite",
+              "RoomFavoritesRepository"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "CatalogRepository",
+              "events",
+              "CatalogEvents"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+          "language": "kotlin",
+          "sizeLines": 156,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+          "language": "kotlin",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+          "language": "kotlin",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+          "language": "kotlin",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+          "language": "kotlin",
+          "sizeLines": 31,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+          "language": "kotlin",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+          "language": "kotlin",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+          "language": "kotlin",
+          "sizeLines": 13,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+          "language": "kotlin",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+          "language": "kotlin",
+          "sizeLines": 49,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+          "language": "kotlin",
+          "sizeLines": 48,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+          "language": "kotlin",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+          "language": "kotlin",
+          "sizeLines": 93,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+          "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt": [
+          "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+          "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/SessionStore.kt": [],
+        "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt": [
+          "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt": [
+          "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt": [
+          "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt": [],
+        "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt": [
+          "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt": [
+          "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+        ],
+        "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt": [
+          "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+          "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+          "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+          "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt": [
+          "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt"
+        ],
+        "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+          "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+          "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+          "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+          "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+        ]
+      },
+      "neighborMap": {
+        "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "getCategories",
+              "getEvents",
+              "getEvent",
+              "attendEvent",
+              "cancelAttendance",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "login",
+              "register",
+              "getMe",
+              "getMyAttendances",
+              "EventiaApi"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/data/local/SessionStore.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "AttendanceSessionUnavailable",
+              "getMyAttendances",
+              "AttendanceRepository",
+              "getMyAttendances",
+              "RemoteAttendanceRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "hasSession",
+              "signIn",
+              "register",
+              "loadAccount",
+              "attendEvent",
+              "cancelAttendance",
+              "signOut",
+              "SessionRepository",
+              "AccountField",
+              "AuthenticationRejected",
+              "EventSessionExpired",
+              "hasSession",
+              "signOut",
+              "signIn",
+              "register",
+              "attendEvent",
+              "cancelAttendance",
+              "loadAccount",
+              "RemoteSessionRepository"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          },
+          {
+            "path": "app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "eventPreservesOffsetNullCoordinatesAndAttendance",
+              "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+              "CatalogMappingTest"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "canChange",
+              "FavoritesUiState",
+              "FavoriteNotice",
+              "state",
+              "notices",
+              "retry",
+              "changeFavorite",
+              "FavoritesViewModel"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "getCategories",
+              "getEvents",
+              "getEvent",
+              "attendEvent",
+              "cancelAttendance",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "login",
+              "register",
+              "getMe",
+              "getMyAttendances",
+              "EventiaApi"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "EventDto"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "VenueDto"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "bindSessionRepository",
+              "bindAttendanceRepository",
+              "bindCategoryRepository",
+              "bindCatalogRepository",
+              "bindCatalogConnectivity",
+              "NetworkModule"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "language": "kotlin",
+          "sizeLines": 67,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+          "language": "kotlin",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+          "language": "kotlin",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+          "language": "kotlin",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "language": "kotlin",
+          "sizeLines": 16,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+          "language": "kotlin",
+          "sizeLines": 13,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt",
+          "language": "kotlin",
+          "sizeLines": 40,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+          "language": "kotlin",
+          "sizeLines": 50,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/test/java/com/example/eventia/EventiaApiTest.kt",
+          "language": "kotlin",
+          "sizeLines": 116,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/src/main/java/com/example/eventia/api/EventiaApi.kt": [
+          "app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+          "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+          "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "app/src/main/java/com/example/eventia/api/models/VenueDto.kt"
+        ],
+        "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt": [
+          "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+        ],
+        "app/src/main/java/com/example/eventia/api/models/AccountDto.kt": [],
+        "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt": [],
+        "app/src/main/java/com/example/eventia/api/models/EventDto.kt": [],
+        "app/src/main/java/com/example/eventia/api/models/VenueDto.kt": [],
+        "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt": [
+          "app/src/main/java/com/example/eventia/api/models/EventDto.kt"
+        ],
+        "app/src/test/java/com/example/eventia/CatalogMappingTest.kt": [
+          "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+          "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+        ],
+        "app/src/test/java/com/example/eventia/EventiaApiTest.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt"
+        ]
+      },
+      "neighborMap": {
+        "app/src/main/java/com/example/eventia/api/EventiaApi.kt": [
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+              "FavoritesPersistenceTest"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "bindSessionRepository",
+              "bindAttendanceRepository",
+              "bindCategoryRepository",
+              "bindCatalogRepository",
+              "bindCatalogConnectivity",
+              "NetworkModule"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "AttendanceSessionUnavailable",
+              "getMyAttendances",
+              "AttendanceRepository",
+              "getMyAttendances",
+              "RemoteAttendanceRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "getCategories",
+              "CategoryRepository",
+              "getCategories",
+              "RemoteCategoryRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "hasSession",
+              "signIn",
+              "register",
+              "loadAccount",
+              "attendEvent",
+              "cancelAttendance",
+              "signOut",
+              "SessionRepository",
+              "AccountField",
+              "AuthenticationRejected",
+              "EventSessionExpired",
+              "hasSession",
+              "signOut",
+              "signIn",
+              "register",
+              "attendEvent",
+              "cancelAttendance",
+              "loadAccount",
+              "RemoteSessionRepository"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/api/models/EventDto.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "AttendanceSessionUnavailable",
+              "getMyAttendances",
+              "AttendanceRepository",
+              "getMyAttendances",
+              "RemoteAttendanceRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/api/models/VenueDto.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          }
+        ],
+        "app/src/test/java/com/example/eventia/CatalogMappingTest.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "toDomain",
+              "StoredEvent"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+          "language": "kotlin",
+          "sizeLines": 150,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+          "language": "kotlin",
+          "sizeLines": 48,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+          "language": "kotlin",
+          "sizeLines": 50,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "language": "kotlin",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "language": "kotlin",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+          "language": "kotlin",
+          "sizeLines": 16,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+          "language": "kotlin",
+          "sizeLines": 166,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+          "language": "kotlin",
+          "sizeLines": 161,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt": [
+          "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt"
+        ],
+        "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt": [],
+        "app/src/main/java/com/example/eventia/di/NetworkModule.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+          "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/domain/model/Category.kt": [],
+        "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+        ],
+        "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt": [
+          "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt"
+        ]
+      },
+      "neighborMap": {
+        "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/di/NetworkModule.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "getCategories",
+              "getEvents",
+              "getEvent",
+              "attendEvent",
+              "cancelAttendance",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "login",
+              "register",
+              "getMe",
+              "getMyAttendances",
+              "EventiaApi"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "AttendanceSessionUnavailable",
+              "getMyAttendances",
+              "AttendanceRepository",
+              "getMyAttendances",
+              "RemoteAttendanceRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "hasSession",
+              "signIn",
+              "register",
+              "loadAccount",
+              "attendEvent",
+              "cancelAttendance",
+              "signOut",
+              "SessionRepository",
+              "AccountField",
+              "AuthenticationRejected",
+              "EventSessionExpired",
+              "hasSession",
+              "signOut",
+              "signIn",
+              "register",
+              "attendEvent",
+              "cancelAttendance",
+              "loadAccount",
+              "RemoteSessionRepository"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/domain/model/Category.kt": [
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+              "FavoritesPersistenceTest"
+            ]
+          },
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "compose",
+              "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+              "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+              "cleanStartAllowsGuestEntryAndReturnToSignIn",
+              "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+              "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+              "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+              "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+              "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+              "offlineValidationKeepsSessionUntilLogout",
+              "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+              "SessionFlowTest"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "toDomain",
+              "toDomain"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "toDomain",
+              "StoredEvent"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "RemoteCatalogRepository"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "EventDetailScreen"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "ExploreScreen"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          },
+          {
+            "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "compose",
+              "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+              "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+              "cleanStartAllowsGuestEntryAndReturnToSignIn",
+              "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+              "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+              "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+              "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+              "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+              "offlineValidationKeepsSessionUntilLogout",
+              "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+              "SessionFlowTest"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+            "batchIndex": 5,
+            "symbols": [
+              "EventDetailUiState",
+              "AttendanceConflict",
+              "state",
+              "load",
+              "cancelRequest",
+              "refresh",
+              "dismissConflict",
+              "attend",
+              "EventDetailViewModel"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "matches",
+              "VenueListUiState",
+              "state",
+              "changeQuery",
+              "refresh",
+              "VenueListViewModel",
+              "VenueDetailUiState",
+              "VenueEventsUiState",
+              "state",
+              "retry",
+              "VenueDetailViewModel"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "getCategories",
+              "getEvents",
+              "getEvent",
+              "attendEvent",
+              "cancelAttendance",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "login",
+              "register",
+              "getMe",
+              "getMyAttendances",
+              "EventiaApi"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+          "language": "kotlin",
+          "sizeLines": 325,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+          "language": "kotlin",
+          "sizeLines": 3,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+          "language": "kotlin",
+          "sizeLines": 96,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+          "language": "kotlin",
+          "sizeLines": 139,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+          "language": "kotlin",
+          "sizeLines": 222,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+          "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt"
+        ],
+        "app/src/main/java/com/example/eventia/domain/model/Account.kt": [],
+        "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt": [
+          "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+          "app/src/main/java/com/example/eventia/domain/model/Account.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt"
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt": [
+          "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+          "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt"
+        ]
+      },
+      "neighborMap": {
+        "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "Category"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Venue"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "CatalogRepository",
+              "events",
+              "CatalogEvents"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+            "batchIndex": 3,
+            "symbols": [
+              "getCategories",
+              "getEvents",
+              "getEvent",
+              "attendEvent",
+              "cancelAttendance",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "login",
+              "register",
+              "getMe",
+              "getMyAttendances",
+              "EventiaApi"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+            "batchIndex": 2,
+            "symbols": [
+              "readToken",
+              "saveToken",
+              "clearToken",
+              "SessionStore"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "bindSessionRepository",
+              "bindAttendanceRepository",
+              "bindCategoryRepository",
+              "bindCatalogRepository",
+              "bindCatalogConnectivity",
+              "NetworkModule"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "Event"
+            ]
+          },
+          {
+            "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+            "batchIndex": 4,
+            "symbols": [
+              "getEvents",
+              "loadEvents",
+              "getEvent",
+              "getVenues",
+              "getVenue",
+              "getVenueEvents",
+              "CatalogRepository",
+              "events",
+              "CatalogEvents"
+            ]
+          }
+        ],
+        "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt": [
+          {
+            "path": "app/src/main/java/com/example/eventia/MainActivity.kt",
+            "batchIndex": 1,
+            "symbols": [
+              "connectivity",
+              "onCreate",
+              "MainActivity"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "language": "markdown",
+          "sizeLines": 44,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 96,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "gradle.properties",
+          "language": "properties",
+          "sizeLines": 18,
+          "fileCategory": "config"
+        },
+        {
+          "path": "gradlew.bat",
+          "language": "batch",
+          "sizeLines": 94,
+          "fileCategory": "script"
+        }
+      ],
+      "batchImportData": {
+        "AGENTS.md": [],
+        "README.md": [],
+        "gradle.properties": [],
+        "gradlew.bat": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": "app/src/main/res/drawable/ic_back.xml",
+          "language": "xml",
+          "sizeLines": 8,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_event_calendar.xml",
+          "language": "xml",
+          "sizeLines": 7,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_event_placeholder.xml",
+          "language": "xml",
+          "sizeLines": 12,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_event_share.xml",
+          "language": "xml",
+          "sizeLines": 7,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_explore.xml",
+          "language": "xml",
+          "sizeLines": 8,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_favorite_outline.xml",
+          "language": "xml",
+          "sizeLines": 12,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_favorites.xml",
+          "language": "xml",
+          "sizeLines": 8,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_launcher_background.xml",
+          "language": "xml",
+          "sizeLines": 170,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_launcher_foreground.xml",
+          "language": "xml",
+          "sizeLines": 29,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_map.xml",
+          "language": "xml",
+          "sizeLines": 8,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_profile.xml",
+          "language": "xml",
+          "sizeLines": 8,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/drawable/ic_status_error.xml",
+          "language": "xml",
+          "sizeLines": 9,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "app/src/main/res/drawable/ic_back.xml": [],
+        "app/src/main/res/drawable/ic_event_calendar.xml": [],
+        "app/src/main/res/drawable/ic_event_placeholder.xml": [],
+        "app/src/main/res/drawable/ic_event_share.xml": [],
+        "app/src/main/res/drawable/ic_explore.xml": [],
+        "app/src/main/res/drawable/ic_favorite_outline.xml": [],
+        "app/src/main/res/drawable/ic_favorites.xml": [],
+        "app/src/main/res/drawable/ic_launcher_background.xml": [],
+        "app/src/main/res/drawable/ic_launcher_foreground.xml": [],
+        "app/src/main/res/drawable/ic_map.xml": [],
+        "app/src/main/res/drawable/ic_profile.xml": [],
+        "app/src/main/res/drawable/ic_status_error.xml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "app/src/main/res/values/colors.xml",
+          "language": "xml",
+          "sizeLines": 9,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/values/strings.xml",
+          "language": "xml",
+          "sizeLines": 129,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/values/themes.xml",
+          "language": "xml",
+          "sizeLines": 4,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "app/src/main/res/values/colors.xml": [],
+        "app/src/main/res/values/strings.xml": [],
+        "app/src/main/res/values/themes.xml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 9,
+      "files": [
+        {
+          "path": "app/build.gradle.kts",
+          "language": "kotlin",
+          "sizeLines": 81,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+          "language": "kotlin",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/AndroidManifest.xml",
+          "language": "xml",
+          "sizeLines": 35,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/EventiaApplication.kt",
+          "language": "kotlin",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+          "language": "kotlin",
+          "sizeLines": 12,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+          "language": "kotlin",
+          "sizeLines": 63,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/theme/Color.kt",
+          "language": "kotlin",
+          "sizeLines": 10,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+          "language": "kotlin",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/java/com/example/eventia/ui/theme/Type.kt",
+          "language": "kotlin",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/keepRules/rules.keep",
+          "language": "keep",
+          "sizeLines": 11,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+          "language": "xml",
+          "sizeLines": 5,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+          "language": "xml",
+          "sizeLines": 5,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+          "language": "webp",
+          "sizeLines": 6,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+          "language": "webp",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+          "language": "webp",
+          "sizeLines": 1,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+          "language": "webp",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+          "language": "webp",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+          "language": "webp",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+          "language": "webp",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+          "language": "webp",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+          "language": "webp",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp",
+          "language": "webp",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/main/res/xml/backup_rules.xml",
+          "language": "xml",
+          "sizeLines": 14,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/main/res/xml/data_extraction_rules.xml",
+          "language": "xml",
+          "sizeLines": 17,
+          "fileCategory": "config"
+        },
+        {
+          "path": "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+          "language": "kotlin",
+          "sizeLines": 37,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/build.gradle.kts": [],
+        "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt": [],
+        "app/src/main/AndroidManifest.xml": [],
+        "app/src/main/java/com/example/eventia/EventiaApplication.kt": [],
+        "app/src/main/java/com/example/eventia/api/models/LoginDto.kt": [],
+        "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt": [],
+        "app/src/main/java/com/example/eventia/ui/theme/Color.kt": [],
+        "app/src/main/java/com/example/eventia/ui/theme/Theme.kt": [],
+        "app/src/main/java/com/example/eventia/ui/theme/Type.kt": [],
+        "app/src/main/keepRules/rules.keep": [],
+        "app/src/main/res/mipmap-anydpi/ic_launcher.xml": [],
+        "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml": [],
+        "app/src/main/res/mipmap-hdpi/ic_launcher.webp": [],
+        "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp": [],
+        "app/src/main/res/mipmap-mdpi/ic_launcher.webp": [],
+        "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp": [],
+        "app/src/main/res/mipmap-xhdpi/ic_launcher.webp": [],
+        "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp": [],
+        "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp": [],
+        "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp": [],
+        "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp": [],
+        "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp": [],
+        "app/src/main/res/xml/backup_rules.xml": [],
+        "app/src/main/res/xml/data_extraction_rules.xml": [],
+        "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt": [
+          "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt"
+        ]
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 10,
+      "files": [
+        {
+          "path": "app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+          "language": "kotlin",
+          "sizeLines": 16,
+          "fileCategory": "code"
+        },
+        {
+          "path": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
+          "language": "kotlin",
+          "sizeLines": 19,
+          "fileCategory": "code"
+        },
+        {
+          "path": "build.gradle.kts",
+          "language": "kotlin",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "gradle/gradle-daemon-jvm.properties",
+          "language": "properties",
+          "sizeLines": 12,
+          "fileCategory": "config"
+        },
+        {
+          "path": "gradle/libs.versions.toml",
+          "language": "toml",
+          "sizeLines": 58,
+          "fileCategory": "config"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.jar",
+          "language": "jar",
+          "sizeLines": 159,
+          "fileCategory": "code"
+        },
+        {
+          "path": "gradle/wrapper/gradle-wrapper.properties",
+          "language": "properties",
+          "sizeLines": 9,
+          "fileCategory": "config"
+        },
+        {
+          "path": "gradlew",
+          "language": "unknown",
+          "sizeLines": 251,
+          "fileCategory": "code"
+        },
+        {
+          "path": "postman/Eventia-Dia-1.postman_collection.json",
+          "language": "json",
+          "sizeLines": 480,
+          "fileCategory": "config"
+        },
+        {
+          "path": "settings.gradle.kts",
+          "language": "kotlin",
+          "sizeLines": 26,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "app/src/test/java/com/example/eventia/ExampleUnitTest.kt": [],
+        "app/src/test/java/com/example/eventia/MapMarkersTest.kt": [],
+        "build.gradle.kts": [],
+        "gradle/gradle-daemon-jvm.properties": [],
+        "gradle/libs.versions.toml": [],
+        "gradle/wrapper/gradle-wrapper.jar": [],
+        "gradle/wrapper/gradle-wrapper.properties": [],
+        "gradlew": [],
+        "postman/Eventia-Dia-1.postman_collection.json": [],
+        "settings.gradle.kts": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}

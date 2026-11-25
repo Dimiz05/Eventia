@@ -1,0 +1,1398 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "file",
+      "name": "ScreenMessage.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "summary": "Comparte vistas Compose para carga y mensajes de pantalla con icono, descripción y acción opcional de recuperación.",
+      "tags": [
+        "compose",
+        "estados",
+        "componente"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "function",
+      "name": "ScreenMessage",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "lineRange": [
+        27,
+        67
+      ],
+      "summary": "Representa un estado vacío o de error con información y una acción opcional.",
+      "tags": [
+        "compose",
+        "estados",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "function",
+      "name": "LoadingScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "lineRange": [
+        69,
+        81
+      ],
+      "summary": "Ofrece un indicador centrado y una etiqueta durante la carga.",
+      "tags": [
+        "compose",
+        "estados",
+        "componente"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "type": "file",
+      "name": "EventiaNavigation.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "summary": "Monta la navegación principal y los destinos de detalle, conecta las pestañas con las pantallas y coordina acciones compartidas de favoritos y retorno tras iniciar sesión.",
+      "tags": [
+        "compose",
+        "navegación",
+        "pestañas",
+        "sesión"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:DetailDestination",
+      "type": "class",
+      "name": "DetailDestination",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "lineRange": [
+        59,
+        66
+      ],
+      "summary": "Define los destinos de detalle y construye rutas con un identificador de evento o de lugar.",
+      "tags": [
+        "compose",
+        "navegación",
+        "pestañas",
+        "sesión"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "type": "function",
+      "name": "EventiaNavigation",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "lineRange": [
+        68,
+        236
+      ],
+      "summary": "Construye el NavHost, las pestañas, los destinos de detalle y los avisos compartidos de favoritos.",
+      "tags": [
+        "compose",
+        "navegación",
+        "pestañas",
+        "sesión"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "type": "file",
+      "name": "EventDetailScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "summary": "Presenta un evento con imagen, horarios, descripción, capacidad y lugar. Integra controles de asistencia y favoritos, tratamiento de conflictos y acciones para abrir la ubicación.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "type": "function",
+      "name": "EventDetailScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "lineRange": [
+        57,
+        113
+      ],
+      "summary": "Vincula el ViewModel de detalle, el estado de asistencia y las acciones de favorito y autenticación.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailContent",
+      "type": "function",
+      "name": "EventDetailContent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "lineRange": [
+        115,
+        155
+      ],
+      "summary": "Selecciona carga, error, ausencia o contenido dentro de la estructura visual del detalle.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "type": "function",
+      "name": "EventDetails",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "lineRange": [
+        157,
+        311
+      ],
+      "summary": "Compone la información del evento y las acciones de inscripción, ubicación y gestión del favorito.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventCoverAction",
+      "type": "function",
+      "name": "EventCoverAction",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "lineRange": [
+        320,
+        332
+      ],
+      "summary": "Presenta una acción circular sobre la portada con icono, etiqueta y estado habilitado.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDescription",
+      "type": "function",
+      "name": "EventDescription",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "lineRange": [
+        344,
+        367
+      ],
+      "summary": "Renderiza la descripción del evento en el detalle.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventLocationPreview",
+      "type": "function",
+      "name": "EventLocationPreview",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "lineRange": [
+        369,
+        408
+      ],
+      "summary": "Presenta una vista previa del lugar y el mapa cuando hay coordenadas válidas.",
+      "tags": [
+        "compose",
+        "eventos",
+        "detalle",
+        "inscripciones"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "type": "file",
+      "name": "ExploreScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "summary": "Muestra catálogo y lugares con pestañas internas, búsqueda, categorías, estados de carga y avisos de caché. Conecta las tarjetas de evento con favoritos y navegación.",
+      "tags": [
+        "compose",
+        "catálogo",
+        "exploración",
+        "filtros"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "type": "function",
+      "name": "ExploreScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "lineRange": [
+        59,
+        95
+      ],
+      "summary": "Coordina estado del catálogo y navegación interna hacia el listado de lugares.",
+      "tags": [
+        "compose",
+        "catálogo",
+        "exploración",
+        "filtros"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreSections",
+      "type": "function",
+      "name": "ExploreSections",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "lineRange": [
+        97,
+        113
+      ],
+      "summary": "Presenta el selector segmentado entre eventos y lugares.",
+      "tags": [
+        "compose",
+        "catálogo",
+        "exploración",
+        "filtros"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "type": "function",
+      "name": "ExploreContent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "lineRange": [
+        115,
+        238
+      ],
+      "summary": "Compone búsqueda, filtros y tarjetas, además de avisos de caché y controles de recuperación.",
+      "tags": [
+        "compose",
+        "catálogo",
+        "exploración",
+        "filtros"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:CatalogSkeleton",
+      "type": "function",
+      "name": "CatalogSkeleton",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "lineRange": [
+        240,
+        260
+      ],
+      "summary": "Presenta una estructura de carga con marcadores visuales para la lista del catálogo.",
+      "tags": [
+        "compose",
+        "catálogo",
+        "exploración",
+        "filtros"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreStatePreview",
+      "type": "function",
+      "name": "ExploreStatePreview",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "lineRange": [
+        289,
+        299
+      ],
+      "summary": "Renderiza estados de ejemplo del catálogo para la vista previa de Compose.",
+      "tags": [
+        "compose",
+        "catálogo",
+        "exploración",
+        "filtros"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "type": "file",
+      "name": "FavoritesScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "summary": "Presenta el listado de eventos guardados, con mensajes para carga, error y colección vacía. Delega la eliminación mediante acciones de cada tarjeta.",
+      "tags": [
+        "compose",
+        "favoritos",
+        "lista"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "type": "function",
+      "name": "FavoritesScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "lineRange": [
+        24,
+        59
+      ],
+      "summary": "Representa el estado de favoritos y muestra los eventos guardados con una acción de eliminación.",
+      "tags": [
+        "compose",
+        "favoritos",
+        "lista"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "type": "file",
+      "name": "FavoritesViewModel.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "summary": "Observa los favoritos persistidos y coordina altas y bajas. Mantiene estados de carga y error, bloquea cambios repetidos por evento y publica avisos de deshacer o reintento.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "StateFlow expone el estado continuo, mientras Channel entrega los avisos puntuales al consumidor."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState",
+      "type": "class",
+      "name": "FavoritesUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        18,
+        25
+      ],
+      "summary": "Agrupa eventos, identificadores, carga fallida y operaciones pendientes de favoritos.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoriteNotice",
+      "type": "class",
+      "name": "FavoriteNotice",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        27,
+        30
+      ],
+      "summary": "Expone avisos de eliminación con opción de deshacer y de cambio fallido con acción de reintento.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel",
+      "type": "class",
+      "name": "FavoritesViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        32,
+        82
+      ],
+      "summary": "Mantiene el estado de favoritos observados y serializa los cambios sobre el mismo evento mediante identificadores pendientes.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState.canChange",
+      "type": "function",
+      "name": "canChange",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        24,
+        24
+      ],
+      "summary": "Permite cambiar un favorito si la colección está disponible y no hay una mutación pendiente para ese evento.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.retry",
+      "type": "function",
+      "name": "retry",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        45,
+        49
+      ],
+      "summary": "Restablece el estado de error e inicia de nuevo la observación.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.observeFavorites",
+      "type": "function",
+      "name": "observeFavorites",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        51,
+        60
+      ],
+      "summary": "Recoge el flujo del repositorio y sincroniza los eventos y sus identificadores en pantalla.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.changeFavorite",
+      "type": "function",
+      "name": "changeFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "lineRange": [
+        62,
+        81
+      ],
+      "summary": "Solicita el alta o la baja del favorito y emite un aviso si procede deshacer o reintentar.",
+      "tags": [
+        "viewmodel",
+        "favoritos",
+        "flow",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "type": "file",
+      "name": "MapScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "summary": "Renderiza Google Maps con filtros y marcadores de eventos, presenta un resumen del punto seleccionado y maneja el tiempo de espera del mapa.",
+      "tags": [
+        "compose",
+        "mapa",
+        "marcadores",
+        "filtros"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapScreen",
+      "type": "function",
+      "name": "MapScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "lineRange": [
+        55,
+        76
+      ],
+      "summary": "Selecciona el estado principal del mapa y vincula interacciones de selección y reintento.",
+      "tags": [
+        "compose",
+        "mapa",
+        "marcadores",
+        "filtros"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapContent",
+      "type": "function",
+      "name": "MapContent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "lineRange": [
+        78,
+        135
+      ],
+      "summary": "Renderiza filtros de categoría y conecta el mapa con el resumen del punto activo.",
+      "tags": [
+        "compose",
+        "mapa",
+        "marcadores",
+        "filtros"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventMap",
+      "type": "function",
+      "name": "EventMap",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "lineRange": [
+        137,
+        195
+      ],
+      "summary": "Crea el mapa, añade marcadores y controla la carga o su agotamiento por tiempo.",
+      "tags": [
+        "compose",
+        "mapa",
+        "marcadores",
+        "filtros"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventSummarySheet",
+      "type": "function",
+      "name": "EventSummarySheet",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "lineRange": [
+        197,
+        235
+      ],
+      "summary": "Lista los eventos de un marcador y ofrece navegación a cada detalle.",
+      "tags": [
+        "compose",
+        "mapa",
+        "marcadores",
+        "filtros"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:DetailDestination",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:DetailDestination",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventCoverAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventLocationPreview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreSections",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:CatalogSkeleton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreStatePreview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoriteNotice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoriteNotice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState.canChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState.canChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesUiState.canChange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.retry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.retry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.retry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.observeFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.observeFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.changeFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.changeFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.changeFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventSummarySheet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.changeFavorite",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.retry",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventCoverAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventCoverAction",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDescription",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventLocationPreview",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreSections",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:CachedDataNotice",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:cachedCatalogNotice",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:CatalogSkeleton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreStatePreview",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreSections",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreStatePreview",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt:ExploreContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt:CachedDataNotice",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt:FavoritesScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:FavoriteButton",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.retry",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt:FavoritesViewModel.observeFavorites",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventMap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:MapContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventSummarySheet",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventMap",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt:EventiaNavigation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCategoryLabel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetails",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:eventLocalDateTime",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteIcon",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt:EventDetailScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt:favoriteLabel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventSummarySheet",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCategoryLabel",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt:EventSummarySheet",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:eventLocalDateTime",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

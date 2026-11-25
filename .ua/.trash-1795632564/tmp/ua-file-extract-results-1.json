@@ -1,0 +1,6738 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 21,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 21,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 21,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/src/main/java/com/example/eventia/MainActivity.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 70,
+      "functions": [
+        {
+          "name": "onCreate",
+          "startLine": 27,
+          "endLine": 72,
+          "params": [
+            "savedInstanceState"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MainActivity",
+          "startLine": 23,
+          "endLine": 73,
+          "methods": [
+            "onCreate"
+          ],
+          "properties": [
+            "connectivity"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "connectivity",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "onCreate",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "MainActivity",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "onCreate",
+          "callee": "onCreate",
+          "lineNumber": 28
+        },
+        {
+          "caller": "onCreate",
+          "callee": "enableEdgeToEdge",
+          "lineNumber": 29
+        },
+        {
+          "caller": "onCreate",
+          "callee": "setContent",
+          "lineNumber": 30
+        },
+        {
+          "caller": "onCreate",
+          "callee": "EventiaTheme",
+          "lineNumber": 31
+        },
+        {
+          "caller": "onCreate",
+          "callee": "Surface",
+          "lineNumber": 32
+        },
+        {
+          "caller": "onCreate",
+          "callee": "hiltViewModel",
+          "lineNumber": 33
+        },
+        {
+          "caller": "onCreate",
+          "callee": "rememberSaveableStateHolder",
+          "lineNumber": 34
+        },
+        {
+          "caller": "onCreate",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 35
+        },
+        {
+          "caller": "onCreate",
+          "callee": "SessionStartup",
+          "lineNumber": 38
+        },
+        {
+          "caller": "onCreate",
+          "callee": "SessionStartup",
+          "lineNumber": 39
+        },
+        {
+          "caller": "onCreate",
+          "callee": "LaunchedEffect",
+          "lineNumber": 42
+        },
+        {
+          "caller": "onCreate",
+          "callee": "removeState",
+          "lineNumber": 42
+        },
+        {
+          "caller": "onCreate",
+          "callee": "BackHandler",
+          "lineNumber": 44
+        },
+        {
+          "caller": "onCreate",
+          "callee": "SessionForm",
+          "lineNumber": 46
+        },
+        {
+          "caller": "onCreate",
+          "callee": "SaveableStateProvider",
+          "lineNumber": 52
+        },
+        {
+          "caller": "onCreate",
+          "callee": "EventiaNavigation",
+          "lineNumber": 53
+        },
+        {
+          "caller": "onCreate",
+          "callee": "expireSession",
+          "lineNumber": 56
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 16,
+      "classes": [
+        {
+          "name": "Event",
+          "startLine": 5,
+          "endLine": 18,
+          "methods": [],
+          "properties": [
+            "id",
+            "title",
+            "summary",
+            "description",
+            "startsAt",
+            "endsAt",
+            "category",
+            "imageUrl",
+            "venue",
+            "capacity",
+            "availableSpots",
+            "isAttending"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Event",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 12,
+      "classes": [
+        {
+          "name": "Venue",
+          "startLine": 3,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "id",
+            "name",
+            "address",
+            "description",
+            "openingHours",
+            "imageUrl",
+            "latitude",
+            "longitude",
+            "upcomingEventsCount"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Venue",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 21,
+      "functions": [
+        {
+          "name": "getMyAttendances",
+          "startLine": 13,
+          "endLine": 13,
+          "params": []
+        },
+        {
+          "name": "getMyAttendances",
+          "startLine": 20,
+          "endLine": 24,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "AttendanceSessionUnavailable",
+          "startLine": 10,
+          "endLine": 10,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "AttendanceRepository",
+          "startLine": 12,
+          "endLine": 14,
+          "methods": [
+            "getMyAttendances"
+          ],
+          "properties": []
+        },
+        {
+          "name": "RemoteAttendanceRepository",
+          "startLine": 16,
+          "endLine": 25,
+          "methods": [
+            "getMyAttendances"
+          ],
+          "properties": [
+            "api",
+            "store"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AttendanceSessionUnavailable",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "getMyAttendances",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "AttendanceRepository",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "getMyAttendances",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "RemoteAttendanceRepository",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getMyAttendances",
+          "callee": "takeIf",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getMyAttendances",
+          "callee": "readToken",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getMyAttendances",
+          "callee": "AttendanceSessionUnavailable",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getMyAttendances",
+          "callee": "map",
+          "lineNumber": 23
+        },
+        {
+          "caller": "getMyAttendances",
+          "callee": "getMyAttendances",
+          "lineNumber": 23
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 5,
+        "functionCount": 2,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 51,
+      "functions": [
+        {
+          "name": "CachedDataNotice",
+          "startLine": 23,
+          "endLine": 36,
+          "params": [
+            "message",
+            "modifier"
+          ]
+        },
+        {
+          "name": "cachedCatalogNotice",
+          "startLine": 38,
+          "endLine": 54,
+          "params": [
+            "downloadedAt"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CachedDataNotice",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "cachedCatalogNotice",
+          "line": 38,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CachedDataNotice",
+          "callee": "Surface",
+          "lineNumber": 25
+        },
+        {
+          "caller": "CachedDataNotice",
+          "callee": "semantics",
+          "lineNumber": 26
+        },
+        {
+          "caller": "CachedDataNotice",
+          "callee": "fillMaxWidth",
+          "lineNumber": 26
+        },
+        {
+          "caller": "CachedDataNotice",
+          "callee": "Text",
+          "lineNumber": 30
+        },
+        {
+          "caller": "CachedDataNotice",
+          "callee": "padding",
+          "lineNumber": 32
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "produceState",
+          "lineNumber": 40
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "now",
+          "lineNumber": 40
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "now",
+          "lineNumber": 42
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "delay",
+          "lineNumber": 43
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "coerceAtLeast",
+          "lineNumber": 46
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "toMinutes",
+          "lineNumber": 46
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "between",
+          "lineNumber": 46
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "toInt",
+          "lineNumber": 47
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "coerceAtMost",
+          "lineNumber": 47
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "toLong",
+          "lineNumber": 47
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "stringResource",
+          "lineNumber": 49
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "stringResource",
+          "lineNumber": 50
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "stringResource",
+          "lineNumber": 51
+        },
+        {
+          "caller": "cachedCatalogNotice",
+          "callee": "pluralStringResource",
+          "lineNumber": 52
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 107,
+      "functions": [
+        {
+          "name": "EventCard",
+          "startLine": 30,
+          "endLine": 70,
+          "params": [
+            "event",
+            "onEventClick",
+            "modifier",
+            "favoriteAction"
+          ]
+        },
+        {
+          "name": "EventCategoryLabel",
+          "startLine": 72,
+          "endLine": 84,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "EventArtwork",
+          "startLine": 86,
+          "endLine": 101,
+          "params": [
+            "imageUrl",
+            "modifier"
+          ]
+        },
+        {
+          "name": "eventLocalDateTime",
+          "startLine": 103,
+          "endLine": 112,
+          "params": [
+            "event"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "EventCard",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "EventCategoryLabel",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "EventArtwork",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "eventLocalDateTime",
+          "line": 103,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "EventCard",
+          "callee": "OutlinedCard",
+          "lineNumber": 37
+        },
+        {
+          "caller": "EventCard",
+          "callee": "onEventClick",
+          "lineNumber": 38
+        },
+        {
+          "caller": "EventCard",
+          "callee": "fillMaxWidth",
+          "lineNumber": 39
+        },
+        {
+          "caller": "EventCard",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 40
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Row",
+          "lineNumber": 42
+        },
+        {
+          "caller": "EventCard",
+          "callee": "padding",
+          "lineNumber": 43
+        },
+        {
+          "caller": "EventCard",
+          "callee": "spacedBy",
+          "lineNumber": 44
+        },
+        {
+          "caller": "EventCard",
+          "callee": "EventArtwork",
+          "lineNumber": 46
+        },
+        {
+          "caller": "EventCard",
+          "callee": "clip",
+          "lineNumber": 46
+        },
+        {
+          "caller": "EventCard",
+          "callee": "size",
+          "lineNumber": 46
+        },
+        {
+          "caller": "EventCard",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 46
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Column",
+          "lineNumber": 47
+        },
+        {
+          "caller": "EventCard",
+          "callee": "weight",
+          "lineNumber": 48
+        },
+        {
+          "caller": "EventCard",
+          "callee": "spacedBy",
+          "lineNumber": 49
+        },
+        {
+          "caller": "EventCard",
+          "callee": "EventCategoryLabel",
+          "lineNumber": 51
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Text",
+          "lineNumber": 52
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Text",
+          "lineNumber": 53
+        },
+        {
+          "caller": "EventCard",
+          "callee": "eventLocalDateTime",
+          "lineNumber": 53
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Text",
+          "lineNumber": 54
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Text",
+          "lineNumber": 55
+        },
+        {
+          "caller": "EventCard",
+          "callee": "Text",
+          "lineNumber": 62
+        },
+        {
+          "caller": "EventCard",
+          "callee": "stringResource",
+          "lineNumber": 63
+        },
+        {
+          "caller": "EventCard",
+          "callee": "invoke",
+          "lineNumber": 67
+        },
+        {
+          "caller": "EventCategoryLabel",
+          "callee": "Surface",
+          "lineNumber": 74
+        },
+        {
+          "caller": "EventCategoryLabel",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 76
+        },
+        {
+          "caller": "EventCategoryLabel",
+          "callee": "Text",
+          "lineNumber": 78
+        },
+        {
+          "caller": "EventCategoryLabel",
+          "callee": "padding",
+          "lineNumber": 80
+        },
+        {
+          "caller": "EventArtwork",
+          "callee": "aspectRatio",
+          "lineNumber": 89
+        },
+        {
+          "caller": "EventArtwork",
+          "callee": "fillMaxWidth",
+          "lineNumber": 89
+        },
+        {
+          "caller": "EventArtwork",
+          "callee": "painterResource",
+          "lineNumber": 91
+        },
+        {
+          "caller": "EventArtwork",
+          "callee": "AsyncImage",
+          "lineNumber": 92
+        },
+        {
+          "caller": "EventArtwork",
+          "callee": "takeIf",
+          "lineNumber": 93
+        },
+        {
+          "caller": "EventArtwork",
+          "callee": "isNotBlank",
+          "lineNumber": 93
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "from",
+          "lineNumber": 106
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "toInstant",
+          "lineNumber": 106
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "stringResource",
+          "lineNumber": 107
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "format",
+          "lineNumber": 109
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "getMediumDateFormat",
+          "lineNumber": 109
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "format",
+          "lineNumber": 110
+        },
+        {
+          "caller": "eventLocalDateTime",
+          "callee": "getTimeFormat",
+          "lineNumber": 110
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "FavoriteButton",
+          "startLine": 10,
+          "endLine": 15,
+          "params": [
+            "selected",
+            "enabled",
+            "onClick"
+          ]
+        },
+        {
+          "name": "favoriteIcon",
+          "startLine": 17,
+          "endLine": 18,
+          "params": [
+            "selected"
+          ]
+        },
+        {
+          "name": "favoriteLabel",
+          "startLine": 20,
+          "endLine": 21,
+          "params": [
+            "selected"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "FavoriteButton",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "favoriteIcon",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "favoriteLabel",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FavoriteButton",
+          "callee": "IconButton",
+          "lineNumber": 12
+        },
+        {
+          "caller": "FavoriteButton",
+          "callee": "Icon",
+          "lineNumber": 13
+        },
+        {
+          "caller": "FavoriteButton",
+          "callee": "painterResource",
+          "lineNumber": 13
+        },
+        {
+          "caller": "FavoriteButton",
+          "callee": "favoriteIcon",
+          "lineNumber": 13
+        },
+        {
+          "caller": "FavoriteButton",
+          "callee": "stringResource",
+          "lineNumber": 13
+        },
+        {
+          "caller": "FavoriteButton",
+          "callee": "favoriteLabel",
+          "lineNumber": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 81,
+      "nonEmptyLines": 78,
+      "functions": [
+        {
+          "name": "ScreenMessage",
+          "startLine": 27,
+          "endLine": 67,
+          "params": [
+            "title",
+            "modifier",
+            "description",
+            "isError",
+            "icon",
+            "actionLabel",
+            "onAction"
+          ]
+        },
+        {
+          "name": "LoadingScreen",
+          "startLine": 69,
+          "endLine": 81,
+          "params": [
+            "label"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ScreenMessage",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "LoadingScreen",
+          "line": 69,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ScreenMessage",
+          "callee": "Box",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "fillMaxSize",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Column",
+          "lineNumber": 39
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "padding",
+          "lineNumber": 40
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "verticalScroll",
+          "lineNumber": 40
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "rememberScrollState",
+          "lineNumber": 40
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "spacedBy",
+          "lineNumber": 41
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Surface",
+          "lineNumber": 44
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Box",
+          "lineNumber": 49
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "size",
+          "lineNumber": 49
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Icon",
+          "lineNumber": 50
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "painterResource",
+          "lineNumber": 50
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Text",
+          "lineNumber": 53
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "let",
+          "lineNumber": 54
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Text",
+          "lineNumber": 55
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Button",
+          "lineNumber": 60
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Text",
+          "lineNumber": 60
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "OutlinedButton",
+          "lineNumber": 62
+        },
+        {
+          "caller": "ScreenMessage",
+          "callee": "Text",
+          "lineNumber": 62
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "Box",
+          "lineNumber": 71
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "fillMaxSize",
+          "lineNumber": 71
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "Column",
+          "lineNumber": 72
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "padding",
+          "lineNumber": 73
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "spacedBy",
+          "lineNumber": 74
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "CircularProgressIndicator",
+          "lineNumber": 77
+        },
+        {
+          "caller": "LoadingScreen",
+          "callee": "Text",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 236,
+      "nonEmptyLines": 228,
+      "functions": [
+        {
+          "name": "EventiaNavigation",
+          "startLine": 68,
+          "endLine": 236,
+          "params": [
+            "currentSession",
+            "onRetryAccount",
+            "onProfileSessionExpired",
+            "onSignIn",
+            "onSignOut",
+            "online",
+            "returnEventId",
+            "onEventReturnHandled",
+            "onEventSignIn",
+            "onEventSessionExpired",
+            "onAttendanceChanged"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Tab",
+          "startLine": 50,
+          "endLine": 55,
+          "methods": [],
+          "properties": [
+            "route",
+            "title",
+            "icon"
+          ]
+        },
+        {
+          "name": "DetailDestination",
+          "startLine": 59,
+          "endLine": 66,
+          "methods": [],
+          "properties": [
+            "path",
+            "title"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "DetailDestination",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "EventiaNavigation",
+          "line": 68,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "EventiaNavigation",
+          "callee": "rememberNavController",
+          "lineNumber": 83
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "rememberUpdatedState",
+          "lineNumber": 84
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "hiltViewModel",
+          "lineNumber": 85
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 86
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "remember",
+          "lineNumber": 87
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "SnackbarHostState",
+          "lineNumber": 87
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 88
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "remember",
+          "lineNumber": 88
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "connectionNotices",
+          "lineNumber": 88
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 90
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 91
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 92
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 93
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "LaunchedEffect",
+          "lineNumber": 94
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "collect",
+          "lineNumber": 95
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "showSnackbar",
+          "lineNumber": 98
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "changeFavorite",
+          "lineNumber": 100
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "showSnackbar",
+          "lineNumber": 104
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "retry",
+          "lineNumber": 105
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "currentBackStackEntryAsState",
+          "lineNumber": 110
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "firstOrNull",
+          "lineNumber": 112
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "firstOrNull",
+          "lineNumber": 113
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigate",
+          "lineNumber": 116
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "route",
+          "lineNumber": 116
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigate",
+          "lineNumber": 119
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "route",
+          "lineNumber": 119
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "LaunchedEffect",
+          "lineNumber": 121
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "getLong",
+          "lineNumber": 125
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "openEvent",
+          "lineNumber": 127
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "onEventReturnHandled",
+          "lineNumber": 129
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "Scaffold",
+          "lineNumber": 133
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "SnackbarHost",
+          "lineNumber": 134
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "only",
+          "lineNumber": 136
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "TopAppBar",
+          "lineNumber": 142
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "Text",
+          "lineNumber": 143
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 143
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "IconButton",
+          "lineNumber": 146
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigateUp",
+          "lineNumber": 146
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "Icon",
+          "lineNumber": 147
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "painterResource",
+          "lineNumber": 148
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 149
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "Column",
+          "lineNumber": 159
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigationBarsPadding",
+          "lineNumber": 159
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "NavigationBar",
+          "lineNumber": 161
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "forEach",
+          "lineNumber": 162
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "NavigationBarItem",
+          "lineNumber": 163
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigate",
+          "lineNumber": 167
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "popUpTo",
+          "lineNumber": 168
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "findStartDestination",
+          "lineNumber": 168
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "Icon",
+          "lineNumber": 176
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "painterResource",
+          "lineNumber": 176
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "Text",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "stringResource",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "let",
+          "lineNumber": 182
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "ConnectionBanner",
+          "lineNumber": 182
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "NavHost",
+          "lineNumber": 187
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "padding",
+          "lineNumber": 187
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "composable",
+          "lineNumber": 188
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "ExploreScreen",
+          "lineNumber": 189
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "changeFavorite",
+          "lineNumber": 193
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "composable",
+          "lineNumber": 196
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "MapScreen",
+          "lineNumber": 196
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "composable",
+          "lineNumber": 197
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "ProfileRoute",
+          "lineNumber": 198
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "composable",
+          "lineNumber": 200
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "FavoritesScreen",
+          "lineNumber": 201
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "changeFavorite",
+          "lineNumber": 204
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "forEach",
+          "lineNumber": 208
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "composable",
+          "lineNumber": 209
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "listOf",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navArgument",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "EventDetailScreen",
+          "lineNumber": 214
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "onEventSessionExpired",
+          "lineNumber": 218
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigateUp",
+          "lineNumber": 220
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "popBackStack",
+          "lineNumber": 221
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "changeFavorite",
+          "lineNumber": 225
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "VenueDetailScreen",
+          "lineNumber": 227
+        },
+        {
+          "caller": "EventiaNavigation",
+          "callee": "navigateUp",
+          "lineNumber": 228
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 444,
+      "nonEmptyLines": 424,
+      "functions": [
+        {
+          "name": "EventDetailScreen",
+          "startLine": 57,
+          "endLine": 113,
+          "params": [
+            "authenticated",
+            "onEventSignIn",
+            "onSessionExpired",
+            "onBack",
+            "onExplore",
+            "onAttendanceChanged",
+            "onVenueClick",
+            "favorites",
+            "onFavoriteChange",
+            "viewModel"
+          ]
+        },
+        {
+          "name": "EventDetailContent",
+          "startLine": 115,
+          "endLine": 155,
+          "params": [
+            "state",
+            "onRetry",
+            "onBack",
+            "onVenueClick",
+            "onAttend",
+            "onRefresh",
+            "favoriteAction"
+          ]
+        },
+        {
+          "name": "EventDetails",
+          "startLine": 157,
+          "endLine": 311,
+          "params": [
+            "state",
+            "onBack",
+            "onVenueClick",
+            "onAttend",
+            "onRefresh",
+            "favoriteAction"
+          ]
+        },
+        {
+          "name": "eventCapacityLabel",
+          "startLine": 313,
+          "endLine": 318,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "EventCoverAction",
+          "startLine": 320,
+          "endLine": 332,
+          "params": [
+            "icon",
+            "label",
+            "onClick",
+            "enabled"
+          ]
+        },
+        {
+          "name": "EventDetailIcon",
+          "startLine": 334,
+          "endLine": 342,
+          "params": [
+            "icon"
+          ]
+        },
+        {
+          "name": "EventDescription",
+          "startLine": 344,
+          "endLine": 367,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "EventLocationPreview",
+          "startLine": 369,
+          "endLine": 408,
+          "params": [
+            "venue",
+            "point"
+          ]
+        },
+        {
+          "name": "EventDetailErrorPreview",
+          "startLine": 438,
+          "endLine": 444,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "EventDetailScreen",
+          "line": 57,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "EventDetailScreen",
+          "callee": "hiltViewModel",
+          "lineNumber": 68
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 70
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "LaunchedEffect",
+          "lineNumber": 71
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "load",
+          "lineNumber": 71
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "DisposableEffect",
+          "lineNumber": 72
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "onDispose",
+          "lineNumber": 73
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "EventDetailContent",
+          "lineNumber": 79
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "load",
+          "lineNumber": 81
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "attend",
+          "lineNumber": 85
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "onEventSignIn",
+          "lineNumber": 86
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "refresh",
+          "lineNumber": 88
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "EventCoverAction",
+          "lineNumber": 91
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "favoriteIcon",
+          "lineNumber": 92
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "stringResource",
+          "lineNumber": 93
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "favoriteLabel",
+          "lineNumber": 93
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "onFavoriteChange",
+          "lineNumber": 94
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "canChange",
+          "lineNumber": 95
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "AlertDialog",
+          "lineNumber": 99
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "Text",
+          "lineNumber": 101
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "stringResource",
+          "lineNumber": 101
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "Text",
+          "lineNumber": 102
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "eventCapacityLabel",
+          "lineNumber": 102
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "TextButton",
+          "lineNumber": 104
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "Text",
+          "lineNumber": 105
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "stringResource",
+          "lineNumber": 105
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "TextButton",
+          "lineNumber": 109
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "Text",
+          "lineNumber": 109
+        },
+        {
+          "caller": "EventDetailScreen",
+          "callee": "stringResource",
+          "lineNumber": 109
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "EventDetails",
+          "lineNumber": 126
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "Scaffold",
+          "lineNumber": 130
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "Row",
+          "lineNumber": 131
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "padding",
+          "lineNumber": 131
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "statusBarsPadding",
+          "lineNumber": 131
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "IconButton",
+          "lineNumber": 132
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "Icon",
+          "lineNumber": 133
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "painterResource",
+          "lineNumber": 133
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 133
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "Box",
+          "lineNumber": 137
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "padding",
+          "lineNumber": 137
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "fillMaxSize",
+          "lineNumber": 137
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "LoadingScreen",
+          "lineNumber": 139
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 139
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 140
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 141
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 142
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 145
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 146
+        },
+        {
+          "caller": "EventDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 148
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "from",
+          "lineNumber": 167
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "eventLocalDateTime",
+          "lineNumber": 171
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 172
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 173
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Column",
+          "lineNumber": 175
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "verticalScroll",
+          "lineNumber": 175
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "fillMaxSize",
+          "lineNumber": 175
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "rememberScrollState",
+          "lineNumber": 175
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Box",
+          "lineNumber": 176
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventArtwork",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "aspectRatio",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "fillMaxWidth",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Row",
+          "lineNumber": 178
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "padding",
+          "lineNumber": 179
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "statusBarsPadding",
+          "lineNumber": 179
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "fillMaxWidth",
+          "lineNumber": 179
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventCoverAction",
+          "lineNumber": 182
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 182
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Row",
+          "lineNumber": 183
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 183
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventCoverAction",
+          "lineNumber": 184
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "apply",
+          "lineNumber": 185
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Intent",
+          "lineNumber": 185
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "putExtra",
+          "lineNumber": 187
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "startActivity",
+          "lineNumber": 189
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "createChooser",
+          "lineNumber": 189
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "invoke",
+          "lineNumber": 191
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Column",
+          "lineNumber": 196
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "padding",
+          "lineNumber": 197
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "fillMaxWidth",
+          "lineNumber": 197
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 198
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Column",
+          "lineNumber": 200
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 200
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventCategoryLabel",
+          "lineNumber": 201
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 202
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Column",
+          "lineNumber": 205
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Row",
+          "lineNumber": 206
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 206
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventDetailIcon",
+          "lineNumber": 207
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 208
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Row",
+          "lineNumber": 210
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "heightIn",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "clickable",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "clip",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "onVenueClick",
+          "lineNumber": 212
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 215
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventDetailIcon",
+          "lineNumber": 217
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 218
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "weight",
+          "lineNumber": 220
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Icon",
+          "lineNumber": 224
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "painterResource",
+          "lineNumber": 225
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "graphicsLayer",
+          "lineNumber": 227
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "size",
+          "lineNumber": 227
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Column",
+          "lineNumber": 233
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 233
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 235
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "eventCapacityLabel",
+          "lineNumber": 236
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "LinearProgressIndicator",
+          "lineNumber": 240
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "coerceIn",
+          "lineNumber": 241
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "toFloat",
+          "lineNumber": 241
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "fillMaxWidth",
+          "lineNumber": 242
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventDescription",
+          "lineNumber": 251
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Column",
+          "lineNumber": 253
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 253
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 254
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 254
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "EventLocationPreview",
+          "lineNumber": 255
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Row",
+          "lineNumber": 258
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "fillMaxWidth",
+          "lineNumber": 258
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "spacedBy",
+          "lineNumber": 258
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "OutlinedButton",
+          "lineNumber": 259
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "encode",
+          "lineNumber": 263
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "openUri",
+          "lineNumber": 265
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "show",
+          "lineNumber": 267
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "makeText",
+          "lineNumber": 267
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "weight",
+          "lineNumber": 274
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "PaddingValues",
+          "lineNumber": 275
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 277
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 277
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Button",
+          "lineNumber": 279
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "invoke",
+          "lineNumber": 280
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "weight",
+          "lineNumber": 283
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "PaddingValues",
+          "lineNumber": 284
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 286
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 286
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 296
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 296
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 298
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 298
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 302
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 302
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "TextButton",
+          "lineNumber": 306
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "Text",
+          "lineNumber": 306
+        },
+        {
+          "caller": "EventDetails",
+          "callee": "stringResource",
+          "lineNumber": 306
+        },
+        {
+          "caller": "eventCapacityLabel",
+          "callee": "stringResource",
+          "lineNumber": 315
+        },
+        {
+          "caller": "eventCapacityLabel",
+          "callee": "stringResource",
+          "lineNumber": 317
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "IconButton",
+          "lineNumber": 322
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "Surface",
+          "lineNumber": 323
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "Icon",
+          "lineNumber": 324
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "painterResource",
+          "lineNumber": 325
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "size",
+          "lineNumber": 327
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "padding",
+          "lineNumber": 327
+        },
+        {
+          "caller": "EventCoverAction",
+          "callee": "copy",
+          "lineNumber": 328
+        },
+        {
+          "caller": "EventDetailIcon",
+          "callee": "Icon",
+          "lineNumber": 336
+        },
+        {
+          "caller": "EventDetailIcon",
+          "callee": "painterResource",
+          "lineNumber": 337
+        },
+        {
+          "caller": "EventDetailIcon",
+          "callee": "size",
+          "lineNumber": 339
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "takeIf",
+          "lineNumber": 346
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "isNotBlank",
+          "lineNumber": 346
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "rememberSaveable",
+          "lineNumber": 347
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "mutableStateOf",
+          "lineNumber": 347
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "remember",
+          "lineNumber": 348
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "mutableStateOf",
+          "lineNumber": 348
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "isBlank",
+          "lineNumber": 349
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "Column",
+          "lineNumber": 351
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "spacedBy",
+          "lineNumber": 351
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "Text",
+          "lineNumber": 352
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "stringResource",
+          "lineNumber": 352
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "Text",
+          "lineNumber": 353
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "TextButton",
+          "lineNumber": 362
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "Text",
+          "lineNumber": 363
+        },
+        {
+          "caller": "EventDescription",
+          "callee": "stringResource",
+          "lineNumber": 363
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "remember",
+          "lineNumber": 373
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "isNullOrBlank",
+          "lineNumber": 374
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "getString",
+          "lineNumber": 374
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "getApplicationInfo",
+          "lineNumber": 374
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "of",
+          "lineNumber": 375
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "toLong",
+          "lineNumber": 375
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "isGooglePlayServicesAvailable",
+          "lineNumber": 377
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "getInstance",
+          "lineNumber": 377
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 379
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "LatLng",
+          "lineNumber": 381
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "rememberCameraPositionState",
+          "lineNumber": 382
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "fromLatLngZoom",
+          "lineNumber": 383
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "GoogleMap",
+          "lineNumber": 385
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "clip",
+          "lineNumber": 386
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "height",
+          "lineNumber": 386
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "fillMaxWidth",
+          "lineNumber": 386
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "liteMode",
+          "lineNumber": 388
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "GoogleMapOptions",
+          "lineNumber": 388
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "MapUiSettings",
+          "lineNumber": 389
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "Marker",
+          "lineNumber": 391
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "rememberUpdatedMarkerState",
+          "lineNumber": 391
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "Surface",
+          "lineNumber": 394
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "Row",
+          "lineNumber": 395
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "padding",
+          "lineNumber": 396
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "heightIn",
+          "lineNumber": 396
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "fillMaxWidth",
+          "lineNumber": 396
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "spacedBy",
+          "lineNumber": 398
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "EventDetailIcon",
+          "lineNumber": 400
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "Text",
+          "lineNumber": 401
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "ifBlank",
+          "lineNumber": 402
+        },
+        {
+          "caller": "EventLocationPreview",
+          "callee": "stringResource",
+          "lineNumber": 402
+        },
+        {
+          "caller": "EventDetailErrorPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 441
+        },
+        {
+          "caller": "EventDetailErrorPreview",
+          "callee": "EventDetailContent",
+          "lineNumber": 442
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 1,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 299,
+      "nonEmptyLines": 290,
+      "functions": [
+        {
+          "name": "ExploreScreen",
+          "startLine": 59,
+          "endLine": 95,
+          "params": [
+            "onEventClick",
+            "onVenueClick",
+            "favorites",
+            "onFavoriteChange",
+            "viewModel",
+            "onFavoritesClick"
+          ]
+        },
+        {
+          "name": "ExploreSections",
+          "startLine": 97,
+          "endLine": 113,
+          "params": [
+            "showVenues",
+            "onSelect"
+          ]
+        },
+        {
+          "name": "ExploreContent",
+          "startLine": 115,
+          "endLine": 238,
+          "params": [
+            "state",
+            "onQueryChange",
+            "onCategorySelect",
+            "onClearFilters",
+            "onRefresh",
+            "onEventClick",
+            "onFavoritesClick",
+            "favoriteAction"
+          ]
+        },
+        {
+          "name": "CatalogSkeleton",
+          "startLine": 240,
+          "endLine": 260,
+          "params": [
+            "modifier"
+          ]
+        },
+        {
+          "name": "ExploreStatePreview",
+          "startLine": 289,
+          "endLine": 299,
+          "params": [
+            "state"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ExploreScreen",
+          "line": 59,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ExploreScreen",
+          "callee": "hiltViewModel",
+          "lineNumber": 65
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 68
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "rememberSaveable",
+          "lineNumber": 69
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "mutableStateOf",
+          "lineNumber": 69
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "rememberSaveableStateHolder",
+          "lineNumber": 70
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "Column",
+          "lineNumber": 71
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "fillMaxSize",
+          "lineNumber": 71
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "ExploreSections",
+          "lineNumber": 72
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "SaveableStateProvider",
+          "lineNumber": 73
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "VenueListScreen",
+          "lineNumber": 75
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "ExploreContent",
+          "lineNumber": 77
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "FavoriteButton",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "canChange",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ExploreScreen",
+          "callee": "onFavoriteChange",
+          "lineNumber": 88
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "SingleChoiceSegmentedButtonRow",
+          "lineNumber": 99
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "padding",
+          "lineNumber": 100
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "fillMaxWidth",
+          "lineNumber": 100
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "SegmentedButton",
+          "lineNumber": 102
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "onSelect",
+          "lineNumber": 104
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "itemShape",
+          "lineNumber": 105
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "Text",
+          "lineNumber": 106
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "stringResource",
+          "lineNumber": 106
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "SegmentedButton",
+          "lineNumber": 107
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "onSelect",
+          "lineNumber": 109
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "itemShape",
+          "lineNumber": 110
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "Text",
+          "lineNumber": 111
+        },
+        {
+          "caller": "ExploreSections",
+          "callee": "stringResource",
+          "lineNumber": 111
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Column",
+          "lineNumber": 130
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "fillMaxSize",
+          "lineNumber": 130
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "OutlinedTextField",
+          "lineNumber": 131
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 132
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Icon",
+          "lineNumber": 133
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "painterResource",
+          "lineNumber": 133
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "padding",
+          "lineNumber": 136
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "fillMaxWidth",
+          "lineNumber": 136
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 137
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 137
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "isNotEmpty",
+          "lineNumber": 140
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "LazyRow",
+          "lineNumber": 141
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "PaddingValues",
+          "lineNumber": 142
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "spacedBy",
+          "lineNumber": 143
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "items",
+          "lineNumber": 145
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "FilterChip",
+          "lineNumber": 146
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "onCategorySelect",
+          "lineNumber": 148
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 149
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Row",
+          "lineNumber": 154
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "padding",
+          "lineNumber": 154
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "TextButton",
+          "lineNumber": 155
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 156
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 156
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "isEmpty",
+          "lineNumber": 158
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "TextButton",
+          "lineNumber": 159
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 160
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 160
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "CachedDataNotice",
+          "lineNumber": 165
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "cachedCatalogNotice",
+          "lineNumber": 166
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "padding",
+          "lineNumber": 167
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 171
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "LinearProgressIndicator",
+          "lineNumber": 172
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "semantics",
+          "lineNumber": 173
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "padding",
+          "lineNumber": 173
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "fillMaxWidth",
+          "lineNumber": 173
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Surface",
+          "lineNumber": 178
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "padding",
+          "lineNumber": 179
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "fillMaxWidth",
+          "lineNumber": 179
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 180
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Column",
+          "lineNumber": 183
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "padding",
+          "lineNumber": 183
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 184
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 184
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Button",
+          "lineNumber": 185
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 185
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 185
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "isNullOrEmpty",
+          "lineNumber": 190
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "CatalogSkeleton",
+          "lineNumber": 190
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "weight",
+          "lineNumber": 190
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Column",
+          "lineNumber": 192
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "weight",
+          "lineNumber": 192
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 193
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 194
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "weight",
+          "lineNumber": 195
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 196
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 198
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "TextButton",
+          "lineNumber": 202
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "Text",
+          "lineNumber": 203
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 203
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "isEmpty",
+          "lineNumber": 208
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 209
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 210
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "isNullOrEmpty",
+          "lineNumber": 213
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "weight",
+          "lineNumber": 217
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 218
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "stringResource",
+          "lineNumber": 219
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "isNullOrEmpty",
+          "lineNumber": 223
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "key",
+          "lineNumber": 223
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "rememberLazyListState",
+          "lineNumber": 224
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "LazyColumn",
+          "lineNumber": 225
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "weight",
+          "lineNumber": 226
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "PaddingValues",
+          "lineNumber": 228
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "spacedBy",
+          "lineNumber": 229
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "items",
+          "lineNumber": 231
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "EventCard",
+          "lineNumber": 232
+        },
+        {
+          "caller": "ExploreContent",
+          "callee": "invoke",
+          "lineNumber": 232
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 243
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "LazyColumn",
+          "lineNumber": 244
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "fillMaxWidth",
+          "lineNumber": 245
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "PaddingValues",
+          "lineNumber": 246
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "spacedBy",
+          "lineNumber": 247
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "items",
+          "lineNumber": 249
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "Row",
+          "lineNumber": 250
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "spacedBy",
+          "lineNumber": 250
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "Box",
+          "lineNumber": 251
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "background",
+          "lineNumber": 251
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "size",
+          "lineNumber": 251
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "Column",
+          "lineNumber": 252
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "spacedBy",
+          "lineNumber": 252
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "Box",
+          "lineNumber": 253
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "background",
+          "lineNumber": 253
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "height",
+          "lineNumber": 253
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "fillMaxWidth",
+          "lineNumber": 253
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "Box",
+          "lineNumber": 254
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "background",
+          "lineNumber": 254
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "height",
+          "lineNumber": 254
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "fillMaxWidth",
+          "lineNumber": 254
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "Box",
+          "lineNumber": 255
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "background",
+          "lineNumber": 255
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "height",
+          "lineNumber": 255
+        },
+        {
+          "caller": "CatalogSkeleton",
+          "callee": "fillMaxWidth",
+          "lineNumber": 255
+        },
+        {
+          "caller": "ExploreStatePreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 291
+        },
+        {
+          "caller": "ExploreStatePreview",
+          "callee": "Surface",
+          "lineNumber": 292
+        },
+        {
+          "caller": "ExploreStatePreview",
+          "callee": "Column",
+          "lineNumber": 293
+        },
+        {
+          "caller": "ExploreStatePreview",
+          "callee": "ExploreSections",
+          "lineNumber": 294
+        },
+        {
+          "caller": "ExploreStatePreview",
+          "callee": "ExploreContent",
+          "lineNumber": 295
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 1,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 67,
+      "nonEmptyLines": 64,
+      "functions": [
+        {
+          "name": "FavoritesScreen",
+          "startLine": 24,
+          "endLine": 59,
+          "params": [
+            "state",
+            "onEventClick",
+            "onRemove",
+            "onRetry"
+          ]
+        },
+        {
+          "name": "FavoritesEmptyPreview",
+          "startLine": 61,
+          "endLine": 67,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FavoritesScreen",
+          "line": 24,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FavoritesScreen",
+          "callee": "ScreenMessage",
+          "lineNumber": 33
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "stringResource",
+          "lineNumber": 34
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "stringResource",
+          "lineNumber": 36
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "LoadingScreen",
+          "lineNumber": 39
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "stringResource",
+          "lineNumber": 39
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "isEmpty",
+          "lineNumber": 40
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "ScreenMessage",
+          "lineNumber": 40
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "stringResource",
+          "lineNumber": 40
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "Column",
+          "lineNumber": 41
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "fillMaxSize",
+          "lineNumber": 41
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "CachedDataNotice",
+          "lineNumber": 42
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "stringResource",
+          "lineNumber": 43
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "padding",
+          "lineNumber": 44
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "LazyColumn",
+          "lineNumber": 46
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "weight",
+          "lineNumber": 47
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "PaddingValues",
+          "lineNumber": 48
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "spacedBy",
+          "lineNumber": 49
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "items",
+          "lineNumber": 51
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "EventCard",
+          "lineNumber": 52
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "FavoriteButton",
+          "lineNumber": 53
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "canChange",
+          "lineNumber": 53
+        },
+        {
+          "caller": "FavoritesScreen",
+          "callee": "onRemove",
+          "lineNumber": 53
+        },
+        {
+          "caller": "FavoritesEmptyPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 64
+        },
+        {
+          "caller": "FavoritesEmptyPreview",
+          "callee": "FavoritesScreen",
+          "lineNumber": 65
+        },
+        {
+          "caller": "FavoritesEmptyPreview",
+          "callee": "FavoritesUiState",
+          "lineNumber": 65
+        },
+        {
+          "caller": "FavoritesEmptyPreview",
+          "callee": "emptyList",
+          "lineNumber": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 74,
+      "functions": [
+        {
+          "name": "canChange",
+          "startLine": 24,
+          "endLine": 24,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "retry",
+          "startLine": 45,
+          "endLine": 49,
+          "params": []
+        },
+        {
+          "name": "observeFavorites",
+          "startLine": 51,
+          "endLine": 60,
+          "params": []
+        },
+        {
+          "name": "changeFavorite",
+          "startLine": 62,
+          "endLine": 81,
+          "params": [
+            "event",
+            "save",
+            "offerUndo"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "FavoritesUiState",
+          "startLine": 18,
+          "endLine": 25,
+          "methods": [
+            "canChange"
+          ],
+          "properties": [
+            "events",
+            "ids",
+            "hasError",
+            "pendingIds"
+          ]
+        },
+        {
+          "name": "FavoriteNotice",
+          "startLine": 27,
+          "endLine": 30,
+          "methods": [],
+          "properties": []
+        },
+        {
+          "name": "FavoritesViewModel",
+          "startLine": 32,
+          "endLine": 82,
+          "methods": [
+            "retry",
+            "observeFavorites",
+            "changeFavorite"
+          ],
+          "properties": [
+            "repository",
+            "mutableState",
+            "state",
+            "noticeChannel",
+            "notices"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "canChange",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "FavoritesUiState",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "FavoriteNotice",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "notices",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "retry",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "changeFavorite",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "FavoritesViewModel",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "retry",
+          "callee": "update",
+          "lineNumber": 47
+        },
+        {
+          "caller": "retry",
+          "callee": "copy",
+          "lineNumber": 47
+        },
+        {
+          "caller": "retry",
+          "callee": "observeFavorites",
+          "lineNumber": 48
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "launch",
+          "lineNumber": 52
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "collect",
+          "lineNumber": 53
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "catch",
+          "lineNumber": 53
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "observeFavorites",
+          "lineNumber": 53
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "update",
+          "lineNumber": 54
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "copy",
+          "lineNumber": 54
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "mapTo",
+          "lineNumber": 56
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "mutableSetOf",
+          "lineNumber": 56
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "update",
+          "lineNumber": 57
+        },
+        {
+          "caller": "observeFavorites",
+          "callee": "copy",
+          "lineNumber": 57
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "update",
+          "lineNumber": 64
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "copy",
+          "lineNumber": 64
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "launch",
+          "lineNumber": 65
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "addFavorite",
+          "lineNumber": 68
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "removeFavorite",
+          "lineNumber": 70
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "send",
+          "lineNumber": 71
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "Removed",
+          "lineNumber": 71
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "send",
+          "lineNumber": 76
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "Failed",
+          "lineNumber": 76
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "changeFavorite",
+          "lineNumber": 76
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "update",
+          "lineNumber": 78
+        },
+        {
+          "caller": "changeFavorite",
+          "callee": "copy",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 8,
+        "functionCount": 4,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 251,
+      "nonEmptyLines": 241,
+      "functions": [
+        {
+          "name": "MapScreen",
+          "startLine": 55,
+          "endLine": 76,
+          "params": [
+            "onEventClick",
+            "viewModel"
+          ]
+        },
+        {
+          "name": "MapContent",
+          "startLine": 78,
+          "endLine": 135,
+          "params": [
+            "state",
+            "onCategorySelected",
+            "onPointSelected",
+            "onRetryMap",
+            "onRetryEvents",
+            "onEventClick"
+          ]
+        },
+        {
+          "name": "EventMap",
+          "startLine": 137,
+          "endLine": 195,
+          "params": [
+            "state",
+            "onPointSelected",
+            "onRetry"
+          ]
+        },
+        {
+          "name": "EventSummarySheet",
+          "startLine": 197,
+          "endLine": 235,
+          "params": [
+            "events",
+            "onDismiss",
+            "onEventClick"
+          ]
+        },
+        {
+          "name": "MapMessage",
+          "startLine": 237,
+          "endLine": 245,
+          "params": [
+            "message",
+            "onRetry"
+          ]
+        },
+        {
+          "name": "MapErrorPreview",
+          "startLine": 247,
+          "endLine": 251,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MapScreen",
+          "line": 55,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MapScreen",
+          "callee": "hiltViewModel",
+          "lineNumber": 56
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 57
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "MapMessage",
+          "lineNumber": 59
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "MapMessage",
+          "lineNumber": 61
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "key",
+          "lineNumber": 62
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "MapContent",
+          "lineNumber": 63
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "selectPoint",
+          "lineNumber": 70
+        },
+        {
+          "caller": "MapScreen",
+          "callee": "onEventClick",
+          "lineNumber": 71
+        },
+        {
+          "caller": "MapContent",
+          "callee": "let",
+          "lineNumber": 87
+        },
+        {
+          "caller": "MapContent",
+          "callee": "Column",
+          "lineNumber": 88
+        },
+        {
+          "caller": "MapContent",
+          "callee": "fillMaxSize",
+          "lineNumber": 88
+        },
+        {
+          "caller": "MapContent",
+          "callee": "isNotEmpty",
+          "lineNumber": 89
+        },
+        {
+          "caller": "MapContent",
+          "callee": "LazyRow",
+          "lineNumber": 90
+        },
+        {
+          "caller": "MapContent",
+          "callee": "PaddingValues",
+          "lineNumber": 91
+        },
+        {
+          "caller": "MapContent",
+          "callee": "spacedBy",
+          "lineNumber": 92
+        },
+        {
+          "caller": "MapContent",
+          "callee": "item",
+          "lineNumber": 94
+        },
+        {
+          "caller": "MapContent",
+          "callee": "FilterChip",
+          "lineNumber": 95
+        },
+        {
+          "caller": "MapContent",
+          "callee": "onCategorySelected",
+          "lineNumber": 97
+        },
+        {
+          "caller": "MapContent",
+          "callee": "Text",
+          "lineNumber": 98
+        },
+        {
+          "caller": "MapContent",
+          "callee": "stringResource",
+          "lineNumber": 98
+        },
+        {
+          "caller": "MapContent",
+          "callee": "items",
+          "lineNumber": 101
+        },
+        {
+          "caller": "MapContent",
+          "callee": "FilterChip",
+          "lineNumber": 102
+        },
+        {
+          "caller": "MapContent",
+          "callee": "onCategorySelected",
+          "lineNumber": 104
+        },
+        {
+          "caller": "MapContent",
+          "callee": "Text",
+          "lineNumber": 105
+        },
+        {
+          "caller": "MapContent",
+          "callee": "isEmpty",
+          "lineNumber": 111
+        },
+        {
+          "caller": "MapContent",
+          "callee": "LoadingScreen",
+          "lineNumber": 112
+        },
+        {
+          "caller": "MapContent",
+          "callee": "stringResource",
+          "lineNumber": 112
+        },
+        {
+          "caller": "MapContent",
+          "callee": "isEmpty",
+          "lineNumber": 113
+        },
+        {
+          "caller": "MapContent",
+          "callee": "MapMessage",
+          "lineNumber": 114
+        },
+        {
+          "caller": "MapContent",
+          "callee": "TextButton",
+          "lineNumber": 117
+        },
+        {
+          "caller": "MapContent",
+          "callee": "Text",
+          "lineNumber": 118
+        },
+        {
+          "caller": "MapContent",
+          "callee": "stringResource",
+          "lineNumber": 118
+        },
+        {
+          "caller": "MapContent",
+          "callee": "isEmpty",
+          "lineNumber": 121
+        },
+        {
+          "caller": "MapContent",
+          "callee": "Text",
+          "lineNumber": 122
+        },
+        {
+          "caller": "MapContent",
+          "callee": "stringResource",
+          "lineNumber": 123
+        },
+        {
+          "caller": "MapContent",
+          "callee": "padding",
+          "lineNumber": 124
+        },
+        {
+          "caller": "MapContent",
+          "callee": "EventMap",
+          "lineNumber": 128
+        },
+        {
+          "caller": "MapContent",
+          "callee": "EventSummarySheet",
+          "lineNumber": 133
+        },
+        {
+          "caller": "MapContent",
+          "callee": "onPointSelected",
+          "lineNumber": 133
+        },
+        {
+          "caller": "EventMap",
+          "callee": "rememberCameraPositionState",
+          "lineNumber": 143
+        },
+        {
+          "caller": "EventMap",
+          "callee": "firstOrNull",
+          "lineNumber": 144
+        },
+        {
+          "caller": "EventMap",
+          "callee": "let",
+          "lineNumber": 145
+        },
+        {
+          "caller": "EventMap",
+          "callee": "LatLng",
+          "lineNumber": 145
+        },
+        {
+          "caller": "EventMap",
+          "callee": "fromLatLngZoom",
+          "lineNumber": 146
+        },
+        {
+          "caller": "EventMap",
+          "callee": "remember",
+          "lineNumber": 148
+        },
+        {
+          "caller": "EventMap",
+          "callee": "mutableStateOf",
+          "lineNumber": 148
+        },
+        {
+          "caller": "EventMap",
+          "callee": "remember",
+          "lineNumber": 149
+        },
+        {
+          "caller": "EventMap",
+          "callee": "mutableStateOf",
+          "lineNumber": 149
+        },
+        {
+          "caller": "EventMap",
+          "callee": "LaunchedEffect",
+          "lineNumber": 151
+        },
+        {
+          "caller": "EventMap",
+          "callee": "delay",
+          "lineNumber": 153
+        },
+        {
+          "caller": "EventMap",
+          "callee": "MapMessage",
+          "lineNumber": 158
+        },
+        {
+          "caller": "EventMap",
+          "callee": "Box",
+          "lineNumber": 162
+        },
+        {
+          "caller": "EventMap",
+          "callee": "fillMaxSize",
+          "lineNumber": 162
+        },
+        {
+          "caller": "EventMap",
+          "callee": "GoogleMap",
+          "lineNumber": 163
+        },
+        {
+          "caller": "EventMap",
+          "callee": "fillMaxSize",
+          "lineNumber": 164
+        },
+        {
+          "caller": "EventMap",
+          "callee": "forEach",
+          "lineNumber": 168
+        },
+        {
+          "caller": "EventMap",
+          "callee": "key",
+          "lineNumber": 169
+        },
+        {
+          "caller": "EventMap",
+          "callee": "Marker",
+          "lineNumber": 176
+        },
+        {
+          "caller": "EventMap",
+          "callee": "rememberUpdatedMarkerState",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventMap",
+          "callee": "LatLng",
+          "lineNumber": 177
+        },
+        {
+          "caller": "EventMap",
+          "callee": "first",
+          "lineNumber": 178
+        },
+        {
+          "caller": "EventMap",
+          "callee": "remember",
+          "lineNumber": 179
+        },
+        {
+          "caller": "EventMap",
+          "callee": "defaultMarker",
+          "lineNumber": 179
+        },
+        {
+          "caller": "EventMap",
+          "callee": "onPointSelected",
+          "lineNumber": 182
+        },
+        {
+          "caller": "EventMap",
+          "callee": "Surface",
+          "lineNumber": 190
+        },
+        {
+          "caller": "EventMap",
+          "callee": "LoadingScreen",
+          "lineNumber": 191
+        },
+        {
+          "caller": "EventMap",
+          "callee": "stringResource",
+          "lineNumber": 191
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "ModalBottomSheet",
+          "lineNumber": 204
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "LazyColumn",
+          "lineNumber": 205
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "fillMaxWidth",
+          "lineNumber": 206
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "PaddingValues",
+          "lineNumber": 207
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "spacedBy",
+          "lineNumber": 208
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "item",
+          "lineNumber": 211
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Text",
+          "lineNumber": 212
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "stringResource",
+          "lineNumber": 213
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "items",
+          "lineNumber": 218
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Column",
+          "lineNumber": 220
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "spacedBy",
+          "lineNumber": 220
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "HorizontalDivider",
+          "lineNumber": 221
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Text",
+          "lineNumber": 222
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Text",
+          "lineNumber": 223
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "eventLocalDateTime",
+          "lineNumber": 223
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "EventCategoryLabel",
+          "lineNumber": 224
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "isNotBlank",
+          "lineNumber": 225
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Text",
+          "lineNumber": 226
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Button",
+          "lineNumber": 228
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "onEventClick",
+          "lineNumber": 228
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "Text",
+          "lineNumber": 229
+        },
+        {
+          "caller": "EventSummarySheet",
+          "callee": "stringResource",
+          "lineNumber": 229
+        },
+        {
+          "caller": "MapMessage",
+          "callee": "ScreenMessage",
+          "lineNumber": 239
+        },
+        {
+          "caller": "MapMessage",
+          "callee": "stringResource",
+          "lineNumber": 240
+        },
+        {
+          "caller": "MapMessage",
+          "callee": "stringResource",
+          "lineNumber": 242
+        },
+        {
+          "caller": "MapErrorPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 250
+        },
+        {
+          "caller": "MapErrorPreview",
+          "callee": "MapMessage",
+          "lineNumber": 250
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 154,
+      "nonEmptyLines": 148,
+      "functions": [
+        {
+          "name": "ProfileRoute",
+          "startLine": 42,
+          "endLine": 63,
+          "params": [
+            "session",
+            "onRetryAccount",
+            "onSignIn",
+            "onSignOut",
+            "onEventClick",
+            "onSessionExpired"
+          ]
+        },
+        {
+          "name": "ProfileScreen",
+          "startLine": 65,
+          "endLine": 138,
+          "params": [
+            "session",
+            "state",
+            "onRetryAccount",
+            "onSignIn",
+            "onSignOut",
+            "onRetryAttendances",
+            "onEventClick"
+          ]
+        },
+        {
+          "name": "ProfileEmptyPreview",
+          "startLine": 140,
+          "endLine": 154,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ProfileRoute",
+          "line": 42,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ProfileRoute",
+          "callee": "AccountScreen",
+          "lineNumber": 52
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "hiltViewModel",
+          "lineNumber": 56
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 57
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "LifecycleEventEffect",
+          "lineNumber": 58
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "refresh",
+          "lineNumber": 58
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "LaunchedEffect",
+          "lineNumber": 59
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "onSessionExpired",
+          "lineNumber": 60
+        },
+        {
+          "caller": "ProfileRoute",
+          "callee": "ProfileScreen",
+          "lineNumber": 62
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "rememberSaveable",
+          "lineNumber": 76
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "mutableStateOf",
+          "lineNumber": 76
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "LazyColumn",
+          "lineNumber": 79
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "fillMaxSize",
+          "lineNumber": 80
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "PaddingValues",
+          "lineNumber": 81
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "spacedBy",
+          "lineNumber": 82
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "item",
+          "lineNumber": 84
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "AccountScreen",
+          "lineNumber": 84
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "fillMaxWidth",
+          "lineNumber": 84
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "item",
+          "lineNumber": 85
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Column",
+          "lineNumber": 86
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "padding",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "spacedBy",
+          "lineNumber": 88
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 90
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 91
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "semantics",
+          "lineNumber": 92
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "heading",
+          "lineNumber": 92
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "SingleChoiceSegmentedButtonRow",
+          "lineNumber": 95
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "fillMaxWidth",
+          "lineNumber": 95
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "SegmentedButton",
+          "lineNumber": 96
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "itemShape",
+          "lineNumber": 99
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 100
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 100
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "SegmentedButton",
+          "lineNumber": 101
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "itemShape",
+          "lineNumber": 104
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 105
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 105
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "item",
+          "lineNumber": 110
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Column",
+          "lineNumber": 111
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "spacedBy",
+          "lineNumber": 111
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 112
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 112
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "LinearProgressIndicator",
+          "lineNumber": 113
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "fillMaxWidth",
+          "lineNumber": 113
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "item",
+          "lineNumber": 118
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Column",
+          "lineNumber": 119
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "spacedBy",
+          "lineNumber": 119
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 120
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 121
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "OutlinedButton",
+          "lineNumber": 124
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 124
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 124
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "isEmpty",
+          "lineNumber": 129
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "item",
+          "lineNumber": 130
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "Text",
+          "lineNumber": 132
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "stringResource",
+          "lineNumber": 132
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "items",
+          "lineNumber": 135
+        },
+        {
+          "caller": "ProfileScreen",
+          "callee": "EventCard",
+          "lineNumber": 135
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 143
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "ProfileScreen",
+          "lineNumber": 144
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "Active",
+          "lineNumber": 145
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "ProfileUiState",
+          "lineNumber": 146
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "AttendanceGroups",
+          "lineNumber": 146
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "emptyList",
+          "lineNumber": 146
+        },
+        {
+          "caller": "ProfileEmptyPreview",
+          "callee": "emptyList",
+          "lineNumber": 146
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 66,
+      "functions": [
+        {
+          "name": "refresh",
+          "startLine": 45,
+          "endLine": 64,
+          "params": []
+        },
+        {
+          "name": "loadFailed",
+          "startLine": 66,
+          "endLine": 68,
+          "params": []
+        },
+        {
+          "name": "sessionRejected",
+          "startLine": 70,
+          "endLine": 72,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "AttendanceGroups",
+          "startLine": 20,
+          "endLine": 28,
+          "methods": [],
+          "properties": [
+            "upcoming",
+            "past"
+          ]
+        },
+        {
+          "name": "ProfileUiState",
+          "startLine": 30,
+          "endLine": 35,
+          "methods": [],
+          "properties": [
+            "attendances",
+            "loading",
+            "failed",
+            "sessionRejected"
+          ]
+        },
+        {
+          "name": "ProfileViewModel",
+          "startLine": 37,
+          "endLine": 73,
+          "methods": [
+            "refresh",
+            "loadFailed",
+            "sessionRejected"
+          ],
+          "properties": [
+            "repository",
+            "mutableState",
+            "state",
+            "request"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AttendanceGroups",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "ProfileUiState",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "refresh",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "ProfileViewModel",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "from",
+          "callee": "partition",
+          "lineNumber": 23
+        },
+        {
+          "caller": "from",
+          "callee": "sortedBy",
+          "lineNumber": 23
+        },
+        {
+          "caller": "from",
+          "callee": "toInstant",
+          "lineNumber": 23
+        },
+        {
+          "caller": "from",
+          "callee": "isBefore",
+          "lineNumber": 24
+        },
+        {
+          "caller": "from",
+          "callee": "toInstant",
+          "lineNumber": 24
+        },
+        {
+          "caller": "from",
+          "callee": "AttendanceGroups",
+          "lineNumber": 25
+        },
+        {
+          "caller": "from",
+          "callee": "asReversed",
+          "lineNumber": 25
+        },
+        {
+          "caller": "refresh",
+          "callee": "cancel",
+          "lineNumber": 46
+        },
+        {
+          "caller": "refresh",
+          "callee": "copy",
+          "lineNumber": 47
+        },
+        {
+          "caller": "refresh",
+          "callee": "launch",
+          "lineNumber": 48
+        },
+        {
+          "caller": "refresh",
+          "callee": "getMyAttendances",
+          "lineNumber": 50
+        },
+        {
+          "caller": "refresh",
+          "callee": "ProfileUiState",
+          "lineNumber": 51
+        },
+        {
+          "caller": "refresh",
+          "callee": "from",
+          "lineNumber": 51
+        },
+        {
+          "caller": "refresh",
+          "callee": "now",
+          "lineNumber": 51
+        },
+        {
+          "caller": "refresh",
+          "callee": "code",
+          "lineNumber": 53
+        },
+        {
+          "caller": "refresh",
+          "callee": "sessionRejected",
+          "lineNumber": 53
+        },
+        {
+          "caller": "refresh",
+          "callee": "loadFailed",
+          "lineNumber": 53
+        },
+        {
+          "caller": "refresh",
+          "callee": "sessionRejected",
+          "lineNumber": 55
+        },
+        {
+          "caller": "refresh",
+          "callee": "loadFailed",
+          "lineNumber": 57
+        },
+        {
+          "caller": "refresh",
+          "callee": "loadFailed",
+          "lineNumber": 59
+        },
+        {
+          "caller": "refresh",
+          "callee": "loadFailed",
+          "lineNumber": 61
+        },
+        {
+          "caller": "loadFailed",
+          "callee": "copy",
+          "lineNumber": 67
+        },
+        {
+          "caller": "sessionRejected",
+          "callee": "ProfileUiState",
+          "lineNumber": 71
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 3,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 195,
+      "nonEmptyLines": 189,
+      "functions": [
+        {
+          "name": "SessionStartup",
+          "startLine": 45,
+          "endLine": 59,
+          "params": [
+            "showError",
+            "onRetry"
+          ]
+        },
+        {
+          "name": "SessionForm",
+          "startLine": 61,
+          "endLine": 122,
+          "params": [
+            "form",
+            "onSubmit",
+            "onSwitch",
+            "onEdit",
+            "onGuest"
+          ]
+        },
+        {
+          "name": "SessionField",
+          "startLine": 124,
+          "endLine": 146,
+          "params": [
+            "value",
+            "label",
+            "error",
+            "enabled",
+            "keyboardType",
+            "onChange"
+          ]
+        },
+        {
+          "name": "AccountScreen",
+          "startLine": 148,
+          "endLine": 187,
+          "params": [
+            "session",
+            "onRetry",
+            "onSignIn",
+            "onSignOut",
+            "modifier"
+          ]
+        },
+        {
+          "name": "SessionFormPreview",
+          "startLine": 189,
+          "endLine": 195,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SessionStartup",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "SessionForm",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "AccountScreen",
+          "line": 148,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SessionStartup",
+          "callee": "Box",
+          "lineNumber": 47
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "windowInsetsPadding",
+          "lineNumber": 47
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "fillMaxSize",
+          "lineNumber": 47
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "ScreenMessage",
+          "lineNumber": 49
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "stringResource",
+          "lineNumber": 50
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "stringResource",
+          "lineNumber": 52
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "LoadingScreen",
+          "lineNumber": 56
+        },
+        {
+          "caller": "SessionStartup",
+          "callee": "stringResource",
+          "lineNumber": 56
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "rememberSaveable",
+          "lineNumber": 69
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "mutableStateOf",
+          "lineNumber": 69
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "rememberSaveable",
+          "lineNumber": 70
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "mutableStateOf",
+          "lineNumber": 70
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "remember",
+          "lineNumber": 71
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "mutableStateOf",
+          "lineNumber": 71
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Column",
+          "lineNumber": 74
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "padding",
+          "lineNumber": 75
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "verticalScroll",
+          "lineNumber": 75
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "imePadding",
+          "lineNumber": 75
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "windowInsetsPadding",
+          "lineNumber": 75
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "fillMaxSize",
+          "lineNumber": 75
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "rememberScrollState",
+          "lineNumber": 76
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "spacedBy",
+          "lineNumber": 77
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Surface",
+          "lineNumber": 80
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "size",
+          "lineNumber": 81
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "padding",
+          "lineNumber": 81
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 82
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Box",
+          "lineNumber": 85
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 86
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 89
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "stringResource",
+          "lineNumber": 89
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 90
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "stringResource",
+          "lineNumber": 90
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "SessionField",
+          "lineNumber": 92
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "onEdit",
+          "lineNumber": 94
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "SessionField",
+          "lineNumber": 97
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "onEdit",
+          "lineNumber": 99
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "SessionField",
+          "lineNumber": 101
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "onEdit",
+          "lineNumber": 105
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "let",
+          "lineNumber": 107
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 107
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "stringResource",
+          "lineNumber": 107
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Button",
+          "lineNumber": 108
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "onSubmit",
+          "lineNumber": 109
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "fillMaxWidth",
+          "lineNumber": 111
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 113
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "stringResource",
+          "lineNumber": 113
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "TextButton",
+          "lineNumber": 115
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 115
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "stringResource",
+          "lineNumber": 115
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "TextButton",
+          "lineNumber": 117
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "Text",
+          "lineNumber": 118
+        },
+        {
+          "caller": "SessionForm",
+          "callee": "stringResource",
+          "lineNumber": 118
+        },
+        {
+          "caller": "SessionField",
+          "callee": "OutlinedTextField",
+          "lineNumber": 133
+        },
+        {
+          "caller": "SessionField",
+          "callee": "fillMaxWidth",
+          "lineNumber": 136
+        },
+        {
+          "caller": "SessionField",
+          "callee": "Text",
+          "lineNumber": 139
+        },
+        {
+          "caller": "SessionField",
+          "callee": "stringResource",
+          "lineNumber": 139
+        },
+        {
+          "caller": "SessionField",
+          "callee": "let",
+          "lineNumber": 141
+        },
+        {
+          "caller": "SessionField",
+          "callee": "Text",
+          "lineNumber": 141
+        },
+        {
+          "caller": "SessionField",
+          "callee": "stringResource",
+          "lineNumber": 141
+        },
+        {
+          "caller": "SessionField",
+          "callee": "KeyboardOptions",
+          "lineNumber": 142
+        },
+        {
+          "caller": "SessionField",
+          "callee": "PasswordVisualTransformation",
+          "lineNumber": 143
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "padding",
+          "lineNumber": 154
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "fillMaxWidth",
+          "lineNumber": 154
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Column",
+          "lineNumber": 156
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "spacedBy",
+          "lineNumber": 156
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Button",
+          "lineNumber": 158
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 158
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 158
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "CircularProgressIndicator",
+          "lineNumber": 159
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Column",
+          "lineNumber": 161
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "spacedBy",
+          "lineNumber": 161
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "let",
+          "lineNumber": 162
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 162
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 163
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 163
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 164
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "CircularProgressIndicator",
+          "lineNumber": 166
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 168
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 168
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Button",
+          "lineNumber": 169
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 169
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 169
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "CircularProgressIndicator",
+          "lineNumber": 172
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 174
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 174
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Button",
+          "lineNumber": 175
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 175
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 175
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 180
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 180
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Button",
+          "lineNumber": 182
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "Text",
+          "lineNumber": 183
+        },
+        {
+          "caller": "AccountScreen",
+          "callee": "stringResource",
+          "lineNumber": 183
+        },
+        {
+          "caller": "SessionFormPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 192
+        },
+        {
+          "caller": "SessionFormPreview",
+          "callee": "SessionForm",
+          "lineNumber": 193
+        },
+        {
+          "caller": "SessionFormPreview",
+          "callee": "Form",
+          "lineNumber": 193
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 103,
+      "functions": [
+        {
+          "name": "VenueDetailScreen",
+          "startLine": 28,
+          "endLine": 36,
+          "params": [
+            "onBack",
+            "onEventClick",
+            "viewModel"
+          ]
+        },
+        {
+          "name": "VenueDetailContent",
+          "startLine": 38,
+          "endLine": 89,
+          "params": [
+            "state",
+            "onBack",
+            "onRetry",
+            "onEventClick"
+          ]
+        },
+        {
+          "name": "VenueInformation",
+          "startLine": 91,
+          "endLine": 102,
+          "params": [
+            "venue"
+          ]
+        },
+        {
+          "name": "VenueDetailErrorPreview",
+          "startLine": 104,
+          "endLine": 108,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "VenueDetailScreen",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VenueDetailScreen",
+          "callee": "hiltViewModel",
+          "lineNumber": 32
+        },
+        {
+          "caller": "VenueDetailScreen",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 34
+        },
+        {
+          "caller": "VenueDetailScreen",
+          "callee": "VenueDetailContent",
+          "lineNumber": 35
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "LoadingScreen",
+          "lineNumber": 46
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 46
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 47
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 48
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 49
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 52
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 53
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 55
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "LazyColumn",
+          "lineNumber": 58
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "fillMaxSize",
+          "lineNumber": 59
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "PaddingValues",
+          "lineNumber": 60
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "spacedBy",
+          "lineNumber": 61
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "item",
+          "lineNumber": 63
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "VenueInformation",
+          "lineNumber": 63
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "item",
+          "lineNumber": 64
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "Text",
+          "lineNumber": 65
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 66
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "item",
+          "lineNumber": 71
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "LoadingScreen",
+          "lineNumber": 72
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 72
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "item",
+          "lineNumber": 74
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "Column",
+          "lineNumber": 75
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "Text",
+          "lineNumber": 76
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 76
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "TextButton",
+          "lineNumber": 77
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "Text",
+          "lineNumber": 77
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 77
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "isEmpty",
+          "lineNumber": 81
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "item",
+          "lineNumber": 82
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "Text",
+          "lineNumber": 82
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "stringResource",
+          "lineNumber": 82
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "items",
+          "lineNumber": 84
+        },
+        {
+          "caller": "VenueDetailContent",
+          "callee": "EventCard",
+          "lineNumber": 84
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "Column",
+          "lineNumber": 93
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "spacedBy",
+          "lineNumber": 93
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "EventArtwork",
+          "lineNumber": 94
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "Text",
+          "lineNumber": 95
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "let",
+          "lineNumber": 96
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "takeIf",
+          "lineNumber": 96
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "isNotBlank",
+          "lineNumber": 96
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "Text",
+          "lineNumber": 96
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "Text",
+          "lineNumber": 97
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "stringResource",
+          "lineNumber": 97
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "Text",
+          "lineNumber": 98
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "takeIf",
+          "lineNumber": 98
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "isNotBlank",
+          "lineNumber": 98
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "stringResource",
+          "lineNumber": 98
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "Text",
+          "lineNumber": 99
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "stringResource",
+          "lineNumber": 99
+        },
+        {
+          "caller": "VenueInformation",
+          "callee": "VenueLocation",
+          "lineNumber": 100
+        },
+        {
+          "caller": "VenueDetailErrorPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 107
+        },
+        {
+          "caller": "VenueDetailErrorPreview",
+          "callee": "VenueDetailContent",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 137,
+      "nonEmptyLines": 132,
+      "functions": [
+        {
+          "name": "VenueListScreen",
+          "startLine": 41,
+          "endLine": 48,
+          "params": [
+            "onVenueClick",
+            "viewModel"
+          ]
+        },
+        {
+          "name": "VenueListContent",
+          "startLine": 50,
+          "endLine": 105,
+          "params": [
+            "state",
+            "onQueryChange",
+            "onRefresh",
+            "onVenueClick"
+          ]
+        },
+        {
+          "name": "VenueCard",
+          "startLine": 107,
+          "endLine": 129,
+          "params": [
+            "venue",
+            "onVenueClick"
+          ]
+        },
+        {
+          "name": "VenueListEmptyPreview",
+          "startLine": 131,
+          "endLine": 137,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "VenueListScreen",
+          "line": 41,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VenueListScreen",
+          "callee": "hiltViewModel",
+          "lineNumber": 44
+        },
+        {
+          "caller": "VenueListScreen",
+          "callee": "collectAsStateWithLifecycle",
+          "lineNumber": 46
+        },
+        {
+          "caller": "VenueListScreen",
+          "callee": "VenueListContent",
+          "lineNumber": 47
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "Column",
+          "lineNumber": 59
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "fillMaxSize",
+          "lineNumber": 59
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "OutlinedTextField",
+          "lineNumber": 60
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "padding",
+          "lineNumber": 63
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "fillMaxWidth",
+          "lineNumber": 63
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 64
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "Icon",
+          "lineNumber": 65
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "painterResource",
+          "lineNumber": 65
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "Text",
+          "lineNumber": 66
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 66
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "Column",
+          "lineNumber": 70
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "padding",
+          "lineNumber": 70
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "Text",
+          "lineNumber": 71
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 71
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "TextButton",
+          "lineNumber": 72
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "Text",
+          "lineNumber": 73
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 73
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "LinearProgressIndicator",
+          "lineNumber": 77
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "padding",
+          "lineNumber": 77
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "fillMaxWidth",
+          "lineNumber": 77
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "LoadingScreen",
+          "lineNumber": 81
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 81
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 82
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 83
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 85
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "isEmpty",
+          "lineNumber": 88
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 88
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 88
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "isEmpty",
+          "lineNumber": 89
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "ScreenMessage",
+          "lineNumber": 89
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 90
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "stringResource",
+          "lineNumber": 91
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "onQueryChange",
+          "lineNumber": 92
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "key",
+          "lineNumber": 94
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "trim",
+          "lineNumber": 94
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "LazyColumn",
+          "lineNumber": 95
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "rememberLazyListState",
+          "lineNumber": 96
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "PaddingValues",
+          "lineNumber": 97
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "spacedBy",
+          "lineNumber": 98
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "items",
+          "lineNumber": 100
+        },
+        {
+          "caller": "VenueListContent",
+          "callee": "VenueCard",
+          "lineNumber": 100
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "OutlinedCard",
+          "lineNumber": 109
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "onVenueClick",
+          "lineNumber": 110
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "fillMaxWidth",
+          "lineNumber": 111
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 112
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "Row",
+          "lineNumber": 114
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "padding",
+          "lineNumber": 114
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "spacedBy",
+          "lineNumber": 114
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "EventArtwork",
+          "lineNumber": 115
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "clip",
+          "lineNumber": 115
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "size",
+          "lineNumber": 115
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "RoundedCornerShape",
+          "lineNumber": 115
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "Column",
+          "lineNumber": 116
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "weight",
+          "lineNumber": 116
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "spacedBy",
+          "lineNumber": 116
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "Text",
+          "lineNumber": 117
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "Text",
+          "lineNumber": 118
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "Text",
+          "lineNumber": 120
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "stringResource",
+          "lineNumber": 121
+        },
+        {
+          "caller": "VenueCard",
+          "callee": "pluralStringResource",
+          "lineNumber": 122
+        },
+        {
+          "caller": "VenueListEmptyPreview",
+          "callee": "EventiaTheme",
+          "lineNumber": 134
+        },
+        {
+          "caller": "VenueListEmptyPreview",
+          "callee": "VenueListContent",
+          "lineNumber": 135
+        },
+        {
+          "caller": "VenueListEmptyPreview",
+          "callee": "VenueListUiState",
+          "lineNumber": 135
+        },
+        {
+          "caller": "VenueListEmptyPreview",
+          "callee": "emptyList",
+          "lineNumber": 135
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 61,
+      "nonEmptyLines": 59,
+      "functions": [
+        {
+          "name": "VenueLocation",
+          "startLine": 20,
+          "endLine": 61,
+          "params": [
+            "venue",
+            "additionalAction"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "VenueLocation",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "VenueLocation",
+          "callee": "from",
+          "lineNumber": 26
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "Column",
+          "lineNumber": 27
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "spacedBy",
+          "lineNumber": 27
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "Text",
+          "lineNumber": 28
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "isNotBlank",
+          "lineNumber": 30
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "stringResource",
+          "lineNumber": 31
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "toString",
+          "lineNumber": 33
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "toString",
+          "lineNumber": 34
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "stringResource",
+          "lineNumber": 36
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "FlowRow",
+          "lineNumber": 40
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "spacedBy",
+          "lineNumber": 40
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "OutlinedButton",
+          "lineNumber": 42
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "encode",
+          "lineNumber": 44
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "Intent",
+          "lineNumber": 45
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "parse",
+          "lineNumber": 45
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "startActivity",
+          "lineNumber": 47
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "show",
+          "lineNumber": 49
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "makeText",
+          "lineNumber": 49
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "Text",
+          "lineNumber": 54
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "stringResource",
+          "lineNumber": 54
+        },
+        {
+          "caller": "VenueLocation",
+          "callee": "invoke",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 127,
+      "functions": [
+        {
+          "name": "changeQuery",
+          "startLine": 44,
+          "endLine": 47,
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "name": "refresh",
+          "startLine": 49,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "retry",
+          "startLine": 95,
+          "endLine": 104,
+          "params": []
+        },
+        {
+          "name": "loadVenue",
+          "startLine": 106,
+          "endLine": 119,
+          "params": []
+        },
+        {
+          "name": "loadEvents",
+          "startLine": 121,
+          "endLine": 129,
+          "params": [
+            "venue"
+          ]
+        },
+        {
+          "name": "venueRequest",
+          "startLine": 132,
+          "endLine": 142,
+          "params": [
+            "request"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VenueListUiState",
+          "startLine": 22,
+          "endLine": 30,
+          "methods": [],
+          "properties": [
+            "query",
+            "venues",
+            "isLoading",
+            "hasError",
+            "matches"
+          ]
+        },
+        {
+          "name": "VenueListViewModel",
+          "startLine": 32,
+          "endLine": 67,
+          "methods": [
+            "changeQuery",
+            "refresh"
+          ],
+          "properties": [
+            "catalog",
+            "savedState",
+            "mutableState",
+            "state"
+          ]
+        },
+        {
+          "name": "VenueDetailUiState",
+          "startLine": 69,
+          "endLine": 74,
+          "methods": [],
+          "properties": [
+            "Loading",
+            "Empty",
+            "Error"
+          ]
+        },
+        {
+          "name": "VenueEventsUiState",
+          "startLine": 76,
+          "endLine": 80,
+          "methods": [],
+          "properties": [
+            "Loading",
+            "Error"
+          ]
+        },
+        {
+          "name": "VenueDetailViewModel",
+          "startLine": 82,
+          "endLine": 130,
+          "methods": [
+            "retry",
+            "loadVenue",
+            "loadEvents"
+          ],
+          "properties": [
+            "catalog",
+            "venueId",
+            "mutableState",
+            "state"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "matches",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "VenueListUiState",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "changeQuery",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "refresh",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "VenueListViewModel",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "VenueDetailUiState",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "VenueEventsUiState",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "retry",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "VenueDetailViewModel",
+          "line": 82,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "changeQuery",
+          "callee": "update",
+          "lineNumber": 46
+        },
+        {
+          "caller": "changeQuery",
+          "callee": "copy",
+          "lineNumber": 46
+        },
+        {
+          "caller": "refresh",
+          "callee": "update",
+          "lineNumber": 51
+        },
+        {
+          "caller": "refresh",
+          "callee": "copy",
+          "lineNumber": 51
+        },
+        {
+          "caller": "refresh",
+          "callee": "launch",
+          "lineNumber": 52
+        },
+        {
+          "caller": "refresh",
+          "callee": "venueRequest",
+          "lineNumber": 53
+        },
+        {
+          "caller": "refresh",
+          "callee": "getVenues",
+          "lineNumber": 53
+        },
+        {
+          "caller": "refresh",
+          "callee": "update",
+          "lineNumber": 54
+        },
+        {
+          "caller": "refresh",
+          "callee": "copy",
+          "lineNumber": 55
+        },
+        {
+          "caller": "refresh",
+          "callee": "getOrNull",
+          "lineNumber": 56
+        },
+        {
+          "caller": "retry",
+          "callee": "loadVenue",
+          "lineNumber": 97
+        },
+        {
+          "caller": "retry",
+          "callee": "copy",
+          "lineNumber": 99
+        },
+        {
+          "caller": "retry",
+          "callee": "launch",
+          "lineNumber": 100
+        },
+        {
+          "caller": "retry",
+          "callee": "loadEvents",
+          "lineNumber": 100
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "launch",
+          "lineNumber": 108
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "venueRequest",
+          "lineNumber": 109
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "getVenue",
+          "lineNumber": 109
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "getOrNull",
+          "lineNumber": 110
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "Content",
+          "lineNumber": 112
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "loadEvents",
+          "lineNumber": 113
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "code",
+          "lineNumber": 115
+        },
+        {
+          "caller": "loadVenue",
+          "callee": "exceptionOrNull",
+          "lineNumber": 115
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "venueRequest",
+          "lineNumber": 122
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "getVenueEvents",
+          "lineNumber": 122
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "now",
+          "lineNumber": 123
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "filter",
+          "lineNumber": 124
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "getOrNull",
+          "lineNumber": 124
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "isAfter",
+          "lineNumber": 124
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "toInstant",
+          "lineNumber": 124
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "Content",
+          "lineNumber": 125
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "Loaded",
+          "lineNumber": 127
+        },
+        {
+          "caller": "venueRequest",
+          "callee": "success",
+          "lineNumber": 133
+        },
+        {
+          "caller": "venueRequest",
+          "callee": "request",
+          "lineNumber": 133
+        },
+        {
+          "caller": "venueRequest",
+          "callee": "failure",
+          "lineNumber": 135
+        },
+        {
+          "caller": "venueRequest",
+          "callee": "failure",
+          "lineNumber": 137
+        },
+        {
+          "caller": "venueRequest",
+          "callee": "failure",
+          "lineNumber": 139
+        },
+        {
+          "caller": "venueRequest",
+          "callee": "failure",
+          "lineNumber": 141
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 11,
+        "functionCount": 6,
+        "classCount": 5
+      }
+    }
+  ]
+}

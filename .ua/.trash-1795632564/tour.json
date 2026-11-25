@@ -1,0 +1,100 @@
+[
+  {
+    "order": 1,
+    "title": "Qué hace Eventia",
+    "description": "Empieza por el README para identificar los flujos de catálogo, lugares, favoritos y cuenta. La configuración del módulo Android reúne los plugins y las dependencias que encontrarás a lo largo del recorrido.",
+    "nodeIds": [
+      "document:README.md",
+      "file:app/build.gradle.kts"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "De Android a Compose",
+    "description": "El manifiesto declara la aplicación y la actividad de inicio. EventiaApplication inicializa Hilt, mientras MainActivity observa la sesión y decide cuándo mostrar el arranque, el formulario de acceso o la navegación principal.",
+    "nodeIds": [
+      "config:app/src/main/AndroidManifest.xml",
+      "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "file:app/src/main/java/com/example/eventia/MainActivity.kt"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "Pestañas y detalles",
+    "description": "EventiaNavigation conecta las pestañas Explorar, Mapa, Favoritos y Perfil con los detalles de evento y lugar. Explorar combina la búsqueda y las categorías con el listado de lugares y las acciones de favoritos, así puedes seguir desde una tarjeta hasta su destino.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "Del JSON al dominio",
+    "description": "NetworkModule proporciona la instancia de Retrofit que implementa EventiaApi. CatalogMappers convierte los eventos y lugares de la API a modelos de dominio y conserva el desplazamiento horario, los campos opcionales y el estado de asistencia.",
+    "languageLesson": "Las funciones de extensión de Kotlin como `EventDto.toDomain()` ofrecen un mapeo junto al tipo receptor sin introducir dependencias de presentación en los DTO.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "file:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+      "file:app/src/main/java/com/example/eventia/domain/model/Event.kt"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Catálogo con y sin conexión",
+    "description": "CatalogRepository distingue los resultados remotos de la copia local. Su implementación guarda la última descarga completa y consulta la caché ante ciertos fallos de red. ExploreViewModel coordina los filtros y la recarga al recuperar la conexión.",
+    "languageLesson": "Una interfaz `sealed` puede representar variantes de un resultado. Kotlin permite usar `when` para tratar explícitamente cada variante conocida.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "Catálogo y favoritos en Room",
+    "description": "EventiaDatabase reúne los DAO de favoritos y del catálogo. CatalogCacheDao lee y reemplaza la instantánea con su fecha dentro de transacciones, mientras FavoriteDao administra los guardados. LocalCatalogModule conecta ambas piezas y registra la migración que agrega la tabla de descargas.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Sesión, perfil e inscripciones",
+    "description": "SessionViewModel gestiona el acceso, el modo invitado y el retorno al evento pendiente. SessionRepository coordina la API con el token almacenado en DataStore. El detalle gestiona altas, bajas y conflictos de asistencia, y el perfil agrupa las inscripciones próximas y pasadas.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Lugares y mapa",
+    "description": "El catálogo de lugares permite buscar y abrir un detalle que carga la ubicación y los eventos relacionados por separado. En el mapa, MapViewModel agrupa eventos por coordenadas válidas y mantiene el filtro y el marcador seleccionado.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt"
+    ]
+  },
+  {
+    "order": 9,
+    "title": "Qué cubren las pruebas",
+    "description": "CatalogMappingTest comprueba el mapeo de fechas y campos opcionales. ExploreFlowTest verifica la restauración de filtros y la recarga al reconectar, mientras FavoritesPersistenceTest usa Room para comprobar que los favoritos se conservan al reemplazar la caché. SessionFlowTest cubre los formularios, los cambios de sesión y la asistencia desde el detalle.",
+    "nodeIds": [
+      "file:app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+      "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt"
+    ]
+  }
+]

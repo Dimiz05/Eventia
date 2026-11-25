@@ -1,0 +1,399 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-25T18:47:51.402Z",
+  "files": {
+    "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt": {
+      "overview": "La interfaz reúne las operaciones con las que la aplicación consulta eventos y lugares. El resultado de un listado distingue entre datos del servidor y una descarga local e incluye información adicional cuando se usa la caché.",
+      "sections": [
+        {
+          "title": "Operaciones del catálogo",
+          "lineRange": [
+            8,
+            15
+          ],
+          "explanation": "Las funciones suspendidas ofrecen consultas de listado y detalle de eventos y lugares. En el detalle de un evento, los parámetros `authenticated` y `allowSaved` permiten solicitar información de sesión y decidir si se admite una copia local.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Origen de los eventos",
+          "lineRange": [
+            17,
+            27
+          ],
+          "explanation": "`CatalogEvents.Remote` contiene la lista recibida desde la API. `CatalogEvents.Cached` añade las categorías y el momento de descarga, información que la pantalla puede usar para explicar la antigüedad de los datos.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt": {
+      "overview": "Este repositorio convierte las respuestas del catálogo en modelos de dominio y coordina el acceso a la red, la caché y los favoritos. La estrategia de recuperación varía entre el listado y el detalle de un evento.",
+      "sections": [
+        {
+          "title": "Descarga del catálogo",
+          "lineRange": [
+            19,
+            46
+          ],
+          "explanation": "El repositorio limpia el texto de búsqueda y consulta el servidor. Solo una respuesta sin búsqueda ni categoría reemplaza la caché completa. Si hay un `IOException` o una respuesta HTTP 5xx, se intenta usar la descarga guardada.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Filtros sobre la caché",
+          "lineRange": [
+            48,
+            62
+          ],
+          "explanation": "El repositorio recupera la instantánea y convierte los registros en eventos. Aplica el filtro de categoría y busca en el título, el resumen o la descripción sin distinguir mayúsculas. Devuelve las categorías derivadas de toda la descarga y la fecha original.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Recuperación del detalle",
+          "lineRange": [
+            64,
+            87
+          ],
+          "explanation": "La consulta autenticada incluye el token `Bearer` y traduce un HTTP 401 a `EventSessionExpired`. Si se permiten copias locales, un HTTP 404 puede recuperar un favorito y un error de red o HTTP 5xx consulta primero favoritos y luego caché.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Consultas de lugares",
+          "lineRange": [
+            89,
+            93
+          ],
+          "explanation": "El listado y el detalle de los lugares se consultan directamente a través de la API. Los eventos asociados a un lugar también se convierten a sus modelos de dominio antes de devolverlos.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt": {
+      "overview": "El ViewModel de Explorar coordina el estado de búsqueda, los filtros y el contenido del catálogo. Combina resultados remotos y locales y solicita una nueva descarga al restablecerse la conexión.",
+      "sections": [
+        {
+          "title": "Estado de la pantalla",
+          "lineRange": [
+            27,
+            56
+          ],
+          "explanation": "`ExploreUiState` separa los filtros de los resultados, la carga y el error. El contenido puede conservar las categorías aunque aún falte el listado filtrado. El ViewModel restaura filtros desde `SavedStateHandle` y expone el estado como `StateFlow` de solo lectura.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Filtros y reconexión",
+          "lineRange": [
+            58,
+            98
+          ],
+          "explanation": "La suscripción a `reconnects()` solicita regenerar el catálogo y mantiene los filtros seleccionados. Al cambiar un filtro, el ViewModel lo guarda, retira el listado anterior y solicita el nuevo resultado. Pulsar una categoría activa la desmarca.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Carga cancelable",
+          "lineRange": [
+            100,
+            126
+          ],
+          "explanation": "Cada solicitud cancela la anterior y la búsqueda espera 300 ms cuando se pide retrasar la entrada. El estado conserva el contenido disponible si falla la carga y señala el error. `ensureActive()` evita publicar resultados después de una cancelación.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Contenido remoto y local",
+          "lineRange": [
+            128,
+            165
+          ],
+          "explanation": "Los resultados excluyen los eventos cuyo inicio ya pasó. Las categorías y la fecha se toman de la descarga si se está usando la caché. Al reconectar con filtros activos, el ViewModel intenta primero refrescar la descarga completa y luego obtiene el resultado filtrado.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt": {
+      "overview": "Esta interfaz expone los cambios de conectividad que interesan al catálogo. La implementación de Android traduce los callbacks del sistema a un flujo que el ViewModel puede observar.",
+      "sections": [
+        {
+          "title": "Señal de reconexión",
+          "lineRange": [
+            17,
+            26
+          ],
+          "explanation": "`CatalogConnectivity` devuelve un `Flow<Unit>` para señalar la recuperación de la conexión. La implementación descarta el estado inicial y emite cuando el flujo informa de una red validada tras un cambio.",
+          "tourOrder": 5
+        },
+        {
+          "title": "Callbacks de Android",
+          "lineRange": [
+            28,
+            47
+          ],
+          "explanation": "`callbackFlow` registra un callback de la red predeterminada, publica el estado inicial y responde a cambios de validación o pérdida. `distinctUntilChanged()` elimina valores booleanos consecutivos iguales. `awaitClose` desregistra el callback cuando se cancela la colección.",
+          "tourOrder": 5
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt": {
+      "overview": "Esta clase declara la base de datos Room de Eventia. Reúne las tablas de favoritos y catálogo y ofrece acceso a los DAO que operan sobre ellas.",
+      "sections": [
+        {
+          "title": "Esquema de Room",
+          "lineRange": [
+            11,
+            15
+          ],
+          "explanation": "La anotación `@Database` registra tres entidades y fija la versión del esquema en 2. La entidad de descargas guarda el momento asociado a la instantánea del catálogo.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Acceso a los DAO",
+          "lineRange": [
+            16,
+            19
+          ],
+          "explanation": "La clase abstracta expone un DAO para favoritos y otro para la caché del catálogo. Room genera la implementación concreta a partir de estas declaraciones.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt": {
+      "overview": "Este DAO almacena el catálogo descargado y el momento de su última descarga. Sus transacciones mantienen juntos el listado y la fecha al leer o reemplazar una instantánea.",
+      "sections": [
+        {
+          "title": "Consultas de la caché",
+          "lineRange": [
+            12,
+            21
+          ],
+          "explanation": "Se puede buscar un evento por identificador o leer todos los registros ordenados por fecha e identificador. La fecha de descarga se busca en la fila de metadatos con identificador 1.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Lectura de la instantánea",
+          "lineRange": [
+            23,
+            36
+          ],
+          "explanation": "Las operaciones protegidas insertan eventos y actualizan la fila de metadatos. `getSnapshot()` lee la fecha y la lista en una transacción y devuelve `null` cuando no hay registro de descarga.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Reemplazo del catálogo",
+          "lineRange": [
+            38,
+            44
+          ],
+          "explanation": "`replaceAll()` borra el listado anterior, inserta el nuevo y guarda su fecha en una sola transacción. Estas operaciones se limitan a la caché del catálogo y a sus metadatos.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt": {
+      "overview": "Este DAO controla los eventos guardados en la tabla de favoritos. Sirve tanto para observar la colección como para recuperar una copia individual desde el almacenamiento local.",
+      "sections": [
+        {
+          "title": "Lectura y guardado",
+          "lineRange": [
+            11,
+            20
+          ],
+          "explanation": "`observeAll()` devuelve un `Flow` con los favoritos ordenados por fecha e identificador. `find()` busca un registro por ID y la inserción ignora conflictos, por lo que un favorito repetido conserva el registro existente.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Eliminación con resultado",
+          "lineRange": [
+            22,
+            31
+          ],
+          "explanation": "`remove()` busca el registro y lo elimina dentro de una transacción. Devuelve la entidad anterior, que el llamador puede recuperar para deshacer la eliminación, o `null` si el favorito no existía.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt": {
+      "overview": "Este módulo configura en Hilt el almacenamiento local del catálogo y los favoritos. Define la migración al esquema actual y proporciona ambos DAO a partir de una instancia de Room.",
+      "sections": [
+        {
+          "title": "Enlace del repositorio",
+          "lineRange": [
+            20,
+            24
+          ],
+          "explanation": "`@Binds` asocia la interfaz `FavoritesRepository` con `RoomFavoritesRepository`. Hilt puede así inyectar el contrato donde se necesiten operaciones sobre favoritos.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Migración de la base",
+          "lineRange": [
+            26,
+            40
+          ],
+          "explanation": "La migración de la versión 1 a la 2 crea la tabla `catalog_download` con el identificador y la fecha de descarga. El módulo registra esa migración al construir la base `eventia.db` y conserva una sola instancia por el alcance de Hilt.",
+          "tourOrder": 6
+        },
+        {
+          "title": "Provisión de los DAO",
+          "lineRange": [
+            42,
+            48
+          ],
+          "explanation": "Cada método `@Provides` obtiene un DAO desde la base compartida. Los consumidores reciben el DAO correspondiente mediante inyección sin construir otra base de datos.",
+          "tourOrder": 6
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt": {
+      "overview": "El ViewModel administra el formulario, el modo invitado, la restauración de cuenta y los cambios de sesión. También conserva la referencia al evento que se debe volver a abrir después de iniciar sesión.",
+      "sections": [
+        {
+          "title": "Estados de sesión",
+          "lineRange": [
+            23,
+            51
+          ],
+          "explanation": "La interfaz sellada distingue arranque, error de arranque, modo invitado, formulario y cuenta activa. Los estados del formulario y de la cuenta llevan sus propios indicadores de actividad y error. El identificador del evento pendiente se conserva en `SavedStateHandle`.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Arranque y acceso invitado",
+          "lineRange": [
+            53,
+            85
+          ],
+          "explanation": "Al iniciar, el ViewModel consulta si existe una sesión y carga la cuenta o presenta un formulario. También permite saltar al modo invitado y, si un evento solicita iniciar sesión, guarda su identificador antes de volver al formulario.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Expiración y cierre",
+          "lineRange": [
+            87,
+            125
+          ],
+          "explanation": "La expiración conserva el evento de retorno cuando corresponde e intenta borrar la sesión después de cancelar la solicitud previa. El cierre voluntario usa su propio estado de progreso y conserva la cuenta en pantalla si el borrado falla. Una vez que se atiende el retorno al evento, su identificador se limpia.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Validación y envío",
+          "lineRange": [
+            127,
+            185
+          ],
+          "explanation": "El formulario valida correo y contraseña, y exige nombre durante el registro. Una vez enviados los datos, el ViewModel traduce los campos rechazados por el repositorio a mensajes de interfaz. La carga de cuenta comienza tras un acceso o registro exitoso.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Carga de la cuenta",
+          "lineRange": [
+            187,
+            222
+          ],
+          "explanation": "El reintento evita iniciar otro trabajo mientras ya se carga la cuenta o se cierra la sesión. Si el repositorio devuelve una cuenta nula, el flujo vuelve al formulario con un aviso de expiración. Ante fallos de carga, una cuenta ya visible puede seguir en pantalla.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt": {
+      "overview": "El repositorio de sesión enlaza la API con el almacenamiento del token. Además de iniciar o cerrar sesión, recupera la cuenta y autentica las operaciones de inscripción y cancelación.",
+      "sections": [
+        {
+          "title": "Contrato e inicio de sesión",
+          "lineRange": [
+            14,
+            44
+          ],
+          "explanation": "La interfaz ofrece operaciones suspendidas para la sesión, la cuenta y la asistencia. Su implementación comprueba la presencia del token en el almacén y obtiene uno nuevo llamando a los endpoints de inicio de sesión o registro.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Operaciones de asistencia",
+          "lineRange": [
+            46,
+            55
+          ],
+          "explanation": "Inscribirse y cancelar usan el mismo método interno con distintas llamadas de la API. La ausencia de token o una respuesta HTTP 401 producen `EventSessionExpired` y las demás respuestas fallidas se propagan como `HttpException`.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Recuperación de la cuenta",
+          "lineRange": [
+            57,
+            69
+          ],
+          "explanation": "`loadAccount()` devuelve `null` si falta el token y consulta `getMe` cuando lo tiene. Exige un correo válido en el sentido de que exista y no esté en blanco. Si el servidor responde HTTP 401, borra el token y devuelve `null`.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Errores de autenticación",
+          "lineRange": [
+            71,
+            96
+          ],
+          "explanation": "El método compartido guarda el token únicamente cuando la respuesta lo contiene y no está en blanco. Los errores HTTP 400 y 422 pueden indicar campos rechazados, mientras que un HTTP 401 produce un rechazo sin campos. El lector de errores reconoce las claves de nombre, correo y contraseña.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/data/local/SessionStore.kt": {
+      "overview": "Esta clase encapsula la persistencia del token de sesión en las preferencias de DataStore. Ofrece operaciones suspendidas que el repositorio usa para leer, guardar o borrar ese valor.",
+      "sections": [
+        {
+          "title": "Lectura del token",
+          "lineRange": [
+            12,
+            19
+          ],
+          "explanation": "La propiedad delegada de `Context` enlaza la instancia de preferencias llamada `session`. `readToken()` obtiene la primera emisión del flujo de datos y lee la clave `token`, que puede estar ausente.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Cambios en preferencias",
+          "lineRange": [
+            21,
+            28
+          ],
+          "explanation": "`saveToken()` escribe el valor mediante `edit`, la operación de modificación de DataStore. `clearToken()` usa el mismo mecanismo para retirar la clave de las preferencias.",
+          "tourOrder": 7
+        }
+      ]
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": {
+      "overview": "Este ViewModel carga el detalle de un evento y administra los cambios de asistencia. Coordina la información del catálogo, las solicitudes autenticadas y los estados que explican un conflicto o piden actualizar el detalle.",
+      "sections": [
+        {
+          "title": "Estado del detalle",
+          "lineRange": [
+            23,
+            50
+          ],
+          "explanation": "El estado sellado distingue carga, contenido, ausencia y error. El contenido conserva el evento y los indicadores para asistencia y actualización, y `SavedStateHandle` proporciona el identificador del evento desde la navegación.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Carga y actualización",
+          "lineRange": [
+            52,
+            72
+          ],
+          "explanation": "Al cargar, se cancela la solicitud anterior y se publica el estado de carga. La actualización manual requiere que el contenido pida una nueva consulta y evita iniciarla simultáneamente con otra actualización. El usuario también puede cerrar el aviso de conflicto.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Cambios de asistencia",
+          "lineRange": [
+            74,
+            102
+          ],
+          "explanation": "La inscripción o cancelación exige una sesión y un estado de asistencia conocido. Al recibir HTTP 409, el ViewModel vuelve a consultar el detalle para interpretar el conflicto. Si la operación resulta exitosa, notifica el cambio y actualiza el evento desde el servidor.",
+          "tourOrder": 7
+        },
+        {
+          "title": "Reconciliación del resultado",
+          "lineRange": [
+            104,
+            139
+          ],
+          "explanation": "Las recargas con contenido previo deshabilitan el uso de copias locales para confirmar el estado de asistencia. Los datos nuevos determinan si sigue pendiente la confirmación, ya existe la inscripción o se agotaron las plazas. Un HTTP 404 muestra ausencia y otros fallos conservan el contenido anterior si está disponible.",
+          "tourOrder": 7
+        }
+      ]
+    }
+  }
+}

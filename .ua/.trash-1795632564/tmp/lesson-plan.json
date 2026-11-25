@@ -1,0 +1,151 @@
+{
+  "batches": [
+    {
+      "index": 1,
+      "files": [
+        {
+          "filePath": "README.md",
+          "tourOrder": 1
+        },
+        {
+          "filePath": "app/build.gradle.kts",
+          "tourOrder": 1
+        },
+        {
+          "filePath": "app/src/main/AndroidManifest.xml",
+          "tourOrder": 2
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/EventiaApplication.kt",
+          "tourOrder": 2
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/MainActivity.kt",
+          "tourOrder": 2
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+          "tourOrder": 3
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+          "tourOrder": 3
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+          "tourOrder": 3
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+          "tourOrder": 4
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+          "tourOrder": 4
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+          "tourOrder": 4
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+          "tourOrder": 4
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "files": [
+        {
+          "filePath": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+          "tourOrder": 5
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+          "tourOrder": 5
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+          "tourOrder": 5
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+          "tourOrder": 5
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+          "tourOrder": 6
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+          "tourOrder": 6
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+          "tourOrder": 6
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+          "tourOrder": 6
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+          "tourOrder": 7
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+          "tourOrder": 7
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+          "tourOrder": 7
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+          "tourOrder": 7
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "files": [
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+          "tourOrder": 7
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+          "tourOrder": 8
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+          "tourOrder": 8
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+          "tourOrder": 8
+        },
+        {
+          "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+          "tourOrder": 8
+        },
+        {
+          "filePath": "app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+          "tourOrder": 9
+        },
+        {
+          "filePath": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+          "tourOrder": 9
+        },
+        {
+          "filePath": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+          "tourOrder": 9
+        },
+        {
+          "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+          "tourOrder": 9
+        }
+      ]
+    }
+  ]
+}

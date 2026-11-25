@@ -1,0 +1,88 @@
+{
+  "projectRoot": "C:\\Users\\jeiso\\AndroidStudioProjects\\Eventia",
+  "batchFiles": [
+    {
+      "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "language": "kotlin",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+      "language": "kotlin",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+      "language": "kotlin",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+      "language": "kotlin",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "language": "kotlin",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+      "language": "kotlin",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt",
+      "language": "kotlin",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+      "language": "kotlin",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/EventiaApiTest.kt",
+      "language": "kotlin",
+      "sizeLines": 116,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "app/src/main/java/com/example/eventia/api/EventiaApi.kt": [
+      "app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+      "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+      "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "app/src/main/java/com/example/eventia/api/models/VenueDto.kt"
+    ],
+    "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt": [
+      "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
+    "app/src/main/java/com/example/eventia/api/models/AccountDto.kt": [],
+    "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt": [],
+    "app/src/main/java/com/example/eventia/api/models/EventDto.kt": [],
+    "app/src/main/java/com/example/eventia/api/models/VenueDto.kt": [],
+    "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt": [
+      "app/src/main/java/com/example/eventia/api/models/EventDto.kt"
+    ],
+    "app/src/test/java/com/example/eventia/CatalogMappingTest.kt": [
+      "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+    ],
+    "app/src/test/java/com/example/eventia/EventiaApiTest.kt": [
+      "app/src/main/java/com/example/eventia/api/EventiaApi.kt"
+    ]
+  }
+}

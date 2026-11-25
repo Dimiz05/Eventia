@@ -1,0 +1,2525 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "type": "file",
+      "name": "FavoritesPersistenceTest.kt",
+      "filePath": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "summary": "Prueba instrumentada que abre una base Room real y alterna la disponibilidad de red con un cliente simulado. Verifica el filtrado sin conexión, el reemplazo de la caché y la conservación de favoritos tras cerrar y reabrir la base.",
+      "tags": [
+        "prueba-instrumentada",
+        "room",
+        "modo-sin-conexion",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt:FavoritesPersistenceTest",
+      "type": "class",
+      "name": "FavoritesPersistenceTest",
+      "filePath": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "lineRange": [
+        38,
+        156
+      ],
+      "summary": "Cubre la interacción entre el catálogo remoto y el repositorio de favoritos sobre una base persistente.",
+      "tags": [
+        "prueba-instrumentada",
+        "room",
+        "modo-sin-conexion",
+        "test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt:replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+      "type": "function",
+      "name": "replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+      "filePath": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "lineRange": [
+        40,
+        155
+      ],
+      "summary": "Comprueba que una descarga vacía sustituye la caché sin borrar los favoritos y que deshacer una eliminación restaura el detalle persistido.",
+      "tags": [
+        "prueba-instrumentada",
+        "room",
+        "modo-sin-conexion",
+        "test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "type": "file",
+      "name": "EventiaDatabase.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "summary": "Declara la base Room versión 2, registra las entidades de favoritos, eventos en caché y metadatos de descarga, y expone sus dos DAO.",
+      "tags": [
+        "room",
+        "base-de-datos",
+        "persistencia"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:EventiaDatabase",
+      "type": "class",
+      "name": "EventiaDatabase",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "lineRange": [
+        11,
+        19
+      ],
+      "summary": "Punto de entrada de Room para acceder a datos locales de favoritos y del catálogo.",
+      "tags": [
+        "room",
+        "base-de-datos",
+        "persistencia"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:favoriteDao",
+      "type": "function",
+      "name": "favoriteDao",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "lineRange": [
+        17,
+        17
+      ],
+      "summary": "Expone el DAO de favoritos de la base.",
+      "tags": [
+        "room",
+        "base-de-datos",
+        "persistencia",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:catalogCacheDao",
+      "type": "function",
+      "name": "catalogCacheDao",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "lineRange": [
+        18,
+        18
+      ],
+      "summary": "Expone el DAO del catálogo en caché.",
+      "tags": [
+        "room",
+        "base-de-datos",
+        "persistencia",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "file",
+      "name": "SessionStore.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "summary": "Lee, guarda y elimina el token de sesión usando preferencias de DataStore asociadas al contexto de la aplicación.",
+      "tags": [
+        "datastore",
+        "sesion",
+        "persistencia"
+      ],
+      "complexity": "simple",
+      "languageNotes": "El delegado preferencesDataStore proporciona acceso a un almacén de preferencias; sus operaciones suspendidas no bloquean al llamador."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:SessionStore",
+      "type": "class",
+      "name": "SessionStore",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "lineRange": [
+        14,
+        28
+      ],
+      "summary": "Encapsula la persistencia del token de sesión como una dependencia de Hilt.",
+      "tags": [
+        "datastore",
+        "sesion",
+        "persistencia"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:readToken",
+      "type": "function",
+      "name": "readToken",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "lineRange": [
+        19,
+        19
+      ],
+      "summary": "Lee el token almacenado, si existe.",
+      "tags": [
+        "datastore",
+        "sesion",
+        "persistencia",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:saveToken",
+      "type": "function",
+      "name": "saveToken",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "lineRange": [
+        21,
+        23
+      ],
+      "summary": "Escribe el nuevo token mediante una edición de DataStore.",
+      "tags": [
+        "datastore",
+        "sesion",
+        "persistencia",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:clearToken",
+      "type": "function",
+      "name": "clearToken",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "lineRange": [
+        25,
+        27
+      ],
+      "summary": "Elimina la clave del token de las preferencias.",
+      "tags": [
+        "datastore",
+        "sesion",
+        "persistencia",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "type": "file",
+      "name": "CatalogCacheDao.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "summary": "Consulta eventos guardados y mantiene un registro con la fecha de la última descarga del catálogo. Lee y reemplaza la instantánea completa mediante transacciones de Room.",
+      "tags": [
+        "dao",
+        "room",
+        "cache",
+        "transaccion"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Las funciones con @Transaction agrupan varias consultas u operaciones en una unidad atómica de Room."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:CatalogCacheDao",
+      "type": "class",
+      "name": "CatalogCacheDao",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "lineRange": [
+        12,
+        44
+      ],
+      "summary": "Define las operaciones SQL y las transacciones del catálogo en caché.",
+      "tags": [
+        "dao",
+        "room",
+        "cache",
+        "transaccion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:find",
+      "type": "function",
+      "name": "find",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "lineRange": [
+        14,
+        15
+      ],
+      "summary": "Busca un evento guardado por su identificador.",
+      "tags": [
+        "dao",
+        "room",
+        "cache",
+        "transaccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:getSnapshot",
+      "type": "function",
+      "name": "getSnapshot",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "lineRange": [
+        32,
+        36
+      ],
+      "summary": "Devuelve los eventos ordenados y la fecha de descarga cuando existe el registro de metadatos.",
+      "tags": [
+        "dao",
+        "room",
+        "cache",
+        "transaccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:replaceAll",
+      "type": "function",
+      "name": "replaceAll",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "lineRange": [
+        38,
+        43
+      ],
+      "summary": "Sustituye todos los eventos y actualiza el registro de descarga en una sola transacción.",
+      "tags": [
+        "dao",
+        "room",
+        "cache",
+        "transaccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "type": "file",
+      "name": "FavoriteDao.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "summary": "Observa favoritos por fecha e identificador, permite recuperar e insertar eventos guardados y devuelve la fila que elimina dentro de una transacción.",
+      "tags": [
+        "dao",
+        "room",
+        "favoritos",
+        "flow"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Room expone consultas observables como Flow y mantiene juntas la lectura y la eliminación mediante @Transaction."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "type": "class",
+      "name": "FavoriteDao",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "lineRange": [
+        11,
+        31
+      ],
+      "summary": "Define las consultas e inserciones sobre la tabla de favoritos.",
+      "tags": [
+        "dao",
+        "room",
+        "favoritos",
+        "flow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:observeAll",
+      "type": "function",
+      "name": "observeAll",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "lineRange": [
+        13,
+        14
+      ],
+      "summary": "Emite los favoritos ordenados por fecha de inicio e identificador.",
+      "tags": [
+        "dao",
+        "room",
+        "favoritos",
+        "flow",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:find",
+      "type": "function",
+      "name": "find",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "lineRange": [
+        16,
+        17
+      ],
+      "summary": "Recupera un favorito por su identificador.",
+      "tags": [
+        "dao",
+        "room",
+        "favoritos",
+        "flow",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:insert",
+      "type": "function",
+      "name": "insert",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "lineRange": [
+        19,
+        20
+      ],
+      "summary": "Inserta un favorito e ignora conflictos con un identificador ya guardado.",
+      "tags": [
+        "dao",
+        "room",
+        "favoritos",
+        "flow",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:remove",
+      "type": "function",
+      "name": "remove",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "lineRange": [
+        25,
+        30
+      ],
+      "summary": "Recupera y elimina el favorito en una transacción; devuelve la fila para que se pueda restaurar.",
+      "tags": [
+        "dao",
+        "room",
+        "favoritos",
+        "flow",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "type": "file",
+      "name": "CachedEventEntity.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "summary": "Representa una fila de cached_events con el identificador y los detalles de un evento almacenado.",
+      "tags": [
+        "entidad",
+        "room",
+        "cache"
+      ],
+      "complexity": "simple",
+      "languageNotes": "@Embedded incorpora las columnas de StoredEvent en la misma tabla de Room."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt:CachedEventEntity",
+      "type": "class",
+      "name": "CachedEventEntity",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "lineRange": [
+        8,
+        14
+      ],
+      "summary": "Entidad del catálogo en caché con el identificador del evento como clave primaria.",
+      "tags": [
+        "entidad",
+        "room",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "type": "file",
+      "name": "CatalogDownloadEntity.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "summary": "Registra la fecha de descarga del catálogo en milisegundos desde el origen Unix.",
+      "tags": [
+        "entidad",
+        "room",
+        "metadatos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt:CatalogDownloadEntity",
+      "type": "class",
+      "name": "CatalogDownloadEntity",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "lineRange": [
+        6,
+        12
+      ],
+      "summary": "Entidad Room usada por el DAO como registro único del momento de descarga.",
+      "tags": [
+        "entidad",
+        "room",
+        "metadatos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "type": "file",
+      "name": "FavoriteEntity.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "summary": "Representa una fila de favorites, con un identificador y los mismos detalles guardados que utiliza la caché.",
+      "tags": [
+        "entidad",
+        "room",
+        "favoritos"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Room incorpora los campos del evento con @Embedded; favoritos y caché se guardan en tablas distintas."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt:FavoriteEntity",
+      "type": "class",
+      "name": "FavoriteEntity",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "lineRange": [
+        8,
+        13
+      ],
+      "summary": "Entidad Room persistida al guardar un evento en favoritos.",
+      "tags": [
+        "entidad",
+        "room",
+        "favoritos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "type": "file",
+      "name": "CachedCatalogSnapshot.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "summary": "Reúne los eventos en caché y su fecha de descarga en un único valor que retorna el DAO.",
+      "tags": [
+        "modelo",
+        "cache",
+        "metadatos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt:CachedCatalogSnapshot",
+      "type": "class",
+      "name": "CachedCatalogSnapshot",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "lineRange": [
+        5,
+        8
+      ],
+      "summary": "Agrupa la lista de CachedEventEntity y la marca temporal de la descarga.",
+      "tags": [
+        "modelo",
+        "cache",
+        "metadatos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "type": "file",
+      "name": "StoredEvent.kt",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "summary": "Contiene los datos compartidos por eventos de caché y favoritos. Convierte fechas a texto ISO al guardar y reconstruye el evento de dominio sin estado de asistencia asociado a una cuenta.",
+      "tags": [
+        "modelo",
+        "persistencia",
+        "mapeo",
+        "fechas"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Los prefijos de @Embedded desambiguan las columnas de la categoría y del lugar en las tablas Room."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:StoredEvent",
+      "type": "class",
+      "name": "StoredEvent",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "lineRange": [
+        9,
+        49
+      ],
+      "summary": "Modelo de persistencia reutilizado por los eventos guardados y los favoritos.",
+      "tags": [
+        "modelo",
+        "persistencia",
+        "mapeo",
+        "fechas"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "function",
+      "name": "toDomain",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "lineRange": [
+        21,
+        33
+      ],
+      "summary": "Reconstruye el evento a partir de sus campos persistidos, preserva el desplazamiento horario y establece la asistencia como desconocida.",
+      "tags": [
+        "modelo",
+        "persistencia",
+        "mapeo",
+        "fechas",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:from",
+      "type": "function",
+      "name": "from",
+      "filePath": "app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "lineRange": [
+        36,
+        47
+      ],
+      "summary": "Convierte un evento de dominio en datos persistibles y serializa sus fechas con desplazamiento.",
+      "tags": [
+        "modelo",
+        "persistencia",
+        "mapeo",
+        "fechas",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "type": "file",
+      "name": "LocalCatalogModule.kt",
+      "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "summary": "Configura con Hilt la base Room, los DAO del catálogo y favoritos y la implementación de su repositorio. Registra la migración de la versión 1 a la 2, que agrega la tabla de descargas.",
+      "tags": [
+        "hilt",
+        "room",
+        "migracion",
+        "inyeccion"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "@Binds vincula una interfaz con su implementación y @Provides crea instancias que necesitan un constructor externo."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "type": "class",
+      "name": "LocalCatalogModule",
+      "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "lineRange": [
+        20,
+        48
+      ],
+      "summary": "Módulo de Hilt instalado en el componente singleton para proveer la persistencia local del catálogo.",
+      "tags": [
+        "hilt",
+        "room",
+        "migracion",
+        "inyeccion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:bindFavorites",
+      "type": "function",
+      "name": "bindFavorites",
+      "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "lineRange": [
+        23,
+        24
+      ],
+      "summary": "Vincula el contrato FavoritesRepository con RoomFavoritesRepository.",
+      "tags": [
+        "hilt",
+        "room",
+        "migracion",
+        "inyeccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideDatabase",
+      "type": "function",
+      "name": "provideDatabase",
+      "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "lineRange": [
+        35,
+        40
+      ],
+      "summary": "Construye la base de datos eventia.db con la migración que incorpora los metadatos de descarga.",
+      "tags": [
+        "hilt",
+        "room",
+        "migracion",
+        "inyeccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideFavoriteDao",
+      "type": "function",
+      "name": "provideFavoriteDao",
+      "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "lineRange": [
+        42,
+        43
+      ],
+      "summary": "Provee el DAO de favoritos desde la instancia de Room.",
+      "tags": [
+        "hilt",
+        "room",
+        "migracion",
+        "inyeccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideCatalogCacheDao",
+      "type": "function",
+      "name": "provideCatalogCacheDao",
+      "filePath": "app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "lineRange": [
+        45,
+        46
+      ],
+      "summary": "Provee el DAO del catálogo en caché desde la instancia de Room.",
+      "tags": [
+        "hilt",
+        "room",
+        "migracion",
+        "inyeccion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "type": "file",
+      "name": "FavoritesRepository.kt",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "summary": "Define la interfaz para observar y modificar favoritos. La implementación Room convierte entre la entidad local y el evento de dominio.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "La interfaz permite consumir favoritos como eventos de dominio y observar sus cambios con Flow."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "type": "class",
+      "name": "FavoritesRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        11,
+        16
+      ],
+      "summary": "Contrato para observar, consultar, guardar y eliminar eventos favoritos.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "type": "class",
+      "name": "RoomFavoritesRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        18,
+        33
+      ],
+      "summary": "Implementa el contrato utilizando el DAO y el modelo local StoredEvent.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.observeFavorites",
+      "type": "function",
+      "name": "observeFavorites",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        12,
+        12
+      ],
+      "summary": "Expone un flujo de eventos guardados.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.findFavorite",
+      "type": "function",
+      "name": "findFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        13,
+        13
+      ],
+      "summary": "Describe la consulta de un favorito por identificador.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.addFavorite",
+      "type": "function",
+      "name": "addFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        14,
+        14
+      ],
+      "summary": "Describe cómo guardar un evento como favorito.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.removeFavorite",
+      "type": "function",
+      "name": "removeFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        15,
+        15
+      ],
+      "summary": "Describe la eliminación de un favorito y el retorno de su evento si existía.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.observeFavorites",
+      "type": "function",
+      "name": "observeFavorites",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        21,
+        22
+      ],
+      "summary": "Observa filas Room y transforma cada una a un evento de dominio.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.findFavorite",
+      "type": "function",
+      "name": "findFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "Consulta el DAO y transforma el resultado si hay un favorito.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.addFavorite",
+      "type": "function",
+      "name": "addFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        27,
+        29
+      ],
+      "summary": "Convierte el evento a una entidad e indica al DAO que la inserte.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.removeFavorite",
+      "type": "function",
+      "name": "removeFavorite",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "lineRange": [
+        31,
+        32
+      ],
+      "summary": "Elimina un favorito y convierte en evento de dominio el valor eliminado.",
+      "tags": [
+        "repositorio",
+        "favoritos",
+        "room",
+        "mapeo",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "type": "file",
+      "name": "RemoteCatalogRepository.kt",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "summary": "Coordina las llamadas de Retrofit con la caché Room y los favoritos. Actualiza la descarga completa cuando corresponde, permite consultas locales ante ciertos fallos y usa el token de sesión para el detalle autenticado.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "type": "class",
+      "name": "RemoteCatalogRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        19,
+        93
+      ],
+      "summary": "Implementación del catálogo que decide cuándo consultar la red, la caché o los favoritos según la operación y el fallo.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "type": "function",
+      "name": "getEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        25,
+        26
+      ],
+      "summary": "Solicita los eventos con los filtros dados y convierte los DTO al dominio.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "type": "function",
+      "name": "loadEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        28,
+        46
+      ],
+      "summary": "Normaliza la búsqueda, recurre a la caché ante errores de red o respuestas 5xx y persiste listados remotos completos sin filtros.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadCachedEvents",
+      "type": "function",
+      "name": "loadCachedEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        48,
+        62
+      ],
+      "summary": "Filtra la instantánea local por categoría y por coincidencias en título, resumen o descripción; adjunta metadatos y categorías.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "type": "function",
+      "name": "getEvent",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        64,
+        84
+      ],
+      "summary": "Obtiene el detalle con autorización opcional. Distingue la sesión vencida y elige si se permite leer una copia local ante el fallo.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenues",
+      "type": "function",
+      "name": "getVenues",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        89,
+        89
+      ],
+      "summary": "Consulta todos los lugares y convierte los DTO al dominio.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenue",
+      "type": "function",
+      "name": "getVenue",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        90,
+        90
+      ],
+      "summary": "Consulta y convierte el detalle de un lugar por identificador.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenueEvents",
+      "type": "function",
+      "name": "getVenueEvents",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "lineRange": [
+        91,
+        92
+      ],
+      "summary": "Consulta y convierte los eventos vinculados al lugar.",
+      "tags": [
+        "repositorio",
+        "retrofit",
+        "room",
+        "modo-sin-conexion",
+        "funcion"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt:FavoritesPersistenceTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt:replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt:FavoritesPersistenceTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt:replacingCatalogAndUndoingRemovalKeepTheSavedDetail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:EventiaDatabase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:EventiaDatabase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:favoriteDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:EventiaDatabase",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:favoriteDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:favoriteDao",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:catalogCacheDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:EventiaDatabase",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:catalogCacheDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:catalogCacheDao",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:SessionStore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:SessionStore",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:readToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:SessionStore",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:readToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:readToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:saveToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:SessionStore",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:saveToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:saveToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:clearToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:SessionStore",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:clearToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:clearToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:CatalogCacheDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:CatalogCacheDao",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:find",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:CatalogCacheDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:find",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:find",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:getSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:CatalogCacheDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:getSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:getSnapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:replaceAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:CatalogCacheDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:replaceAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:replaceAll",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:observeAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:observeAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:observeAll",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:find",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:find",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:find",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:insert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:insert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:insert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:remove",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:FavoriteDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:remove",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:remove",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt:CachedEventEntity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt:CachedEventEntity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt:CatalogDownloadEntity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt:CatalogDownloadEntity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt:FavoriteEntity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt:FavoriteEntity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt:CachedCatalogSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt:CachedCatalogSnapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:StoredEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "class:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:StoredEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:StoredEvent",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:from",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:StoredEvent",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:from",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:from",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:bindFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:bindFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:bindFavorites",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideDatabase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideDatabase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideDatabase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideFavoriteDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideFavoriteDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideFavoriteDao",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideCatalogCacheDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:LocalCatalogModule",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideCatalogCacheDao",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideCatalogCacheDao",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.observeFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.observeFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.observeFavorites",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.findFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.findFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.findFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.addFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.addFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.addFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.removeFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.removeFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.removeFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.observeFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.observeFavorites",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.observeFavorites",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.findFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.findFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.findFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.addFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.addFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.addFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.removeFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.removeFavorite",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.removeFavorite",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadCachedEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadCachedEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenues",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenues",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenues",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenueEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenueEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenueEvents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "target": "function:app/src/main/java/com/example/eventia/api/EventiaApi.kt:getEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "target": "function:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt:toDomain(EventDto)",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadCachedEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:replaceAll",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:from",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadCachedEvents",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt:getSnapshot",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:loadCachedEvents",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/SessionStore.kt:readToken",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "target": "function:app/src/main/java/com/example/eventia/api/EventiaApi.kt:getEvent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "target": "function:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt:toDomain(EventDto)",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getEvent",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository.findFavorite",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenues",
+      "target": "function:app/src/main/java/com/example/eventia/api/EventiaApi.kt:getVenues",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenue",
+      "target": "function:app/src/main/java/com/example/eventia/api/EventiaApi.kt:getVenue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenueEvents",
+      "target": "function:app/src/main/java/com/example/eventia/api/EventiaApi.kt:getVenueEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenues",
+      "target": "function:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt:toDomain(VenueDto)",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenue",
+      "target": "function:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt:toDomain(VenueDto)",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:getVenueEvents",
+      "target": "function:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt:toDomain(EventDto)",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.observeFavorites",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:observeAll",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.observeFavorites",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.findFavorite",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:find",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.findFavorite",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.addFavorite",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:insert",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.addFavorite",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:from",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.removeFavorite",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:remove",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository.removeFavorite",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt:toDomain",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:remove",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt:find",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideFavoriteDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:favoriteDao",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt:provideCatalogCacheDao",
+      "target": "function:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt:catalogCacheDao",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:RoomFavoritesRepository",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt:FavoritesRepository",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt:RemoteCatalogRepository",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:CatalogRepository",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

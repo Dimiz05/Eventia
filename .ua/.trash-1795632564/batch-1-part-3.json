@@ -1,0 +1,1291 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "type": "file",
+      "name": "ProfileScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "summary": "Compone el perfil y la información de cuenta junto a las inscripciones agrupadas. Solicita actualización al volver a la pantalla y comunica la expiración de sesión.",
+      "tags": [
+        "compose",
+        "perfil",
+        "inscripciones",
+        "sesión"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "type": "function",
+      "name": "ProfileRoute",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "lineRange": [
+        42,
+        63
+      ],
+      "summary": "Observa el ViewModel, actualiza al reanudar y comunica el rechazo de la sesión.",
+      "tags": [
+        "compose",
+        "perfil",
+        "inscripciones",
+        "sesión"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileScreen",
+      "type": "function",
+      "name": "ProfileScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "lineRange": [
+        65,
+        138
+      ],
+      "summary": "Presenta la cuenta y las inscripciones próximas o pasadas con sus estados de carga y error.",
+      "tags": [
+        "compose",
+        "perfil",
+        "inscripciones",
+        "sesión"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileEmptyPreview",
+      "type": "function",
+      "name": "ProfileEmptyPreview",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "lineRange": [
+        140,
+        154
+      ],
+      "summary": "Muestra el estado vacío de inscripciones en una vista previa de Compose.",
+      "tags": [
+        "compose",
+        "perfil",
+        "inscripciones",
+        "sesión"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "type": "file",
+      "name": "ProfileViewModel.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "summary": "Solicita las inscripciones de la sesión y las agrupa en próximas y pasadas. Produce estados de carga, error y rechazo de sesión para el perfil.",
+      "tags": [
+        "viewmodel",
+        "perfil",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:AttendanceGroups",
+      "type": "class",
+      "name": "AttendanceGroups",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "lineRange": [
+        20,
+        28
+      ],
+      "summary": "Representa inscripciones próximas y pasadas y las ordena a partir de la fecha del evento.",
+      "tags": [
+        "viewmodel",
+        "perfil",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileUiState",
+      "type": "class",
+      "name": "ProfileUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "lineRange": [
+        30,
+        35
+      ],
+      "summary": "Agrupa el resultado de inscripciones y los indicadores de carga, fallo y sesión rechazada.",
+      "tags": [
+        "viewmodel",
+        "perfil",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel",
+      "type": "class",
+      "name": "ProfileViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "lineRange": [
+        37,
+        73
+      ],
+      "summary": "Actualiza las inscripciones mediante el repositorio y traduce los fallos a estados de perfil.",
+      "tags": [
+        "viewmodel",
+        "perfil",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel.refresh",
+      "type": "function",
+      "name": "refresh",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "lineRange": [
+        45,
+        64
+      ],
+      "summary": "Solicita eventos inscritos y diferencia expiración de sesión de errores comunes.",
+      "tags": [
+        "viewmodel",
+        "perfil",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "type": "file",
+      "name": "SessionScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "summary": "Presenta arranque, formularios de acceso y registro, y controles de cuenta. Incluye invitado, reintento y salida según el estado de sesión.",
+      "tags": [
+        "compose",
+        "autenticación",
+        "formulario",
+        "cuenta"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionStartup",
+      "type": "function",
+      "name": "SessionStartup",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "lineRange": [
+        45,
+        59
+      ],
+      "summary": "Representa carga y recuperación durante el arranque de la sesión.",
+      "tags": [
+        "compose",
+        "autenticación",
+        "formulario",
+        "cuenta"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionForm",
+      "type": "function",
+      "name": "SessionForm",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "lineRange": [
+        61,
+        122
+      ],
+      "summary": "Compone acceso y registro, valida la disponibilidad de acciones y ofrece continuar como invitado.",
+      "tags": [
+        "compose",
+        "autenticación",
+        "formulario",
+        "cuenta"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionField",
+      "type": "function",
+      "name": "SessionField",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "lineRange": [
+        124,
+        146
+      ],
+      "summary": "Dibuja un campo de sesión con soporte para entrada sensible y teclado apropiado.",
+      "tags": [
+        "compose",
+        "autenticación",
+        "formulario",
+        "cuenta"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:AccountScreen",
+      "type": "function",
+      "name": "AccountScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "lineRange": [
+        148,
+        187
+      ],
+      "summary": "Presenta datos o acciones de cuenta según la sesión sea de invitado, activa o esté cambiando.",
+      "tags": [
+        "compose",
+        "autenticación",
+        "formulario",
+        "cuenta"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "type": "file",
+      "name": "VenueDetailScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "summary": "Muestra el detalle de un lugar con información, indicaciones y eventos asociados. Trata por separado los estados del lugar y de su lista de eventos.",
+      "tags": [
+        "compose",
+        "lugares",
+        "detalle",
+        "eventos"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailScreen",
+      "type": "function",
+      "name": "VenueDetailScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "lineRange": [
+        28,
+        36
+      ],
+      "summary": "Observa el estado del detalle y conecta reintento y navegación a eventos.",
+      "tags": [
+        "compose",
+        "lugares",
+        "detalle",
+        "eventos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "type": "function",
+      "name": "VenueDetailContent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "lineRange": [
+        38,
+        89
+      ],
+      "summary": "Presenta información del lugar y los estados independientes de sus eventos.",
+      "tags": [
+        "compose",
+        "lugares",
+        "detalle",
+        "eventos"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueInformation",
+      "type": "function",
+      "name": "VenueInformation",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "lineRange": [
+        91,
+        102
+      ],
+      "summary": "Dibuja imagen, datos y controles de ubicación del lugar.",
+      "tags": [
+        "compose",
+        "lugares",
+        "detalle",
+        "eventos"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "type": "file",
+      "name": "VenueListScreen.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "summary": "Presenta la búsqueda de lugares con listado de tarjetas, estados de carga y opciones de actualización o reintento.",
+      "tags": [
+        "compose",
+        "lugares",
+        "búsqueda",
+        "lista"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListScreen",
+      "type": "function",
+      "name": "VenueListScreen",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "lineRange": [
+        41,
+        48
+      ],
+      "summary": "Observa el estado del listado y conecta el contenido con la búsqueda y actualización.",
+      "tags": [
+        "compose",
+        "lugares",
+        "búsqueda",
+        "lista"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListContent",
+      "type": "function",
+      "name": "VenueListContent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "lineRange": [
+        50,
+        105
+      ],
+      "summary": "Presenta búsqueda y lista o mensajes de ausencia, carga y fallo de lugares.",
+      "tags": [
+        "compose",
+        "lugares",
+        "búsqueda",
+        "lista"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueCard",
+      "type": "function",
+      "name": "VenueCard",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "lineRange": [
+        107,
+        129
+      ],
+      "summary": "Dibuja una tarjeta de lugar que abre su detalle al seleccionarla.",
+      "tags": [
+        "compose",
+        "lugares",
+        "búsqueda",
+        "lista"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "type": "file",
+      "name": "VenueLocation.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "summary": "Muestra dirección o coordenadas y abre indicaciones mediante un intent geo cuando hay una ubicación válida. Informa si el dispositivo no ofrece una aplicación compatible.",
+      "tags": [
+        "compose",
+        "ubicación",
+        "indicaciones",
+        "android"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt:VenueLocation",
+      "type": "function",
+      "name": "VenueLocation",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "lineRange": [
+        20,
+        61
+      ],
+      "summary": "Presenta dirección o coordenadas y abre un intent geo para solicitar indicaciones.",
+      "tags": [
+        "compose",
+        "ubicación",
+        "indicaciones",
+        "android"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "type": "file",
+      "name": "VenueViewModels.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "summary": "Contiene los ViewModels del listado y detalle de lugares. Conserva la búsqueda local, mantiene los resultados visibles en fallos de actualización y carga por separado lugar y eventos.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListUiState",
+      "type": "class",
+      "name": "VenueListUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        22,
+        30
+      ],
+      "summary": "Reúne consulta, lugares y estado de carga y obtiene las coincidencias por nombre.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel",
+      "type": "class",
+      "name": "VenueListViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        32,
+        67
+      ],
+      "summary": "Conserva la consulta en SavedStateHandle y actualiza los lugares del catálogo.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailUiState",
+      "type": "class",
+      "name": "VenueDetailUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        69,
+        74
+      ],
+      "summary": "Distingue carga, ausencia, fallo y contenido en el detalle del lugar.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueEventsUiState",
+      "type": "class",
+      "name": "VenueEventsUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        76,
+        80
+      ],
+      "summary": "Modela por separado el estado de la lista de eventos del lugar.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel",
+      "type": "class",
+      "name": "VenueDetailViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        82,
+        130
+      ],
+      "summary": "Coordina la carga del lugar y sus eventos a partir de el identificador del destino.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.changeQuery",
+      "type": "function",
+      "name": "changeQuery",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        44,
+        47
+      ],
+      "summary": "Conserva la consulta en SavedStateHandle y actualiza el estado reactivo.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.refresh",
+      "type": "function",
+      "name": "refresh",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        49,
+        62
+      ],
+      "summary": "Recarga la lista evitando peticiones duplicadas y mantiene la última respuesta disponible si falla.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.retry",
+      "type": "function",
+      "name": "retry",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        95,
+        104
+      ],
+      "summary": "Reintenta el detalle completo o solo los eventos, según el estado del fallo.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadVenue",
+      "type": "function",
+      "name": "loadVenue",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        106,
+        119
+      ],
+      "summary": "Consulta el lugar y, si existe, inicia la solicitud de sus eventos.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadEvents",
+      "type": "function",
+      "name": "loadEvents",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        121,
+        129
+      ],
+      "summary": "Consulta la programación para el lugar y actualiza su estado independiente.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:venueRequest",
+      "type": "function",
+      "name": "venueRequest",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "lineRange": [
+        132,
+        142
+      ],
+      "summary": "Convierte respuestas esperadas del catálogo en Result y preserva la cancelación de corrutinas.",
+      "tags": [
+        "viewmodel",
+        "lugares",
+        "catálogo",
+        "estado"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileEmptyPreview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:AttendanceGroups",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:AttendanceGroups",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel.refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel.refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel.refresh",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionStartup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionStartup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:AccountScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:AccountScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueInformation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListScreen",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListScreen",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt:VenueLocation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt:VenueLocation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueEventsUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueEventsUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.changeQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.changeQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.changeQuery",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.refresh",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.retry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.retry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.retry",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadVenue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadVenue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadEvents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:venueRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileEmptyPreview",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionStartup",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionStartup",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionForm",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:SessionField",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueInformation",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueDetailContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt:VenueInformation",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListContent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:LoadingScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt:ScreenMessage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueListContent",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueListViewModel.refresh",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:venueRequest",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.retry",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadVenue",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.retry",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadVenue",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:venueRequest",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadVenue",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadEvents",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:VenueDetailViewModel.loadEvents",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt:venueRequest",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:AccountScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileScreen",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt:AccountScreen",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt:ProfileRoute",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel.refresh",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt:ProfileViewModel.refresh",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt:AttendanceRepository.getMyAttendances",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt:VenueCard",
+      "target": "function:app/src/main/java/com/example/eventia/ui/components/EventCard.kt:EventArtwork",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

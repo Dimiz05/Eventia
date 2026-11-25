@@ -1,0 +1,117 @@
+{
+  "nodes": [
+    {
+      "id": "config:app/src/main/res/values/colors.xml",
+      "type": "config",
+      "name": "colors.xml",
+      "filePath": "app/src/main/res/values/colors.xml",
+      "summary": "Declara colores disponibles como recursos Android en el módulo de la aplicación.",
+      "tags": [
+        "android",
+        "recursos",
+        "colores"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/values/strings.xml",
+      "type": "config",
+      "name": "strings.xml",
+      "filePath": "app/src/main/res/values/strings.xml",
+      "summary": "Centraliza los textos en español, etiquetas accesibles, mensajes de error y plurales utilizados por catálogo, mapa, favoritos, perfil y sesión.",
+      "tags": [
+        "android",
+        "recursos",
+        "textos",
+        "localización"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:app/src/main/res/values/themes.xml",
+      "type": "config",
+      "name": "themes.xml",
+      "filePath": "app/src/main/res/values/themes.xml",
+      "summary": "Define el tema Android Theme.Eventia, basado en Material Light sin barra de acción, que referencia el manifiesto.",
+      "tags": [
+        "android",
+        "recursos",
+        "tema",
+        "configuracion"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:app/src/main/res/values/themes.xml",
+      "target": "config:app/src/main/AndroidManifest.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/values/strings.xml",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

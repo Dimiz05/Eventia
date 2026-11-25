@@ -1,0 +1,798 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/build.gradle.kts",
+      "type": "file",
+      "name": "build.gradle.kts",
+      "filePath": "app/build.gradle.kts",
+      "summary": "Configura el módulo Android, los plugins de Compose, Hilt y KSP, y las dependencias de ejecución y pruebas. Proporciona al manifiesto la clave de Maps mediante una propiedad local.",
+      "tags": [
+        "gradle",
+        "android",
+        "dependencias",
+        "maps"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "La configuración usa un catálogo de versiones y un proveedor de Gradle para resolver datos locales."
+    },
+    {
+      "id": "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "type": "file",
+      "name": "ExampleInstrumentedTest.kt",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "summary": "Comprueba en Android que el contexto de la aplicación instrumentada tiene el identificador de paquete de Eventia.",
+      "tags": [
+        "pruebas",
+        "android",
+        "contexto"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt:ExampleInstrumentedTest",
+      "type": "class",
+      "name": "ExampleInstrumentedTest",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "lineRange": [
+        16,
+        24
+      ],
+      "summary": "Agrupa la comprobación de arranque que se ejecuta en el dispositivo Android.",
+      "tags": [
+        "pruebas",
+        "android",
+        "contexto"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt:useAppContext",
+      "type": "function",
+      "name": "useAppContext",
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "lineRange": [
+        18,
+        23
+      ],
+      "summary": "Comprueba que el contexto instrumentado corresponde al paquete de Eventia.",
+      "tags": [
+        "pruebas",
+        "android",
+        "aserción"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/AndroidManifest.xml",
+      "type": "config",
+      "name": "AndroidManifest.xml",
+      "filePath": "app/src/main/AndroidManifest.xml",
+      "summary": "Declara la aplicación Hilt, la actividad de inicio, los permisos de red, el tema y la configuración de Google Maps y de copias de seguridad.",
+      "tags": [
+        "android",
+        "manifiesto",
+        "actividad",
+        "configuración"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "type": "file",
+      "name": "EventiaApplication.kt",
+      "filePath": "app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "summary": "Define la clase Application anotada con Hilt para iniciar la generación de dependencias de alcance de aplicación.",
+      "tags": [
+        "android",
+        "hilt",
+        "inyección"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/EventiaApplication.kt:EventiaApplication",
+      "type": "class",
+      "name": "EventiaApplication",
+      "filePath": "app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "lineRange": [
+        6,
+        7
+      ],
+      "summary": "Registra el punto de entrada de Hilt en el ciclo de vida de Application.",
+      "tags": [
+        "android",
+        "hilt",
+        "inyección"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "type": "file",
+      "name": "LoginDto.kt",
+      "filePath": "app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "summary": "Define los objetos de intercambio de inicio de sesión, con credenciales en la solicitud y un token en la respuesta.",
+      "tags": [
+        "dto",
+        "sesión",
+        "autenticación"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/api/models/LoginDto.kt:LoginRequestDto",
+      "type": "class",
+      "name": "LoginRequestDto",
+      "filePath": "app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "lineRange": [
+        5,
+        8
+      ],
+      "summary": "Representa los campos de correo electrónico y contraseña de una solicitud de inicio de sesión.",
+      "tags": [
+        "dto",
+        "sesión",
+        "solicitud"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/api/models/LoginDto.kt:LoginResponseDto",
+      "type": "class",
+      "name": "LoginResponseDto",
+      "filePath": "app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "lineRange": [
+        10,
+        12
+      ],
+      "summary": "Recibe el token devuelto por el API tras iniciar sesión.",
+      "tags": [
+        "dto",
+        "sesión",
+        "respuesta"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "type": "file",
+      "name": "ConnectionNotice.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "summary": "Traduce cambios de conectividad en avisos de desconexión o restauración y proporciona el banner accesible de Compose que los presenta.",
+      "tags": [
+        "conectividad",
+        "compose",
+        "navegación",
+        "accesibilidad"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "transformLatest cancela el temporizador de restauración cuando llega un nuevo estado de red."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:ConnectionNotice",
+      "type": "class",
+      "name": "ConnectionNotice",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "lineRange": [
+        24,
+        24
+      ],
+      "summary": "Distingue el estado sin conexión de la restauración de la conectividad.",
+      "tags": [
+        "conectividad",
+        "aviso",
+        "estado"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:connectionNotices",
+      "type": "function",
+      "name": "connectionNotices",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "lineRange": [
+        26,
+        43
+      ],
+      "summary": "Convierte estados únicos de red en avisos y cancela el aviso temporal si la conectividad vuelve a cambiar.",
+      "tags": [
+        "conectividad",
+        "flow",
+        "corrutinas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:ConnectionBanner",
+      "type": "function",
+      "name": "ConnectionBanner",
+      "filePath": "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "lineRange": [
+        45,
+        63
+      ],
+      "summary": "Dibuja el aviso de red con recursos localizados y una región viva de accesibilidad.",
+      "tags": [
+        "conectividad",
+        "compose",
+        "accesibilidad"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/theme/Color.kt",
+      "type": "file",
+      "name": "Color.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/theme/Color.kt",
+      "summary": "Declara constantes de color en tonos púrpura y rosa disponibles en el paquete de tema de Compose.",
+      "tags": [
+        "compose",
+        "tema",
+        "color"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "type": "file",
+      "name": "Theme.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "summary": "Aplica los colores claros u oscuros y la tipografía de Material 3 a la composición. Puede adoptar colores dinámicos de Android en versiones compatibles.",
+      "tags": [
+        "compose",
+        "tema",
+        "material3",
+        "color"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/theme/Theme.kt:EventiaTheme",
+      "type": "function",
+      "name": "EventiaTheme",
+      "filePath": "app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "lineRange": [
+        54,
+        71
+      ],
+      "summary": "Selecciona la paleta según el modo oscuro y los colores dinámicos y la aplica con la tipografía a MaterialTheme.",
+      "tags": [
+        "compose",
+        "tema",
+        "material3"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/theme/Type.kt",
+      "type": "file",
+      "name": "Type.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/theme/Type.kt",
+      "summary": "Define la configuración tipográfica de Material 3 y personaliza el estilo bodyLarge con tamaño, interlineado y espaciado.",
+      "tags": [
+        "compose",
+        "tema",
+        "tipografía"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/keepRules/rules.keep",
+      "type": "file",
+      "name": "rules.keep",
+      "filePath": "app/src/main/keepRules/rules.keep",
+      "summary": "Reserva un archivo para reglas del reductor de código R8. El ejemplo presente está comentado y no activa reglas adicionales.",
+      "tags": [
+        "gradle",
+        "android",
+        "r8"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "type": "config",
+      "name": "ic_launcher.xml",
+      "filePath": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "summary": "Define el icono adaptativo principal mediante capas de fondo y primer plano, con una variante monocromática.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "type": "config",
+      "name": "ic_launcher_round.xml",
+      "filePath": "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "summary": "Define la variante adaptativa redonda del icono de inicio, incluida su capa monocromática.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+      "type": "file",
+      "name": "ic_launcher.webp",
+      "filePath": "app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+      "summary": "Variante WebP principal del icono de inicio para la densidad Android hdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+      "type": "file",
+      "name": "ic_launcher_round.webp",
+      "filePath": "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+      "summary": "Variante WebP redonda del icono de inicio para la densidad Android hdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+      "type": "file",
+      "name": "ic_launcher.webp",
+      "filePath": "app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+      "summary": "Variante WebP principal del icono de inicio para la densidad Android mdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+      "type": "file",
+      "name": "ic_launcher_round.webp",
+      "filePath": "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+      "summary": "Variante WebP redonda del icono de inicio para la densidad Android mdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+      "type": "file",
+      "name": "ic_launcher.webp",
+      "filePath": "app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+      "summary": "Variante WebP principal del icono de inicio para la densidad Android xhdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+      "type": "file",
+      "name": "ic_launcher_round.webp",
+      "filePath": "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+      "summary": "Variante WebP redonda del icono de inicio para la densidad Android xhdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+      "type": "file",
+      "name": "ic_launcher.webp",
+      "filePath": "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+      "summary": "Variante WebP principal del icono de inicio para la densidad Android xxhdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+      "type": "file",
+      "name": "ic_launcher_round.webp",
+      "filePath": "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+      "summary": "Variante WebP redonda del icono de inicio para la densidad Android xxhdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+      "type": "file",
+      "name": "ic_launcher.webp",
+      "filePath": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+      "summary": "Variante WebP principal del icono de inicio para la densidad Android xxxhdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp",
+      "type": "file",
+      "name": "ic_launcher_round.webp",
+      "filePath": "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp",
+      "summary": "Variante WebP redonda del icono de inicio para la densidad Android xxxhdpi.",
+      "tags": [
+        "android",
+        "icono",
+        "recurso"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/xml/backup_rules.xml",
+      "type": "config",
+      "name": "backup_rules.xml",
+      "filePath": "app/src/main/res/xml/backup_rules.xml",
+      "summary": "Declara las reglas de copia de seguridad de archivos y excluye las preferencias locales de sesión de DataStore.",
+      "tags": [
+        "android",
+        "respaldo",
+        "sesión"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:app/src/main/res/xml/data_extraction_rules.xml",
+      "type": "config",
+      "name": "data_extraction_rules.xml",
+      "filePath": "app/src/main/res/xml/data_extraction_rules.xml",
+      "summary": "Excluye las preferencias locales de sesión tanto de la copia de seguridad en la nube como de la transferencia entre dispositivos.",
+      "tags": [
+        "android",
+        "respaldo",
+        "transferencia",
+        "sesión"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "type": "file",
+      "name": "ConnectionNoticeTest.kt",
+      "filePath": "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "summary": "Verifica con JUnit que el aviso de desconexión persiste, que el de restauración desaparece y que una caída posterior vuelve a mostrar el aviso.",
+      "tags": [
+        "pruebas",
+        "conectividad",
+        "corrutinas"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt:ConnectionNoticeTest",
+      "type": "class",
+      "name": "ConnectionNoticeTest",
+      "filePath": "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "lineRange": [
+        14,
+        37
+      ],
+      "summary": "Agrupa las aserciones sobre las transiciones de los avisos de conectividad.",
+      "tags": [
+        "pruebas",
+        "conectividad",
+        "flow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt:offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+      "type": "function",
+      "name": "offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+      "filePath": "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "lineRange": [
+        15,
+        36
+      ],
+      "summary": "Comprueba la persistencia del aviso sin conexión y la desaparición del mensaje de restauración, incluso si hay otra caída.",
+      "tags": [
+        "pruebas",
+        "conectividad",
+        "corrutinas"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt:ExampleInstrumentedTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt:ExampleInstrumentedTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt:useAppContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt:useAppContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "target": "class:app/src/main/java/com/example/eventia/EventiaApplication.kt:EventiaApplication",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "target": "class:app/src/main/java/com/example/eventia/EventiaApplication.kt:EventiaApplication",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "target": "class:app/src/main/java/com/example/eventia/api/models/LoginDto.kt:LoginRequestDto",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "target": "class:app/src/main/java/com/example/eventia/api/models/LoginDto.kt:LoginRequestDto",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "target": "class:app/src/main/java/com/example/eventia/api/models/LoginDto.kt:LoginResponseDto",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "target": "class:app/src/main/java/com/example/eventia/api/models/LoginDto.kt:LoginResponseDto",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:ConnectionNotice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:ConnectionNotice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:connectionNotices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:connectionNotices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:ConnectionBanner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt:ConnectionBanner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/theme/Theme.kt:EventiaTheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/theme/Theme.kt:EventiaTheme",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "target": "class:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt:ConnectionNoticeTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "target": "class:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt:ConnectionNoticeTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "target": "function:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt:offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "target": "function:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt:offlineStaysVisibleAndRestoredClearsUnlessConnectionDropsAgain",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "config:app/src/main/res/xml/backup_rules.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "config:app/src/main/res/xml/data_extraction_rules.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/AndroidManifest.xml",
+      "target": "config:app/src/main/res/values/themes.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/build.gradle.kts",
+      "target": "config:app/src/main/AndroidManifest.xml",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/build.gradle.kts",
+      "target": "config:gradle/libs.versions.toml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_background.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_background.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "target": "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "target": "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/theme/Type.kt",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

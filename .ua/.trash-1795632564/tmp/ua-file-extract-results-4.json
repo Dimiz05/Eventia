@@ -1,0 +1,1762 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 8,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 8,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 150,
+      "nonEmptyLines": 131,
+      "functions": [
+        {
+          "name": "filtersCoalesceCancelAndRestore",
+          "startLine": 32,
+          "endLine": 60,
+          "params": []
+        },
+        {
+          "name": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "startLine": 62,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "startLine": 84,
+          "endLine": 110,
+          "params": []
+        },
+        {
+          "name": "onMain",
+          "startLine": 112,
+          "endLine": 114,
+          "params": [
+            "test"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ExploreFlowTest",
+          "startLine": 30,
+          "endLine": 150,
+          "methods": [
+            "filtersCoalesceCancelAndRestore",
+            "refreshKeepsPreviousResultOnFailureAndCanRetry",
+            "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+            "onMain"
+          ],
+          "properties": [
+            "Offline",
+            "NoCategories"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "filtersCoalesceCancelAndRestore",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "ExploreFlowTest",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "onMain",
+          "lineNumber": 33
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "PendingCatalog",
+          "lineNumber": 34
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "SavedStateHandle",
+          "lineNumber": 35
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "ExploreViewModel",
+          "lineNumber": 36
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "receive",
+          "lineNumber": 37
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "changeQuery",
+          "lineNumber": 39
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "changeQuery",
+          "lineNumber": 40
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "selectCategory",
+          "lineNumber": 41
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "await",
+          "lineNumber": 42
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "assertTrue",
+          "lineNumber": 43
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "tryReceive",
+          "lineNumber": 43
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "receive",
+          "lineNumber": 44
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "assertEquals",
+          "lineNumber": 45
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "ExploreFilters",
+          "lineNumber": 45
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "complete",
+          "lineNumber": 46
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "emptyList",
+          "lineNumber": 46
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "first",
+          "lineNumber": 47
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "ExploreViewModel",
+          "lineNumber": 49
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "assertEquals",
+          "lineNumber": 50
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "receive",
+          "lineNumber": 51
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "assertEquals",
+          "lineNumber": 52
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "clearFilters",
+          "lineNumber": 54
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "await",
+          "lineNumber": 55
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "receive",
+          "lineNumber": 56
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "assertEquals",
+          "lineNumber": 57
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "ExploreFilters",
+          "lineNumber": 57
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "complete",
+          "lineNumber": 58
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "emptyList",
+          "lineNumber": 58
+        },
+        {
+          "caller": "filtersCoalesceCancelAndRestore",
+          "callee": "first",
+          "lineNumber": 59
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "onMain",
+          "lineNumber": 63
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "PendingCatalog",
+          "lineNumber": 64
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "ExploreViewModel",
+          "lineNumber": 65
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "SavedStateHandle",
+          "lineNumber": 65
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "complete",
+          "lineNumber": 66
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "receive",
+          "lineNumber": 66
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "emptyList",
+          "lineNumber": 66
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "first",
+          "lineNumber": 67
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "refresh",
+          "lineNumber": 69
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "assertTrue",
+          "lineNumber": 70
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "assertSame",
+          "lineNumber": 71
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "completeExceptionally",
+          "lineNumber": 72
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "receive",
+          "lineNumber": 72
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "IOException",
+          "lineNumber": 72
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "first",
+          "lineNumber": 73
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "assertTrue",
+          "lineNumber": 74
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "assertSame",
+          "lineNumber": 75
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "refresh",
+          "lineNumber": 77
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "complete",
+          "lineNumber": 78
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "receive",
+          "lineNumber": 78
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "emptyList",
+          "lineNumber": 78
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "first",
+          "lineNumber": 79
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "assertEquals",
+          "lineNumber": 80
+        },
+        {
+          "caller": "refreshKeepsPreviousResultOnFailureAndCanRetry",
+          "callee": "assertEquals",
+          "lineNumber": 81
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "onMain",
+          "lineNumber": 85
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "PendingCatalog",
+          "lineNumber": 86
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "SavedStateHandle",
+          "lineNumber": 88
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "mapOf",
+          "lineNumber": 88
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "ExploreViewModel",
+          "lineNumber": 89
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "CatalogConnectivity",
+          "lineNumber": 90
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "receiveAsFlow",
+          "lineNumber": 90
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "receive",
+          "lineNumber": 92
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "assertEquals",
+          "lineNumber": 93
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "ExploreFilters",
+          "lineNumber": 93
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "send",
+          "lineNumber": 95
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "await",
+          "lineNumber": 96
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "receive",
+          "lineNumber": 97
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "assertEquals",
+          "lineNumber": 98
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "ExploreFilters",
+          "lineNumber": 98
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "selectCategory",
+          "lineNumber": 100
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "await",
+          "lineNumber": 101
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "receive",
+          "lineNumber": 102
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "assertEquals",
+          "lineNumber": 103
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "ExploreFilters",
+          "lineNumber": 103
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "complete",
+          "lineNumber": 104
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "emptyList",
+          "lineNumber": 104
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "receive",
+          "lineNumber": 105
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "assertEquals",
+          "lineNumber": 106
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "ExploreFilters",
+          "lineNumber": 106
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "complete",
+          "lineNumber": 107
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "emptyList",
+          "lineNumber": 107
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "assertEquals",
+          "lineNumber": 108
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "first",
+          "lineNumber": 108
+        },
+        {
+          "caller": "reconnectDownloadsFullCatalogAndKeepsTheLatestFilters",
+          "callee": "close",
+          "lineNumber": 109
+        },
+        {
+          "caller": "onMain",
+          "callee": "runBlocking",
+          "lineNumber": 112
+        },
+        {
+          "caller": "onMain",
+          "callee": "withTimeout",
+          "lineNumber": 113
+        },
+        {
+          "caller": "onMain",
+          "callee": "withContext",
+          "lineNumber": 113
+        },
+        {
+          "caller": "onMain",
+          "callee": "test",
+          "lineNumber": 113
+        },
+        {
+          "caller": "getCategories",
+          "callee": "emptyList",
+          "lineNumber": 119
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "Remote",
+          "lineNumber": 126
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "getEvents",
+          "lineNumber": 126
+        },
+        {
+          "caller": "getEvents",
+          "callee": "PendingRequest",
+          "lineNumber": 129
+        },
+        {
+          "caller": "getEvents",
+          "callee": "ExploreFilters",
+          "lineNumber": 129
+        },
+        {
+          "caller": "getEvents",
+          "callee": "orEmpty",
+          "lineNumber": 129
+        },
+        {
+          "caller": "getEvents",
+          "callee": "send",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getEvents",
+          "callee": "await",
+          "lineNumber": 132
+        },
+        {
+          "caller": "getEvents",
+          "callee": "complete",
+          "lineNumber": 134
+        },
+        {
+          "caller": "getEvent",
+          "callee": "error",
+          "lineNumber": 139
+        },
+        {
+          "caller": "getVenues",
+          "callee": "error",
+          "lineNumber": 140
+        },
+        {
+          "caller": "getVenue",
+          "callee": "error",
+          "lineNumber": 141
+        },
+        {
+          "caller": "getVenueEvents",
+          "callee": "error",
+          "lineNumber": 143
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 42,
+      "functions": [
+        {
+          "name": "reconnects",
+          "startLine": 18,
+          "endLine": 18,
+          "params": []
+        },
+        {
+          "name": "reconnects",
+          "startLine": 26,
+          "endLine": 26,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "CatalogConnectivity",
+          "startLine": 17,
+          "endLine": 19,
+          "methods": [
+            "reconnects"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AndroidCatalogConnectivity",
+          "startLine": 21,
+          "endLine": 48,
+          "methods": [
+            "reconnects"
+          ],
+          "properties": [
+            "manager",
+            "online"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "reconnects",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "CatalogConnectivity",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "reconnects",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "online",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "AndroidCatalogConnectivity",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "reconnects",
+          "callee": "map",
+          "lineNumber": 26
+        },
+        {
+          "caller": "reconnects",
+          "callee": "filter",
+          "lineNumber": 26
+        },
+        {
+          "caller": "reconnects",
+          "callee": "drop",
+          "lineNumber": 26
+        },
+        {
+          "caller": "onCapabilitiesChanged",
+          "callee": "synchronized",
+          "lineNumber": 32
+        },
+        {
+          "caller": "onCapabilitiesChanged",
+          "callee": "trySend",
+          "lineNumber": 33
+        },
+        {
+          "caller": "onCapabilitiesChanged",
+          "callee": "hasCapability",
+          "lineNumber": 33
+        },
+        {
+          "caller": "onLost",
+          "callee": "synchronized",
+          "lineNumber": 38
+        },
+        {
+          "caller": "onLost",
+          "callee": "trySend",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 2,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/di/NetworkModule.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 43,
+      "functions": [
+        {
+          "name": "bindSessionRepository",
+          "startLine": 26,
+          "endLine": 27,
+          "params": [
+            "repository"
+          ]
+        },
+        {
+          "name": "bindAttendanceRepository",
+          "startLine": 29,
+          "endLine": 30,
+          "params": [
+            "repository"
+          ]
+        },
+        {
+          "name": "bindCategoryRepository",
+          "startLine": 32,
+          "endLine": 33,
+          "params": [
+            "repository"
+          ]
+        },
+        {
+          "name": "bindCatalogRepository",
+          "startLine": 35,
+          "endLine": 36,
+          "params": [
+            "repository"
+          ]
+        },
+        {
+          "name": "bindCatalogConnectivity",
+          "startLine": 38,
+          "endLine": 39,
+          "params": [
+            "connectivity"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "NetworkModule",
+          "startLine": 23,
+          "endLine": 50,
+          "methods": [
+            "bindSessionRepository",
+            "bindAttendanceRepository",
+            "bindCategoryRepository",
+            "bindCatalogRepository",
+            "bindCatalogConnectivity"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "bindSessionRepository",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "bindAttendanceRepository",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "bindCategoryRepository",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "bindCatalogRepository",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "bindCatalogConnectivity",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "NetworkModule",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "provideEventiaApi",
+          "callee": "create",
+          "lineNumber": 44
+        },
+        {
+          "caller": "provideEventiaApi",
+          "callee": "build",
+          "lineNumber": 44
+        },
+        {
+          "caller": "provideEventiaApi",
+          "callee": "addConverterFactory",
+          "lineNumber": 44
+        },
+        {
+          "caller": "provideEventiaApi",
+          "callee": "baseUrl",
+          "lineNumber": 44
+        },
+        {
+          "caller": "provideEventiaApi",
+          "callee": "Builder",
+          "lineNumber": 44
+        },
+        {
+          "caller": "provideEventiaApi",
+          "callee": "create",
+          "lineNumber": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "classes": [
+        {
+          "name": "Category",
+          "startLine": 3,
+          "endLine": 3,
+          "methods": [],
+          "properties": [
+            "id",
+            "name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Category",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "getEvents",
+          "startLine": 9,
+          "endLine": 9,
+          "params": [
+            "query",
+            "categoryId"
+          ]
+        },
+        {
+          "name": "loadEvents",
+          "startLine": 10,
+          "endLine": 10,
+          "params": [
+            "query",
+            "categoryId"
+          ]
+        },
+        {
+          "name": "getEvent",
+          "startLine": 11,
+          "endLine": 11,
+          "params": [
+            "id",
+            "authenticated",
+            "allowSaved"
+          ]
+        },
+        {
+          "name": "getVenues",
+          "startLine": 12,
+          "endLine": 12,
+          "params": []
+        },
+        {
+          "name": "getVenue",
+          "startLine": 13,
+          "endLine": 13,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "getVenueEvents",
+          "startLine": 14,
+          "endLine": 14,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "CatalogRepository",
+          "startLine": 8,
+          "endLine": 15,
+          "methods": [
+            "getEvents",
+            "loadEvents",
+            "getEvent",
+            "getVenues",
+            "getVenue",
+            "getVenueEvents"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CatalogEvents",
+          "startLine": 17,
+          "endLine": 27,
+          "methods": [],
+          "properties": [
+            "events"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getEvents",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "loadEvents",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "getEvent",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "getVenues",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "getVenue",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "getVenueEvents",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "CatalogRepository",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "events",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "CatalogEvents",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 6,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 13,
+      "functions": [
+        {
+          "name": "getCategories",
+          "startLine": 8,
+          "endLine": 8,
+          "params": []
+        },
+        {
+          "name": "getCategories",
+          "startLine": 14,
+          "endLine": 15,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "CategoryRepository",
+          "startLine": 7,
+          "endLine": 9,
+          "methods": [
+            "getCategories"
+          ],
+          "properties": []
+        },
+        {
+          "name": "RemoteCategoryRepository",
+          "startLine": 11,
+          "endLine": 16,
+          "methods": [
+            "getCategories"
+          ],
+          "properties": [
+            "api"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getCategories",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "CategoryRepository",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "getCategories",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "RemoteCategoryRepository",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getCategories",
+          "callee": "map",
+          "lineNumber": 15
+        },
+        {
+          "caller": "getCategories",
+          "callee": "getCategories",
+          "lineNumber": 15
+        },
+        {
+          "caller": "getCategories",
+          "callee": "Category",
+          "lineNumber": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 2,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 166,
+      "nonEmptyLines": 152,
+      "functions": [
+        {
+          "name": "changeQuery",
+          "startLine": 68,
+          "endLine": 70,
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "name": "selectCategory",
+          "startLine": 72,
+          "endLine": 76,
+          "params": [
+            "categoryId"
+          ]
+        },
+        {
+          "name": "clearFilters",
+          "startLine": 78,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "refresh",
+          "startLine": 82,
+          "endLine": 84,
+          "params": []
+        },
+        {
+          "name": "updateFilters",
+          "startLine": 86,
+          "endLine": 98,
+          "params": [
+            "filters",
+            "waitForInput"
+          ]
+        },
+        {
+          "name": "load",
+          "startLine": 100,
+          "endLine": 126,
+          "params": [
+            "reloadCatalog",
+            "waitForInput"
+          ]
+        },
+        {
+          "name": "fetchContent",
+          "startLine": 128,
+          "endLine": 153,
+          "params": [
+            "current",
+            "reloadCatalog"
+          ]
+        },
+        {
+          "name": "refreshCatalogCache",
+          "startLine": 155,
+          "endLine": 159,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ExploreFilters",
+          "startLine": 27,
+          "endLine": 29,
+          "methods": [],
+          "properties": [
+            "query",
+            "categoryId",
+            "isActive"
+          ]
+        },
+        {
+          "name": "ExploreUiState",
+          "startLine": 31,
+          "endLine": 42,
+          "methods": [],
+          "properties": [
+            "filters",
+            "content",
+            "isLoading",
+            "hasError"
+          ]
+        },
+        {
+          "name": "ExploreViewModel",
+          "startLine": 44,
+          "endLine": 166,
+          "methods": [
+            "changeQuery",
+            "selectCategory",
+            "clearFilters",
+            "refresh",
+            "updateFilters",
+            "load",
+            "fetchContent",
+            "refreshCatalogCache"
+          ],
+          "properties": [
+            "categories",
+            "catalog",
+            "savedState",
+            "mutableState",
+            "state",
+            "request",
+            "catalogRefreshPending"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "isActive",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "ExploreFilters",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "ExploreUiState",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "changeQuery",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "selectCategory",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "clearFilters",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "refresh",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "ExploreViewModel",
+          "line": 44,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "changeQuery",
+          "callee": "updateFilters",
+          "lineNumber": 69
+        },
+        {
+          "caller": "changeQuery",
+          "callee": "copy",
+          "lineNumber": 69
+        },
+        {
+          "caller": "selectCategory",
+          "callee": "takeUnless",
+          "lineNumber": 74
+        },
+        {
+          "caller": "selectCategory",
+          "callee": "updateFilters",
+          "lineNumber": 75
+        },
+        {
+          "caller": "selectCategory",
+          "callee": "copy",
+          "lineNumber": 75
+        },
+        {
+          "caller": "clearFilters",
+          "callee": "updateFilters",
+          "lineNumber": 79
+        },
+        {
+          "caller": "clearFilters",
+          "callee": "ExploreFilters",
+          "lineNumber": 79
+        },
+        {
+          "caller": "refresh",
+          "callee": "load",
+          "lineNumber": 83
+        },
+        {
+          "caller": "updateFilters",
+          "callee": "copy",
+          "lineNumber": 91
+        },
+        {
+          "caller": "updateFilters",
+          "callee": "copy",
+          "lineNumber": 93
+        },
+        {
+          "caller": "updateFilters",
+          "callee": "load",
+          "lineNumber": 97
+        },
+        {
+          "caller": "load",
+          "callee": "cancel",
+          "lineNumber": 101
+        },
+        {
+          "caller": "load",
+          "callee": "copy",
+          "lineNumber": 102
+        },
+        {
+          "caller": "load",
+          "callee": "launch",
+          "lineNumber": 104
+        },
+        {
+          "caller": "load",
+          "callee": "delay",
+          "lineNumber": 105
+        },
+        {
+          "caller": "load",
+          "callee": "fetchContent",
+          "lineNumber": 107
+        },
+        {
+          "caller": "load",
+          "callee": "ensureActive",
+          "lineNumber": 119
+        },
+        {
+          "caller": "load",
+          "callee": "copy",
+          "lineNumber": 120
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "takeIf",
+          "lineNumber": 129
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "ifEmpty",
+          "lineNumber": 131
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "trim",
+          "lineNumber": 131
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "refreshCatalogCache",
+          "lineNumber": 134
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "loadEvents",
+          "lineNumber": 136
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "now",
+          "lineNumber": 140
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "filter",
+          "lineNumber": 141
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "isAfter",
+          "lineNumber": 141
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "toInstant",
+          "lineNumber": 141
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "Content",
+          "lineNumber": 143
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "getCategories",
+          "lineNumber": 144
+        },
+        {
+          "caller": "fetchContent",
+          "callee": "Content",
+          "lineNumber": 147
+        },
+        {
+          "caller": "refreshCatalogCache",
+          "callee": "loadEvents",
+          "lineNumber": 156
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 9,
+        "functionCount": 8,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 161,
+      "nonEmptyLines": 147,
+      "functions": [
+        {
+          "name": "retryMap",
+          "startLine": 67,
+          "endLine": 77,
+          "params": []
+        },
+        {
+          "name": "retryEvents",
+          "startLine": 79,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "selectCategory",
+          "startLine": 84,
+          "endLine": 92,
+          "params": [
+            "categoryId"
+          ]
+        },
+        {
+          "name": "selectPoint",
+          "startLine": 94,
+          "endLine": 97,
+          "params": [
+            "point"
+          ]
+        },
+        {
+          "name": "loadEvents",
+          "startLine": 99,
+          "endLine": 132,
+          "params": []
+        },
+        {
+          "name": "markersFor",
+          "startLine": 134,
+          "endLine": 140,
+          "params": [
+            "categoryId"
+          ]
+        },
+        {
+          "name": "checkAvailability",
+          "startLine": 142,
+          "endLine": 156,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MapUiState",
+          "startLine": 24,
+          "endLine": 36,
+          "methods": [],
+          "properties": [
+            "NotConfigured",
+            "ServicesUnavailable"
+          ]
+        },
+        {
+          "name": "MapPoint",
+          "startLine": 38,
+          "endLine": 50,
+          "methods": [],
+          "properties": [
+            "latitude",
+            "longitude"
+          ]
+        },
+        {
+          "name": "MapViewModel",
+          "startLine": 52,
+          "endLine": 161,
+          "methods": [
+            "retryMap",
+            "retryEvents",
+            "selectCategory",
+            "selectPoint",
+            "loadEvents",
+            "markersFor",
+            "checkAvailability"
+          ],
+          "properties": [
+            "context",
+            "catalog",
+            "savedState",
+            "attempt",
+            "events",
+            "_state",
+            "state"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MapUiState",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "MapPoint",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "state",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "retryMap",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "retryEvents",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "selectCategory",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "selectPoint",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "MapViewModel",
+          "line": 52,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "from",
+          "callee": "MapPoint",
+          "lineNumber": 47
+        },
+        {
+          "caller": "retryMap",
+          "callee": "checkAvailability",
+          "lineNumber": 70
+        },
+        {
+          "caller": "retryMap",
+          "callee": "copy",
+          "lineNumber": 72
+        },
+        {
+          "caller": "retryMap",
+          "callee": "loadEvents",
+          "lineNumber": 76
+        },
+        {
+          "caller": "retryEvents",
+          "callee": "loadEvents",
+          "lineNumber": 81
+        },
+        {
+          "caller": "selectCategory",
+          "callee": "copy",
+          "lineNumber": 87
+        },
+        {
+          "caller": "selectCategory",
+          "callee": "markersFor",
+          "lineNumber": 89
+        },
+        {
+          "caller": "selectPoint",
+          "callee": "copy",
+          "lineNumber": 96
+        },
+        {
+          "caller": "selectPoint",
+          "callee": "takeIf",
+          "lineNumber": 96
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "copy",
+          "lineNumber": 101
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "launch",
+          "lineNumber": 102
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "getEvents",
+          "lineNumber": 104
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "copy",
+          "lineNumber": 116
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "distinctBy",
+          "lineNumber": 119
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "map",
+          "lineNumber": 119
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "takeIf",
+          "lineNumber": 120
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "any",
+          "lineNumber": 120
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "markersFor",
+          "lineNumber": 122
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "copy",
+          "lineNumber": 123
+        },
+        {
+          "caller": "loadEvents",
+          "callee": "takeIf",
+          "lineNumber": 127
+        },
+        {
+          "caller": "markersFor",
+          "callee": "groupBy",
+          "lineNumber": 135
+        },
+        {
+          "caller": "markersFor",
+          "callee": "mapNotNull",
+          "lineNumber": 135
+        },
+        {
+          "caller": "markersFor",
+          "callee": "filter",
+          "lineNumber": 135
+        },
+        {
+          "caller": "markersFor",
+          "callee": "asSequence",
+          "lineNumber": 135
+        },
+        {
+          "caller": "markersFor",
+          "callee": "let",
+          "lineNumber": 138
+        },
+        {
+          "caller": "markersFor",
+          "callee": "from",
+          "lineNumber": 138
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "getApplicationInfo",
+          "lineNumber": 143
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "of",
+          "lineNumber": 145
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "toLong",
+          "lineNumber": 145
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "isNullOrBlank",
+          "lineNumber": 147
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "getString",
+          "lineNumber": 147
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "isGooglePlayServicesAvailable",
+          "lineNumber": 150
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "getInstance",
+          "lineNumber": 150
+        },
+        {
+          "caller": "checkAvailability",
+          "callee": "Ready",
+          "lineNumber": 152
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 8,
+        "functionCount": 7,
+        "classCount": 3
+      }
+    }
+  ]
+}

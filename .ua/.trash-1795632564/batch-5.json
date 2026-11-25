@@ -1,0 +1,2031 @@
+{
+  "nodes": [
+    {
+      "id": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "type": "file",
+      "name": "SessionFlowTest.kt",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Prueba los formularios, el modo invitado, la restauración y cierre de sesión y las acciones de asistencia desde el detalle.",
+      "tags": [
+        "pruebas",
+        "sesión",
+        "inscripciones"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "type": "class",
+      "name": "SessionFlowTest",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Comprueba los estados y efectos observables de la cuenta y la asistencia mediante dobles de los repositorios.",
+      "tags": [
+        "pruebas",
+        "sesión",
+        "inscripciones"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        43,
+        325
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+      "type": "function",
+      "name": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Comprueba que el formulario muestre los errores de correo y contraseña junto al campo correspondiente.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        48,
+        76
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+      "type": "function",
+      "name": "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Verifica que un correo vacío y una contraseña corta se rechacen antes de consultar la red.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        84,
+        99
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cleanStartAllowsGuestEntryAndReturnToSignIn",
+      "type": "function",
+      "name": "cleanStartAllowsGuestEntryAndReturnToSignIn",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Comprueba que sin sesión se pueda entrar como invitado y volver al formulario.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        101,
+        114
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+      "type": "function",
+      "name": "cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Verifica que cancelar el ingreso devuelva al modo invitado y conserve el evento pendiente hasta que se consuma.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        116,
+        132
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+      "type": "function",
+      "name": "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Comprueba que una sesión vencida al inscribirse limpie la sesión y conserve el evento de retorno.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        134,
+        151
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+      "type": "function",
+      "name": "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Comprueba que expirar la sesión desde el perfil vuelva al ingreso sin asociar un evento.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        153,
+        163
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+      "type": "function",
+      "name": "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Verifica que la inscripción y su cancelación actualicen el detalle y soliciten refrescar el perfil.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        165,
+        194
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+      "type": "function",
+      "name": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Verifica que un conflicto se resuelva con datos recientes de asistencia y sin repetir la escritura.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        196,
+        227
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:offlineValidationKeepsSessionUntilLogout",
+      "type": "function",
+      "name": "offlineValidationKeepsSessionUntilLogout",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Verifica que un fallo de red al consultar la cuenta conserve la sesión hasta el cierre.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        229,
+        243
+      ]
+    },
+    {
+      "id": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+      "type": "function",
+      "name": "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+      "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "summary": "Comprueba que una sesión guardada rechazada devuelva al formulario y permita el modo invitado.",
+      "tags": [
+        "prueba",
+        "pruebas"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        245,
+        254
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "type": "file",
+      "name": "Account.kt",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "summary": "Representa la cuenta de dominio mediante el correo electrónico y un nombre opcional.",
+      "tags": [
+        "dominio",
+        "cuenta",
+        "Kotlin"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/domain/model/Account.kt:Account",
+      "type": "class",
+      "name": "Account",
+      "filePath": "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "summary": "Modelo de dominio de una cuenta con correo y nombre opcional.",
+      "tags": [
+        "dominio",
+        "cuenta",
+        "Kotlin"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "type": "file",
+      "name": "SessionRepository.kt",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Coordina el inicio de sesión, el registro, la consulta de cuenta y la asistencia a eventos entre la API y el almacén de sesión.",
+      "tags": [
+        "cuenta",
+        "autenticación",
+        "inscripciones"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Las funciones suspendidas de orden superior reutilizan el manejo de autenticación entre operaciones de red."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository",
+      "type": "class",
+      "name": "SessionRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Contrato para autenticarse, recuperar la cuenta, cerrar sesión y cambiar la asistencia.",
+      "tags": [
+        "cuenta",
+        "autenticación",
+        "inscripciones"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        14,
+        22
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:AccountField",
+      "type": "class",
+      "name": "AccountField",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Enumera los campos de cuenta que pueden presentar errores de validación.",
+      "tags": [
+        "cuenta",
+        "autenticación",
+        "inscripciones"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        24,
+        24
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:AuthenticationRejected",
+      "type": "class",
+      "name": "AuthenticationRejected",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Representa un rechazo de autenticación y conserva los campos indicados por el servidor.",
+      "tags": [
+        "cuenta",
+        "autenticación",
+        "inscripciones"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        26,
+        26
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:EventSessionExpired",
+      "type": "class",
+      "name": "EventSessionExpired",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Señala que una acción vinculada a un evento necesita renovar la sesión.",
+      "tags": [
+        "cuenta",
+        "autenticación",
+        "inscripciones"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        28,
+        28
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "type": "class",
+      "name": "RemoteSessionRepository",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Integra la API con el almacén de sesión y traduce los rechazos de autenticación a errores del dominio.",
+      "tags": [
+        "cuenta",
+        "autenticación",
+        "inscripciones"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        30,
+        96
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository.loadAccount",
+      "type": "function",
+      "name": "loadAccount",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Declara la carga de la cuenta asociada a la sesión local.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        18,
+        18
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.signIn",
+      "type": "function",
+      "name": "signIn",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Envía el formulario de acceso y guarda el token devuelto por la API.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        38,
+        40
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.register",
+      "type": "function",
+      "name": "register",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Envía los datos de registro y guarda el token devuelto por la API.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        42,
+        44
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.loadAccount",
+      "type": "function",
+      "name": "loadAccount",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Carga el perfil autenticado y quita el token cuando la API rechaza la sesión.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        57,
+        69
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:updateAttendance",
+      "type": "function",
+      "name": "updateAttendance",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Aplica una mutación de asistencia con el token local y distingue el vencimiento de sesión.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        50,
+        55
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:authenticate",
+      "type": "function",
+      "name": "authenticate",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Valida y guarda el token devuelto y convierte rechazos de autenticación en errores de campo.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        71,
+        83
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:validationFields",
+      "type": "function",
+      "name": "validationFields",
+      "filePath": "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "summary": "Extrae del cuerpo de error los nombres de campos reconocidos por el formulario.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        85,
+        95
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "type": "file",
+      "name": "EventDetailViewModel.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Carga el detalle de un evento y coordina sus inscripciones y cancelaciones. Distingue sesión vencida, ausencia de evento y conflictos de asistencia.",
+      "tags": [
+        "eventos",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailUiState",
+      "type": "class",
+      "name": "EventDetailUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Modela la carga, el contenido, la ausencia y el error del detalle de evento.",
+      "tags": [
+        "eventos",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        23,
+        35
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:AttendanceConflict",
+      "type": "class",
+      "name": "AttendanceConflict",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Enumera los posibles resultados al verificar una inscripción en conflicto.",
+      "tags": [
+        "eventos",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        37,
+        39
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "type": "class",
+      "name": "EventDetailViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Carga un evento y mantiene el estado de asistencia sincronizado tras una acción del usuario.",
+      "tags": [
+        "eventos",
+        "inscripciones",
+        "estado"
+      ],
+      "complexity": "moderate",
+      "lineRange": [
+        41,
+        139
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Cancela una solicitud previa y abre una carga del evento en el estado de sesión actual.",
+      "tags": [
+        "Kotlin",
+        "eventos"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        52,
+        56
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:cancelRequest",
+      "type": "function",
+      "name": "cancelRequest",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Cancela el trabajo activo del detalle.",
+      "tags": [
+        "Kotlin",
+        "eventos"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        58,
+        60
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:refresh",
+      "type": "function",
+      "name": "refresh",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Revalida los datos de asistencia después de una respuesta que no pudo confirmarlos.",
+      "tags": [
+        "Kotlin",
+        "eventos"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        62,
+        67
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:dismissConflict",
+      "type": "function",
+      "name": "dismissConflict",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Quita del estado actual el mensaje de conflicto.",
+      "tags": [
+        "Kotlin",
+        "eventos"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        69,
+        72
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:attend",
+      "type": "function",
+      "name": "attend",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Solicita inscribir o cancelar y vuelve a consultar el evento para confirmar el resultado.",
+      "tags": [
+        "Kotlin",
+        "eventos"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        74,
+        102
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "type": "function",
+      "name": "loadEvent",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "summary": "Carga el detalle y decide si mostrar contenido, ausencia, error o una solicitud de autenticación.",
+      "tags": [
+        "Kotlin",
+        "eventos"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        104,
+        138
+      ]
+    },
+    {
+      "id": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "type": "file",
+      "name": "SessionViewModel.kt",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Controla la restauración de sesión, el formulario, el acceso como invitado y el retorno al evento pendiente después de autenticarse.",
+      "tags": [
+        "cuenta",
+        "sesión",
+        "estado"
+      ],
+      "complexity": "complex",
+      "languageNotes": "La interfaz sellada SessionUiState representa estados excluyentes y SavedStateHandle conserva el ID de retorno a un evento."
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionUiState",
+      "type": "class",
+      "name": "SessionUiState",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Modela los estados de inicio, invitado, formulario y sesión activa.",
+      "tags": [
+        "cuenta",
+        "sesión",
+        "estado"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        23,
+        41
+      ]
+    },
+    {
+      "id": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "type": "class",
+      "name": "SessionViewModel",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Gestiona solicitudes de cuenta y las transiciones de sesión y retorno a eventos.",
+      "tags": [
+        "cuenta",
+        "sesión",
+        "estado"
+      ],
+      "complexity": "complex",
+      "lineRange": [
+        43,
+        222
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryStartup",
+      "type": "function",
+      "name": "retryStartup",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Reintenta restaurar la sesión desde un estado de error inicial.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        57,
+        59
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:restore",
+      "type": "function",
+      "name": "restore",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Busca una sesión persistida y carga la cuenta o abre el formulario de acceso.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        61,
+        70
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:continueAsGuest",
+      "type": "function",
+      "name": "continueAsGuest",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Cambia al estado invitado cuando el formulario está disponible.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        72,
+        75
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:openSignIn",
+      "type": "function",
+      "name": "openSignIn",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Ofrece el formulario de acceso desde el modo invitado.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        77,
+        79
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:requestEventSignIn",
+      "type": "function",
+      "name": "requestEventSignIn",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Conserva el evento pendiente antes de abrir el formulario.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        81,
+        85
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireEventSession",
+      "type": "function",
+      "name": "expireEventSession",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Expira la sesión manteniendo el ID del evento para el retorno.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        87,
+        87
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireSession",
+      "type": "function",
+      "name": "expireSession",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Cancela las solicitudes pendientes, limpia la sesión y presenta el formulario con el aviso correspondiente.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        89,
+        105
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:eventReturnHandled",
+      "type": "function",
+      "name": "eventReturnHandled",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Limpia el evento pendiente tras consumir el retorno correcto.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        107,
+        109
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:signOut",
+      "type": "function",
+      "name": "signOut",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Cancela operaciones anteriores y procesa el cierre de sesión y sus posibles errores.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        111,
+        125
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:switchForm",
+      "type": "function",
+      "name": "switchForm",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Cambia entre acceso y registro mientras el formulario está disponible.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        127,
+        130
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:clearError",
+      "type": "function",
+      "name": "clearError",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Retira el error del campo editado y del formulario.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        132,
+        135
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:submit",
+      "type": "function",
+      "name": "submit",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Valida el formulario y envía la autenticación, mostrando errores del servidor en el campo correspondiente.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        137,
+        181
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryAccount",
+      "type": "function",
+      "name": "retryAccount",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Solicita la recarga de cuenta si no hay una operación activa.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        187,
+        192
+      ]
+    },
+    {
+      "id": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "type": "function",
+      "name": "loadAccount",
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "summary": "Carga el perfil y conserva el estado adecuado durante el retorno a un evento o un fallo de red.",
+      "tags": [
+        "Kotlin",
+        "cuenta"
+      ],
+      "complexity": "simple",
+      "lineRange": [
+        194,
+        211
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cleanStartAllowsGuestEntryAndReturnToSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cleanStartAllowsGuestEntryAndReturnToSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cleanStartAllowsGuestEntryAndReturnToSignIn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:cancellingEventSignInReturnsAsGuestAndKeepsTheEventUntilNavigationConsumesIt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:offlineValidationKeepsSessionUntilLogout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:offlineValidationKeepsSessionUntilLogout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:offlineValidationKeepsSessionUntilLogout",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:SessionFlowTest",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "target": "function:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt:rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Account.kt:Account",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "target": "class:app/src/main/java/com/example/eventia/domain/model/Account.kt:Account",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:AccountField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:AccountField",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:AuthenticationRejected",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:AuthenticationRejected",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:EventSessionExpired",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:EventSessionExpired",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository.loadAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository.loadAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository.loadAccount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.signIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.signIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.signIn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.register",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.register",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.register",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.loadAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.loadAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.loadAccount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:updateAttendance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:updateAttendance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:authenticate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:authenticate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:validationFields",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:validationFields",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.signIn",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:authenticate",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository.register",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:authenticate",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:authenticate",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:validationFields",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:AttendanceConflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:AttendanceConflict",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:load",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:cancelRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:cancelRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:cancelRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:refresh",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:dismissConflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:dismissConflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:dismissConflict",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:attend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:attend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:attend",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:EventDetailViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:load",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:cancelRequest",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:load",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:refresh",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:attend",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionUiState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionUiState",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryStartup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryStartup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryStartup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:restore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:restore",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:continueAsGuest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:continueAsGuest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:continueAsGuest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:openSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:openSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:openSignIn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:requestEventSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:requestEventSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:requestEventSignIn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireEventSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireEventSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireEventSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:eventReturnHandled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:eventReturnHandled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:eventReturnHandled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:signOut",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:signOut",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:signOut",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:switchForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:switchForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:switchForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:clearError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:clearError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:clearError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:submit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:submit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:submit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryAccount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:SessionViewModel",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryStartup",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:restore",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:restore",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:requestEventSignIn",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:openSignIn",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireEventSession",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireSession",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:expireSession",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:signOut",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:submit",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:retryAccount",
+      "target": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:RemoteSessionRepository",
+      "target": "class:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository",
+      "type": "implements",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "target": "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "reads_from",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "target": "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "type": "writes_to",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt:loadEvent",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt:getEvent",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt:loadAccount",
+      "target": "function:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt:SessionRepository.loadAccount",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,1358 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 9,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 9,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 67,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "getCategories",
+          "startLine": 20,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "getEvents",
+          "startLine": 23,
+          "endLine": 27,
+          "params": [
+            "query",
+            "categoryId"
+          ]
+        },
+        {
+          "name": "getEvent",
+          "startLine": 29,
+          "endLine": 33,
+          "params": [
+            "id",
+            "authorization"
+          ]
+        },
+        {
+          "name": "attendEvent",
+          "startLine": 35,
+          "endLine": 39,
+          "params": [
+            "id",
+            "authorization"
+          ]
+        },
+        {
+          "name": "cancelAttendance",
+          "startLine": 41,
+          "endLine": 45,
+          "params": [
+            "id",
+            "authorization"
+          ]
+        },
+        {
+          "name": "getVenues",
+          "startLine": 47,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "getVenue",
+          "startLine": 50,
+          "endLine": 51,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "getVenueEvents",
+          "startLine": 53,
+          "endLine": 54,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "login",
+          "startLine": 56,
+          "endLine": 57,
+          "params": [
+            "credentials"
+          ]
+        },
+        {
+          "name": "register",
+          "startLine": 59,
+          "endLine": 60,
+          "params": [
+            "account"
+          ]
+        },
+        {
+          "name": "getMe",
+          "startLine": 62,
+          "endLine": 63,
+          "params": [
+            "authorization"
+          ]
+        },
+        {
+          "name": "getMyAttendances",
+          "startLine": 65,
+          "endLine": 66,
+          "params": [
+            "authorization"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "EventiaApi",
+          "startLine": 19,
+          "endLine": 67,
+          "methods": [
+            "getCategories",
+            "getEvents",
+            "getEvent",
+            "attendEvent",
+            "cancelAttendance",
+            "getVenues",
+            "getVenue",
+            "getVenueEvents",
+            "login",
+            "register",
+            "getMe",
+            "getMyAttendances"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getCategories",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "getEvents",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "getEvent",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "attendEvent",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "cancelAttendance",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "getVenues",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "getVenue",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "getVenueEvents",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "login",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "register",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "getMe",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "getMyAttendances",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "EventiaApi",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 13,
+        "functionCount": 12,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "toDomain",
+          "startLine": 10,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "toDomain",
+          "startLine": 25,
+          "endLine": 35,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "toDomain",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "toDomain",
+          "line": 25,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toDomain",
+          "callee": "Event",
+          "lineNumber": 10
+        },
+        {
+          "caller": "toDomain",
+          "callee": "parse",
+          "lineNumber": 15
+        },
+        {
+          "caller": "toDomain",
+          "callee": "let",
+          "lineNumber": 16
+        },
+        {
+          "caller": "toDomain",
+          "callee": "Category",
+          "lineNumber": 17
+        },
+        {
+          "caller": "toDomain",
+          "callee": "toDomain",
+          "lineNumber": 19
+        },
+        {
+          "caller": "toDomain",
+          "callee": "Venue",
+          "lineNumber": 25
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 11,
+      "classes": [
+        {
+          "name": "RegisterRequestDto",
+          "startLine": 5,
+          "endLine": 9,
+          "methods": [],
+          "properties": [
+            "name",
+            "email",
+            "password"
+          ]
+        },
+        {
+          "name": "AccountDto",
+          "startLine": 11,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "email",
+            "name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "RegisterRequestDto",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "AccountDto",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "classes": [
+        {
+          "name": "CategoryDto",
+          "startLine": 5,
+          "endLine": 8,
+          "methods": [],
+          "properties": [
+            "id",
+            "name"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CategoryDto",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 15,
+      "classes": [
+        {
+          "name": "EventDto",
+          "startLine": 3,
+          "endLine": 16,
+          "methods": [],
+          "properties": [
+            "id",
+            "title",
+            "summary",
+            "description",
+            "startsAt",
+            "endsAt",
+            "category",
+            "imageUrl",
+            "venue",
+            "capacity",
+            "availableSpots",
+            "isAttending"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "EventDto",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/api/models/VenueDto.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 12,
+      "classes": [
+        {
+          "name": "VenueDto",
+          "startLine": 3,
+          "endLine": 13,
+          "methods": [],
+          "properties": [
+            "id",
+            "name",
+            "address",
+            "description",
+            "openingHours",
+            "imageUrl",
+            "lat",
+            "lng",
+            "upcomingEventsCount"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "VenueDto",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 40,
+      "nonEmptyLines": 36,
+      "functions": [
+        {
+          "name": "usesTheStartInstantAcrossTimeZones",
+          "startLine": 31,
+          "endLine": 39,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "AttendanceGroupsTest",
+          "startLine": 11,
+          "endLine": 40,
+          "methods": [
+            "usesTheStartInstantAcrossTimeZones"
+          ],
+          "properties": [
+            "event"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "usesTheStartInstantAcrossTimeZones",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "AttendanceGroupsTest",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "parse",
+          "lineNumber": 33
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "listOf",
+          "lineNumber": 34
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "assertEquals",
+          "lineNumber": 36
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "AttendanceGroups",
+          "lineNumber": 36
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "emptyList",
+          "lineNumber": 36
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "from",
+          "lineNumber": 36
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "minusNanos",
+          "lineNumber": 36
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "assertEquals",
+          "lineNumber": 37
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "AttendanceGroups",
+          "lineNumber": 37
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "emptyList",
+          "lineNumber": 37
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "from",
+          "lineNumber": 37
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "assertEquals",
+          "lineNumber": 38
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "AttendanceGroups",
+          "lineNumber": 38
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "emptyList",
+          "lineNumber": 38
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "from",
+          "lineNumber": 38
+        },
+        {
+          "caller": "usesTheStartInstantAcrossTimeZones",
+          "callee": "plusNanos",
+          "lineNumber": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 44,
+      "functions": [
+        {
+          "name": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "startLine": 24,
+          "endLine": 41,
+          "params": []
+        },
+        {
+          "name": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "startLine": 43,
+          "endLine": 49,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "CatalogMappingTest",
+          "startLine": 12,
+          "endLine": 50,
+          "methods": [
+            "eventPreservesOffsetNullCoordinatesAndAttendance",
+            "storedEventKeepsCardAndDetailFieldsWithoutAccountState"
+          ],
+          "properties": [
+            "guestJson"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "CatalogMappingTest",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "Gson",
+          "lineNumber": 26
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "toDomain",
+          "lineNumber": 27
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "fromJson",
+          "lineNumber": 27
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "toDomain",
+          "lineNumber": 28
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "fromJson",
+          "lineNumber": 28
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "dropLast",
+          "lineNumber": 29
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertEquals",
+          "lineNumber": 33
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "ofHours",
+          "lineNumber": 33
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertEquals",
+          "lineNumber": 34
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertEquals",
+          "lineNumber": 35
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertEquals",
+          "lineNumber": 36
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertNull",
+          "lineNumber": 37
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertNull",
+          "lineNumber": 38
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertNull",
+          "lineNumber": 39
+        },
+        {
+          "caller": "eventPreservesOffsetNullCoordinatesAndAttendance",
+          "callee": "assertEquals",
+          "lineNumber": 40
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "toDomain",
+          "lineNumber": 45
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "fromJson",
+          "lineNumber": 45
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "Gson",
+          "lineNumber": 45
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "from",
+          "lineNumber": 46
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "copy",
+          "lineNumber": 46
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "assertEquals",
+          "lineNumber": 48
+        },
+        {
+          "caller": "storedEventKeepsCardAndDetailFieldsWithoutAccountState",
+          "callee": "toDomain",
+          "lineNumber": 48
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/src/test/java/com/example/eventia/EventiaApiTest.kt",
+      "language": "kotlin",
+      "fileCategory": "code",
+      "totalLines": 116,
+      "nonEmptyLines": 103,
+      "functions": [
+        {
+          "name": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "startLine": 16,
+          "endLine": 24,
+          "params": []
+        },
+        {
+          "name": "loginUsesRelativePostRoute",
+          "startLine": 26,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "catalogKeepsExistingRelativeGetRoutes",
+          "startLine": 36,
+          "endLine": 46,
+          "params": []
+        },
+        {
+          "name": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "startLine": 48,
+          "endLine": 60,
+          "params": []
+        },
+        {
+          "name": "registrationUsesRelativePostRoute",
+          "startLine": 62,
+          "endLine": 66,
+          "params": []
+        },
+        {
+          "name": "accountUsesRelativeGetWithAuthorization",
+          "startLine": 68,
+          "endLine": 75,
+          "params": []
+        },
+        {
+          "name": "attendancesUseRelativeGetWithAuthorization",
+          "startLine": 77,
+          "endLine": 85,
+          "params": []
+        },
+        {
+          "name": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "startLine": 87,
+          "endLine": 94,
+          "params": []
+        },
+        {
+          "name": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "startLine": 96,
+          "endLine": 104,
+          "params": []
+        },
+        {
+          "name": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "startLine": 106,
+          "endLine": 115,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "EventiaApiTest",
+          "startLine": 15,
+          "endLine": 116,
+          "methods": [
+            "catalogSupportsBothQueryParametersOnTheEventsRoute",
+            "loginUsesRelativePostRoute",
+            "catalogKeepsExistingRelativeGetRoutes",
+            "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+            "registrationUsesRelativePostRoute",
+            "accountUsesRelativeGetWithAuthorization",
+            "attendancesUseRelativeGetWithAuthorization",
+            "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+            "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+            "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "loginUsesRelativePostRoute",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "catalogKeepsExistingRelativeGetRoutes",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "registrationUsesRelativePostRoute",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "accountUsesRelativeGetWithAuthorization",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "attendancesUseRelativeGetWithAuthorization",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "EventiaApiTest",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "single",
+          "lineNumber": 18
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "assertEquals",
+          "lineNumber": 19
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "getAnnotation",
+          "lineNumber": 19
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "assertEquals",
+          "lineNumber": 20
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "listOf",
+          "lineNumber": 21
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "map",
+          "lineNumber": 22
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "filterIsInstance",
+          "lineNumber": 22
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "flatMap",
+          "lineNumber": 22
+        },
+        {
+          "caller": "catalogSupportsBothQueryParametersOnTheEventsRoute",
+          "callee": "toList",
+          "lineNumber": 22
+        },
+        {
+          "caller": "loginUsesRelativePostRoute",
+          "callee": "getAnnotation",
+          "lineNumber": 28
+        },
+        {
+          "caller": "loginUsesRelativePostRoute",
+          "callee": "singleOrNull",
+          "lineNumber": 28
+        },
+        {
+          "caller": "loginUsesRelativePostRoute",
+          "callee": "assertEquals",
+          "lineNumber": 33
+        },
+        {
+          "caller": "catalogKeepsExistingRelativeGetRoutes",
+          "callee": "toSet",
+          "lineNumber": 38
+        },
+        {
+          "caller": "catalogKeepsExistingRelativeGetRoutes",
+          "callee": "mapNotNull",
+          "lineNumber": 38
+        },
+        {
+          "caller": "catalogKeepsExistingRelativeGetRoutes",
+          "callee": "getAnnotation",
+          "lineNumber": 39
+        },
+        {
+          "caller": "catalogKeepsExistingRelativeGetRoutes",
+          "callee": "assertEquals",
+          "lineNumber": 42
+        },
+        {
+          "caller": "catalogKeepsExistingRelativeGetRoutes",
+          "callee": "setOf",
+          "lineNumber": 43
+        },
+        {
+          "caller": "catalogKeepsExistingRelativeGetRoutes",
+          "callee": "setOf",
+          "lineNumber": 44
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "mapOf",
+          "lineNumber": 50
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "singleOrNull",
+          "lineNumber": 54
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 55
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "getAnnotation",
+          "lineNumber": 55
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "flatMap",
+          "lineNumber": 56
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "orEmpty",
+          "lineNumber": 56
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "toList",
+          "lineNumber": 56
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 57
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "listOf",
+          "lineNumber": 57
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "map",
+          "lineNumber": 57
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "filterIsInstance",
+          "lineNumber": 57
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 58
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "emptyList",
+          "lineNumber": 58
+        },
+        {
+          "caller": "venueDetailAndEventsUseTheVenueIdWithoutAuthorization",
+          "callee": "filterIsInstance",
+          "lineNumber": 58
+        },
+        {
+          "caller": "registrationUsesRelativePostRoute",
+          "callee": "singleOrNull",
+          "lineNumber": 64
+        },
+        {
+          "caller": "registrationUsesRelativePostRoute",
+          "callee": "assertEquals",
+          "lineNumber": 65
+        },
+        {
+          "caller": "registrationUsesRelativePostRoute",
+          "callee": "getAnnotation",
+          "lineNumber": 65
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "singleOrNull",
+          "lineNumber": 70
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 71
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "getAnnotation",
+          "lineNumber": 71
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "singleOrNull",
+          "lineNumber": 72
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "filterIsInstance",
+          "lineNumber": 72
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "flatMap",
+          "lineNumber": 72
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "toList",
+          "lineNumber": 72
+        },
+        {
+          "caller": "accountUsesRelativeGetWithAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 74
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "singleOrNull",
+          "lineNumber": 79
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 81
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "getAnnotation",
+          "lineNumber": 81
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "filterIsInstance",
+          "lineNumber": 82
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "flatMap",
+          "lineNumber": 82
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "orEmpty",
+          "lineNumber": 82
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "toList",
+          "lineNumber": 82
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "assertEquals",
+          "lineNumber": 84
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "listOf",
+          "lineNumber": 84
+        },
+        {
+          "caller": "attendancesUseRelativeGetWithAuthorization",
+          "callee": "map",
+          "lineNumber": 84
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "single",
+          "lineNumber": 89
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "flatMap",
+          "lineNumber": 90
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "toList",
+          "lineNumber": 90
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "assertEquals",
+          "lineNumber": 91
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "getAnnotation",
+          "lineNumber": 91
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "assertEquals",
+          "lineNumber": 92
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "single",
+          "lineNumber": 92
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "filterIsInstance",
+          "lineNumber": 92
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "assertEquals",
+          "lineNumber": 93
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "single",
+          "lineNumber": 93
+        },
+        {
+          "caller": "eventDetailAcceptsAnAuthorizationHeaderAndKeepsItsIdPath",
+          "callee": "filterIsInstance",
+          "lineNumber": 93
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "single",
+          "lineNumber": 98
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "flatMap",
+          "lineNumber": 99
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "toList",
+          "lineNumber": 99
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertEquals",
+          "lineNumber": 100
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "getAnnotation",
+          "lineNumber": 100
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertEquals",
+          "lineNumber": 101
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "single",
+          "lineNumber": 101
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "filterIsInstance",
+          "lineNumber": 101
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertEquals",
+          "lineNumber": 102
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "single",
+          "lineNumber": 102
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "filterIsInstance",
+          "lineNumber": 102
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertFalse",
+          "lineNumber": 103
+        },
+        {
+          "caller": "attendancePostsTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "any",
+          "lineNumber": 103
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "singleOrNull",
+          "lineNumber": 108
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "flatMap",
+          "lineNumber": 110
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "orEmpty",
+          "lineNumber": 110
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "toList",
+          "lineNumber": 110
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertEquals",
+          "lineNumber": 111
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "getAnnotation",
+          "lineNumber": 111
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertEquals",
+          "lineNumber": 112
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "single",
+          "lineNumber": 112
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "filterIsInstance",
+          "lineNumber": 112
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertEquals",
+          "lineNumber": 113
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "single",
+          "lineNumber": 113
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "filterIsInstance",
+          "lineNumber": 113
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "assertFalse",
+          "lineNumber": 114
+        },
+        {
+          "caller": "cancellingAttendanceDeletesTheEventIdWithAuthorizationAndWithoutABody",
+          "callee": "any",
+          "lineNumber": 114
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 11,
+        "functionCount": 10,
+        "classCount": 1
+      }
+    }
+  ]
+}

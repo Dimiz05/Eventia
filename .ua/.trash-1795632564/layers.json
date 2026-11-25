@@ -1,0 +1,175 @@
+[
+  {
+    "id": "layer:ui",
+    "name": "Presentación y navegación",
+    "description": "MainActivity y la interfaz Compose coordinan el flujo de sesión, la navegación, el estado de las pantallas y los componentes compartidos.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/MainActivity.kt",
+      "file:app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
+      "file:app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "file:app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
+      "file:app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
+      "file:app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt",
+      "file:app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
+      "file:app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt",
+      "file:app/src/main/java/com/example/eventia/ui/theme/Color.kt",
+      "file:app/src/main/java/com/example/eventia/ui/theme/Theme.kt",
+      "file:app/src/main/java/com/example/eventia/ui/theme/Type.kt"
+    ]
+  },
+  {
+    "id": "layer:repositories",
+    "name": "Repositorios",
+    "description": "Los contratos y sus implementaciones coordinan la API, la caché local y la sesión para el catálogo, las categorías, los favoritos y las inscripciones.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt",
+      "file:app/src/main/java/com/example/eventia/repositories/SessionRepository.kt"
+    ]
+  },
+  {
+    "id": "layer:domain",
+    "name": "Modelos de dominio",
+    "description": "Los modelos de cuentas, categorías, eventos y lugares representan los datos que comparten la interfaz y los repositorios.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "file:app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "file:app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "file:app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ]
+  },
+  {
+    "id": "layer:api",
+    "name": "API y mapeo de datos",
+    "description": "La interfaz Retrofit, los DTO, los mapeos y la colección de Postman describen el intercambio de datos con la API de Eventia.",
+    "nodeIds": [
+      "config:postman/Eventia-Dia-1.postman_collection.json",
+      "file:app/src/main/java/com/example/eventia/api/EventiaApi.kt",
+      "file:app/src/main/java/com/example/eventia/api/mappers/CatalogMappers.kt",
+      "file:app/src/main/java/com/example/eventia/api/models/AccountDto.kt",
+      "file:app/src/main/java/com/example/eventia/api/models/CategoryDto.kt",
+      "file:app/src/main/java/com/example/eventia/api/models/EventDto.kt",
+      "file:app/src/main/java/com/example/eventia/api/models/LoginDto.kt",
+      "file:app/src/main/java/com/example/eventia/api/models/VenueDto.kt"
+    ]
+  },
+  {
+    "id": "layer:local-data",
+    "name": "Persistencia y conectividad",
+    "description": "Room guarda el catálogo y los favoritos, DataStore conserva la sesión y el monitor de conectividad informa sobre cambios de red.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/data/connectivity/CatalogConnectivity.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/SessionStore.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/dao/CatalogCacheDao.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/dao/FavoriteDao.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/entity/CachedEventEntity.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/entity/CatalogDownloadEntity.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/entity/FavoriteEntity.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/model/CachedCatalogSnapshot.kt",
+      "file:app/src/main/java/com/example/eventia/data/local/model/StoredEvent.kt"
+    ]
+  },
+  {
+    "id": "layer:dependency-injection",
+    "name": "Inyección de dependencias",
+    "description": "EventiaApplication inicia Hilt y sus módulos proveen la API, la base de datos y las implementaciones de repositorio.",
+    "nodeIds": [
+      "file:app/src/main/java/com/example/eventia/EventiaApplication.kt",
+      "file:app/src/main/java/com/example/eventia/di/LocalCatalogModule.kt",
+      "file:app/src/main/java/com/example/eventia/di/NetworkModule.kt"
+    ]
+  },
+  {
+    "id": "layer:resources",
+    "name": "Recursos de Android",
+    "description": "Los recursos de Android definen textos, temas, iconos, gráficos y reglas de copia de seguridad y transferencia de datos.",
+    "nodeIds": [
+      "config:app/src/main/res/drawable/ic_back.xml",
+      "config:app/src/main/res/drawable/ic_event_calendar.xml",
+      "config:app/src/main/res/drawable/ic_event_placeholder.xml",
+      "config:app/src/main/res/drawable/ic_event_share.xml",
+      "config:app/src/main/res/drawable/ic_explore.xml",
+      "config:app/src/main/res/drawable/ic_favorite_outline.xml",
+      "config:app/src/main/res/drawable/ic_favorites.xml",
+      "config:app/src/main/res/drawable/ic_launcher_background.xml",
+      "config:app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "config:app/src/main/res/drawable/ic_map.xml",
+      "config:app/src/main/res/drawable/ic_profile.xml",
+      "config:app/src/main/res/drawable/ic_status_error.xml",
+      "config:app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "config:app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
+      "config:app/src/main/res/values/colors.xml",
+      "config:app/src/main/res/values/strings.xml",
+      "config:app/src/main/res/values/themes.xml",
+      "config:app/src/main/res/xml/backup_rules.xml",
+      "config:app/src/main/res/xml/data_extraction_rules.xml",
+      "file:app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+      "file:app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+      "file:app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+      "file:app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+      "file:app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+      "file:app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+      "file:app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+      "file:app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+      "file:app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+      "file:app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp"
+    ]
+  },
+  {
+    "id": "layer:tests",
+    "name": "Pruebas",
+    "description": "Las pruebas unitarias y de instrumentación cubren mapeo, conexión, catálogo, favoritos, mapa y flujos de sesión.",
+    "nodeIds": [
+      "file:app/src/androidTest/java/com/example/eventia/ExampleInstrumentedTest.kt",
+      "file:app/src/androidTest/java/com/example/eventia/ExploreFlowTest.kt",
+      "file:app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
+      "file:app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
+      "file:app/src/test/java/com/example/eventia/AttendanceGroupsTest.kt",
+      "file:app/src/test/java/com/example/eventia/CatalogMappingTest.kt",
+      "file:app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt",
+      "file:app/src/test/java/com/example/eventia/EventiaApiTest.kt",
+      "file:app/src/test/java/com/example/eventia/ExampleUnitTest.kt",
+      "file:app/src/test/java/com/example/eventia/MapMarkersTest.kt"
+    ]
+  },
+  {
+    "id": "layer:project",
+    "name": "Configuración y documentación",
+    "description": "Gradle, el manifiesto, las reglas de conservación de código y la documentación describen cómo compilar, configurar y mantener Eventia.",
+    "nodeIds": [
+      "config:app/src/main/AndroidManifest.xml",
+      "config:gradle.properties",
+      "config:gradle/gradle-daemon-jvm.properties",
+      "config:gradle/libs.versions.toml",
+      "config:gradle/wrapper/gradle-wrapper.properties",
+      "document:AGENTS.md",
+      "document:README.md",
+      "file:app/build.gradle.kts",
+      "file:app/src/main/keepRules/rules.keep",
+      "file:build.gradle.kts",
+      "file:gradle/wrapper/gradle-wrapper.jar",
+      "file:gradlew",
+      "file:gradlew.bat",
+      "file:settings.gradle.kts"
+    ]
+  }
+]
