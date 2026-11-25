@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.eventia.data.local.CatalogCacheDao
 import com.example.eventia.data.local.EventiaDatabase
-import com.example.eventia.data.local.FavoriteDao
+import com.example.eventia.data.local.dao.CatalogCacheDao
+import com.example.eventia.data.local.dao.FavoriteDao
 import com.example.eventia.repositories.FavoritesRepository
 import com.example.eventia.repositories.RoomFavoritesRepository
 import dagger.Binds

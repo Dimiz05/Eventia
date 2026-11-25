@@ -4,10 +4,10 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.eventia.api.EventiaApi
-import com.example.eventia.data.local.SessionStore
-import com.example.eventia.data.local.CachedEventEntity
 import com.example.eventia.data.local.EventiaDatabase
-import com.example.eventia.data.local.StoredEvent
+import com.example.eventia.data.local.SessionStore
+import com.example.eventia.data.local.entity.CachedEventEntity
+import com.example.eventia.data.local.model.StoredEvent
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
