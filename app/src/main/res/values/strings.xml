@@ -12,6 +12,14 @@
     <string name="catalog_error_recovery">Revisa tu conexión y vuelve a intentarlo.</string>
     <string name="catalog_no_matches_title">Sin coincidencias</string>
     <string name="catalog_search">Buscar eventos</string>
+    <string name="catalog_categories">Categorías</string>
+    <string name="catalog_all_categories">Todos</string>
+    <string name="catalog_sold_out">Agotado</string>
+    <string name="catalog_event_venue">%1$s (%2$s)</string>
+    <plurals name="catalog_spots_available">
+        <item quantity="one">%d cupo disponible</item>
+        <item quantity="other">%d cupos disponibles</item>
+    </plurals>
     <string name="catalog_clear_filters">Limpiar filtros</string>
     <string name="catalog_no_matches">No hay eventos que coincidan con tu búsqueda o categoría.</string>
     <string name="catalog_refresh">Actualizar</string>
@@ -104,6 +112,8 @@
     <string name="auth_sign_out">Cerrar sesión</string>
     <string name="auth_sign_out_error">No se pudo cerrar la sesión. Vuelve a intentarlo.</string>
     <string name="venue_search">Buscar por nombre de lugar</string>
+    <string name="venue_list_heading">Lugares disponibles</string>
+    <string name="venue_list_count">%d</string>
     <string name="venue_clear_search">Limpiar búsqueda</string>
     <string name="venue_list_loading">Cargando lugares…</string>
     <string name="venue_list_error">No se pudieron cargar los lugares</string>
