@@ -37,6 +37,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.eventia.R
+import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.screens.eventdetail.EventDetailScreen
 import com.example.eventia.ui.screens.explore.ExploreScreen
 import com.example.eventia.ui.screens.explore.exploreColors
@@ -113,7 +114,7 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
-    val isExplore = detail == null && selectedTab == Tab.Explore
+    val usesCatalogChrome = detail == null && (selectedTab == Tab.Explore || selectedTab == Tab.Map)
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
     }
@@ -140,7 +141,7 @@ fun EventiaNavigation(
             ScaffoldDefaults.contentWindowInsets
         },
         topBar = {
-            if (detail == null && !isExplore) {
+            if (detail == null && !usesCatalogChrome) {
                 TopAppBar(
                     title = { Text(stringResource(selectedTab.title)) }
                 )
@@ -152,7 +153,7 @@ fun EventiaNavigation(
                     if (detail == null) {
                         val catalogColors = exploreColors()
                         NavigationBar(
-                            containerColor = if (isExplore) catalogColors.surface else NavigationBarDefaults.containerColor
+                            containerColor = if (usesCatalogChrome) catalogColors.surface else NavigationBarDefaults.containerColor
                         ) {
                             Tab.entries.forEach { tab ->
                                 NavigationBarItem(
@@ -170,7 +171,7 @@ fun EventiaNavigation(
                                     },
                                     icon = { Icon(painterResource(tab.icon), contentDescription = null) },
                                     label = { Text(stringResource(tab.title)) },
-                                    colors = if (isExplore) {
+                                    colors = if (usesCatalogChrome) {
                                         NavigationBarItemDefaults.colors(
                                             selectedIconColor = catalogColors.primary,
                                             selectedTextColor = catalogColors.primary,
@@ -197,7 +198,14 @@ fun EventiaNavigation(
                     onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
                 )
             }
-            composable(Tab.Map.route) { MapScreen(onEventClick = openEvent) }
+            composable(Tab.Map.route) {
+                MapScreen(onEventClick = openEvent, favoriteAction = { event ->
+                    val selected = event.id in favorites.ids
+                    FavoriteButton(selected, favorites.canChange(event.id)) {
+                        favoritesViewModel.changeFavorite(event, !selected)
+                    }
+                })
+            }
             composable(Tab.Profile.route) {
                 ProfileRoute(session, onRetryAccount, onSignIn, onSignOut, openEvent, onProfileSessionExpired)
             }
