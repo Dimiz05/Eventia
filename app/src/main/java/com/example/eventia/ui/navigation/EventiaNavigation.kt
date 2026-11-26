@@ -9,9 +9,7 @@ import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
@@ -20,7 +18,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -116,8 +113,6 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
-    val usesCatalogChrome = detail == null &&
-        (selectedTab == Tab.Explore || selectedTab == Tab.Map || selectedTab == Tab.Favorites)
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
     }
@@ -143,23 +138,13 @@ fun EventiaNavigation(
         } else {
             ScaffoldDefaults.contentWindowInsets
         },
-        topBar = {
-            if (detail == null && !usesCatalogChrome) {
-                TopAppBar(
-                    title = { Text(stringResource(selectedTab.title)) }
-                )
-            }
-        },
         bottomBar = {
             if (detail == null || connectionNotice != null) {
                 Column(Modifier.navigationBarsPadding()) {
                     if (detail == null) {
                         val catalogColors = exploreColors()
-                        val navigationColors = if (usesCatalogChrome) catalogColors else MaterialTheme.colorScheme
-                        HorizontalDivider(color = navigationColors.onSurface.copy(alpha = 0.32f))
-                        NavigationBar(
-                            containerColor = if (usesCatalogChrome) catalogColors.surface else NavigationBarDefaults.containerColor
-                        ) {
+                        HorizontalDivider(color = catalogColors.onSurface.copy(alpha = 0.32f))
+                        NavigationBar(containerColor = catalogColors.surface) {
                             Tab.entries.forEach { tab ->
                                 NavigationBarItem(
                                     selected = tab == selectedTab,
@@ -176,15 +161,13 @@ fun EventiaNavigation(
                                     },
                                     icon = { Icon(painterResource(tab.icon), contentDescription = null) },
                                     label = { Text(stringResource(tab.title)) },
-                                    colors = if (usesCatalogChrome) {
-                                        NavigationBarItemDefaults.colors(
-                                            selectedIconColor = catalogColors.primary,
-                                            selectedTextColor = catalogColors.primary,
-                                            indicatorColor = catalogColors.primaryContainer,
-                                            unselectedIconColor = catalogColors.onSurfaceVariant,
-                                            unselectedTextColor = catalogColors.onSurfaceVariant
-                                        )
-                                    } else NavigationBarItemDefaults.colors()
+                                    colors = NavigationBarItemDefaults.colors(
+                                        selectedIconColor = catalogColors.primary,
+                                        selectedTextColor = catalogColors.primary,
+                                        indicatorColor = catalogColors.primaryContainer,
+                                        unselectedIconColor = catalogColors.onSurfaceVariant,
+                                        unselectedTextColor = catalogColors.onSurfaceVariant
+                                    )
                                 )
                             }
                         }
