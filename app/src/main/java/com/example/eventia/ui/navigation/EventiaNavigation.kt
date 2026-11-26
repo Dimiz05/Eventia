@@ -10,7 +10,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -38,6 +40,7 @@ import androidx.navigation.navArgument
 import com.example.eventia.R
 import com.example.eventia.ui.screens.eventdetail.EventDetailScreen
 import com.example.eventia.ui.screens.explore.ExploreScreen
+import com.example.eventia.ui.screens.explore.exploreColors
 import com.example.eventia.ui.screens.favorites.FavoriteNotice
 import com.example.eventia.ui.screens.favorites.FavoritesScreen
 import com.example.eventia.ui.screens.favorites.FavoritesViewModel
@@ -111,6 +114,7 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
+    val isExplore = detail == null && selectedTab == Tab.Explore
     val eventDetail = detail == DetailDestination.Event
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
@@ -138,7 +142,7 @@ fun EventiaNavigation(
             ScaffoldDefaults.contentWindowInsets
         },
         topBar = {
-            if (!eventDetail) {
+            if (!eventDetail && !isExplore) {
                 TopAppBar(
                     title = { Text(stringResource(detail?.title ?: selectedTab.title)) },
                     navigationIcon = {
@@ -158,7 +162,10 @@ fun EventiaNavigation(
             if (detail == null || connectionNotice != null) {
                 Column(Modifier.navigationBarsPadding()) {
                     if (detail == null) {
-                        NavigationBar {
+                        val catalogColors = exploreColors()
+                        NavigationBar(
+                            containerColor = if (isExplore) catalogColors.surface else NavigationBarDefaults.containerColor
+                        ) {
                             Tab.entries.forEach { tab ->
                                 NavigationBarItem(
                                     selected = tab == selectedTab,
@@ -174,7 +181,16 @@ fun EventiaNavigation(
                                         }
                                     },
                                     icon = { Icon(painterResource(tab.icon), contentDescription = null) },
-                                    label = { Text(stringResource(tab.title)) }
+                                    label = { Text(stringResource(tab.title)) },
+                                    colors = if (isExplore) {
+                                        NavigationBarItemDefaults.colors(
+                                            selectedIconColor = catalogColors.primary,
+                                            selectedTextColor = catalogColors.primary,
+                                            indicatorColor = catalogColors.primaryContainer,
+                                            unselectedIconColor = catalogColors.onSurfaceVariant,
+                                            unselectedTextColor = catalogColors.onSurfaceVariant
+                                        )
+                                    } else NavigationBarItemDefaults.colors()
                                 )
                             }
                         }
