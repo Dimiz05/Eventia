@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
@@ -115,7 +114,6 @@ fun EventiaNavigation(
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
     val isExplore = detail == null && selectedTab == Tab.Explore
-    val eventDetail = detail == DetailDestination.Event
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
     }
@@ -136,25 +134,15 @@ fun EventiaNavigation(
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
-        contentWindowInsets = if (eventDetail) {
+        contentWindowInsets = if (detail != null) {
             ScaffoldDefaults.contentWindowInsets.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
         } else {
             ScaffoldDefaults.contentWindowInsets
         },
         topBar = {
-            if (!eventDetail && !isExplore) {
+            if (detail == null && !isExplore) {
                 TopAppBar(
-                    title = { Text(stringResource(detail?.title ?: selectedTab.title)) },
-                    navigationIcon = {
-                        if (detail != null) {
-                            IconButton(onClick = { controller.navigateUp() }) {
-                                Icon(
-                                    painterResource(R.drawable.ic_back),
-                                    contentDescription = stringResource(R.string.navigate_back)
-                                )
-                            }
-                        }
-                    }
+                    title = { Text(stringResource(selectedTab.title)) }
                 )
             }
         },
@@ -242,7 +230,9 @@ fun EventiaNavigation(
                         )
                         DetailDestination.Venue -> VenueDetailScreen(
                             onBack = { controller.navigateUp() },
-                            onEventClick = openEvent
+                            onEventClick = openEvent,
+                            favorites = favorites,
+                            onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
                         )
                     }
                 }

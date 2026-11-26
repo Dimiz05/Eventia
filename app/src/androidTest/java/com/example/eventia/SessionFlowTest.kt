@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.SemanticsMatcher
@@ -16,10 +17,13 @@ import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextClearance
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipe
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -332,10 +336,13 @@ class SessionFlowTest {
             }
         }
 
-        compose.onNode(hasText(context.getString(R.string.event_cancel_attendance)))
-            .performScrollTo().assertIsNotEnabled()
-        compose.onNode(hasText("Este evento ya pasó y no puedes cambiar tu asistencia."))
-            .performScrollTo().assertIsDisplayed()
+        val attendance = compose.onNode(hasText(context.getString(R.string.event_cancel_attendance)))
+        attendance.assertIsDisplayed().assertIsNotEnabled()
+        compose.onRoot().performTouchInput {
+            swipe(start = Offset(center.x, height * 0.7f), end = Offset(center.x, height * 0.25f))
+        }
+        attendance.assertIsDisplayed().assertIsNotEnabled()
+        compose.onNode(hasText("Este evento ya pasó y no puedes cambiar tu asistencia.")).assertIsDisplayed()
     }
 
     @Test
