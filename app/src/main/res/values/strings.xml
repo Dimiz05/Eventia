@@ -75,7 +75,14 @@
     <string name="map_selected_event">Evento seleccionado</string>
     <string name="map_close_event">Cerrar ficha del evento</string>
     <string name="favorites_loading">Cargando favoritos…</string>
-    <string name="favorites_empty">Aún no tienes favoritos.</string>
+    <string name="favorites_empty">Tu lista está esperando</string>
+    <string name="favorites_empty_hint">Guarda tus eventos favoritos para consultarlos incluso sin conexión.</string>
+    <string name="favorites_explore">Explorar eventos</string>
+    <string name="favorites_offline">Disponibles sin conexión</string>
+    <plurals name="favorites_saved_count">
+        <item quantity="one">%d guardado</item>
+        <item quantity="other">%d guardados</item>
+    </plurals>
     <string name="favorites_load_error">No se pudieron cargar los favoritos.</string>
     <string name="favorite_add">Guardar en favoritos</string>
     <string name="favorite_remove">Quitar de favoritos</string>

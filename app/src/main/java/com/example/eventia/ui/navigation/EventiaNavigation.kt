@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
@@ -114,7 +116,8 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
-    val usesCatalogChrome = detail == null && (selectedTab == Tab.Explore || selectedTab == Tab.Map)
+    val usesCatalogChrome = detail == null &&
+        (selectedTab == Tab.Explore || selectedTab == Tab.Map || selectedTab == Tab.Favorites)
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
     }
@@ -152,6 +155,8 @@ fun EventiaNavigation(
                 Column(Modifier.navigationBarsPadding()) {
                     if (detail == null) {
                         val catalogColors = exploreColors()
+                        val navigationColors = if (usesCatalogChrome) catalogColors else MaterialTheme.colorScheme
+                        HorizontalDivider(color = navigationColors.onSurface.copy(alpha = 0.32f))
                         NavigationBar(
                             containerColor = if (usesCatalogChrome) catalogColors.surface else NavigationBarDefaults.containerColor
                         ) {
@@ -214,7 +219,8 @@ fun EventiaNavigation(
                     state = favorites,
                     onEventClick = openEvent,
                     onRemove = { favoritesViewModel.changeFavorite(it, save = false, offerUndo = true) },
-                    onRetry = favoritesViewModel::retry
+                    onRetry = favoritesViewModel::retry,
+                    onExplore = { controller.popBackStack(Tab.Explore.route, inclusive = false) }
                 )
             }
             DetailDestination.entries.forEach { destination ->
