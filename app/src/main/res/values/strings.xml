@@ -67,6 +67,13 @@
     <string name="map_retry_events">Reintentar carga de eventos</string>
     <string name="map_shared_point">Eventos en este punto</string>
     <string name="map_view_detail">Ver detalle</string>
+    <string name="map_search">Buscar eventos o lugares</string>
+    <string name="map_search_empty">No encontramos eventos o lugares con ese nombre.</string>
+    <string name="map_satellite_layer">Cambiar a vista satelital</string>
+    <string name="map_standard_layer">Cambiar a vista de calles</string>
+    <string name="map_recenter">Centrar mapa en los eventos</string>
+    <string name="map_selected_event">Evento seleccionado</string>
+    <string name="map_close_event">Cerrar ficha del evento</string>
     <string name="favorites_loading">Cargando favoritos…</string>
     <string name="favorites_empty">Aún no tienes favoritos.</string>
     <string name="favorites_load_error">No se pudieron cargar los favoritos.</string>
