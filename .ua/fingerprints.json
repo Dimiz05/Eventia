@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "e259722be5edd99f2f2ba475654ca2c888f61e61",
-  "generatedAt": "2026-11-25T18:49:24.488Z",
+  "gitCommitHash": "17b9b480b6bb344ba4468e1602eb34995571aec7",
+  "generatedAt": "2026-11-26T16:30:06.306Z",
   "files": {
     "AGENTS.md": {
       "filePath": "AGENTS.md",
@@ -316,6 +316,165 @@
       "totalLines": 151,
       "hasStructuralAnalysis": true
     },
+    "app/src/androidTest/java/com/example/eventia/ExploreRefreshGestureTest.kt": {
+      "filePath": "app/src/androidTest/java/com/example/eventia/ExploreRefreshGestureTest.kt",
+      "contentHash": "f672e8cd3d5e8a225d2ba77bd93d3f5da95b66fb90e288afa309ef13741995d6",
+      "functions": [
+        {
+          "name": "emptyEventsRefreshWhenPulled",
+          "params": [],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "venueListRefreshesWhenPulled",
+          "params": [],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "assertTransientRefresh",
+          "params": [
+            "assertRequest"
+          ],
+          "exported": false,
+          "lineCount": 18
+        }
+      ],
+      "classes": [
+        {
+          "name": "ExploreRefreshGestureTest",
+          "methods": [
+            "emptyEventsRefreshWhenPulled",
+            "venueListRefreshesWhenPulled",
+            "assertTransientRefresh"
+          ],
+          "properties": [
+            "compose"
+          ],
+          "exported": true,
+          "lineCount": 62
+        }
+      ],
+      "imports": [
+        {
+          "source": "androidx.compose.ui.geometry.Offset",
+          "specifiers": [
+            "Offset"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.junit4.createComposeRule",
+          "specifiers": [
+            "createComposeRule"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onNodeWithContentDescription",
+          "specifiers": [
+            "onNodeWithContentDescription"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onNodeWithText",
+          "specifiers": [
+            "onNodeWithText"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onRoot",
+          "specifiers": [
+            "onRoot"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.performTouchInput",
+          "specifiers": [
+            "performTouchInput"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.swipe",
+          "specifiers": [
+            "swipe"
+          ]
+        },
+        {
+          "source": "androidx.test.ext.junit.runners.AndroidJUnit4",
+          "specifiers": [
+            "AndroidJUnit4"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreContent",
+          "specifiers": [
+            "ExploreContent"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreUiState",
+          "specifiers": [
+            "ExploreUiState"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.venue.VenueListContent",
+          "specifiers": [
+            "VenueListContent"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.venue.VenueListUiState",
+          "specifiers": [
+            "VenueListUiState"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "specifiers": [
+            "EventiaTheme"
+          ]
+        },
+        {
+          "source": "org.junit.Assert.assertEquals",
+          "specifiers": [
+            "assertEquals"
+          ]
+        },
+        {
+          "source": "org.junit.Rule",
+          "specifiers": [
+            "Rule"
+          ]
+        },
+        {
+          "source": "org.junit.Test",
+          "specifiers": [
+            "Test"
+          ]
+        },
+        {
+          "source": "org.junit.runner.RunWith",
+          "specifiers": [
+            "RunWith"
+          ]
+        }
+      ],
+      "exports": [
+        "compose",
+        "emptyEventsRefreshWhenPulled",
+        "venueListRefreshesWhenPulled",
+        "ExploreRefreshGestureTest"
+      ],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
     "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": {
       "filePath": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
       "contentHash": "9d51a3ce58f30c7a5225e53732079d1b4a1eed6d73c882cca2122da2581fb3df",
@@ -551,15 +710,283 @@
       "totalLines": 157,
       "hasStructuralAnalysis": true
     },
+    "app/src/androidTest/java/com/example/eventia/FavoritesScreenTest.kt": {
+      "filePath": "app/src/androidTest/java/com/example/eventia/FavoritesScreenTest.kt",
+      "contentHash": "1a5b8b3c48278f05052ae94c567fbbf44a285c7ef85479e0e673552c28849fd5",
+      "functions": [
+        {
+          "name": "savedCardShowsCountAndKeepsOpenAndRemoveSeparate",
+          "params": [],
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "emptyFavoritesOffersCatalogNavigation",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [
+        {
+          "name": "FavoritesScreenTest",
+          "methods": [
+            "savedCardShowsCountAndKeepsOpenAndRemoveSeparate",
+            "emptyFavoritesOffersCatalogNavigation"
+          ],
+          "properties": [
+            "compose"
+          ],
+          "exported": true,
+          "lineCount": 65
+        }
+      ],
+      "imports": [
+        {
+          "source": "androidx.compose.runtime.mutableStateOf",
+          "specifiers": [
+            "mutableStateOf"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.assertIsDisplayed",
+          "specifiers": [
+            "assertIsDisplayed"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.assertIsNotEnabled",
+          "specifiers": [
+            "assertIsNotEnabled"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.junit4.createComposeRule",
+          "specifiers": [
+            "createComposeRule"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onNodeWithContentDescription",
+          "specifiers": [
+            "onNodeWithContentDescription"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onNodeWithText",
+          "specifiers": [
+            "onNodeWithText"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.performClick",
+          "specifiers": [
+            "performClick"
+          ]
+        },
+        {
+          "source": "androidx.test.ext.junit.runners.AndroidJUnit4",
+          "specifiers": [
+            "AndroidJUnit4"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Category",
+          "specifiers": [
+            "Category"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Event",
+          "specifiers": [
+            "Event"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.favorites.FavoritesScreen",
+          "specifiers": [
+            "FavoritesScreen"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.favorites.FavoritesUiState",
+          "specifiers": [
+            "FavoritesUiState"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "specifiers": [
+            "EventiaTheme"
+          ]
+        },
+        {
+          "source": "java.time.OffsetDateTime",
+          "specifiers": [
+            "OffsetDateTime"
+          ]
+        },
+        {
+          "source": "org.junit.Assert.assertEquals",
+          "specifiers": [
+            "assertEquals"
+          ]
+        },
+        {
+          "source": "org.junit.Rule",
+          "specifiers": [
+            "Rule"
+          ]
+        },
+        {
+          "source": "org.junit.Test",
+          "specifiers": [
+            "Test"
+          ]
+        },
+        {
+          "source": "org.junit.runner.RunWith",
+          "specifiers": [
+            "RunWith"
+          ]
+        }
+      ],
+      "exports": [
+        "compose",
+        "savedCardShowsCountAndKeepsOpenAndRemoveSeparate",
+        "emptyFavoritesOffersCatalogNavigation",
+        "FavoritesScreenTest"
+      ],
+      "totalLines": 88,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/androidTest/java/com/example/eventia/LaunchSplashTest.kt": {
+      "filePath": "app/src/androidTest/java/com/example/eventia/LaunchSplashTest.kt",
+      "contentHash": "0507167e3d7a3e87e553425884cfe97a88696e195914bde59b3ac5788df8a0e5",
+      "functions": [
+        {
+          "name": "launchShowsBrandBeforeOpeningTheSignInForm",
+          "params": [],
+          "exported": true,
+          "lineCount": 20
+        }
+      ],
+      "classes": [
+        {
+          "name": "LaunchSplashTest",
+          "methods": [
+            "launchShowsBrandBeforeOpeningTheSignInForm"
+          ],
+          "properties": [
+            "compose"
+          ],
+          "exported": true,
+          "lineCount": 26
+        }
+      ],
+      "imports": [
+        {
+          "source": "androidx.compose.ui.test.assertCountEquals",
+          "specifiers": [
+            "assertCountEquals"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.assertIsDisplayed",
+          "specifiers": [
+            "assertIsDisplayed"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.junit4.createEmptyComposeRule",
+          "specifiers": [
+            "createEmptyComposeRule"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onAllNodesWithText",
+          "specifiers": [
+            "onAllNodesWithText"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onNodeWithTag",
+          "specifiers": [
+            "onNodeWithTag"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.onNodeWithText",
+          "specifiers": [
+            "onNodeWithText"
+          ]
+        },
+        {
+          "source": "androidx.test.core.app.ActivityScenario",
+          "specifiers": [
+            "ActivityScenario"
+          ]
+        },
+        {
+          "source": "androidx.test.ext.junit.runners.AndroidJUnit4",
+          "specifiers": [
+            "AndroidJUnit4"
+          ]
+        },
+        {
+          "source": "org.junit.Rule",
+          "specifiers": [
+            "Rule"
+          ]
+        },
+        {
+          "source": "org.junit.Test",
+          "specifiers": [
+            "Test"
+          ]
+        },
+        {
+          "source": "org.junit.runner.RunWith",
+          "specifiers": [
+            "RunWith"
+          ]
+        }
+      ],
+      "exports": [
+        "compose",
+        "launchShowsBrandBeforeOpeningTheSignInForm",
+        "LaunchSplashTest"
+      ],
+      "totalLines": 41,
+      "hasStructuralAnalysis": true
+    },
     "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt": {
       "filePath": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
-      "contentHash": "45eb42e0b32fe2048291676bfa874223f32a462889c2ac0c099b57ac39f1b110",
+      "contentHash": "92b4ee296307d2d35c9cbb66e0106f1bfa93d97de09418a7678c0ac0c93c2675",
       "functions": [
+        {
+          "name": "registrationRequiresMatchingPasswordsBeforeSubmitting",
+          "params": [],
+          "exported": true,
+          "lineCount": 44
+        },
+        {
+          "name": "changingAccessModeHidesPasswordAndClearsItsInput",
+          "params": [],
+          "exported": true,
+          "lineCount": 26
+        },
         {
           "name": "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
           "params": [],
           "exported": true,
-          "lineCount": 29
+          "lineCount": 30
         },
         {
           "name": "onMainSession",
@@ -605,6 +1032,18 @@
           "lineCount": 30
         },
         {
+          "name": "pastEventsRejectBothAttendanceChanges",
+          "params": [],
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "pastEventDetailShowsWhyAttendanceCannotBeChanged",
+          "params": [],
+          "exported": true,
+          "lineCount": 33
+        },
+        {
           "name": "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
           "params": [],
           "exported": true,
@@ -635,6 +1074,8 @@
         {
           "name": "SessionFlowTest",
           "methods": [
+            "registrationRequiresMatchingPasswordsBeforeSubmitting",
+            "changingAccessModeHidesPasswordAndClearsItsInput",
             "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
             "onMainSession",
             "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
@@ -643,6 +1084,8 @@
             "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
             "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
             "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+            "pastEventsRejectBothAttendanceChanges",
+            "pastEventDetailShowsWhyAttendanceCannotBeChanged",
             "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
             "offlineValidationKeepsSessionUntilLogout",
             "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
@@ -652,7 +1095,7 @@
             "compose"
           ],
           "exported": true,
-          "lineCount": 283
+          "lineCount": 417
         }
       ],
       "imports": [
@@ -669,15 +1112,75 @@
           ]
         },
         {
+          "source": "androidx.compose.runtime.mutableStateOf",
+          "specifiers": [
+            "mutableStateOf"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.remember",
+          "specifiers": [
+            "remember"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.setValue",
+          "specifiers": [
+            "setValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.geometry.Offset",
+          "specifiers": [
+            "Offset"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.Role",
+          "specifiers": [
+            "Role"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.SemanticsProperties",
+          "specifiers": [
+            "SemanticsProperties"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.SemanticsMatcher",
+          "specifiers": [
+            "SemanticsMatcher"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.assert",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.test.assertIsDisplayed",
           "specifiers": [
             "assertIsDisplayed"
           ]
         },
         {
+          "source": "androidx.compose.ui.test.assertIsNotEnabled",
+          "specifiers": [
+            "assertIsNotEnabled"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.test.hasClickAction",
           "specifiers": [
             "hasClickAction"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.hasContentDescription",
+          "specifiers": [
+            "hasContentDescription"
           ]
         },
         {
@@ -699,15 +1202,51 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.test.onRoot",
+          "specifiers": [
+            "onRoot"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.test.performClick",
           "specifiers": [
             "performClick"
           ]
         },
         {
+          "source": "androidx.compose.ui.test.performScrollTo",
+          "specifiers": [
+            "performScrollTo"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.performTextClearance",
+          "specifiers": [
+            "performTextClearance"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.test.performTextInput",
           "specifiers": [
             "performTextInput"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.performTouchInput",
+          "specifiers": [
+            "performTouchInput"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.test.swipe",
+          "specifiers": [
+            "swipe"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.AnnotatedString",
+          "specifiers": [
+            "AnnotatedString"
           ]
         },
         {
@@ -789,6 +1328,12 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.screens.eventdetail.EventDetailScreen",
+          "specifiers": [
+            "EventDetailScreen"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.screens.eventdetail.EventDetailUiState",
           "specifiers": [
             "EventDetailUiState"
@@ -798,6 +1343,12 @@
           "source": "com.example.eventia.ui.screens.eventdetail.EventDetailViewModel",
           "specifiers": [
             "EventDetailViewModel"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.favorites.FavoritesUiState",
+          "specifiers": [
+            "FavoritesUiState"
           ]
         },
         {
@@ -893,6 +1444,8 @@
       ],
       "exports": [
         "compose",
+        "registrationRequiresMatchingPasswordsBeforeSubmitting",
+        "changingAccessModeHidesPasswordAndClearsItsInput",
         "invalidEmailAndShortPasswordShowSupportingTextInTheirFields",
         "figureTwoFieldsRejectBlankEmailAndShortPasswordLocally",
         "cleanStartAllowsGuestEntryAndReturnToSignIn",
@@ -900,12 +1453,14 @@
         "expiredAttendanceClearsTheTokenAndOpensSignInWithTheReturnEvent",
         "expiredProfileSessionClearsTheTokenWithoutAnEventToReturnTo",
         "attendanceUpdatesDetailAndRequestsProfileRefreshAfterEachChange",
+        "pastEventsRejectBothAttendanceChanges",
+        "pastEventDetailShowsWhyAttendanceCannotBeChanged",
         "conflictUsesUpdatedAttendanceBeforeCapacityAndDoesNotRetryThePost",
         "offlineValidationKeepsSessionUntilLogout",
         "rejectedRestoredSessionReturnsToLoginWithGuestAvailable",
         "SessionFlowTest"
       ],
-      "totalLines": 326,
+      "totalLines": 478,
       "hasStructuralAnalysis": true
     },
     "app/src/main/AndroidManifest.xml": {
@@ -953,7 +1508,7 @@
     },
     "app/src/main/java/com/example/eventia/MainActivity.kt": {
       "filePath": "app/src/main/java/com/example/eventia/MainActivity.kt",
-      "contentHash": "503dd3cc615267140bf12a838c3b02a0b1cdea09e2453278b332470eb50040b2",
+      "contentHash": "f49e24e4f3ed9f4ae0f4263ca94cbb9a78b8628ed30da350b4e44b2f50bbcb85",
       "functions": [
         {
           "name": "onCreate",
@@ -961,7 +1516,7 @@
             "savedInstanceState"
           ],
           "exported": true,
-          "lineCount": 46
+          "lineCount": 60
         }
       ],
       "classes": [
@@ -974,7 +1529,7 @@
             "connectivity"
           ],
           "exported": true,
-          "lineCount": 51
+          "lineCount": 65
         }
       ],
       "imports": [
@@ -982,6 +1537,12 @@
           "source": "android.os.Bundle",
           "specifiers": [
             "Bundle"
+          ]
+        },
+        {
+          "source": "android.os.SystemClock",
+          "specifiers": [
+            "SystemClock"
           ]
         },
         {
@@ -1021,9 +1582,33 @@
           ]
         },
         {
+          "source": "androidx.compose.runtime.getValue",
+          "specifiers": [
+            "getValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.mutableStateOf",
+          "specifiers": [
+            "mutableStateOf"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.saveable.rememberSaveable",
+          "specifiers": [
+            "rememberSaveable"
+          ]
+        },
+        {
           "source": "androidx.compose.runtime.saveable.rememberSaveableStateHolder",
           "specifiers": [
             "rememberSaveableStateHolder"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.setValue",
+          "specifiers": [
+            "setValue"
           ]
         },
         {
@@ -1048,6 +1633,12 @@
           "source": "com.example.eventia.ui.navigation.EventiaNavigation",
           "specifiers": [
             "EventiaNavigation"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.session.LaunchSplash",
+          "specifiers": [
+            "LaunchSplash"
           ]
         },
         {
@@ -1091,6 +1682,12 @@
           "specifiers": [
             "Inject"
           ]
+        },
+        {
+          "source": "kotlinx.coroutines.delay",
+          "specifiers": [
+            "delay"
+          ]
         }
       ],
       "exports": [
@@ -1098,7 +1695,7 @@
         "onCreate",
         "MainActivity"
       ],
-      "totalLines": 74,
+      "totalLines": 97,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/api/EventiaApi.kt": {
@@ -2773,8 +3370,18 @@
     },
     "app/src/main/java/com/example/eventia/domain/model/Event.kt": {
       "filePath": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
-      "contentHash": "60ec5ad60b3ae8f500be867bf06943d3be24d2db200d748d953bd9e44636cc57",
-      "functions": [],
+      "contentHash": "95e4e0de7bfb29dbe4c7217950bc5e510d3c20fb3bb54044210dbed47565e76a",
+      "functions": [
+        {
+          "name": "hasStarted",
+          "params": [
+            "now"
+          ],
+          "returnType": "Boolean",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
       "classes": [
         {
           "name": "Event",
@@ -2799,6 +3406,12 @@
       ],
       "imports": [
         {
+          "source": "java.time.Instant",
+          "specifiers": [
+            "Instant"
+          ]
+        },
+        {
           "source": "java.time.OffsetDateTime",
           "specifiers": [
             "OffsetDateTime"
@@ -2806,9 +3419,10 @@
         }
       ],
       "exports": [
-        "Event"
+        "Event",
+        "hasStarted"
       ],
-      "totalLines": 19,
+      "totalLines": 22,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/domain/model/Venue.kt": {
@@ -3934,6 +4548,386 @@
       "totalLines": 55,
       "hasStructuralAnalysis": true
     },
+    "app/src/main/java/com/example/eventia/ui/components/DetailPresentation.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/components/DetailPresentation.kt",
+      "contentHash": "d9808b3891808082a2836112517f310042da97372df84e40e5cc4dff180ca6b4",
+      "functions": [
+        {
+          "name": "DetailTopBar",
+          "params": [
+            "title",
+            "onBack"
+          ],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "DetailArtwork",
+          "params": [
+            "imageUrl",
+            "fallbackIcon",
+            "modifier"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "DetailLocationMap",
+          "params": [
+            "venue",
+            "point",
+            "modifier"
+          ],
+          "exported": true,
+          "lineCount": 46
+        },
+        {
+          "name": "rememberVenueDirections",
+          "params": [
+            "venue",
+            "point"
+          ],
+          "returnType": "() -> Unit",
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "android.content.ActivityNotFoundException",
+          "specifiers": [
+            "ActivityNotFoundException"
+          ]
+        },
+        {
+          "source": "android.content.Intent",
+          "specifiers": [
+            "Intent"
+          ]
+        },
+        {
+          "source": "android.content.pm.PackageManager",
+          "specifiers": [
+            "PackageManager"
+          ]
+        },
+        {
+          "source": "android.net.Uri",
+          "specifiers": [
+            "Uri"
+          ]
+        },
+        {
+          "source": "android.widget.Toast",
+          "specifiers": [
+            "Toast"
+          ]
+        },
+        {
+          "source": "androidx.annotation.DrawableRes",
+          "specifiers": [
+            "DrawableRes"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Image",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Arrangement",
+          "specifiers": [
+            "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Column",
+          "specifiers": [
+            "Column"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxWidth",
+          "specifiers": [
+            "fillMaxWidth"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.padding",
+          "specifiers": [
+            "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.statusBarsPadding",
+          "specifiers": [
+            "statusBarsPadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.HorizontalDivider",
+          "specifiers": [
+            "HorizontalDivider"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.IconButton",
+          "specifiers": [
+            "IconButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Surface",
+          "specifiers": [
+            "Surface"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.Composable",
+          "specifiers": [
+            "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.key",
+          "specifiers": [
+            "key"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.remember",
+          "specifiers": [
+            "remember"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Modifier",
+          "specifiers": [
+            "Modifier"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.Brush",
+          "specifiers": [
+            "Brush"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.layout.ContentScale",
+          "specifiers": [
+            "ContentScale"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalContext",
+          "specifiers": [
+            "LocalContext"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalInspectionMode",
+          "specifiers": [
+            "LocalInspectionMode"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.stringResource",
+          "specifiers": [
+            "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.heading",
+          "specifiers": [
+            "heading"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.semantics",
+          "specifiers": [
+            "semantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.unit.dp",
+          "specifiers": [
+            "dp"
+          ]
+        },
+        {
+          "source": "coil3.compose.AsyncImage",
+          "specifiers": [
+            "AsyncImage"
+          ]
+        },
+        {
+          "source": "com.example.eventia.R",
+          "specifiers": [
+            "R"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.map.MapPoint",
+          "specifiers": [
+            "MapPoint"
+          ]
+        },
+        {
+          "source": "com.google.android.gms.common.ConnectionResult",
+          "specifiers": [
+            "ConnectionResult"
+          ]
+        },
+        {
+          "source": "com.google.android.gms.common.GoogleApiAvailability",
+          "specifiers": [
+            "GoogleApiAvailability"
+          ]
+        },
+        {
+          "source": "com.google.android.gms.maps.GoogleMapOptions",
+          "specifiers": [
+            "GoogleMapOptions"
+          ]
+        },
+        {
+          "source": "com.google.android.gms.maps.model.CameraPosition",
+          "specifiers": [
+            "CameraPosition"
+          ]
+        },
+        {
+          "source": "com.google.android.gms.maps.model.LatLng",
+          "specifiers": [
+            "LatLng"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.GoogleMap",
+          "specifiers": [
+            "GoogleMap"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.MapUiSettings",
+          "specifiers": [
+            "MapUiSettings"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.Marker",
+          "specifiers": [
+            "Marker"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.rememberCameraPositionState",
+          "specifiers": [
+            "rememberCameraPositionState"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.rememberUpdatedMarkerState",
+          "specifiers": [
+            "rememberUpdatedMarkerState"
+          ]
+        }
+      ],
+      "exports": [
+        "DetailTopBar",
+        "DetailArtwork",
+        "DetailLocationMap",
+        "rememberVenueDirections"
+      ],
+      "totalLines": 176,
+      "hasStructuralAnalysis": true
+    },
     "app/src/main/java/com/example/eventia/ui/components/EventCard.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
       "contentHash": "fcd5eb00dd360e79bd008686392fa879061cb930154a968730fe40ec9afa248a",
@@ -4560,7 +5554,7 @@
     },
     "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
-      "contentHash": "01fa5106aea611ee48945d7211a66c132097ec1bcdd56c37b9fbbc980bb4710e",
+      "contentHash": "7223c35fc068fc5d1602bc41038760d109f82f995f3f0d378bf2dfd73d9b2464",
       "functions": [
         {
           "name": "EventiaNavigation",
@@ -4578,7 +5572,7 @@
             "onAttendanceChanged"
           ],
           "exported": true,
-          "lineCount": 169
+          "lineCount": 170
         }
       ],
       "classes": [
@@ -4648,15 +5642,15 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.Icon",
+          "source": "androidx.compose.material3.HorizontalDivider",
           "specifiers": [
-            "Icon"
+            "HorizontalDivider"
           ]
         },
         {
-          "source": "androidx.compose.material3.IconButton",
+          "source": "androidx.compose.material3.Icon",
           "specifiers": [
-            "IconButton"
+            "Icon"
           ]
         },
         {
@@ -4669,6 +5663,12 @@
           "source": "androidx.compose.material3.NavigationBarItem",
           "specifiers": [
             "NavigationBarItem"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.NavigationBarItemDefaults",
+          "specifiers": [
+            "NavigationBarItemDefaults"
           ]
         },
         {
@@ -4705,12 +5705,6 @@
           "source": "androidx.compose.material3.Text",
           "specifiers": [
             "Text"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.TopAppBar",
-          "specifiers": [
-            "TopAppBar"
           ]
         },
         {
@@ -4822,6 +5816,12 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.components.FavoriteButton",
+          "specifiers": [
+            "FavoriteButton"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.screens.eventdetail.EventDetailScreen",
           "specifiers": [
             "EventDetailScreen"
@@ -4831,6 +5831,12 @@
           "source": "com.example.eventia.ui.screens.explore.ExploreScreen",
           "specifiers": [
             "ExploreScreen"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.exploreColors",
+          "specifiers": [
+            "exploreColors"
           ]
         },
         {
@@ -4886,12 +5892,12 @@
         "DetailDestination",
         "EventiaNavigation"
       ],
-      "totalLines": 237,
+      "totalLines": 240,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
-      "contentHash": "48daa463974b2369f1770ecd31f0516b79ef10a071102fc85cabe4d164185904",
+      "contentHash": "83bd7a0c2fbe0bfe7a5f6e9523764ce3d637dff468018ddf704e6f477c6cccac",
       "functions": [
         {
           "name": "EventDetailScreen",
@@ -4908,7 +5914,7 @@
             "viewModel"
           ],
           "exported": true,
-          "lineCount": 57
+          "lineCount": 59
         },
         {
           "name": "EventDetailContent",
@@ -4922,7 +5928,7 @@
             "favoriteAction"
           ],
           "exported": false,
-          "lineCount": 41
+          "lineCount": 40
         },
         {
           "name": "EventDetails",
@@ -4935,7 +5941,30 @@
             "favoriteAction"
           ],
           "exported": false,
-          "lineCount": 155
+          "lineCount": 123
+        },
+        {
+          "name": "EventHero",
+          "params": [
+            "event",
+            "shareLabel",
+            "onShare",
+            "favoriteAction"
+          ],
+          "exported": false,
+          "lineCount": 53
+        },
+        {
+          "name": "EventAttendanceBar",
+          "params": [
+            "event",
+            "state",
+            "attendanceClosed",
+            "onAttend",
+            "onRefresh"
+          ],
+          "exported": false,
+          "lineCount": 51
         },
         {
           "name": "eventCapacityLabel",
@@ -4955,15 +5984,7 @@
             "enabled"
           ],
           "exported": false,
-          "lineCount": 13
-        },
-        {
-          "name": "EventDetailIcon",
-          "params": [
-            "icon"
-          ],
-          "exported": false,
-          "lineCount": 9
+          "lineCount": 14
         },
         {
           "name": "EventDescription",
@@ -4972,15 +5993,6 @@
           ],
           "exported": false,
           "lineCount": 24
-        },
-        {
-          "name": "EventLocationPreview",
-          "params": [
-            "venue",
-            "point"
-          ],
-          "exported": false,
-          "lineCount": 40
         },
         {
           "name": "EventDetailErrorPreview",
@@ -4995,24 +6007,6 @@
           "source": "android.content.Intent",
           "specifiers": [
             "Intent"
-          ]
-        },
-        {
-          "source": "android.content.pm.PackageManager",
-          "specifiers": [
-            "PackageManager"
-          ]
-        },
-        {
-          "source": "android.net.Uri",
-          "specifiers": [
-            "Uri"
-          ]
-        },
-        {
-          "source": "android.widget.Toast",
-          "specifiers": [
-            "Toast"
           ]
         },
         {
@@ -5100,18 +6094,6 @@
           ]
         },
         {
-          "source": "androidx.compose.ui.platform.LocalInspectionMode",
-          "specifiers": [
-            "LocalInspectionMode"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.platform.LocalUriHandler",
-          "specifiers": [
-            "LocalUriHandler"
-          ]
-        },
-        {
           "source": "androidx.compose.ui.res.painterResource",
           "specifiers": [
             "painterResource"
@@ -5184,15 +6166,33 @@
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventArtwork",
+          "source": "com.example.eventia.domain.model.hasStarted",
           "specifiers": [
-            "EventArtwork"
+            "hasStarted"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventCategoryLabel",
+          "source": "com.example.eventia.ui.components.DetailLocationMap",
           "specifiers": [
-            "EventCategoryLabel"
+            "DetailLocationMap"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.DetailTopBar",
+          "specifiers": [
+            "DetailTopBar"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.DetailArtwork",
+          "specifiers": [
+            "DetailArtwork"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.FavoriteButton",
+          "specifiers": [
+            "FavoriteButton"
           ]
         },
         {
@@ -5226,6 +6226,12 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.components.rememberVenueDirections",
+          "specifiers": [
+            "rememberVenueDirections"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.screens.favorites.FavoritesUiState",
           "specifiers": [
             "FavoritesUiState"
@@ -5238,69 +6244,27 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.screens.explore.exploreColors",
+          "specifiers": [
+            "exploreColors"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
+          "specifiers": [
+            "ExploreBadge"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.theme.EventiaTheme",
           "specifiers": [
             "EventiaTheme"
           ]
         },
         {
-          "source": "com.google.android.gms.common.ConnectionResult",
+          "source": "java.time.Instant",
           "specifiers": [
-            "ConnectionResult"
-          ]
-        },
-        {
-          "source": "com.google.android.gms.common.GoogleApiAvailability",
-          "specifiers": [
-            "GoogleApiAvailability"
-          ]
-        },
-        {
-          "source": "com.google.android.gms.maps.GoogleMapOptions",
-          "specifiers": [
-            "GoogleMapOptions"
-          ]
-        },
-        {
-          "source": "com.google.android.gms.maps.model.CameraPosition",
-          "specifiers": [
-            "CameraPosition"
-          ]
-        },
-        {
-          "source": "com.google.android.gms.maps.model.LatLng",
-          "specifiers": [
-            "LatLng"
-          ]
-        },
-        {
-          "source": "com.google.maps.android.compose.GoogleMap",
-          "specifiers": [
-            "GoogleMap"
-          ]
-        },
-        {
-          "source": "com.google.maps.android.compose.MapUiSettings",
-          "specifiers": [
-            "MapUiSettings"
-          ]
-        },
-        {
-          "source": "com.google.maps.android.compose.Marker",
-          "specifiers": [
-            "Marker"
-          ]
-        },
-        {
-          "source": "com.google.maps.android.compose.rememberCameraPositionState",
-          "specifiers": [
-            "rememberCameraPositionState"
-          ]
-        },
-        {
-          "source": "com.google.maps.android.compose.rememberUpdatedMarkerState",
-          "specifiers": [
-            "rememberUpdatedMarkerState"
+            "Instant"
           ]
         },
         {
@@ -5308,17 +6272,23 @@
           "specifiers": [
             "OffsetDateTime"
           ]
+        },
+        {
+          "source": "kotlinx.coroutines.delay",
+          "specifiers": [
+            "delay"
+          ]
         }
       ],
       "exports": [
         "EventDetailScreen"
       ],
-      "totalLines": 445,
+      "totalLines": 465,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
-      "contentHash": "beb02fdfe3111c48e1db2f3f5645daecfb02f1fd06cf50f58a4700c672c9550e",
+      "contentHash": "11e2a100a648bc51d514d88502715f14779dc05602cd329784371dfff1abf649",
       "functions": [
         {
           "name": "load",
@@ -5356,7 +6326,7 @@
             "onAttendanceChanged"
           ],
           "exported": true,
-          "lineCount": 29
+          "lineCount": 30
         },
         {
           "name": "loadEvent",
@@ -5407,7 +6377,7 @@
             "request"
           ],
           "exported": true,
-          "lineCount": 99
+          "lineCount": 100
         }
       ],
       "imports": [
@@ -5439,6 +6409,12 @@
           "source": "com.example.eventia.domain.model.Event",
           "specifiers": [
             "Event"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.hasStarted",
+          "specifiers": [
+            "hasStarted"
           ]
         },
         {
@@ -5481,6 +6457,12 @@
           "source": "java.io.IOException",
           "specifiers": [
             "IOException"
+          ]
+        },
+        {
+          "source": "java.time.Instant",
+          "specifiers": [
+            "Instant"
           ]
         },
         {
@@ -5537,12 +6519,555 @@
         "attend",
         "EventDetailViewModel"
       ],
-      "totalLines": 140,
+      "totalLines": 143,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventShare.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventShare.kt",
+      "contentHash": "ac48210e0cb181b753dd367224a3f42a44b6f84a188f0e9241a94b90a698e5c8",
+      "functions": [
+        {
+          "name": "venueMapUrl",
+          "params": [
+            "venue"
+          ],
+          "returnType": "String",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.map.MapPoint",
+          "specifiers": [
+            "MapPoint"
+          ]
+        },
+        {
+          "source": "java.net.URLEncoder",
+          "specifiers": [
+            "URLEncoder"
+          ]
+        }
+      ],
+      "exports": [
+        "venueMapUrl"
+      ],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExplorePresentation.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExplorePresentation.kt",
+      "contentHash": "2bd5adcf76a8486ad3dee86d4dcc1b9ec987c3f5905cec2d89eb4c5b9a64d875",
+      "functions": [
+        {
+          "name": "exploreColors",
+          "params": [],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "ExploreHeader",
+          "params": [],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "ExploreSections",
+          "params": [
+            "showVenues",
+            "onSelect"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "ExploreSearch",
+          "params": [
+            "query",
+            "onQueryChange",
+            "label"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "ExplorePullToRefresh",
+          "params": [
+            "onRefresh",
+            "isLoading",
+            "hasScrollableContent",
+            "content"
+          ],
+          "exported": true,
+          "lineCount": 46
+        },
+        {
+          "name": "ExploreCard",
+          "params": [
+            "imageUrl",
+            "fallback",
+            "onClick",
+            "cover",
+            "content"
+          ],
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "ExploreBadge",
+          "params": [
+            "label",
+            "modifier",
+            "icon",
+            "containerColor",
+            "contentColor"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "ExploreMetadata",
+          "params": [
+            "icon",
+            "label",
+            "modifier"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ExplorePreviewFrame",
+          "params": [
+            "content"
+          ],
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "androidx.annotation.DrawableRes",
+          "specifiers": [
+            "DrawableRes"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.BorderStroke",
+          "specifiers": [
+            "BorderStroke"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.isSystemInDarkTheme",
+          "specifiers": [
+            "isSystemInDarkTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Arrangement",
+          "specifiers": [
+            "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.BoxScope",
+          "specifiers": [
+            "BoxScope"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Column",
+          "specifiers": [
+            "Column"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.ColumnScope",
+          "specifiers": [
+            "ColumnScope"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxSize",
+          "specifiers": [
+            "fillMaxSize"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxWidth",
+          "specifiers": [
+            "fillMaxWidth"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.height",
+          "specifiers": [
+            "height"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.padding",
+          "specifiers": [
+            "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.statusBarsPadding",
+          "specifiers": [
+            "statusBarsPadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.gestures.Orientation",
+          "specifiers": [
+            "Orientation"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.gestures.rememberScrollableState",
+          "specifiers": [
+            "rememberScrollableState"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.gestures.scrollable",
+          "specifiers": [
+            "scrollable"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.selection.selectable",
+          "specifiers": [
+            "selectable"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.selection.selectableGroup",
+          "specifiers": [
+            "selectableGroup"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.CircleShape",
+          "specifiers": [
+            "CircleShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.text.KeyboardOptions",
+          "specifiers": [
+            "KeyboardOptions"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.CardDefaults",
+          "specifiers": [
+            "CardDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.ExperimentalMaterial3Api",
+          "specifiers": [
+            "ExperimentalMaterial3Api"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.HorizontalDivider",
+          "specifiers": [
+            "HorizontalDivider"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.IconButton",
+          "specifiers": [
+            "IconButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedCard",
+          "specifiers": [
+            "OutlinedCard"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedTextField",
+          "specifiers": [
+            "OutlinedTextField"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedTextFieldDefaults",
+          "specifiers": [
+            "OutlinedTextFieldDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Surface",
+          "specifiers": [
+            "Surface"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.darkColorScheme",
+          "specifiers": [
+            "darkColorScheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.lightColorScheme",
+          "specifiers": [
+            "lightColorScheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.pulltorefresh.PullToRefreshDefaults",
+          "specifiers": [
+            "PullToRefreshDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.pulltorefresh.pullToRefresh",
+          "specifiers": [
+            "pullToRefresh"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.pulltorefresh.rememberPullToRefreshState",
+          "specifiers": [
+            "rememberPullToRefreshState"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.Composable",
+          "specifiers": [
+            "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.LaunchedEffect",
+          "specifiers": [
+            "LaunchedEffect"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.derivedStateOf",
+          "specifiers": [
+            "derivedStateOf"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.getValue",
+          "specifiers": [
+            "getValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.mutableStateOf",
+          "specifiers": [
+            "mutableStateOf"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.remember",
+          "specifiers": [
+            "remember"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.setValue",
+          "specifiers": [
+            "setValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Modifier",
+          "specifiers": [
+            "Modifier"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.Brush",
+          "specifiers": [
+            "Brush"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.Color",
+          "specifiers": [
+            "Color"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.layout.ContentScale",
+          "specifiers": [
+            "ContentScale"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.stringResource",
+          "specifiers": [
+            "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.Role",
+          "specifiers": [
+            "Role"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.contentDescription",
+          "specifiers": [
+            "contentDescription"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.semantics",
+          "specifiers": [
+            "semantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.input.ImeAction",
+          "specifiers": [
+            "ImeAction"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.unit.dp",
+          "specifiers": [
+            "dp"
+          ]
+        },
+        {
+          "source": "coil3.compose.AsyncImage",
+          "specifiers": [
+            "AsyncImage"
+          ]
+        },
+        {
+          "source": "com.example.eventia.R",
+          "specifiers": [
+            "R"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "specifiers": [
+            "EventiaTheme"
+          ]
+        },
+        {
+          "source": "kotlinx.coroutines.delay",
+          "specifiers": [
+            "delay"
+          ]
+        }
+      ],
+      "exports": [
+        "exploreColors",
+        "ExploreHeader",
+        "ExploreSections",
+        "ExploreSearch",
+        "ExplorePullToRefresh",
+        "ExploreCard",
+        "ExploreBadge",
+        "ExploreMetadata",
+        "ExplorePreviewFrame"
+      ],
+      "totalLines": 318,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
-      "contentHash": "4e0b0b4ec400128c084d8538f1425a12c2806f562f8285cb503b6c34cb56b8eb",
+      "contentHash": "26dc78db9c363eb1ddf339b09450ce319ccac501382763a4c7b8d8e7afb38db9",
       "functions": [
         {
           "name": "ExploreScreen",
@@ -5555,13 +7080,14 @@
             "onFavoritesClick"
           ],
           "exported": true,
-          "lineCount": 37
+          "lineCount": 46
         },
         {
-          "name": "ExploreSections",
+          "name": "CategoryPill",
           "params": [
-            "showVenues",
-            "onSelect"
+            "label",
+            "selected",
+            "onClick"
           ],
           "exported": false,
           "lineCount": 17
@@ -5575,11 +7101,22 @@
             "onClearFilters",
             "onRefresh",
             "onEventClick",
+            "sections",
             "onFavoritesClick",
             "favoriteAction"
           ],
+          "exported": true,
+          "lineCount": 137
+        },
+        {
+          "name": "ExploreEventCard",
+          "params": [
+            "event",
+            "onEventClick",
+            "favorite"
+          ],
           "exported": false,
-          "lineCount": 124
+          "lineCount": 51
         },
         {
           "name": "CatalogSkeleton",
@@ -5587,7 +7124,7 @@
             "modifier"
           ],
           "exported": false,
-          "lineCount": 21
+          "lineCount": 23
         },
         {
           "name": "ExploreStatePreview",
@@ -5595,7 +7132,7 @@
             "state"
           ],
           "exported": false,
-          "lineCount": 11
+          "lineCount": 10
         }
       ],
       "classes": [],
@@ -5622,6 +7159,12 @@
           "source": "androidx.compose.foundation.layout.Column",
           "specifiers": [
             "Column"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.FlowRow",
+          "specifiers": [
+            "FlowRow"
           ]
         },
         {
@@ -5733,27 +7276,15 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.OutlinedTextField",
+          "source": "androidx.compose.material3.FilterChipDefaults",
           "specifiers": [
-            "OutlinedTextField"
+            "FilterChipDefaults"
           ]
         },
         {
-          "source": "androidx.compose.material3.SegmentedButton",
+          "source": "androidx.compose.material3.LocalContentColor",
           "specifiers": [
-            "SegmentedButton"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.SegmentedButtonDefaults",
-          "specifiers": [
-            "SegmentedButtonDefaults"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.SingleChoiceSegmentedButtonRow",
-          "specifiers": [
-            "SingleChoiceSegmentedButtonRow"
+            "LocalContentColor"
           ]
         },
         {
@@ -5772,6 +7303,12 @@
           "source": "androidx.compose.runtime.Composable",
           "specifiers": [
             "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.CompositionLocalProvider",
+          "specifiers": [
+            "CompositionLocalProvider"
           ]
         },
         {
@@ -5811,6 +7348,12 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.Modifier",
           "specifiers": [
             "Modifier"
@@ -5838,6 +7381,24 @@
           "source": "androidx.compose.ui.res.stringResource",
           "specifiers": [
             "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.pluralStringResource",
+          "specifiers": [
+            "pluralStringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.heading",
+          "specifiers": [
+            "heading"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
           ]
         },
         {
@@ -5889,12 +7450,6 @@
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventCard",
-          "specifiers": [
-            "EventCard"
-          ]
-        },
-        {
           "source": "com.example.eventia.ui.components.FavoriteButton",
           "specifiers": [
             "FavoriteButton"
@@ -5913,6 +7468,18 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.components.eventLocalDateTime",
+          "specifiers": [
+            "eventLocalDateTime"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.screens.favorites.FavoritesUiState",
           "specifiers": [
             "FavoritesUiState"
@@ -5925,16 +7492,17 @@
           ]
         },
         {
-          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "source": "java.time.OffsetDateTime",
           "specifiers": [
-            "EventiaTheme"
+            "OffsetDateTime"
           ]
         }
       ],
       "exports": [
-        "ExploreScreen"
+        "ExploreScreen",
+        "ExploreContent"
       ],
-      "totalLines": 300,
+      "totalLines": 404,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt": {
@@ -6209,7 +7777,7 @@
     },
     "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
-      "contentHash": "7a894ed7a2df3cb74717712dd3dd89c90dbb54146c29972c8f38ffa922f51d8b",
+      "contentHash": "59b821513fbae155027b25a2db675948c0fe4969471878d38b4029a4a9ab1f9b",
       "functions": [
         {
           "name": "FavoritesScreen",
@@ -6217,24 +7785,93 @@
             "state",
             "onEventClick",
             "onRemove",
-            "onRetry"
+            "onRetry",
+            "onExplore"
           ],
           "exported": true,
+          "lineCount": 44
+        },
+        {
+          "name": "FavoritesHeader",
+          "params": [],
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "FavoritesStorageBanner",
+          "params": [
+            "count"
+          ],
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "EmptyFavorites",
+          "params": [
+            "onExplore"
+          ],
+          "exported": false,
+          "lineCount": 34
+        },
+        {
+          "name": "SavedEventCard",
+          "params": [
+            "event",
+            "canRemove",
+            "onOpen",
+            "onRemove"
+          ],
+          "exported": false,
           "lineCount": 36
         },
         {
-          "name": "FavoritesEmptyPreview",
-          "params": [],
+          "name": "SavedEventMetadata",
+          "params": [
+            "icon",
+            "text"
+          ],
           "exported": false,
-          "lineCount": 7
+          "lineCount": 11
+        },
+        {
+          "name": "FavoritesPreviewState",
+          "params": [
+            "state"
+          ],
+          "exported": false,
+          "lineCount": 9
         }
       ],
       "classes": [],
       "imports": [
         {
+          "source": "androidx.compose.foundation.BorderStroke",
+          "specifiers": [
+            "BorderStroke"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Image",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.Arrangement",
           "specifiers": [
             "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
           ]
         },
         {
@@ -6250,15 +7887,57 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.aspectRatio",
+          "specifiers": [
+            "aspectRatio"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.fillMaxSize",
           "specifiers": [
             "fillMaxSize"
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.fillMaxWidth",
+          "specifiers": [
+            "fillMaxWidth"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.navigationBarsPadding",
+          "specifiers": [
+            "navigationBarsPadding"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.padding",
           "specifiers": [
             "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.statusBarsPadding",
+          "specifiers": [
+            "statusBarsPadding"
           ]
         },
         {
@@ -6274,9 +7953,75 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.shape.CircleShape",
+          "specifiers": [
+            "CircleShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Button",
+          "specifiers": [
+            "Button"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.CardDefaults",
+          "specifiers": [
+            "CardDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.HorizontalDivider",
+          "specifiers": [
+            "HorizontalDivider"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedCard",
+          "specifiers": [
+            "OutlinedCard"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Surface",
+          "specifiers": [
+            "Surface"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
           "source": "androidx.compose.runtime.Composable",
           "specifiers": [
             "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
           ]
         },
         {
@@ -6286,9 +8031,63 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.pluralStringResource",
+          "specifiers": [
+            "pluralStringResource"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.res.stringResource",
           "specifiers": [
             "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.LiveRegionMode",
+          "specifiers": [
+            "LiveRegionMode"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.heading",
+          "specifiers": [
+            "heading"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.liveRegion",
+          "specifiers": [
+            "liveRegion"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.semantics",
+          "specifiers": [
+            "semantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.style.TextAlign",
+          "specifiers": [
+            "TextAlign"
           ]
         },
         {
@@ -6310,21 +8109,27 @@
           ]
         },
         {
+          "source": "com.example.eventia.domain.model.Category",
+          "specifiers": [
+            "Category"
+          ]
+        },
+        {
           "source": "com.example.eventia.domain.model.Event",
           "specifiers": [
             "Event"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.CachedDataNotice",
+          "source": "com.example.eventia.domain.model.Venue",
           "specifiers": [
-            "CachedDataNotice"
+            "Venue"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventCard",
+          "source": "com.example.eventia.ui.components.DetailArtwork",
           "specifiers": [
-            "EventCard"
+            "DetailArtwork"
           ]
         },
         {
@@ -6346,16 +8151,40 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.components.eventLocalDateTime",
+          "specifiers": [
+            "eventLocalDateTime"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
+          "specifiers": [
+            "ExploreBadge"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.exploreColors",
+          "specifiers": [
+            "exploreColors"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.theme.EventiaTheme",
           "specifiers": [
             "EventiaTheme"
+          ]
+        },
+        {
+          "source": "java.time.OffsetDateTime",
+          "specifiers": [
+            "OffsetDateTime"
           ]
         }
       ],
       "exports": [
         "FavoritesScreen"
       ],
-      "totalLines": 68,
+      "totalLines": 299,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesViewModel.kt": {
@@ -6533,66 +8362,40 @@
       "totalLines": 83,
       "hasStructuralAnalysis": true
     },
-    "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt": {
-      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
-      "contentHash": "1cfb59db3c629c3046b73729c6b0d20927640d04fbdbb1982019a357e539422b",
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapEventSheet.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapEventSheet.kt",
+      "contentHash": "828cb5085a3728ce34bbe5329f3b057464c83960df81b99032bcdacc8de5e9eb",
       "functions": [
         {
-          "name": "MapScreen",
-          "params": [
-            "onEventClick",
-            "viewModel"
-          ],
-          "exported": true,
-          "lineCount": 22
-        },
-        {
-          "name": "MapContent",
-          "params": [
-            "state",
-            "onCategorySelected",
-            "onPointSelected",
-            "onRetryMap",
-            "onRetryEvents",
-            "onEventClick"
-          ],
-          "exported": false,
-          "lineCount": 58
-        },
-        {
-          "name": "EventMap",
-          "params": [
-            "state",
-            "onPointSelected",
-            "onRetry"
-          ],
-          "exported": false,
-          "lineCount": 59
-        },
-        {
-          "name": "EventSummarySheet",
+          "name": "MapEventSheet",
           "params": [
             "events",
             "onDismiss",
-            "onEventClick"
+            "onEventClick",
+            "favoriteAction",
+            "modifier"
           ],
-          "exported": false,
-          "lineCount": 39
+          "exported": true,
+          "lineCount": 35
         },
         {
-          "name": "MapMessage",
+          "name": "MapEventSummary",
           "params": [
-            "message",
-            "onRetry"
+            "event",
+            "onEventClick",
+            "favoriteAction"
           ],
           "exported": false,
-          "lineCount": 9
+          "lineCount": 54
         },
         {
-          "name": "MapErrorPreview",
-          "params": [],
+          "name": "MapEventLine",
+          "params": [
+            "icon",
+            "label"
+          ],
           "exported": false,
-          "lineCount": 5
+          "lineCount": 8
         }
       ],
       "classes": [],
@@ -6601,12 +8404,6 @@
           "source": "androidx.compose.foundation.layout.Arrangement",
           "specifiers": [
             "Arrangement"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.layout.Box",
-          "specifiers": [
-            "Box"
           ]
         },
         {
@@ -6622,6 +8419,381 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxWidth",
+          "specifiers": [
+            "fillMaxWidth"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.padding",
+          "specifiers": [
+            "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.lazy.LazyColumn",
+          "specifiers": [
+            "LazyColumn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.lazy.items",
+          "specifiers": [
+            "items"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Button",
+          "specifiers": [
+            "Button"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.ButtonDefaults",
+          "specifiers": [
+            "ButtonDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.FilledTonalButton",
+          "specifiers": [
+            "FilledTonalButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.IconButton",
+          "specifiers": [
+            "IconButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Surface",
+          "specifiers": [
+            "Surface"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.Composable",
+          "specifiers": [
+            "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Modifier",
+          "specifiers": [
+            "Modifier"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.pluralStringResource",
+          "specifiers": [
+            "pluralStringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.stringResource",
+          "specifiers": [
+            "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.style.TextOverflow",
+          "specifiers": [
+            "TextOverflow"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.unit.dp",
+          "specifiers": [
+            "dp"
+          ]
+        },
+        {
+          "source": "com.example.eventia.R",
+          "specifiers": [
+            "R"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Event",
+          "specifiers": [
+            "Event"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.DetailArtwork",
+          "specifiers": [
+            "DetailArtwork"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.eventLocalDateTime",
+          "specifiers": [
+            "eventLocalDateTime"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.rememberVenueDirections",
+          "specifiers": [
+            "rememberVenueDirections"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
+          "specifiers": [
+            "ExploreBadge"
+          ]
+        }
+      ],
+      "exports": [
+        "MapEventSheet"
+      ],
+      "totalLines": 138,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
+      "contentHash": "75a0937b6effdd21d91bd97c9202a830719ea7de443eb3351905a6ef70bc2782",
+      "functions": [
+        {
+          "name": "MapScreen",
+          "params": [
+            "onEventClick",
+            "viewModel",
+            "favoriteAction"
+          ],
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "MapHeader",
+          "params": [],
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "MapContent",
+          "params": [
+            "state",
+            "onCategorySelected",
+            "onPointSelected",
+            "onRetryMap",
+            "onRetryEvents",
+            "onEventClick",
+            "favoriteAction"
+          ],
+          "exported": false,
+          "lineCount": 152
+        },
+        {
+          "name": "MapCategoryChip",
+          "params": [
+            "label",
+            "selected",
+            "onClick"
+          ],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "MapControls",
+          "params": [
+            "satellite",
+            "onToggleLayer",
+            "onRecenter",
+            "modifier"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "EventMap",
+          "params": [
+            "markers",
+            "selectedPoint",
+            "camera",
+            "satellite",
+            "onLoaded",
+            "onPointSelected",
+            "onMapClick"
+          ],
+          "exported": false,
+          "lineCount": 40
+        },
+        {
+          "name": "MapPin",
+          "params": [
+            "title",
+            "selected"
+          ],
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "toLatLng",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "MapMessage",
+          "params": [
+            "message",
+            "onRetry"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "MapPreviewBackdrop",
+          "params": [
+            "hasSelection"
+          ],
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "MapErrorPreview",
+          "params": [],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "androidx.activity.compose.BackHandler",
+          "specifiers": [
+            "BackHandler"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.BorderStroke",
+          "specifiers": [
+            "BorderStroke"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Canvas",
+          "specifiers": [
+            "Canvas"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Image",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Arrangement",
+          "specifiers": [
+            "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.BoxWithConstraints",
+          "specifiers": [
+            "BoxWithConstraints"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Column",
+          "specifiers": [
+            "Column"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.PaddingValues",
+          "specifiers": [
+            "PaddingValues"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.fillMaxSize",
           "specifiers": [
             "fillMaxSize"
@@ -6634,9 +8806,45 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.navigationBarsPadding",
+          "specifiers": [
+            "navigationBarsPadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.offset",
+          "specifiers": [
+            "offset"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.padding",
           "specifiers": [
             "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.statusBarsPadding",
+          "specifiers": [
+            "statusBarsPadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.widthIn",
+          "specifiers": [
+            "widthIn"
           ]
         },
         {
@@ -6658,9 +8866,27 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.Button",
+          "source": "androidx.compose.foundation.shape.CircleShape",
           "specifiers": [
-            "Button"
+            "CircleShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.BottomSheetDefaults",
+          "specifiers": [
+            "BottomSheetDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.BottomSheetScaffold",
+          "specifiers": [
+            "BottomSheetScaffold"
           ]
         },
         {
@@ -6676,21 +8902,33 @@
           ]
         },
         {
+          "source": "androidx.compose.material3.FilterChipDefaults",
+          "specifiers": [
+            "FilterChipDefaults"
+          ]
+        },
+        {
           "source": "androidx.compose.material3.HorizontalDivider",
           "specifiers": [
             "HorizontalDivider"
           ]
         },
         {
-          "source": "androidx.compose.material3.MaterialTheme",
+          "source": "androidx.compose.material3.Icon",
           "specifiers": [
-            "MaterialTheme"
+            "Icon"
           ]
         },
         {
-          "source": "androidx.compose.material3.ModalBottomSheet",
+          "source": "androidx.compose.material3.IconButton",
           "specifiers": [
-            "ModalBottomSheet"
+            "IconButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
           ]
         },
         {
@@ -6715,6 +8953,12 @@
           "source": "androidx.compose.runtime.Composable",
           "specifiers": [
             "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.CompositionLocalProvider",
+          "specifiers": [
+            "CompositionLocalProvider"
           ]
         },
         {
@@ -6748,6 +8992,12 @@
           ]
         },
         {
+          "source": "androidx.compose.runtime.saveable.rememberSaveable",
+          "specifiers": [
+            "rememberSaveable"
+          ]
+        },
+        {
           "source": "androidx.compose.runtime.setValue",
           "specifiers": [
             "setValue"
@@ -6766,9 +9016,81 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.rotate",
+          "specifiers": [
+            "rotate"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.geometry.Offset",
+          "specifiers": [
+            "Offset"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.geometry.Size",
+          "specifiers": [
+            "Size"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.Path",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.StrokeCap",
+          "specifiers": [
+            "StrokeCap"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.drawscope.Stroke",
+          "specifiers": [
+            "Stroke"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalFocusManager",
+          "specifiers": [
+            "LocalFocusManager"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalInspectionMode",
+          "specifiers": [
+            "LocalInspectionMode"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.res.stringResource",
           "specifiers": [
             "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.style.TextOverflow",
+          "specifiers": [
+            "TextOverflow"
           ]
         },
         {
@@ -6802,15 +9124,21 @@
           ]
         },
         {
+          "source": "com.example.eventia.domain.model.Category",
+          "specifiers": [
+            "Category"
+          ]
+        },
+        {
           "source": "com.example.eventia.domain.model.Event",
           "specifiers": [
             "Event"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventCategoryLabel",
+          "source": "com.example.eventia.domain.model.Venue",
           "specifiers": [
-            "EventCategoryLabel"
+            "Venue"
           ]
         },
         {
@@ -6820,15 +9148,33 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.components.FavoriteButton",
+          "specifiers": [
+            "FavoriteButton"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.components.ScreenMessage",
           "specifiers": [
             "ScreenMessage"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.eventLocalDateTime",
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
           "specifiers": [
-            "eventLocalDateTime"
+            "ExploreBadge"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreSearch",
+          "specifiers": [
+            "ExploreSearch"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.exploreColors",
+          "specifiers": [
+            "exploreColors"
           ]
         },
         {
@@ -6838,9 +9184,9 @@
           ]
         },
         {
-          "source": "com.google.android.gms.maps.model.BitmapDescriptorFactory",
+          "source": "com.google.android.gms.maps.CameraUpdateFactory",
           "specifiers": [
-            "BitmapDescriptorFactory"
+            "CameraUpdateFactory"
           ]
         },
         {
@@ -6856,15 +9202,39 @@
           ]
         },
         {
+          "source": "com.google.maps.android.compose.CameraPositionState",
+          "specifiers": [
+            "CameraPositionState"
+          ]
+        },
+        {
           "source": "com.google.maps.android.compose.GoogleMap",
           "specifiers": [
             "GoogleMap"
           ]
         },
         {
-          "source": "com.google.maps.android.compose.Marker",
+          "source": "com.google.maps.android.compose.MapProperties",
           "specifiers": [
-            "Marker"
+            "MapProperties"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.MapType",
+          "specifiers": [
+            "MapType"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.MapUiSettings",
+          "specifiers": [
+            "MapUiSettings"
+          ]
+        },
+        {
+          "source": "com.google.maps.android.compose.MarkerComposable",
+          "specifiers": [
+            "MarkerComposable"
           ]
         },
         {
@@ -6880,6 +9250,12 @@
           ]
         },
         {
+          "source": "java.time.OffsetDateTime",
+          "specifiers": [
+            "OffsetDateTime"
+          ]
+        },
+        {
           "source": "kotlinx.coroutines.delay",
           "specifiers": [
             "delay"
@@ -6889,7 +9265,37 @@
       "exports": [
         "MapScreen"
       ],
-      "totalLines": 252,
+      "totalLines": 518,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapSearch.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/map/MapSearch.kt",
+      "contentHash": "de778063ae0eb5aced2cd85a4bd2d6f626ffd5329f20a80a84e220b962fbac9c",
+      "functions": [
+        {
+          "name": "filterMapMarkers",
+          "params": [
+            "markers",
+            "query"
+          ],
+          "returnType": "Map<MapPoint, List<Event>>",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "com.example.eventia.domain.model.Event",
+          "specifiers": [
+            "Event"
+          ]
+        }
+      ],
+      "exports": [
+        "filterMapMarkers"
+      ],
+      "totalLines": 19,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt": {
@@ -7129,7 +9535,7 @@
     },
     "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
-      "contentHash": "545d9d93a9e68c47764c6edb56ee5bdc8e63f7c5c7d82e5881dfff726132eb92",
+      "contentHash": "6ec1893ed3d330f84cb2a7b3f9866447684f6b96309bb50dac1191d7aeb73199",
       "functions": [
         {
           "name": "ProfileRoute",
@@ -7156,21 +9562,106 @@
             "onEventClick"
           ],
           "exported": false,
-          "lineCount": 74
+          "lineCount": 76
         },
         {
-          "name": "ProfileEmptyPreview",
+          "name": "ProfileHeader",
           "params": [],
           "exported": false,
-          "lineCount": 15
+          "lineCount": 21
+        },
+        {
+          "name": "ProfileAccount",
+          "params": [
+            "session",
+            "onRetry",
+            "onSignIn",
+            "onSignOut"
+          ],
+          "exported": false,
+          "lineCount": 67
+        },
+        {
+          "name": "AttendanceTabs",
+          "params": [
+            "groups",
+            "showUpcoming",
+            "onSelect"
+          ],
+          "exported": false,
+          "lineCount": 43
+        },
+        {
+          "name": "AttendanceTicket",
+          "params": [
+            "event",
+            "upcoming",
+            "onOpen"
+          ],
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "TicketMetadata",
+          "params": [
+            "icon",
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "ProfilePreviewFrame",
+          "params": [
+            "session",
+            "state"
+          ],
+          "exported": false,
+          "lineCount": 8
         }
       ],
       "classes": [],
       "imports": [
         {
+          "source": "androidx.annotation.DrawableRes",
+          "specifiers": [
+            "DrawableRes"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.BorderStroke",
+          "specifiers": [
+            "BorderStroke"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Canvas",
+          "specifiers": [
+            "Canvas"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Image",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.Arrangement",
           "specifiers": [
             "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
           ]
         },
         {
@@ -7186,6 +9677,12 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.fillMaxSize",
           "specifiers": [
             "fillMaxSize"
@@ -7198,9 +9695,39 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.height",
+          "specifiers": [
+            "height"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.navigationBarsPadding",
+          "specifiers": [
+            "navigationBarsPadding"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.padding",
           "specifiers": [
             "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.statusBarsPadding",
+          "specifiers": [
+            "statusBarsPadding"
           ]
         },
         {
@@ -7216,9 +9743,57 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.ExperimentalMaterial3Api",
+          "source": "androidx.compose.foundation.selection.selectable",
           "specifiers": [
-            "ExperimentalMaterial3Api"
+            "selectable"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.selection.selectableGroup",
+          "specifiers": [
+            "selectableGroup"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.CircleShape",
+          "specifiers": [
+            "CircleShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Button",
+          "specifiers": [
+            "Button"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.ButtonDefaults",
+          "specifiers": [
+            "ButtonDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.FilledTonalButton",
+          "specifiers": [
+            "FilledTonalButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.HorizontalDivider",
+          "specifiers": [
+            "HorizontalDivider"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
           ]
         },
         {
@@ -7240,27 +9815,27 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.SegmentedButton",
+          "source": "androidx.compose.material3.OutlinedCard",
           "specifiers": [
-            "SegmentedButton"
+            "OutlinedCard"
           ]
         },
         {
-          "source": "androidx.compose.material3.SegmentedButtonDefaults",
+          "source": "androidx.compose.material3.Surface",
           "specifiers": [
-            "SegmentedButtonDefaults"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.SingleChoiceSegmentedButtonRow",
-          "specifiers": [
-            "SingleChoiceSegmentedButtonRow"
+            "Surface"
           ]
         },
         {
           "source": "androidx.compose.material3.Text",
           "specifiers": [
             "Text"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.TextButton",
+          "specifiers": [
+            "TextButton"
           ]
         },
         {
@@ -7300,15 +9875,57 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.Modifier",
           "specifiers": [
             "Modifier"
           ]
         },
         {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.geometry.Offset",
+          "specifiers": [
+            "Offset"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.PathEffect",
+          "specifiers": [
+            "PathEffect"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.layout.ContentScale",
+          "specifiers": [
+            "ContentScale"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.res.stringResource",
           "specifiers": [
             "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.Role",
+          "specifiers": [
+            "Role"
           ]
         },
         {
@@ -7321,6 +9938,12 @@
           "source": "androidx.compose.ui.semantics.semantics",
           "specifiers": [
             "semantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
           ]
         },
         {
@@ -7366,21 +9989,51 @@
           ]
         },
         {
+          "source": "com.example.eventia.domain.model.Account",
+          "specifiers": [
+            "Account"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Category",
+          "specifiers": [
+            "Category"
+          ]
+        },
+        {
           "source": "com.example.eventia.domain.model.Event",
           "specifiers": [
             "Event"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventCard",
+          "source": "com.example.eventia.domain.model.Venue",
           "specifiers": [
-            "EventCard"
+            "Venue"
           ]
         },
         {
-          "source": "com.example.eventia.ui.screens.session.AccountScreen",
+          "source": "com.example.eventia.ui.components.LoadingScreen",
           "specifiers": [
-            "AccountScreen"
+            "LoadingScreen"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.eventLocalDateTime",
+          "specifiers": [
+            "eventLocalDateTime"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
+          "specifiers": [
+            "ExploreBadge"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.exploreColors",
+          "specifiers": [
+            "exploreColors"
           ]
         },
         {
@@ -7394,12 +10047,18 @@
           "specifiers": [
             "EventiaTheme"
           ]
+        },
+        {
+          "source": "java.time.OffsetDateTime",
+          "specifiers": [
+            "OffsetDateTime"
+          ]
         }
       ],
       "exports": [
         "ProfileRoute"
       ],
-      "totalLines": 155,
+      "totalLines": 398,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt": {
@@ -7573,19 +10232,192 @@
       "totalLines": 74,
       "hasStructuralAnalysis": true
     },
-    "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt": {
-      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
-      "contentHash": "8a0e5905987a8fb29255964d231c56817acbc75721aa0409595cce1b23a61fb3",
+    "app/src/main/java/com/example/eventia/ui/screens/session/LaunchSplash.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/LaunchSplash.kt",
+      "contentHash": "805259a8f1484bb50cedbc59226cedbdcfe545885fcbbc46c05e22fc31afd5cd",
       "functions": [
         {
-          "name": "SessionStartup",
-          "params": [
-            "showError",
-            "onRetry"
-          ],
+          "name": "LaunchSplash",
+          "params": [],
           "exported": true,
-          "lineCount": 15
+          "lineCount": 23
         },
+        {
+          "name": "LaunchSplashPreview",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "android.content.res.Configuration",
+          "specifiers": [
+            "Configuration"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Image",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Arrangement",
+          "specifiers": [
+            "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Column",
+          "specifiers": [
+            "Column"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.WindowInsets",
+          "specifiers": [
+            "WindowInsets"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxSize",
+          "specifiers": [
+            "fillMaxSize"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.safeDrawing",
+          "specifiers": [
+            "safeDrawing"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.windowInsetsPadding",
+          "specifiers": [
+            "windowInsetsPadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.Composable",
+          "specifiers": [
+            "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Modifier",
+          "specifiers": [
+            "Modifier"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.testTag",
+          "specifiers": [
+            "testTag"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.colorResource",
+          "specifiers": [
+            "colorResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.stringResource",
+          "specifiers": [
+            "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.tooling.preview.Preview",
+          "specifiers": [
+            "Preview"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.unit.dp",
+          "specifiers": [
+            "dp"
+          ]
+        },
+        {
+          "source": "com.example.eventia.R",
+          "specifiers": [
+            "R"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "specifiers": [
+            "EventiaTheme"
+          ]
+        }
+      ],
+      "exports": [
+        "LaunchSplash"
+      ],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionForm.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionForm.kt",
+      "contentHash": "94f87997de903ec71111e2395f1ada7c770256e1064b5dd43145e46dfc4e4797",
+      "functions": [
         {
           "name": "SessionForm",
           "params": [
@@ -7596,20 +10428,532 @@
             "onGuest"
           ],
           "exported": true,
-          "lineCount": 62
+          "lineCount": 168
+        },
+        {
+          "name": "SignInHeader",
+          "params": [],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "SessionModeSelector",
+          "params": [
+            "enabled",
+            "onRegister"
+          ],
+          "exported": false,
+          "lineCount": 34
+        },
+        {
+          "name": "RegistrationHeader",
+          "params": [
+            "enabled",
+            "onBack"
+          ],
+          "exported": false,
+          "lineCount": 20
         },
         {
           "name": "SessionField",
           "params": [
             "value",
             "label",
+            "placeholder",
+            "icon",
             "error",
             "enabled",
             "keyboardType",
+            "hint",
             "onChange"
           ],
           "exported": false,
-          "lineCount": 23
+          "lineCount": 81
+        },
+        {
+          "name": "RegistrationPreview",
+          "params": [],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "android.content.res.Configuration",
+          "specifiers": [
+            "Configuration"
+          ]
+        },
+        {
+          "source": "androidx.activity.compose.BackHandler",
+          "specifiers": [
+            "BackHandler"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.BorderStroke",
+          "specifiers": [
+            "BorderStroke"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.Image",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.isSystemInDarkTheme",
+          "specifiers": [
+            "isSystemInDarkTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Arrangement",
+          "specifiers": [
+            "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Column",
+          "specifiers": [
+            "Column"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.WindowInsets",
+          "specifiers": [
+            "WindowInsets"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxSize",
+          "specifiers": [
+            "fillMaxSize"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxWidth",
+          "specifiers": [
+            "fillMaxWidth"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.imePadding",
+          "specifiers": [
+            "imePadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.padding",
+          "specifiers": [
+            "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.safeDrawing",
+          "specifiers": [
+            "safeDrawing"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.widthIn",
+          "specifiers": [
+            "widthIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.windowInsetsPadding",
+          "specifiers": [
+            "windowInsetsPadding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.rememberScrollState",
+          "specifiers": [
+            "rememberScrollState"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.selection.selectable",
+          "specifiers": [
+            "selectable"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.selection.selectableGroup",
+          "specifiers": [
+            "selectableGroup"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.CircleShape",
+          "specifiers": [
+            "CircleShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.text.KeyboardOptions",
+          "specifiers": [
+            "KeyboardOptions"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.verticalScroll",
+          "specifiers": [
+            "verticalScroll"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Button",
+          "specifiers": [
+            "Button"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.ButtonDefaults",
+          "specifiers": [
+            "ButtonDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.CircularProgressIndicator",
+          "specifiers": [
+            "CircularProgressIndicator"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.IconButton",
+          "specifiers": [
+            "IconButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.MaterialTheme",
+          "specifiers": [
+            "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedButton",
+          "specifiers": [
+            "OutlinedButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedTextField",
+          "specifiers": [
+            "OutlinedTextField"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.OutlinedTextFieldDefaults",
+          "specifiers": [
+            "OutlinedTextFieldDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Surface",
+          "specifiers": [
+            "Surface"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Text",
+          "specifiers": [
+            "Text"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.TextButton",
+          "specifiers": [
+            "TextButton"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.darkColorScheme",
+          "specifiers": [
+            "darkColorScheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.lightColorScheme",
+          "specifiers": [
+            "lightColorScheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.Composable",
+          "specifiers": [
+            "Composable"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.getValue",
+          "specifiers": [
+            "getValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.key",
+          "specifiers": [
+            "key"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.mutableStateOf",
+          "specifiers": [
+            "mutableStateOf"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.remember",
+          "specifiers": [
+            "remember"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.saveable.rememberSaveable",
+          "specifiers": [
+            "rememberSaveable"
+          ]
+        },
+        {
+          "source": "androidx.compose.runtime.setValue",
+          "specifiers": [
+            "setValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Modifier",
+          "specifiers": [
+            "Modifier"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.clip",
+          "specifiers": [
+            "clip"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.draw.rotate",
+          "specifiers": [
+            "rotate"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.Color",
+          "specifiers": [
+            "Color"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalFocusManager",
+          "specifiers": [
+            "LocalFocusManager"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.stringResource",
+          "specifiers": [
+            "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.Role",
+          "specifiers": [
+            "Role"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.clearAndSetSemantics",
+          "specifiers": [
+            "clearAndSetSemantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.contentDescription",
+          "specifiers": [
+            "contentDescription"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.error",
+          "specifiers": [
+            "error"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.heading",
+          "specifiers": [
+            "heading"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.semantics",
+          "specifiers": [
+            "semantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.SpanStyle",
+          "specifiers": [
+            "SpanStyle"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.buildAnnotatedString",
+          "specifiers": [
+            "buildAnnotatedString"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.input.KeyboardType",
+          "specifiers": [
+            "KeyboardType"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.input.PasswordVisualTransformation",
+          "specifiers": [
+            "PasswordVisualTransformation"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.input.VisualTransformation",
+          "specifiers": [
+            "VisualTransformation"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.style.TextAlign",
+          "specifiers": [
+            "TextAlign"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.style.TextOverflow",
+          "specifiers": [
+            "TextOverflow"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.withStyle",
+          "specifiers": [
+            "withStyle"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.tooling.preview.Preview",
+          "specifiers": [
+            "Preview"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.unit.dp",
+          "specifiers": [
+            "dp"
+          ]
+        },
+        {
+          "source": "com.example.eventia.R",
+          "specifiers": [
+            "R"
+          ]
+        },
+        {
+          "source": "com.example.eventia.repositories.AccountField",
+          "specifiers": [
+            "AccountField"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "specifiers": [
+            "EventiaTheme"
+          ]
+        }
+      ],
+      "exports": [
+        "SessionForm"
+      ],
+      "totalLines": 455,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt": {
+      "filePath": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
+      "contentHash": "694c7fa3681714f365aee72f592c297d62f4b03413fcef16cbc51640bc9c36a5",
+      "functions": [
+        {
+          "name": "SessionStartup",
+          "params": [
+            "showError",
+            "onRetry"
+          ],
+          "exported": true,
+          "lineCount": 15
         },
         {
           "name": "AccountScreen",
@@ -7622,12 +10966,6 @@
           ],
           "exported": true,
           "lineCount": 40
-        },
-        {
-          "name": "SessionFormPreview",
-          "params": [],
-          "exported": false,
-          "lineCount": 7
         }
       ],
       "classes": [],
@@ -7669,12 +11007,6 @@
           ]
         },
         {
-          "source": "androidx.compose.foundation.layout.imePadding",
-          "specifiers": [
-            "imePadding"
-          ]
-        },
-        {
           "source": "androidx.compose.foundation.layout.padding",
           "specifiers": [
             "padding"
@@ -7687,39 +11019,9 @@
           ]
         },
         {
-          "source": "androidx.compose.foundation.layout.size",
-          "specifiers": [
-            "size"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
-          "specifiers": [
-            "RoundedCornerShape"
-          ]
-        },
-        {
           "source": "androidx.compose.foundation.layout.windowInsetsPadding",
           "specifiers": [
             "windowInsetsPadding"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.rememberScrollState",
-          "specifiers": [
-            "rememberScrollState"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.text.KeyboardOptions",
-          "specifiers": [
-            "KeyboardOptions"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.verticalScroll",
-          "specifiers": [
-            "verticalScroll"
           ]
         },
         {
@@ -7741,63 +11043,15 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.OutlinedTextField",
-          "specifiers": [
-            "OutlinedTextField"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.Surface",
-          "specifiers": [
-            "Surface"
-          ]
-        },
-        {
           "source": "androidx.compose.material3.Text",
           "specifiers": [
             "Text"
           ]
         },
         {
-          "source": "androidx.compose.material3.TextButton",
-          "specifiers": [
-            "TextButton"
-          ]
-        },
-        {
           "source": "androidx.compose.runtime.Composable",
           "specifiers": [
             "Composable"
-          ]
-        },
-        {
-          "source": "androidx.compose.runtime.getValue",
-          "specifiers": [
-            "getValue"
-          ]
-        },
-        {
-          "source": "androidx.compose.runtime.mutableStateOf",
-          "specifiers": [
-            "mutableStateOf"
-          ]
-        },
-        {
-          "source": "androidx.compose.runtime.remember",
-          "specifiers": [
-            "remember"
-          ]
-        },
-        {
-          "source": "androidx.compose.runtime.saveable.rememberSaveable",
-          "specifiers": [
-            "rememberSaveable"
-          ]
-        },
-        {
-          "source": "androidx.compose.runtime.setValue",
-          "specifiers": [
-            "setValue"
           ]
         },
         {
@@ -7819,30 +11073,6 @@
           ]
         },
         {
-          "source": "androidx.compose.ui.text.input.KeyboardType",
-          "specifiers": [
-            "KeyboardType"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.text.input.PasswordVisualTransformation",
-          "specifiers": [
-            "PasswordVisualTransformation"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.text.input.VisualTransformation",
-          "specifiers": [
-            "VisualTransformation"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.tooling.preview.Preview",
-          "specifiers": [
-            "Preview"
-          ]
-        },
-        {
           "source": "androidx.compose.ui.unit.dp",
           "specifiers": [
             "dp"
@@ -7852,12 +11082,6 @@
           "source": "com.example.eventia.R",
           "specifiers": [
             "R"
-          ]
-        },
-        {
-          "source": "com.example.eventia.repositories.AccountField",
-          "specifiers": [
-            "AccountField"
           ]
         },
         {
@@ -7871,20 +11095,13 @@
           "specifiers": [
             "ScreenMessage"
           ]
-        },
-        {
-          "source": "com.example.eventia.ui.theme.EventiaTheme",
-          "specifiers": [
-            "EventiaTheme"
-          ]
         }
       ],
       "exports": [
         "SessionStartup",
-        "SessionForm",
         "AccountScreen"
       ],
-      "totalLines": 196,
+      "totalLines": 81,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt": {
@@ -8187,17 +11404,19 @@
     },
     "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
-      "contentHash": "41a05d9b021f6688060c3b292ebd78580ed1666d22d90833f074600e97d684f4",
+      "contentHash": "81df21f29a8406e380602d6aa6d7a9b9063fd745463e18927bcaa9eded9e8529",
       "functions": [
         {
           "name": "VenueDetailScreen",
           "params": [
             "onBack",
             "onEventClick",
+            "favorites",
+            "onFavoriteChange",
             "viewModel"
           ],
           "exported": true,
-          "lineCount": 9
+          "lineCount": 11
         },
         {
           "name": "VenueDetailContent",
@@ -8205,32 +11424,79 @@
             "state",
             "onBack",
             "onRetry",
-            "onEventClick"
+            "onEventClick",
+            "favorites",
+            "onFavoriteChange"
           ],
           "exported": false,
-          "lineCount": 52
+          "lineCount": 46
         },
         {
-          "name": "VenueInformation",
+          "name": "VenueDetailBody",
           "params": [
-            "venue"
+            "state",
+            "modifier",
+            "onRetry",
+            "onEventClick",
+            "favorites",
+            "onFavoriteChange"
           ],
           "exported": false,
-          "lineCount": 12
+          "lineCount": 184
         },
         {
-          "name": "VenueDetailErrorPreview",
+          "name": "DetailSectionCard",
+          "params": [
+            "modifier",
+            "content"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "VenueEventCard",
+          "params": [
+            "event",
+            "onClick",
+            "selected",
+            "favoriteEnabled",
+            "onFavoriteChange",
+            "modifier"
+          ],
+          "exported": false,
+          "lineCount": 63
+        },
+        {
+          "name": "VenueDetailPreview",
           "params": [],
           "exported": false,
-          "lineCount": 5
+          "lineCount": 56
         }
       ],
       "classes": [],
       "imports": [
         {
+          "source": "android.content.Intent",
+          "specifiers": [
+            "Intent"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.background",
+          "specifiers": [
+            "background"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.Arrangement",
           "specifiers": [
             "Arrangement"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Box",
+          "specifiers": [
+            "Box"
           ]
         },
         {
@@ -8246,9 +11512,57 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.layout.WindowInsets",
+          "specifiers": [
+            "WindowInsets"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Row",
+          "specifiers": [
+            "Row"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.Spacer",
+          "specifiers": [
+            "Spacer"
+          ]
+        },
+        {
           "source": "androidx.compose.foundation.layout.fillMaxSize",
           "specifiers": [
             "fillMaxSize"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.fillMaxWidth",
+          "specifiers": [
+            "fillMaxWidth"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.height",
+          "specifiers": [
+            "height"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.heightIn",
+          "specifiers": [
+            "heightIn"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.padding",
+          "specifiers": [
+            "padding"
+          ]
+        },
+        {
+          "source": "androidx.compose.foundation.layout.size",
+          "specifiers": [
+            "size"
           ]
         },
         {
@@ -8264,9 +11578,57 @@
           ]
         },
         {
+          "source": "androidx.compose.foundation.shape.RoundedCornerShape",
+          "specifiers": [
+            "RoundedCornerShape"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Button",
+          "specifiers": [
+            "Button"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Card",
+          "specifiers": [
+            "Card"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.CardDefaults",
+          "specifiers": [
+            "CardDefaults"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Icon",
+          "specifiers": [
+            "Icon"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.IconButton",
+          "specifiers": [
+            "IconButton"
+          ]
+        },
+        {
           "source": "androidx.compose.material3.MaterialTheme",
           "specifiers": [
             "MaterialTheme"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Scaffold",
+          "specifiers": [
+            "Scaffold"
+          ]
+        },
+        {
+          "source": "androidx.compose.material3.Surface",
+          "specifiers": [
+            "Surface"
           ]
         },
         {
@@ -8288,9 +11650,21 @@
           ]
         },
         {
+          "source": "androidx.compose.runtime.CompositionLocalProvider",
+          "specifiers": [
+            "CompositionLocalProvider"
+          ]
+        },
+        {
           "source": "androidx.compose.runtime.getValue",
           "specifiers": [
             "getValue"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
           ]
         },
         {
@@ -8300,9 +11674,57 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.graphics.Brush",
+          "specifiers": [
+            "Brush"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.graphics.Color",
+          "specifiers": [
+            "Color"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalContext",
+          "specifiers": [
+            "LocalContext"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.platform.LocalInspectionMode",
+          "specifiers": [
+            "LocalInspectionMode"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.painterResource",
+          "specifiers": [
+            "painterResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.res.pluralStringResource",
+          "specifiers": [
+            "pluralStringResource"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.res.stringResource",
           "specifiers": [
             "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.style.TextOverflow",
+          "specifiers": [
+            "TextOverflow"
           ]
         },
         {
@@ -8336,21 +11758,45 @@
           ]
         },
         {
+          "source": "com.example.eventia.domain.model.Category",
+          "specifiers": [
+            "Category"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Event",
+          "specifiers": [
+            "Event"
+          ]
+        },
+        {
           "source": "com.example.eventia.domain.model.Venue",
           "specifiers": [
             "Venue"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventArtwork",
+          "source": "com.example.eventia.ui.components.DetailArtwork",
           "specifiers": [
-            "EventArtwork"
+            "DetailArtwork"
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventCard",
+          "source": "com.example.eventia.ui.components.DetailLocationMap",
           "specifiers": [
-            "EventCard"
+            "DetailLocationMap"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.DetailTopBar",
+          "specifiers": [
+            "DetailTopBar"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.FavoriteButton",
+          "specifiers": [
+            "FavoriteButton"
           ]
         },
         {
@@ -8366,30 +11812,79 @@
           ]
         },
         {
+          "source": "com.example.eventia.ui.components.eventLocalDateTime",
+          "specifiers": [
+            "eventLocalDateTime"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.components.rememberVenueDirections",
+          "specifiers": [
+            "rememberVenueDirections"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.eventdetail.venueMapUrl",
+          "specifiers": [
+            "venueMapUrl"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
+          "specifiers": [
+            "ExploreBadge"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.exploreColors",
+          "specifiers": [
+            "exploreColors"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.favorites.FavoritesUiState",
+          "specifiers": [
+            "FavoritesUiState"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.map.MapPoint",
+          "specifiers": [
+            "MapPoint"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.theme.EventiaTheme",
           "specifiers": [
             "EventiaTheme"
+          ]
+        },
+        {
+          "source": "java.time.OffsetDateTime",
+          "specifiers": [
+            "OffsetDateTime"
           ]
         }
       ],
       "exports": [
         "VenueDetailScreen"
       ],
-      "totalLines": 109,
+      "totalLines": 447,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt": {
       "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
-      "contentHash": "b109e95ac73cce5fc1ffe14a85a10080792a024c4ae6c3f8a3aad379da3b4e1b",
+      "contentHash": "7ffcfe856f83865110e1037252fb8d47c81b248704883ccfa821fd59d116ac33",
       "functions": [
         {
           "name": "VenueListScreen",
           "params": [
             "onVenueClick",
+            "sections",
             "viewModel"
           ],
           "exported": true,
-          "lineCount": 8
+          "lineCount": 9
         },
         {
           "name": "VenueListContent",
@@ -8397,10 +11892,11 @@
             "state",
             "onQueryChange",
             "onRefresh",
-            "onVenueClick"
+            "onVenueClick",
+            "sections"
           ],
-          "exported": false,
-          "lineCount": 56
+          "exported": true,
+          "lineCount": 81
         },
         {
           "name": "VenueCard",
@@ -8409,13 +11905,13 @@
             "onVenueClick"
           ],
           "exported": false,
-          "lineCount": 23
+          "lineCount": 30
         },
         {
-          "name": "VenueListEmptyPreview",
+          "name": "VenueListPreview",
           "params": [],
           "exported": false,
-          "lineCount": 7
+          "lineCount": 17
         }
       ],
       "classes": [],
@@ -8445,12 +11941,6 @@
           ]
         },
         {
-          "source": "androidx.compose.foundation.layout.fillMaxSize",
-          "specifiers": [
-            "fillMaxSize"
-          ]
-        },
-        {
           "source": "androidx.compose.foundation.layout.fillMaxWidth",
           "specifiers": [
             "fillMaxWidth"
@@ -8460,12 +11950,6 @@
           "source": "androidx.compose.foundation.layout.padding",
           "specifiers": [
             "padding"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.layout.size",
-          "specifiers": [
-            "size"
           ]
         },
         {
@@ -8493,12 +11977,6 @@
           ]
         },
         {
-          "source": "androidx.compose.material3.Icon",
-          "specifiers": [
-            "Icon"
-          ]
-        },
-        {
           "source": "androidx.compose.material3.LinearProgressIndicator",
           "specifiers": [
             "LinearProgressIndicator"
@@ -8508,18 +11986,6 @@
           "source": "androidx.compose.material3.MaterialTheme",
           "specifiers": [
             "MaterialTheme"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.OutlinedCard",
-          "specifiers": [
-            "OutlinedCard"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.OutlinedTextField",
-          "specifiers": [
-            "OutlinedTextField"
           ]
         },
         {
@@ -8553,21 +12019,15 @@
           ]
         },
         {
+          "source": "androidx.compose.ui.Alignment",
+          "specifiers": [
+            "Alignment"
+          ]
+        },
+        {
           "source": "androidx.compose.ui.Modifier",
           "specifiers": [
             "Modifier"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.draw.clip",
-          "specifiers": [
-            "clip"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.res.painterResource",
-          "specifiers": [
-            "painterResource"
           ]
         },
         {
@@ -8580,6 +12040,24 @@
           "source": "androidx.compose.ui.res.stringResource",
           "specifiers": [
             "stringResource"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.heading",
+          "specifiers": [
+            "heading"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.semantics.semantics",
+          "specifiers": [
+            "semantics"
+          ]
+        },
+        {
+          "source": "androidx.compose.ui.text.font.FontWeight",
+          "specifiers": [
+            "FontWeight"
           ]
         },
         {
@@ -8619,12 +12097,6 @@
           ]
         },
         {
-          "source": "com.example.eventia.ui.components.EventArtwork",
-          "specifiers": [
-            "EventArtwork"
-          ]
-        },
-        {
           "source": "com.example.eventia.ui.components.LoadingScreen",
           "specifiers": [
             "LoadingScreen"
@@ -8637,135 +12109,53 @@
           ]
         },
         {
-          "source": "com.example.eventia.ui.theme.EventiaTheme",
+          "source": "com.example.eventia.ui.screens.explore.ExploreBadge",
           "specifiers": [
-            "EventiaTheme"
+            "ExploreBadge"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreCard",
+          "specifiers": [
+            "ExploreCard"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreMetadata",
+          "specifiers": [
+            "ExploreMetadata"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExplorePreviewFrame",
+          "specifiers": [
+            "ExplorePreviewFrame"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExplorePullToRefresh",
+          "specifiers": [
+            "ExplorePullToRefresh"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreSearch",
+          "specifiers": [
+            "ExploreSearch"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.explore.ExploreSections",
+          "specifiers": [
+            "ExploreSections"
           ]
         }
       ],
       "exports": [
-        "VenueListScreen"
+        "VenueListScreen",
+        "VenueListContent"
       ],
-      "totalLines": 138,
-      "hasStructuralAnalysis": true
-    },
-    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt": {
-      "filePath": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
-      "contentHash": "f67b3f4395d311b7460f510d5a35979fc18aae980d80b31c2a263d4168b92c05",
-      "functions": [
-        {
-          "name": "VenueLocation",
-          "params": [
-            "venue",
-            "additionalAction"
-          ],
-          "exported": true,
-          "lineCount": 42
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "android.content.ActivityNotFoundException",
-          "specifiers": [
-            "ActivityNotFoundException"
-          ]
-        },
-        {
-          "source": "android.content.Intent",
-          "specifiers": [
-            "Intent"
-          ]
-        },
-        {
-          "source": "android.net.Uri",
-          "specifiers": [
-            "Uri"
-          ]
-        },
-        {
-          "source": "android.widget.Toast",
-          "specifiers": [
-            "Toast"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.layout.Arrangement",
-          "specifiers": [
-            "Arrangement"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.layout.Column",
-          "specifiers": [
-            "Column"
-          ]
-        },
-        {
-          "source": "androidx.compose.foundation.layout.FlowRow",
-          "specifiers": [
-            "FlowRow"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.OutlinedButton",
-          "specifiers": [
-            "OutlinedButton"
-          ]
-        },
-        {
-          "source": "androidx.compose.material3.Text",
-          "specifiers": [
-            "Text"
-          ]
-        },
-        {
-          "source": "androidx.compose.runtime.Composable",
-          "specifiers": [
-            "Composable"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.platform.LocalContext",
-          "specifiers": [
-            "LocalContext"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.res.stringResource",
-          "specifiers": [
-            "stringResource"
-          ]
-        },
-        {
-          "source": "androidx.compose.ui.unit.dp",
-          "specifiers": [
-            "dp"
-          ]
-        },
-        {
-          "source": "com.example.eventia.R",
-          "specifiers": [
-            "R"
-          ]
-        },
-        {
-          "source": "com.example.eventia.domain.model.Venue",
-          "specifiers": [
-            "Venue"
-          ]
-        },
-        {
-          "source": "com.example.eventia.ui.screens.map.MapPoint",
-          "specifiers": [
-            "MapPoint"
-          ]
-        }
-      ],
-      "exports": [
-        "VenueLocation"
-      ],
-      "totalLines": 62,
+      "totalLines": 183,
       "hasStructuralAnalysis": true
     },
     "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt": {
@@ -9171,6 +12561,66 @@
       "totalLines": 9,
       "hasStructuralAnalysis": false
     },
+    "app/src/main/res/drawable/ic_catalog_buildings.xml": {
+      "filePath": "app/src/main/res/drawable/ic_catalog_buildings.xml",
+      "contentHash": "7923437093b8999e31f9e58c270dee8968f2163a78b0fd0d0407aad9c21faca6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_catalog_clock.xml": {
+      "filePath": "app/src/main/res/drawable/ic_catalog_clock.xml",
+      "contentHash": "b9bc6a2de3195ec7af44afc80382aa8f9ff855979bff7a0789b56de5e0c87e5b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_catalog_close.xml": {
+      "filePath": "app/src/main/res/drawable/ic_catalog_close.xml",
+      "contentHash": "0fea4fca23ca8809f291befa95550e90dc792b6a348ee8e8a945167e2fac3626",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_catalog_pin.xml": {
+      "filePath": "app/src/main/res/drawable/ic_catalog_pin.xml",
+      "contentHash": "88b588809f9a7462fdc4139d6b55c65318b436d5efa0698e1b92bb7f47b037d1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_catalog_search.xml": {
+      "filePath": "app/src/main/res/drawable/ic_catalog_search.xml",
+      "contentHash": "ec78397f0ef044fc0caeb2d60f9681593374520f1c6081eeb349e86f469f6b7e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_catalog_ticket.xml": {
+      "filePath": "app/src/main/res/drawable/ic_catalog_ticket.xml",
+      "contentHash": "aa693c7eaefa3cc729fc7b20b2f97aaf3da8457ee0cbf7b84e7cebf57cae9ec2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
     "app/src/main/res/drawable/ic_event_calendar.xml": {
       "filePath": "app/src/main/res/drawable/ic_event_calendar.xml",
       "contentHash": "a51bf0c7d209a8263ba428ac31e1a5abc230219736b9848c046ad4eb59d4cbb8",
@@ -9241,6 +12691,16 @@
       "totalLines": 171,
       "hasStructuralAnalysis": false
     },
+    "app/src/main/res/drawable/ic_launcher_eventia.xml": {
+      "filePath": "app/src/main/res/drawable/ic_launcher_eventia.xml",
+      "contentHash": "f0d5462caa4d29e0a2621c3c13521604036bfaa41f6dd0131dff31c896fcbcb2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
     "app/src/main/res/drawable/ic_launcher_foreground.xml": {
       "filePath": "app/src/main/res/drawable/ic_launcher_foreground.xml",
       "contentHash": "01d1a6a6c1234eb7fe270d097eb283d72b9c95ae5118886f1b6573aad280f1f7",
@@ -9261,6 +12721,26 @@
       "totalLines": 9,
       "hasStructuralAnalysis": false
     },
+    "app/src/main/res/drawable/ic_map_center.xml": {
+      "filePath": "app/src/main/res/drawable/ic_map_center.xml",
+      "contentHash": "6fcadda8ff2b0b1d8723a7488cda0f73c0e90250cd1b05b486988458ae862950",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_map_layers.xml": {
+      "filePath": "app/src/main/res/drawable/ic_map_layers.xml",
+      "contentHash": "06a20eae206ccaafe9fee59ad4de373a8e05f8fb4859b00688afffcd888730eb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 10,
+      "hasStructuralAnalysis": false
+    },
     "app/src/main/res/drawable/ic_profile.xml": {
       "filePath": "app/src/main/res/drawable/ic_profile.xml",
       "contentHash": "6c25890651d967501afedc7007322702e96efde40c008dca538b301193aae831",
@@ -9269,6 +12749,56 @@
       "imports": [],
       "exports": [],
       "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_session_check.xml": {
+      "filePath": "app/src/main/res/drawable/ic_session_check.xml",
+      "contentHash": "e1cfb6aa07bdb6fedc1691a26d5a858004051e03d75a1ac816a735d1deda4bd9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_session_eye.xml": {
+      "filePath": "app/src/main/res/drawable/ic_session_eye.xml",
+      "contentHash": "df72f0c62df217f5f9759c53ca2c9d54715fc7d7cd1ceb7d84603c0d189cd445",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_session_eye_off.xml": {
+      "filePath": "app/src/main/res/drawable/ic_session_eye_off.xml",
+      "contentHash": "41652091bdb7ce1dce910fdde1a7328efaffe7ee62c1e89fec41c7114d327e33",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_session_lock.xml": {
+      "filePath": "app/src/main/res/drawable/ic_session_lock.xml",
+      "contentHash": "53cb20c936705f3667b2ff0e0b399232f9e1f86277274bef24b23f7f54931206",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/drawable/ic_session_mail.xml": {
+      "filePath": "app/src/main/res/drawable/ic_session_mail.xml",
+      "contentHash": "5ab9f1ffedcc9f31f85bb85c105d1c20abae8608d44eebd473a5e37c279b7366",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
       "hasStructuralAnalysis": false
     },
     "app/src/main/res/drawable/ic_status_error.xml": {
@@ -9283,7 +12813,7 @@
     },
     "app/src/main/res/mipmap-anydpi/ic_launcher.xml": {
       "filePath": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
-      "contentHash": "88f7653499ef524126ea5018a99baf9cc3269e7e584d6205dfdd76db39f39cc0",
+      "contentHash": "10a0a899c9bc8345d6708be3a625790991b0afa6d3c8a862e59eadf1e54d8796",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -9293,7 +12823,7 @@
     },
     "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml": {
       "filePath": "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml",
-      "contentHash": "88f7653499ef524126ea5018a99baf9cc3269e7e584d6205dfdd76db39f39cc0",
+      "contentHash": "10a0a899c9bc8345d6708be3a625790991b0afa6d3c8a862e59eadf1e54d8796",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -9401,34 +12931,44 @@
       "totalLines": 34,
       "hasStructuralAnalysis": false
     },
-    "app/src/main/res/values/colors.xml": {
-      "filePath": "app/src/main/res/values/colors.xml",
-      "contentHash": "b5626527d503417f0d8e5b1e08f338de7b31173bf0e122815f03e64932adbd88",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 10,
-      "hasStructuralAnalysis": false
-    },
-    "app/src/main/res/values/strings.xml": {
-      "filePath": "app/src/main/res/values/strings.xml",
-      "contentHash": "858542a7386064210f47b6077d0baa85366a60cbce065fa3ee5c90d8f8747dbe",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 130,
-      "hasStructuralAnalysis": false
-    },
-    "app/src/main/res/values/themes.xml": {
-      "filePath": "app/src/main/res/values/themes.xml",
-      "contentHash": "06e068e61f2c600657a0492be7a603067a78c3f07b2755f64417def0f1a98cd7",
+    "app/src/main/res/values-night/colors.xml": {
+      "filePath": "app/src/main/res/values-night/colors.xml",
+      "contentHash": "0ab15e131d1ea41aafb65bf8efd180af9c49092bee50d6aaa0ec65f74a4db680",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
       "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/values/colors.xml": {
+      "filePath": "app/src/main/res/values/colors.xml",
+      "contentHash": "17149f9e722f71b62310870a73bdbf36b7526f8b706126c1b3fdf15a3eddc4c7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/values/strings.xml": {
+      "filePath": "app/src/main/res/values/strings.xml",
+      "contentHash": "fb22b480f90a0e61f58e159a7955aa0b95aa03bddc07c1963f2ef1622cabcacf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 178,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/main/res/values/themes.xml": {
+      "filePath": "app/src/main/res/values/themes.xml",
+      "contentHash": "7166f3b899e27c75bbe0ed5d811364f71c2fea8ae5487ab1096ca14000c2e71a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
       "hasStructuralAnalysis": false
     },
     "app/src/main/res/xml/backup_rules.xml": {
@@ -9706,6 +13246,79 @@
       "totalLines": 38,
       "hasStructuralAnalysis": true
     },
+    "app/src/test/java/com/example/eventia/EventShareTest.kt": {
+      "filePath": "app/src/test/java/com/example/eventia/EventShareTest.kt",
+      "contentHash": "a5c58784c8b4f1475435fc5a33789e752d1aeb9889b3adcb67e898bfa1598da8",
+      "functions": [
+        {
+          "name": "usesCoordinatesWhenBothAreValid",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "encodesTheVenueNameAndAddressWhenCoordinatesAreMissingOrInvalid",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "fallsBackToTheVenueNameWhenThereIsNoAddress",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "EventShareTest",
+          "methods": [
+            "usesCoordinatesWhenBothAreValid",
+            "encodesTheVenueNameAndAddressWhenCoordinatesAreMissingOrInvalid",
+            "fallsBackToTheVenueNameWhenThereIsNoAddress"
+          ],
+          "properties": [
+            "venue"
+          ],
+          "exported": true,
+          "lineCount": 26
+        }
+      ],
+      "imports": [
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.eventdetail.venueMapUrl",
+          "specifiers": [
+            "venueMapUrl"
+          ]
+        },
+        {
+          "source": "org.junit.Assert.assertEquals",
+          "specifiers": [
+            "assertEquals"
+          ]
+        },
+        {
+          "source": "org.junit.Test",
+          "specifiers": [
+            "Test"
+          ]
+        }
+      ],
+      "exports": [
+        "usesCoordinatesWhenBothAreValid",
+        "encodesTheVenueNameAndAddressWhenCoordinatesAreMissingOrInvalid",
+        "fallsBackToTheVenueNameWhenThereIsNoAddress",
+        "EventShareTest"
+      ],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
     "app/src/test/java/com/example/eventia/EventiaApiTest.kt": {
       "filePath": "app/src/test/java/com/example/eventia/EventiaApiTest.kt",
       "contentHash": "bc255bf636ad1ee9b550b73c00f09ec3b923927be6a3d70c3cd0e3a63ee34cd8",
@@ -9920,8 +13533,14 @@
     },
     "app/src/test/java/com/example/eventia/MapMarkersTest.kt": {
       "filePath": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
-      "contentHash": "cb5886bf1c4f7b859367fe6f4ce8d75e4ef25e827d2c7e3a6804ac9a4d3949ad",
+      "contentHash": "808ae9f0c3b75ad2cb95d6ec634a9dc38659246ef756e7b5467978ca4ed6c9a0",
       "functions": [
+        {
+          "name": "mapSearchFiltersEventsWithinSharedMarkers",
+          "params": [],
+          "exported": true,
+          "lineCount": 32
+        },
         {
           "name": "pointRequiresTwoCoordinatesInRange",
           "params": [],
@@ -9933,18 +13552,49 @@
         {
           "name": "MapMarkersTest",
           "methods": [
+            "mapSearchFiltersEventsWithinSharedMarkers",
             "pointRequiresTwoCoordinatesInRange"
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 12
+          "lineCount": 45
         }
       ],
       "imports": [
         {
+          "source": "com.example.eventia.domain.model.Category",
+          "specifiers": [
+            "Category"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Event",
+          "specifiers": [
+            "Event"
+          ]
+        },
+        {
+          "source": "com.example.eventia.domain.model.Venue",
+          "specifiers": [
+            "Venue"
+          ]
+        },
+        {
           "source": "com.example.eventia.ui.screens.map.MapPoint",
           "specifiers": [
             "MapPoint"
+          ]
+        },
+        {
+          "source": "com.example.eventia.ui.screens.map.filterMapMarkers",
+          "specifiers": [
+            "filterMapMarkers"
+          ]
+        },
+        {
+          "source": "java.time.OffsetDateTime",
+          "specifiers": [
+            "OffsetDateTime"
           ]
         },
         {
@@ -9967,10 +13617,11 @@
         }
       ],
       "exports": [
+        "mapSearchFiltersEventsWithinSharedMarkers",
         "pointRequiresTwoCoordinatesInRange",
         "MapMarkersTest"
       ],
-      "totalLines": 20,
+      "totalLines": 58,
       "hasStructuralAnalysis": true
     },
     "build.gradle.kts": {

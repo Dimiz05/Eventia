@@ -61,15 +61,33 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/src/androidTest/java/com/example/eventia/ExploreRefreshGestureTest.kt",
+      "language": "kotlin",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt",
       "language": "kotlin",
       "sizeLines": 156,
       "fileCategory": "code"
     },
     {
+      "path": "app/src/androidTest/java/com/example/eventia/FavoritesScreenTest.kt",
+      "language": "kotlin",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/androidTest/java/com/example/eventia/LaunchSplashTest.kt",
+      "language": "kotlin",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt",
       "language": "kotlin",
-      "sizeLines": 325,
+      "sizeLines": 477,
       "fileCategory": "code"
     },
     {
@@ -87,7 +105,7 @@
     {
       "path": "app/src/main/java/com/example/eventia/MainActivity.kt",
       "language": "kotlin",
-      "sizeLines": 73,
+      "sizeLines": 96,
       "fileCategory": "code"
     },
     {
@@ -219,7 +237,7 @@
     {
       "path": "app/src/main/java/com/example/eventia/domain/model/Event.kt",
       "language": "kotlin",
-      "sizeLines": 18,
+      "sizeLines": 21,
       "fileCategory": "code"
     },
     {
@@ -271,6 +289,12 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/src/main/java/com/example/eventia/ui/components/DetailPresentation.kt",
+      "language": "kotlin",
+      "sizeLines": 175,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
       "language": "kotlin",
       "sizeLines": 112,
@@ -297,25 +321,37 @@
     {
       "path": "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
       "language": "kotlin",
-      "sizeLines": 236,
+      "sizeLines": 239,
       "fileCategory": "code"
     },
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
       "language": "kotlin",
-      "sizeLines": 444,
+      "sizeLines": 464,
       "fileCategory": "code"
     },
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
       "language": "kotlin",
-      "sizeLines": 139,
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventShare.kt",
+      "language": "kotlin",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExplorePresentation.kt",
+      "language": "kotlin",
+      "sizeLines": 317,
       "fileCategory": "code"
     },
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
       "language": "kotlin",
-      "sizeLines": 299,
+      "sizeLines": 403,
       "fileCategory": "code"
     },
     {
@@ -327,7 +363,7 @@
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
       "language": "kotlin",
-      "sizeLines": 67,
+      "sizeLines": 298,
       "fileCategory": "code"
     },
     {
@@ -337,9 +373,21 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapEventSheet.kt",
+      "language": "kotlin",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt",
       "language": "kotlin",
-      "sizeLines": 251,
+      "sizeLines": 517,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/map/MapSearch.kt",
+      "language": "kotlin",
+      "sizeLines": 18,
       "fileCategory": "code"
     },
     {
@@ -351,7 +399,7 @@
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt",
       "language": "kotlin",
-      "sizeLines": 154,
+      "sizeLines": 397,
       "fileCategory": "code"
     },
     {
@@ -361,9 +409,21 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/session/LaunchSplash.kt",
+      "language": "kotlin",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionForm.kt",
+      "language": "kotlin",
+      "sizeLines": 454,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt",
       "language": "kotlin",
-      "sizeLines": 195,
+      "sizeLines": 80,
       "fileCategory": "code"
     },
     {
@@ -375,19 +435,13 @@
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt",
       "language": "kotlin",
-      "sizeLines": 108,
+      "sizeLines": 446,
       "fileCategory": "code"
     },
     {
       "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt",
       "language": "kotlin",
-      "sizeLines": 137,
-      "fileCategory": "code"
-    },
-    {
-      "path": "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt",
-      "language": "kotlin",
-      "sizeLines": 61,
+      "sizeLines": 182,
       "fileCategory": "code"
     },
     {
@@ -422,6 +476,42 @@
     },
     {
       "path": "app/src/main/res/drawable/ic_back.xml",
+      "language": "xml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalog_buildings.xml",
+      "language": "xml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalog_clock.xml",
+      "language": "xml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalog_close.xml",
+      "language": "xml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalog_pin.xml",
+      "language": "xml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalog_search.xml",
+      "language": "xml",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_catalog_ticket.xml",
       "language": "xml",
       "sizeLines": 8,
       "fileCategory": "config"
@@ -469,6 +559,12 @@
       "fileCategory": "config"
     },
     {
+      "path": "app/src/main/res/drawable/ic_launcher_eventia.xml",
+      "language": "xml",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
       "path": "app/src/main/res/drawable/ic_launcher_foreground.xml",
       "language": "xml",
       "sizeLines": 29,
@@ -481,9 +577,51 @@
       "fileCategory": "config"
     },
     {
+      "path": "app/src/main/res/drawable/ic_map_center.xml",
+      "language": "xml",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_map_layers.xml",
+      "language": "xml",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
       "path": "app/src/main/res/drawable/ic_profile.xml",
       "language": "xml",
       "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_session_check.xml",
+      "language": "xml",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_session_eye.xml",
+      "language": "xml",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_session_eye_off.xml",
+      "language": "xml",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_session_lock.xml",
+      "language": "xml",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_session_mail.xml",
+      "language": "xml",
+      "sizeLines": 11,
       "fileCategory": "config"
     },
     {
@@ -565,21 +703,27 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/src/main/res/values-night/colors.xml",
+      "language": "xml",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
       "path": "app/src/main/res/values/colors.xml",
       "language": "xml",
-      "sizeLines": 9,
+      "sizeLines": 12,
       "fileCategory": "config"
     },
     {
       "path": "app/src/main/res/values/strings.xml",
       "language": "xml",
-      "sizeLines": 129,
+      "sizeLines": 177,
       "fileCategory": "config"
     },
     {
       "path": "app/src/main/res/values/themes.xml",
       "language": "xml",
-      "sizeLines": 4,
+      "sizeLines": 8,
       "fileCategory": "config"
     },
     {
@@ -613,6 +757,12 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/src/test/java/com/example/eventia/EventShareTest.kt",
+      "language": "kotlin",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/src/test/java/com/example/eventia/EventiaApiTest.kt",
       "language": "kotlin",
       "sizeLines": 116,
@@ -627,7 +777,7 @@
     {
       "path": "app/src/test/java/com/example/eventia/MapMarkersTest.kt",
       "language": "kotlin",
-      "sizeLines": 19,
+      "sizeLines": 57,
       "fileCategory": "code"
     },
     {
@@ -691,7 +841,7 @@
       "fileCategory": "code"
     }
   ],
-  "totalFiles": 110,
+  "totalFiles": 135,
   "filteredByIgnore": 0,
   "estimatedComplexity": "moderate",
   "importMap": {
@@ -708,6 +858,9 @@
       "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt",
       "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreViewModel.kt"
     ],
+    "app/src/androidTest/java/com/example/eventia/ExploreRefreshGestureTest.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
     "app/src/androidTest/java/com/example/eventia/FavoritesPersistenceTest.kt": [
       "app/src/main/java/com/example/eventia/api/EventiaApi.kt",
       "app/src/main/java/com/example/eventia/data/local/EventiaDatabase.kt",
@@ -719,6 +872,13 @@
       "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
       "app/src/main/java/com/example/eventia/repositories/RemoteCatalogRepository.kt"
     ],
+    "app/src/androidTest/java/com/example/eventia/FavoritesScreenTest.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt"
+    ],
+    "app/src/androidTest/java/com/example/eventia/LaunchSplashTest.kt": [],
     "app/src/androidTest/java/com/example/eventia/SessionFlowTest.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Account.kt",
       "app/src/main/java/com/example/eventia/domain/model/Category.kt",
@@ -726,13 +886,17 @@
       "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
       "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
       "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt",
+      "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
       "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt",
+      "app/src/main/java/com/example/eventia/ui/screens/session/SessionForm.kt",
       "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt"
     ],
     "app/src/main/AndroidManifest.xml": [],
     "app/src/main/java/com/example/eventia/EventiaApplication.kt": [],
     "app/src/main/java/com/example/eventia/MainActivity.kt": [
       "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt",
+      "app/src/main/java/com/example/eventia/ui/screens/session/LaunchSplash.kt",
+      "app/src/main/java/com/example/eventia/ui/screens/session/SessionForm.kt",
       "app/src/main/java/com/example/eventia/ui/screens/session/SessionViewModel.kt"
     ],
     "app/src/main/java/com/example/eventia/api/EventiaApi.kt": [
@@ -843,6 +1007,9 @@
       "app/src/main/java/com/example/eventia/domain/model/Account.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt": [],
+    "app/src/main/java/com/example/eventia/ui/components/DetailPresentation.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
     "app/src/main/java/com/example/eventia/ui/components/EventCard.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Event.kt"
     ],
@@ -850,6 +1017,7 @@
     "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt": [],
     "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt": [],
     "app/src/main/java/com/example/eventia/ui/navigation/EventiaNavigation.kt": [
+      "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
       "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailScreen.kt",
       "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt",
       "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt",
@@ -861,6 +1029,7 @@
       "app/src/main/java/com/example/eventia/domain/model/Category.kt",
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
       "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventDetailViewModel.kt": [
@@ -868,11 +1037,15 @@
       "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt",
       "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt"
     ],
+    "app/src/main/java/com/example/eventia/ui/screens/eventdetail/EventShare.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/explore/ExplorePresentation.kt": [],
     "app/src/main/java/com/example/eventia/ui/screens/explore/ExploreScreen.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Category.kt",
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
       "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
-      "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
       "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt",
       "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt"
@@ -885,9 +1058,9 @@
       "app/src/main/java/com/example/eventia/repositories/CategoryRepository.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/favorites/FavoritesScreen.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
-      "app/src/main/java/com/example/eventia/ui/components/CachedDataNotice.kt",
-      "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
       "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
     ],
@@ -895,9 +1068,18 @@
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
       "app/src/main/java/com/example/eventia/repositories/FavoritesRepository.kt"
     ],
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapEventSheet.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt"
+    ],
     "app/src/main/java/com/example/eventia/ui/screens/map/MapScreen.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
+      "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
+    ],
+    "app/src/main/java/com/example/eventia/ui/screens/map/MapSearch.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/map/MapViewModel.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Category.kt",
@@ -905,13 +1087,17 @@
       "app/src/main/java/com/example/eventia/repositories/CatalogRepository.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileScreen.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Account.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
-      "app/src/main/java/com/example/eventia/ui/components/EventCard.kt"
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/profile/ProfileViewModel.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
       "app/src/main/java/com/example/eventia/repositories/AttendanceRepository.kt"
     ],
+    "app/src/main/java/com/example/eventia/ui/screens/session/LaunchSplash.kt": [],
+    "app/src/main/java/com/example/eventia/ui/screens/session/SessionForm.kt": [],
     "app/src/main/java/com/example/eventia/ui/screens/session/SessionScreen.kt": [
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
     ],
@@ -920,16 +1106,15 @@
       "app/src/main/java/com/example/eventia/repositories/SessionRepository.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/venue/VenueDetailScreen.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
       "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
-      "app/src/main/java/com/example/eventia/ui/components/EventCard.kt",
+      "app/src/main/java/com/example/eventia/ui/components/FavoriteButton.kt",
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/venue/VenueListScreen.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Venue.kt",
       "app/src/main/java/com/example/eventia/ui/components/ScreenMessage.kt"
-    ],
-    "app/src/main/java/com/example/eventia/ui/screens/venue/VenueLocation.kt": [
-      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
     ],
     "app/src/main/java/com/example/eventia/ui/screens/venue/VenueViewModels.kt": [
       "app/src/main/java/com/example/eventia/domain/model/Event.kt",
@@ -941,6 +1126,12 @@
     "app/src/main/java/com/example/eventia/ui/theme/Type.kt": [],
     "app/src/main/keepRules/rules.keep": [],
     "app/src/main/res/drawable/ic_back.xml": [],
+    "app/src/main/res/drawable/ic_catalog_buildings.xml": [],
+    "app/src/main/res/drawable/ic_catalog_clock.xml": [],
+    "app/src/main/res/drawable/ic_catalog_close.xml": [],
+    "app/src/main/res/drawable/ic_catalog_pin.xml": [],
+    "app/src/main/res/drawable/ic_catalog_search.xml": [],
+    "app/src/main/res/drawable/ic_catalog_ticket.xml": [],
     "app/src/main/res/drawable/ic_event_calendar.xml": [],
     "app/src/main/res/drawable/ic_event_placeholder.xml": [],
     "app/src/main/res/drawable/ic_event_share.xml": [],
@@ -948,9 +1139,17 @@
     "app/src/main/res/drawable/ic_favorite_outline.xml": [],
     "app/src/main/res/drawable/ic_favorites.xml": [],
     "app/src/main/res/drawable/ic_launcher_background.xml": [],
+    "app/src/main/res/drawable/ic_launcher_eventia.xml": [],
     "app/src/main/res/drawable/ic_launcher_foreground.xml": [],
     "app/src/main/res/drawable/ic_map.xml": [],
+    "app/src/main/res/drawable/ic_map_center.xml": [],
+    "app/src/main/res/drawable/ic_map_layers.xml": [],
     "app/src/main/res/drawable/ic_profile.xml": [],
+    "app/src/main/res/drawable/ic_session_check.xml": [],
+    "app/src/main/res/drawable/ic_session_eye.xml": [],
+    "app/src/main/res/drawable/ic_session_eye_off.xml": [],
+    "app/src/main/res/drawable/ic_session_lock.xml": [],
+    "app/src/main/res/drawable/ic_session_mail.xml": [],
     "app/src/main/res/drawable/ic_status_error.xml": [],
     "app/src/main/res/mipmap-anydpi/ic_launcher.xml": [],
     "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml": [],
@@ -964,6 +1163,7 @@
     "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp": [],
     "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp": [],
     "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp": [],
+    "app/src/main/res/values-night/colors.xml": [],
     "app/src/main/res/values/colors.xml": [],
     "app/src/main/res/values/strings.xml": [],
     "app/src/main/res/values/themes.xml": [],
@@ -979,11 +1179,18 @@
     "app/src/test/java/com/example/eventia/ConnectionNoticeTest.kt": [
       "app/src/main/java/com/example/eventia/ui/navigation/ConnectionNotice.kt"
     ],
+    "app/src/test/java/com/example/eventia/EventShareTest.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
     "app/src/test/java/com/example/eventia/EventiaApiTest.kt": [
       "app/src/main/java/com/example/eventia/api/EventiaApi.kt"
     ],
     "app/src/test/java/com/example/eventia/ExampleUnitTest.kt": [],
-    "app/src/test/java/com/example/eventia/MapMarkersTest.kt": [],
+    "app/src/test/java/com/example/eventia/MapMarkersTest.kt": [
+      "app/src/main/java/com/example/eventia/domain/model/Category.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Event.kt",
+      "app/src/main/java/com/example/eventia/domain/model/Venue.kt"
+    ],
     "build.gradle.kts": [],
     "gradle.properties": [],
     "gradle/gradle-daemon-jvm.properties": [],
@@ -994,5 +1201,6 @@
     "gradlew.bat": [],
     "postman/Eventia-Dia-1.postman_collection.json": [],
     "settings.gradle.kts": []
-  }
+  },
+  "contentDigest": "3c66b1a4846f7c11971a45deaeb1f0f5aba1ec9a07b47144eb89d6411bfcbc8b"
 }
