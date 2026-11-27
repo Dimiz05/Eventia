@@ -14,11 +14,13 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -30,6 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
+import com.example.eventia.ui.theme.Sage
+import com.example.eventia.ui.theme.PaleSage
+import com.example.eventia.ui.theme.MutedInk
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
@@ -40,6 +45,8 @@ import com.example.eventia.ui.components.DetailArtwork
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.eventLocalDateTime
+import com.example.eventia.ui.components.EventDisplayLocale
+import com.example.eventia.ui.components.EventDisplayTime
 import com.example.eventia.ui.components.favoriteIcon
 import com.example.eventia.ui.components.favoriteLabel
 import com.example.eventia.ui.components.rememberVenueDirections
@@ -50,16 +57,11 @@ import com.example.eventia.ui.screens.explore.ExploreBadge
 import com.example.eventia.ui.theme.EventiaTheme
 import java.time.Instant
 import java.time.OffsetDateTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlinx.coroutines.delay
 
-private val EventIvory = Color(0xFFFAF6EF)
-private val EventSage = Color(0xFFD5E4B5)
-private val EventForest = Color(0xFF234617)
-private val EventCoral = Color(0xFFC84639)
-private val EventSecondary = Color(0xFF575E50)
+private val EventSurface = Color.White
 private val EventCoverHeight = 300.dp
 private val EventPanelOverlap = 24.dp
 
@@ -102,7 +104,7 @@ internal fun EventDetailScreen(
             stringResource(favoriteLabel(selected)),
             onClick = { onFavoriteChange(event, !selected) },
             enabled = favorites.canChange(event.id),
-            tint = if (selected) EventCoral else EventForest
+            tint = if (selected) Sage else MutedInk
         )
     }
     if (visible is EventDetailUiState.Content && visible.conflict == AttendanceConflict.Full &&
@@ -177,11 +179,7 @@ private fun EventDetails(
     val event = state.event
     val point = MapPoint.from(event.venue.latitude, event.venue.longitude)
     val context = LocalContext.current
-    val colors = exploreColors().copy(
-        primary = EventForest, onPrimary = Color.White,
-        primaryContainer = EventSage, onPrimaryContainer = EventForest,
-        surface = EventIvory, onSurface = EventForest, onSurfaceVariant = EventSecondary
-    )
+    val colors = MaterialTheme.colorScheme
     val dateTime = eventLocalDateTime(event)
     val shareLabel = stringResource(R.string.event_share)
     val shareText = stringResource(
@@ -250,7 +248,7 @@ private fun EventDetails(
                         verticalArrangement = Arrangement.spacedBy(14.dp)
                     ) {
                         EventHeading(event)
-                        HorizontalDivider(color = EventForest.copy(alpha = 0.54f))
+                        HorizontalDivider(color = Sage.copy(alpha = 0.54f))
                         EventDescription(event)
                         EventLocation(event, point, onVenueClick, openDirections)
                     }
@@ -267,12 +265,12 @@ private fun EventHeading(event: Event) {
         horizontalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            ExploreBadge(event.category.name, containerColor = EventSage, contentColor = EventForest)
+            ExploreBadge(event.category.name, containerColor = PaleSage, contentColor = Sage)
             Text(
                 event.title,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
-                color = EventForest
+                color = Sage
             )
         }
         EventDateBadge(event)
@@ -281,11 +279,11 @@ private fun EventHeading(event: Event) {
 
 @Composable
 private fun EventDateBadge(event: Event) {
-    val locale = LocalConfiguration.current.locales[0]
-    val start = event.startsAt.atZoneSameInstant(ZoneId.systemDefault())
+    val locale = EventDisplayLocale
+    val start = event.startsAt
     val day = start.format(DateTimeFormatter.ofPattern("d", locale))
     val month = start.format(DateTimeFormatter.ofPattern("MMM", locale)).trimEnd('.').uppercase(locale)
-    val time = start.format(DateTimeFormatter.ofPattern("HH:mm", locale))
+    val time = start.format(EventDisplayTime)
     val typography = MaterialTheme.typography
     val density = LocalDensity.current
     val monthEnd = with(density) { (typography.headlineLarge.lineHeight.toPx() + typography.labelLarge.lineHeight.toPx() + 4.dp.toPx()) }
@@ -293,15 +291,15 @@ private fun EventDateBadge(event: Event) {
     Column(
         Modifier.widthIn(min = 88.dp).clip(RoundedCornerShape(16.dp)).background(
             Brush.verticalGradient(
-                colors = listOf(EventSage, EventForest),
+                colors = listOf(PaleSage, Sage),
                 startY = monthEnd,
                 endY = monthEnd + transition
             )
         ).padding(start = 10.dp, top = 4.dp, end = 10.dp, bottom = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(day, style = typography.headlineLarge, fontWeight = FontWeight.Bold, color = EventForest)
-        Text(month, style = typography.labelLarge, fontWeight = FontWeight.Bold, color = EventForest)
+        Text(day, style = typography.headlineLarge, fontWeight = FontWeight.Bold, color = Sage)
+        Text(month, style = typography.labelLarge, fontWeight = FontWeight.Bold, color = Sage)
         Spacer(Modifier.height(14.dp))
         Text(time, style = typography.labelLarge, fontWeight = FontWeight.SemiBold, color = Color.White)
     }
@@ -327,17 +325,17 @@ private fun EventLocation(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(24.dp), tint = EventForest)
+            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(24.dp), tint = Sage)
             Column(Modifier.weight(1f)) {
                 Text(event.venue.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                 if (event.venue.address.isNotBlank()) {
-                    Text(event.venue.address, style = MaterialTheme.typography.bodyMedium, color = EventSecondary)
+                    Text(event.venue.address, style = MaterialTheme.typography.bodyMedium, color = MutedInk)
                 }
             }
             Icon(
                 painterResource(R.drawable.ic_back), null,
                 Modifier.size(16.dp).graphicsLayer { rotationZ = 180f },
-                tint = EventForest
+                tint = Sage
             )
         }
         DetailLocationMap(event.venue, point, Modifier.fillMaxWidth().height(124.dp).clip(RoundedCornerShape(16.dp)))
@@ -346,7 +344,7 @@ private fun EventLocation(
             enabled = point != null,
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
             shape = RoundedCornerShape(14.dp),
-            border = BorderStroke(1.dp, EventForest.copy(alpha = if (point != null) 1f else 0.38f))
+            border = BorderStroke(1.dp, Sage.copy(alpha = if (point != null) 1f else 0.38f))
         ) {
             Text(stringResource(R.string.venue_directions), fontWeight = FontWeight.SemiBold)
         }
@@ -362,9 +360,19 @@ private fun EventAttendanceBar(
     onRefresh: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    Surface(color = EventIvory) {
+    Surface(color = EventSurface) {
         Column(Modifier.fillMaxWidth()) {
-            HorizontalDivider(color = EventForest.copy(alpha = 0.18f))
+            HorizontalDivider(color = Sage.copy(alpha = 0.18f))
+            state.attendanceConfirmation?.let { attending ->
+                Text(
+                    stringResource(if (attending) R.string.attendance_confirmed else R.string.attendance_canceled),
+                    Modifier.padding(horizontal = 16.dp, vertical = 4.dp).semantics {
+                        liveRegion = LiveRegionMode.Polite
+                    },
+                    color = Sage,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
             Column(
                 Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -393,7 +401,7 @@ private fun EventAttendanceBar(
                             Text(
                                 stringResource(R.string.event_total_capacity, event.capacity),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = EventSecondary
+                                color = MutedInk
                             )
                         }
                     }
@@ -448,7 +456,7 @@ private fun EventCoverAction(
     label: String,
     onClick: () -> Unit,
     enabled: Boolean = true,
-    tint: Color = EventForest
+    tint: Color = Sage
 ) {
     FilledIconButton(
         onClick = onClick,
@@ -456,9 +464,9 @@ private fun EventCoverAction(
         modifier = Modifier.size(48.dp),
         shape = CircleShape,
         colors = IconButtonDefaults.filledIconButtonColors(
-            containerColor = EventIvory,
+            containerColor = EventSurface,
             contentColor = tint,
-            disabledContainerColor = EventIvory,
+            disabledContainerColor = EventSurface,
             disabledContentColor = tint.copy(alpha = 0.38f)
         )
     ) {

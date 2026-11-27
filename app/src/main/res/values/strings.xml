@@ -85,7 +85,7 @@
     <string name="map_recenter">Centrar en mi ubicación</string>
     <string name="map_location_disabled">Activa la ubicación del dispositivo.</string>
     <string name="map_location_unavailable">Aún no pudimos obtener tu ubicación.</string>
-    <string name="map_location_denied">Permite el acceso a tu ubicación para centrar el mapa.</string>
+    <string name="map_location_denied">Puedes explorar el mapa sin compartir tu ubicación.</string>
     <string name="map_venue_distance">%1$s · a %2$s</string>
     <string name="map_venue_distance_estimated">%1$s · a %2$s aprox.</string>
     <string name="map_no_events_in_area">No hay eventos en esta zona</string>
@@ -185,4 +185,12 @@
         <item quantity="one">Datos guardados hace %1$d día</item>
         <item quantity="other">Datos guardados hace %1$d días</item>
     </plurals>
+    <string name="open_profile">Abrir perfil</string>
+    <string name="catalog_more_filters">Filtros</string>
+    <string name="catalog_active_more_filters">Filtros · %1$s</string>
+    <string name="catalog_music">Música</string>
+    <string name="catalog_food">Gastronomía</string>
+    <string name="favorite_saved">Evento guardado en Favoritos</string>
+    <string name="attendance_confirmed">Inscripción confirmada. Puedes gestionarla en Perfil.</string>
+    <string name="attendance_canceled">Inscripción cancelada.</string>
 </resources>

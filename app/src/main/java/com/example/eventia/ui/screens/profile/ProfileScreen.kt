@@ -27,7 +27,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -74,6 +73,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
+import com.example.eventia.ui.components.AccountAvatar
+import com.example.eventia.ui.components.TabHeader
 import com.example.eventia.domain.model.Account
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
@@ -93,10 +94,11 @@ internal fun ProfileRoute(
     onSignIn: () -> Unit,
     onSignOut: () -> Unit,
     onEventClick: (Long) -> Unit,
-    onSessionExpired: () -> Unit
+    onSessionExpired: () -> Unit,
+    avatar: @Composable () -> Unit = {}
 ) {
     if (session == null || session.signingOut) {
-        ProfileScreen(session, null, onRetryAccount, onSignIn, onSignOut, {}, onEventClick)
+        ProfileScreen(session, null, onRetryAccount, onSignIn, onSignOut, {}, onEventClick, avatar)
         return
     }
 
@@ -106,7 +108,7 @@ internal fun ProfileRoute(
     LaunchedEffect(state.sessionRejected) {
         if (state.sessionRejected) onSessionExpired()
     }
-    ProfileScreen(session, state, onRetryAccount, onSignIn, onSignOut, viewModel::refresh, onEventClick)
+    ProfileScreen(session, state, onRetryAccount, onSignIn, onSignOut, viewModel::refresh, onEventClick, avatar)
 }
 
 @Composable
@@ -117,7 +119,8 @@ internal fun ProfileScreen(
     onSignIn: () -> Unit,
     onSignOut: () -> Unit,
     onRetryAttendances: () -> Unit,
-    onEventClick: (Long) -> Unit
+    onEventClick: (Long) -> Unit,
+    avatar: @Composable () -> Unit = {}
 ) {
     var showUpcoming by rememberSaveable { mutableStateOf(true) }
     val groups = state?.attendances
@@ -125,7 +128,7 @@ internal fun ProfileScreen(
     MaterialTheme(colorScheme = exploreColors()) {
         Surface(Modifier.fillMaxSize()) {
             Column {
-                ProfileHeader()
+                TabHeader(stringResource(R.string.tab_profile), avatar)
                 if (session?.signingOut == true) {
                     LoadingScreen(stringResource(R.string.auth_loading))
                 } else {
@@ -187,28 +190,6 @@ internal fun ProfileScreen(
 }
 
 @Composable
-private fun ProfileHeader() {
-    val colors = MaterialTheme.colorScheme
-    Row(
-        Modifier.fillMaxWidth().heightIn(min = 64.dp).padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        Image(
-            painterResource(R.drawable.eventia_app_icon), null,
-            Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
-        )
-        Text(
-            stringResource(R.string.tab_profile),
-            Modifier.semantics { heading() },
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold
-        )
-    }
-    HorizontalDivider(color = colors.outlineVariant)
-}
-
-@Composable
 private fun ProfileAccount(
     session: SessionUiState.Active?,
     onRetry: () -> Unit,
@@ -227,12 +208,7 @@ private fun ProfileAccount(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(14.dp)
             ) {
-                Image(
-                    painterResource(R.drawable.profile_avatar_duck),
-                    stringResource(R.string.profile_avatar),
-                    modifier = Modifier.size(56.dp).clip(CircleShape),
-                    contentScale = ContentScale.Crop
-                )
+                AccountAvatar(signedIn = session != null, Modifier.size(48.dp))
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     val name = account?.name?.takeIf { it.isNotBlank() }
                         ?: stringResource(if (session == null) R.string.profile_guest_title else R.string.tab_profile)
@@ -322,10 +298,10 @@ private fun AttendanceTabs(groups: AttendanceGroups?, showUpcoming: Boolean, onS
 
 @Composable
 private fun AttendanceTicket(event: Event, upcoming: Boolean, onOpen: () -> Unit) {
-    val paper = Color(0xFFF5F5F4)
-    val ink = Color(0xFF192C33)
-    val accent = Color(0xFF007A85)
-    val border = Color(0xFF9ABACB)
+    val paper = MaterialTheme.colorScheme.surfaceContainerLow
+    val ink = MaterialTheme.colorScheme.onSurface
+    val accent = MaterialTheme.colorScheme.primary
+    val border = MaterialTheme.colorScheme.outlineVariant
     var footerHeight by remember { mutableIntStateOf(0) }
 
     Column(

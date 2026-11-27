@@ -280,17 +280,20 @@ class SessionFlowTest {
         val onExpired: (Long) -> Unit = { error("Unexpected session expiration") }
         var profileRefreshes = 0
         detail.load(true, onExpired)
+        assertEquals(null, (detail.state.value as EventDetailUiState.Content).attendanceConfirmation)
 
         detail.attend(onExpired) { profileRefreshes++ }
         assertEquals(original.id, repository.attendanceEventId)
         assertEquals(1, profileRefreshes)
         assertFalse(catalog.allowedSavedDetail)
         assertEquals(catalog.event, (detail.state.value as EventDetailUiState.Content).event)
+        assertEquals(true, (detail.state.value as EventDetailUiState.Content).attendanceConfirmation)
 
         detail.attend(onExpired) { profileRefreshes++ }
         assertEquals(2, profileRefreshes)
         assertFalse(catalog.allowedSavedDetail)
         assertEquals(original, (detail.state.value as EventDetailUiState.Content).event)
+        assertEquals(false, (detail.state.value as EventDetailUiState.Content).attendanceConfirmation)
     }
 
     @Test

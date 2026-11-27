@@ -1,17 +1,22 @@
 package com.example.eventia.ui.navigation
 
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -23,7 +28,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -39,7 +48,7 @@ import com.example.eventia.R
 import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.screens.eventdetail.EventDetailScreen
 import com.example.eventia.ui.screens.explore.ExploreScreen
-import com.example.eventia.ui.screens.explore.exploreColors
+import com.example.eventia.ui.components.ProfileAvatar
 import com.example.eventia.ui.screens.favorites.FavoriteNotice
 import com.example.eventia.ui.screens.favorites.FavoritesScreen
 import com.example.eventia.ui.screens.favorites.FavoritesViewModel
@@ -49,11 +58,11 @@ import com.example.eventia.ui.screens.session.SessionUiState
 import com.example.eventia.ui.screens.venue.VenueDetailScreen
 import kotlinx.coroutines.flow.Flow
 
-private enum class Tab(val route: String, val title: Int, val icon: Int) {
-    Explore("explore", R.string.tab_explore, R.drawable.ic_explore),
-    Map("map", R.string.tab_map, R.drawable.ic_map),
-    Favorites("favorites", R.string.tab_favorites, R.drawable.ic_favorites),
-    Profile("profile", R.string.tab_profile, R.drawable.ic_profile)
+private enum class Tab(val route: String, val title: Int, val icon: Int, val filledIcon: Int) {
+    Explore("explore", R.string.tab_explore, R.drawable.ic_explore, R.drawable.ic_explore_filled),
+    Map("map", R.string.tab_map, R.drawable.ic_map, R.drawable.ic_map_filled),
+    Favorites("favorites", R.string.tab_favorites, R.drawable.ic_favorite_outline, R.drawable.ic_favorites),
+    Profile("profile", R.string.tab_profile, R.drawable.ic_profile_outline, R.drawable.ic_profile)
 }
 
 internal const val DetailId = "id"
@@ -89,15 +98,21 @@ fun EventiaNavigation(
     val snackbar = remember { SnackbarHostState() }
     val connectionNotice by remember(online) { online.connectionNotices() }
         .collectAsStateWithLifecycle(initialValue = null)
+    val savedMessage = stringResource(R.string.favorite_saved)
     val removedMessage = stringResource(R.string.favorite_removed)
     val undoLabel = stringResource(R.string.favorite_undo)
     val mutationError = stringResource(R.string.favorite_change_error)
     val retryLabel = stringResource(R.string.retry)
-    LaunchedEffect(favoritesViewModel, removedMessage, undoLabel, mutationError, retryLabel) {
+    LaunchedEffect(favoritesViewModel, savedMessage, removedMessage, undoLabel, mutationError, retryLabel) {
         favoritesViewModel.notices.collect { notice ->
             when (notice) {
+                FavoriteNotice.Saved -> snackbar.showSnackbar(savedMessage)
                 is FavoriteNotice.Removed -> {
-                    val result = snackbar.showSnackbar(removedMessage, undoLabel, duration = SnackbarDuration.Long)
+                    val result = snackbar.showSnackbar(
+                        removedMessage,
+                        actionLabel = undoLabel.takeIf { notice.offerUndo },
+                        duration = if (notice.offerUndo) SnackbarDuration.Long else SnackbarDuration.Short
+                    )
                     if (result == SnackbarResult.ActionPerformed) {
                         favoritesViewModel.changeFavorite(notice.event, save = true)
                     }
@@ -113,6 +128,18 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
+    val openTab: (Tab) -> Unit = { tab ->
+        if (route != tab.route) {
+            controller.navigate(tab.route) {
+                popUpTo(controller.graph.findStartDestination().id) { saveState = true }
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
+    }
+    val avatar: @Composable () -> Unit = {
+        ProfileAvatar(signedIn = session != null) { openTab(Tab.Profile) }
+    }
     val openEvent: (Long) -> Unit = { id ->
         controller.navigate(DetailDestination.Event.route(id)) { launchSingleTop = true }
     }
@@ -141,37 +168,7 @@ fun EventiaNavigation(
         bottomBar = {
             if (detail == null || connectionNotice != null) {
                 Column(Modifier.navigationBarsPadding()) {
-                    if (detail == null) {
-                        val catalogColors = exploreColors()
-                        HorizontalDivider(color = catalogColors.onSurface.copy(alpha = 0.32f))
-                        NavigationBar(containerColor = catalogColors.surface) {
-                            Tab.entries.forEach { tab ->
-                                NavigationBarItem(
-                                    selected = tab == selectedTab,
-                                    onClick = {
-                                        if (tab != selectedTab) {
-                                            controller.navigate(tab.route) {
-                                                popUpTo(controller.graph.findStartDestination().id) {
-                                                    saveState = true
-                                                }
-                                                launchSingleTop = true
-                                                restoreState = true
-                                            }
-                                        }
-                                    },
-                                    icon = { Icon(painterResource(tab.icon), contentDescription = null) },
-                                    label = { Text(stringResource(tab.title)) },
-                                    colors = NavigationBarItemDefaults.colors(
-                                        selectedIconColor = catalogColors.primary,
-                                        selectedTextColor = catalogColors.primary,
-                                        indicatorColor = catalogColors.primaryContainer,
-                                        unselectedIconColor = catalogColors.onSurfaceVariant,
-                                        unselectedTextColor = catalogColors.onSurfaceVariant
-                                    )
-                                )
-                            }
-                        }
-                    }
+                    if (detail == null) FloatingTabBar(selectedTab, openTab)
                     connectionNotice?.let { ConnectionBanner(it) }
                 }
             }
@@ -182,20 +179,21 @@ fun EventiaNavigation(
                 ExploreScreen(
                     onEventClick = openEvent,
                     onVenueClick = openVenue,
+                    avatar = avatar,
                     favorites = favorites,
-                    onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
+                    onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save, offerUndo = !save) }
                 )
             }
             composable(Tab.Map.route) {
-                MapScreen(onEventClick = openEvent, favoriteAction = { event ->
+                MapScreen(onEventClick = openEvent, avatar = avatar, favoriteAction = { event ->
                     val selected = event.id in favorites.ids
-                    FavoriteButton(selected, favorites.canChange(event.id), selectedTint = androidx.compose.ui.graphics.Color(0xFFC84639)) {
-                        favoritesViewModel.changeFavorite(event, !selected)
+                    FavoriteButton(selected, favorites.canChange(event.id)) {
+                        favoritesViewModel.changeFavorite(event, !selected, offerUndo = selected)
                     }
                 })
             }
             composable(Tab.Profile.route) {
-                ProfileRoute(session, onRetryAccount, onSignIn, onSignOut, openEvent, onProfileSessionExpired)
+                ProfileRoute(session, onRetryAccount, onSignIn, onSignOut, openEvent, onProfileSessionExpired, avatar)
             }
             composable(Tab.Favorites.route) {
                 FavoritesScreen(
@@ -203,7 +201,8 @@ fun EventiaNavigation(
                     onEventClick = openEvent,
                     onRemove = { favoritesViewModel.changeFavorite(it, save = false, offerUndo = true) },
                     onRetry = favoritesViewModel::retry,
-                    onExplore = { controller.popBackStack(Tab.Explore.route, inclusive = false) }
+                    avatar = avatar,
+                    onExplore = { openTab(Tab.Explore) }
                 )
             }
             DetailDestination.entries.forEach { destination ->
@@ -223,15 +222,43 @@ fun EventiaNavigation(
                             onAttendanceChanged = onAttendanceChanged,
                             onVenueClick = openVenue,
                             favorites = favorites,
-                            onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
+                            onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save, offerUndo = !save) }
                         )
                         DetailDestination.Venue -> VenueDetailScreen(
                             onBack = { controller.navigateUp() },
                             onEventClick = openEvent,
                             favorites = favorites,
-                            onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save) }
+                            onFavoriteChange = { event, save -> favoritesViewModel.changeFavorite(event, save, offerUndo = !save) }
                         )
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FloatingTabBar(selectedTab: Tab, onSelect: (Tab) -> Unit) {
+    val colors = MaterialTheme.colorScheme
+    val shape = RoundedCornerShape(24.dp)
+    Surface(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp),
+        shape = shape, color = colors.surface, shadowElevation = 7.dp
+    ) {
+        Row(Modifier.fillMaxWidth().clip(shape).selectableGroup()) {
+            Tab.entries.forEach { tab ->
+                val selected = tab == selectedTab
+                val tint = if (selected) colors.primary else colors.onSurfaceVariant
+                Column(
+                    Modifier.weight(1f).heightIn(min = 56.dp)
+                        .selectable(selected, role = Role.Tab, onClick = { onSelect(tab) })
+                        .padding(horizontal = 2.dp, vertical = 6.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Icon(painterResource(if (selected) tab.filledIcon else tab.icon), null,
+                        Modifier.size(24.dp), tint = tint)
+                    Text(stringResource(tab.title), color = tint,
+                        style = MaterialTheme.typography.labelSmall)
                 }
             }
         }

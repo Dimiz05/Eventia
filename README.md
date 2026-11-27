@@ -94,3 +94,8 @@ Las pruebas instrumentadas requieren un emulador en ejecución o un dispositivo 
 - `app/src/test/`: pruebas unitarias locales.
 - `app/src/androidTest/`: pruebas instrumentadas en Android.
 - `gradle/libs.versions.toml`: catálogo de versiones y dependencias.
+
+
+### Tipografía
+
+Eventia incluye Crimson Text Regular como recurso local de Android. La fuente se distribuye con la [SIL Open Font License](app/src/main/assets/licenses/crimson_text_ofl.txt).

@@ -70,27 +70,14 @@ private fun VenueDetailContent(
     favorites: FavoritesUiState,
     onFavoriteChange: (Event, Boolean) -> Unit
 ) {
-    val baseColors = exploreColors()
-    val colors = if (state is VenueDetailUiState.Content) {
-        baseColors.copy(
-            primary = Color(0xFF234617),
-            onPrimary = Color.White,
-            surface = Color(0xFFFAF6EF),
-            onSurface = Color(0xFF234617),
-            onSurfaceVariant = Color(0xFF575E50),
-            primaryContainer = Color(0xFFD5E4B5),
-            onPrimaryContainer = Color(0xFF234617),
-            error = Color(0xFFBA1A1A)
-        )
-    } else baseColors
-    MaterialTheme(colorScheme = colors) {
+    MaterialTheme(colorScheme = exploreColors()) {
         Scaffold(
             topBar = {
                 if (state !is VenueDetailUiState.Content) {
                     DetailTopBar(stringResource(R.string.detail_venue), onBack)
                 }
             },
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = MaterialTheme.colorScheme.surface,
             contentWindowInsets = WindowInsets(0, 0, 0, 0)
         ) { padding ->
             when (state) {
