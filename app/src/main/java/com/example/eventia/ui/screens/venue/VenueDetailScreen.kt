@@ -1,47 +1,30 @@
 package com.example.eventia.ui.screens.venue
 
 import android.content.Intent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -53,13 +36,13 @@ import com.example.eventia.domain.model.Venue
 import com.example.eventia.ui.components.DetailArtwork
 import com.example.eventia.ui.components.DetailLocationMap
 import com.example.eventia.ui.components.DetailTopBar
-import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.ScreenMessage
-import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.components.rememberVenueDirections
 import com.example.eventia.ui.screens.eventdetail.venueMapUrl
 import com.example.eventia.ui.screens.explore.ExploreBadge
+import com.example.eventia.ui.screens.explore.ExploreEventCard
+import com.example.eventia.ui.screens.explore.ExploreFavoriteButton
 import com.example.eventia.ui.screens.explore.exploreColors
 import com.example.eventia.ui.screens.favorites.FavoritesUiState
 import com.example.eventia.ui.screens.map.MapPoint
@@ -87,9 +70,26 @@ private fun VenueDetailContent(
     favorites: FavoritesUiState,
     onFavoriteChange: (Event, Boolean) -> Unit
 ) {
-    MaterialTheme(colorScheme = exploreColors()) {
+    val baseColors = exploreColors()
+    val colors = if (state is VenueDetailUiState.Content) {
+        baseColors.copy(
+            primary = Color(0xFF234617),
+            onPrimary = Color.White,
+            surface = Color(0xFFFAF6EF),
+            onSurface = Color(0xFF234617),
+            onSurfaceVariant = Color(0xFF575E50),
+            primaryContainer = Color(0xFFD5E4B5),
+            onPrimaryContainer = Color(0xFF234617),
+            error = Color(0xFFBA1A1A)
+        )
+    } else baseColors
+    MaterialTheme(colorScheme = colors) {
         Scaffold(
-            topBar = { DetailTopBar(stringResource(R.string.detail_venue), onBack) },
+            topBar = {
+                if (state !is VenueDetailUiState.Content) {
+                    DetailTopBar(stringResource(R.string.detail_venue), onBack)
+                }
+            },
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
             contentWindowInsets = WindowInsets(0, 0, 0, 0)
         ) { padding ->
@@ -114,7 +114,8 @@ private fun VenueDetailContent(
                 }
                 is VenueDetailUiState.Content -> VenueDetailBody(
                     state = state,
-                    modifier = Modifier.fillMaxSize().padding(padding),
+                    modifier = Modifier.padding(padding),
+                    onBack = onBack,
                     onRetry = onRetry,
                     onEventClick = onEventClick,
                     favorites = favorites,
@@ -129,6 +130,7 @@ private fun VenueDetailContent(
 private fun VenueDetailBody(
     state: VenueDetailUiState.Content,
     modifier: Modifier,
+    onBack: () -> Unit,
     onRetry: () -> Unit,
     onEventClick: (Long) -> Unit,
     favorites: FavoritesUiState,
@@ -136,256 +138,249 @@ private fun VenueDetailBody(
 ) {
     val venue = state.venue
     val colors = MaterialTheme.colorScheme
-    val context = LocalContext.current
-    val point = MapPoint.from(venue.latitude, venue.longitude)
-    val directions = rememberVenueDirections(venue, point)
-    val shareLabel = stringResource(R.string.event_share)
-    val shareText = stringResource(R.string.venue_share_text, venue.name, venue.address, venueMapUrl(venue))
+    val loadedEvents = state.events as? VenueEventsUiState.Loaded
+    val count = (loadedEvents?.events?.size ?: venue.upcomingEventsCount)?.takeIf { it >= 0 }
 
     LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(bottom = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier = modifier.fillMaxSize().background(colors.surface),
+        contentPadding = PaddingValues(bottom = 24.dp)
     ) {
         item {
-            Box(Modifier.fillMaxWidth().height(236.dp)) {
-                DetailArtwork(venue.imageUrl, R.drawable.ic_catalog_buildings, Modifier.fillMaxSize())
-                Box(
-                    Modifier.fillMaxSize().background(
-                        Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = 0.78f)))
-                    )
-                )
-                Row(
-                    Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 10.dp),
-                    horizontalArrangement = Arrangement.End
+            Box {
+                VenueCover(venue, onBack)
+                Surface(
+                    modifier = Modifier.fillMaxWidth().padding(top = 152.dp),
+                    shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
                 ) {
-                    Surface(shape = RoundedCornerShape(50), color = colors.surface.copy(alpha = 0.95f)) {
-                        IconButton(onClick = {
-                            val intent = Intent(Intent.ACTION_SEND).apply {
-                                type = "text/plain"
-                                putExtra(Intent.EXTRA_TEXT, shareText)
+                    Column(
+                        Modifier.padding(horizontal = 18.dp, vertical = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                        VenueHeading(venue, count)
+                        VenueDivider()
+                        venue.description?.takeIf(String::isNotBlank)?.let { description ->
+                            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                VenueSectionTitle(stringResource(R.string.venue_about))
+                                Text(description, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
                             }
-                            context.startActivity(Intent.createChooser(intent, shareLabel))
-                        }) {
-                            Icon(painterResource(R.drawable.ic_event_share), shareLabel, tint = colors.onSurface)
+                            VenueDivider()
+                        }
+                        VenueLocation(venue)
+                        VenueDivider()
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            VenueSectionTitle(
+                                stringResource(R.string.venue_detail_upcoming_events),
+                                Modifier.weight(1f)
+                            )
+                            if (count != null) VenueBadge(stringResource(R.string.venue_list_count, count))
                         }
                     }
-                }
-                Column(
-                    Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(horizontal = 18.dp, vertical = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    venue.upcomingEventsCount?.takeIf { it >= 0 }?.let { count ->
-                        ExploreBadge(
-                            label = pluralStringResource(R.plurals.venue_upcoming_event_count, count, count),
-                            icon = R.drawable.ic_catalog_ticket,
-                            containerColor = colors.surface,
-                            contentColor = colors.onSurface
-                        )
-                    }
-                    Text(
-                        venue.name,
-                        color = Color.White,
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
-                    )
-                    if (venue.address.isNotBlank()) {
-                        Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(17.dp), tint = Color.White)
-                            Text(venue.address, color = Color.White, style = MaterialTheme.typography.bodyMedium)
-                        }
-                    }
-                }
-            }
-        }
-        item {
-            Button(
-                onClick = directions,
-                enabled = point != null,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).heightIn(min = 52.dp)
-            ) {
-                Icon(painterResource(R.drawable.ic_map), null, Modifier.size(19.dp))
-                Spacer(Modifier.size(8.dp))
-                Text(stringResource(R.string.venue_directions))
-            }
-        }
-        item {
-            DetailSectionCard(Modifier.padding(horizontal = 16.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Surface(shape = RoundedCornerShape(14.dp), color = colors.primaryContainer) {
-                        Icon(
-                            painterResource(R.drawable.ic_catalog_clock), null,
-                            Modifier.padding(12.dp).size(22.dp), tint = colors.onPrimaryContainer
-                        )
-                    }
-                    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                        Text(stringResource(R.string.venue_hours), style = MaterialTheme.typography.labelMedium, color = colors.onSurfaceVariant)
-                        Text(
-                            venue.openingHours?.takeIf(String::isNotBlank) ?: stringResource(R.string.venue_hours_unavailable),
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.SemiBold
-                        )
-                    }
-                }
-            }
-        }
-        venue.description?.takeIf(String::isNotBlank)?.let { about ->
-            item {
-                DetailSectionCard(Modifier.padding(horizontal = 16.dp)) {
-                    Text(stringResource(R.string.venue_about), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                    Text(about, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
-                }
-            }
-        }
-        item {
-            DetailSectionCard(Modifier.padding(horizontal = 16.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Icon(painterResource(R.drawable.ic_map), null, Modifier.size(19.dp), tint = colors.primary)
-                    Text(stringResource(R.string.venue_location), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                }
-                DetailLocationMap(venue = venue, point = point, modifier = Modifier.fillMaxWidth().height(176.dp))
-                val address = when {
-                    venue.address.isNotBlank() -> venue.address
-                    point != null -> stringResource(
-                        R.string.venue_location_coordinates,
-                        point.latitude.toString(),
-                        point.longitude.toString()
-                    )
-                    else -> stringResource(R.string.venue_address_unavailable)
-                }
-                Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(17.dp), tint = colors.primary)
-                    Text(address, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
-                }
-            }
-        }
-        item {
-            Row(
-                Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    stringResource(R.string.venue_detail_upcoming_events),
-                    modifier = Modifier.weight(1f).padding(end = 8.dp),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
-                val loadedEvents = state.events as? VenueEventsUiState.Loaded
-                val count = loadedEvents?.events?.size ?: venue.upcomingEventsCount
-                if (count != null && count >= 0) {
-                    ExploreBadge(
-                        stringResource(R.string.venue_list_count, count),
-                        containerColor = colors.primaryContainer,
-                        contentColor = colors.onPrimaryContainer
-                    )
                 }
             }
         }
         when (val events = state.events) {
             VenueEventsUiState.Loading -> item { LoadingScreen(stringResource(R.string.venue_events_loading)) }
             VenueEventsUiState.Error -> item {
-                Column(Modifier.padding(horizontal = 16.dp)) {
+                Column(Modifier.padding(horizontal = 18.dp)) {
                     Text(stringResource(R.string.venue_events_error), color = colors.error)
                     TextButton(onClick = onRetry) { Text(stringResource(R.string.retry)) }
                 }
             }
             is VenueEventsUiState.Loaded -> {
                 if (events.events.isEmpty()) {
-                    item { Text(stringResource(R.string.venue_events_empty), Modifier.padding(horizontal = 16.dp), color = colors.onSurfaceVariant) }
+                    item {
+                        Text(
+                            stringResource(R.string.venue_events_empty),
+                            Modifier.padding(horizontal = 18.dp),
+                            color = colors.onSurfaceVariant
+                        )
+                    }
                 }
                 items(events.events, key = { it.id }) { event ->
-                    val selected = event.id in favorites.ids
-                    VenueEventCard(
-                        event = event,
-                        onClick = { onEventClick(event.id) },
-                        selected = selected,
-                        favoriteEnabled = favorites.canChange(event.id),
-                        onFavoriteChange = { onFavoriteChange(event, !selected) },
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun DetailSectionCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
-    ) {
-        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            content()
-        }
-    }
-}
-
-@Composable
-private fun VenueEventCard(
-    event: Event,
-    onClick: () -> Unit,
-    selected: Boolean,
-    favoriteEnabled: Boolean,
-    onFavoriteChange: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    val colors = MaterialTheme.colorScheme
-    Card(
-        onClick = onClick,
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = colors.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
-    ) {
-        Column {
-            Box(Modifier.fillMaxWidth().height(150.dp)) {
-                DetailArtwork(event.imageUrl, R.drawable.ic_catalog_ticket, Modifier.fillMaxSize())
-                Box(
-                    Modifier.fillMaxSize().background(
-                        Brush.verticalGradient(listOf(Color.Black.copy(alpha = 0.22f), Color.Transparent))
-                    )
-                )
-                ExploreBadge(
-                    event.category.name,
-                    Modifier.align(Alignment.TopStart).padding(start = 10.dp, top = 10.dp, end = 64.dp),
-                    containerColor = colors.primaryContainer,
-                    contentColor = colors.onPrimaryContainer
-                )
-                Surface(
-                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp),
-                    shape = RoundedCornerShape(50),
-                    color = colors.surface.copy(alpha = 0.96f)
-                ) {
-                    FavoriteButton(selected, favoriteEnabled, onFavoriteChange)
-                }
-            }
-            Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
-                Text(event.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                Text(
-                    event.summary,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = colors.onSurfaceVariant,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Row(Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Icon(painterResource(R.drawable.ic_event_calendar), null, Modifier.size(17.dp), tint = colors.primary)
-                        Text(eventLocalDateTime(event), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+                    Box(Modifier.padding(start = 18.dp, end = 18.dp, bottom = 12.dp)) {
+                        ExploreEventCard(
+                            event = event,
+                            onEventClick = onEventClick,
+                            favorite = {
+                                val selected = event.id in favorites.ids
+                                ExploreFavoriteButton(selected, favorites.canChange(event.id)) {
+                                    onFavoriteChange(event, !selected)
+                                }
+                            },
+                            height = 156.dp,
+                            multiline = true
+                        )
                     }
-                    ExploreBadge(
-                        label = stringResource(R.string.available_spots, event.availableSpots),
-                        containerColor = colors.surfaceContainer,
-                        contentColor = colors.onSurfaceVariant
-                    )
                 }
             }
         }
     }
+}
+
+@Composable
+private fun VenueCover(venue: Venue, onBack: () -> Unit) {
+    val context = LocalContext.current
+    val shareLabel = stringResource(R.string.event_share)
+    val shareText = stringResource(R.string.venue_share_text, venue.name, venue.address, venueMapUrl(venue))
+    Box(Modifier.fillMaxWidth().height(176.dp)) {
+        DetailArtwork(venue.imageUrl, R.drawable.ic_catalog_buildings, Modifier.fillMaxSize())
+        Box(
+            Modifier.fillMaxWidth().height(88.dp).background(
+                Brush.verticalGradient(listOf(Color.Black.copy(alpha = 0.40f), Color.Transparent))
+            )
+        )
+        Row(
+            Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            VenueCoverAction(R.drawable.ic_back, stringResource(R.string.navigate_back), onBack)
+            VenueCoverAction(R.drawable.ic_event_share, shareLabel) {
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, shareText)
+                }
+                context.startActivity(Intent.createChooser(intent, shareLabel))
+            }
+        }
+    }
+}
+
+@Composable
+private fun VenueCoverAction(icon: Int, label: String, onClick: () -> Unit) {
+    FilledIconButton(
+        onClick = onClick,
+        modifier = Modifier.size(48.dp),
+        colors = IconButtonDefaults.filledIconButtonColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+            contentColor = MaterialTheme.colorScheme.primary
+        )
+    ) {
+        Icon(painterResource(icon), label, Modifier.size(22.dp))
+    }
+}
+
+@Composable
+private fun VenueHeading(venue: Venue, count: Int?) {
+    BoxWithConstraints(Modifier.fillMaxWidth()) {
+        val fontScale = LocalDensity.current.fontScale
+        if (maxWidth < 290.dp || fontScale > 1.25f) {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                VenueIdentity(venue, count)
+                VenueHours(venue)
+            }
+        } else {
+            val hoursMaxWidth = maxWidth * 0.37f
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                VenueIdentity(venue, count, Modifier.weight(1f))
+                VenueHours(venue, Modifier.widthIn(max = hoursMaxWidth))
+            }
+        }
+    }
+}
+
+@Composable
+private fun VenueIdentity(venue: Venue, count: Int?, modifier: Modifier = Modifier) {
+    Column(modifier, verticalArrangement = Arrangement.spacedBy(5.dp)) {
+        if (count != null) {
+            VenueBadge(
+                pluralStringResource(R.plurals.venue_upcoming_event_count, count, count),
+                R.drawable.ic_catalog_ticket
+            )
+        }
+        Text(venue.name, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+        if (venue.address.isNotBlank()) {
+            Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(18.dp))
+                Text(venue.address, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
+    }
+}
+
+@Composable
+private fun VenueHours(venue: Venue, modifier: Modifier = Modifier) {
+    val colors = MaterialTheme.colorScheme
+    Surface(modifier, shape = RoundedCornerShape(16.dp), color = colors.primaryContainer) {
+        Row(
+            Modifier.padding(horizontal = 9.dp, vertical = 10.dp),
+            horizontalArrangement = Arrangement.spacedBy(7.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(painterResource(R.drawable.ic_catalog_clock), null, Modifier.size(20.dp))
+            Column {
+                Text(stringResource(R.string.venue_hours), style = MaterialTheme.typography.labelMedium)
+                Text(
+                    venue.openingHours?.takeIf(String::isNotBlank)
+                        ?: stringResource(R.string.venue_hours_unavailable),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun VenueLocation(venue: Venue) {
+    val colors = MaterialTheme.colorScheme
+    val point = MapPoint.from(venue.latitude, venue.longitude)
+    val directions = rememberVenueDirections(venue, point)
+    val address = when {
+        venue.address.isNotBlank() -> venue.address
+        point != null -> stringResource(
+            R.string.venue_location_coordinates,
+            point.latitude.toString(),
+            point.longitude.toString()
+        )
+        else -> stringResource(R.string.venue_address_unavailable)
+    }
+    Column(verticalArrangement = Arrangement.spacedBy(9.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(24.dp))
+            Column {
+                VenueSectionTitle(stringResource(R.string.venue_location))
+                Text(address, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
+            }
+        }
+        DetailLocationMap(venue, point, Modifier.fillMaxWidth().height(126.dp).clip(RoundedCornerShape(16.dp)))
+        OutlinedButton(
+            onClick = directions,
+            enabled = point != null,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+            border = BorderStroke(1.dp, colors.primary.copy(alpha = if (point != null) 1f else 0.38f))
+        ) {
+            Icon(painterResource(R.drawable.ic_map), null, Modifier.size(19.dp))
+            Spacer(Modifier.size(8.dp))
+            Text(stringResource(R.string.venue_directions), fontWeight = FontWeight.SemiBold)
+        }
+    }
+}
+
+@Composable
+private fun VenueSectionTitle(title: String, modifier: Modifier = Modifier) {
+    Text(
+        title,
+        modifier.semantics { heading() },
+        style = MaterialTheme.typography.titleLarge,
+        fontWeight = FontWeight.Bold
+    )
+}
+
+@Composable
+private fun VenueBadge(label: String, icon: Int? = null) {
+    val colors = MaterialTheme.colorScheme
+    ExploreBadge(label, icon = icon, containerColor = colors.primaryContainer, contentColor = colors.onPrimaryContainer)
+}
+
+@Composable
+private fun VenueDivider() {
+    HorizontalDivider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.28f))
 }
 
 @Preview(showBackground = true)

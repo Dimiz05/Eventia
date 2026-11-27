@@ -1,12 +1,12 @@
 package com.example.eventia.ui.screens.profile
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -32,28 +32,41 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathOperation
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -65,9 +78,9 @@ import com.example.eventia.domain.model.Account
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
+import com.example.eventia.ui.components.EventArtwork
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.eventLocalDateTime
-import com.example.eventia.ui.screens.explore.ExploreBadge
 import com.example.eventia.ui.screens.explore.exploreColors
 import com.example.eventia.ui.screens.session.SessionUiState
 import com.example.eventia.ui.theme.EventiaTheme
@@ -97,7 +110,7 @@ internal fun ProfileRoute(
 }
 
 @Composable
-private fun ProfileScreen(
+internal fun ProfileScreen(
     session: SessionUiState.Active?,
     state: ProfileUiState?,
     onRetryAccount: () -> Unit,
@@ -118,8 +131,8 @@ private fun ProfileScreen(
                 } else {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 24.dp),
-                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         item { ProfileAccount(session, onRetryAccount, onSignIn, onSignOut) }
                         if (state != null) {
@@ -209,7 +222,7 @@ private fun ProfileAccount(
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(1.dp, colors.outlineVariant)
     ) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Column(Modifier.padding(horizontal = 16.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(14.dp)
@@ -217,7 +230,7 @@ private fun ProfileAccount(
                 Image(
                     painterResource(R.drawable.profile_avatar_duck),
                     stringResource(R.string.profile_avatar),
-                    modifier = Modifier.size(72.dp).clip(CircleShape),
+                    modifier = Modifier.size(56.dp).clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -309,35 +322,110 @@ private fun AttendanceTabs(groups: AttendanceGroups?, showUpcoming: Boolean, onS
 
 @Composable
 private fun AttendanceTicket(event: Event, upcoming: Boolean, onOpen: () -> Unit) {
-    val colors = MaterialTheme.colorScheme
-    OutlinedCard(
-        onClick = onOpen,
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(14.dp),
-        border = BorderStroke(1.dp, colors.outlineVariant)
-    ) {
-        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            ExploreBadge(
-                stringResource(if (upcoming) R.string.profile_attendance_confirmed else R.string.profile_event_past),
-                icon = if (upcoming) R.drawable.ic_catalog_ticket else R.drawable.ic_catalog_clock,
-                containerColor = if (upcoming) colors.primaryContainer else colors.surfaceContainer,
-                contentColor = if (upcoming) colors.onPrimaryContainer else colors.onSurfaceVariant
-            )
-            Text(event.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-            TicketMetadata(R.drawable.ic_event_calendar, eventLocalDateTime(event))
-            Canvas(Modifier.fillMaxWidth().height(1.dp)) {
-                drawLine(
-                    colors.outlineVariant, Offset(0f, center.y), Offset(size.width, center.y),
-                    strokeWidth = 1.dp.toPx(),
-                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(5.dp.toPx(), 4.dp.toPx()))
+    val paper = Color(0xFFF5F5F4)
+    val ink = Color(0xFF192C33)
+    val accent = Color(0xFF007A85)
+    val border = Color(0xFF9ABACB)
+    var footerHeight by remember { mutableIntStateOf(0) }
+
+    Column(
+        Modifier.fillMaxWidth().drawWithContent {
+            val inset = 0.5.dp.toPx()
+            val radius = 14.dp.toPx()
+            val notch = 8.dp.toPx()
+            val seam = size.height - footerHeight
+            val outline = Path().apply {
+                addRoundRect(
+                    RoundRect(Rect(inset, inset, size.width - inset, size.height - inset), CornerRadius(radius))
                 )
             }
-            if (event.venue.name.isNotBlank()) {
-                TicketMetadata(R.drawable.ic_catalog_pin, event.venue.name)
+            val cutouts = Path().apply {
+                addOval(Rect(Offset(inset, seam), notch))
+                addOval(Rect(Offset(size.width - inset, seam), notch))
             }
-            if (upcoming) {
-                TextButton(onClick = onOpen, modifier = Modifier.align(Alignment.End)) {
-                    Text(stringResource(R.string.profile_manage_attendance))
+            val ticket = Path.combine(PathOperation.Difference, outline, cutouts)
+            clipPath(ticket) {
+                this@drawWithContent.drawContent()
+                drawLine(
+                    border, Offset(notch, seam), Offset(size.width - notch, seam),
+                    strokeWidth = 1.dp.toPx(),
+                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(6.dp.toPx(), 4.dp.toPx()))
+                )
+            }
+            drawPath(ticket, border, style = Stroke(1.dp.toPx()))
+        }.background(paper).clickable(onClick = onOpen)
+    ) {
+        BoxWithConstraints(Modifier.fillMaxWidth()) {
+            val landscapeHeight = maxWidth * (509f / 1645f)
+            Box(Modifier.fillMaxWidth().heightIn(min = landscapeHeight)) {
+                Image(
+                    painterResource(R.drawable.attendance_misty_mountains),
+                    contentDescription = null,
+                    modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(landscapeHeight),
+                    contentScale = ContentScale.Fit
+                )
+                Row(
+                    Modifier.align(Alignment.Center).fillMaxWidth().padding(horizontal = 12.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    EventArtwork(event.imageUrl, Modifier.size(62.dp).clip(RoundedCornerShape(10.dp)))
+                    Column(
+                        Modifier.weight(1f).background(Color.White.copy(alpha = 0.74f), RoundedCornerShape(8.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp),
+                        verticalArrangement = Arrangement.spacedBy(2.dp)
+                    ) {
+                        Text(
+                            eventLocalDateTime(event),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = ink,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Text(
+                            event.title,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = ink,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                painterResource(if (upcoming) R.drawable.ic_session_check else R.drawable.ic_catalog_clock),
+                                null, Modifier.size(16.dp), tint = if (upcoming) accent else ink
+                            )
+                            Text(
+                                stringResource(
+                                    if (upcoming) R.string.profile_attendance_confirmed else R.string.profile_event_past
+                                ),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = if (upcoming) accent else ink,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        BoxWithConstraints(
+            Modifier.fillMaxWidth().onSizeChanged { footerHeight = it.height }.padding(horizontal = 12.dp)
+        ) {
+            val stacked = maxWidth < 250.dp || LocalDensity.current.fontScale > 1.25f
+            if (upcoming && stacked) {
+                Column(Modifier.fillMaxWidth()) {
+                    TicketVenue(event.venue.name, ink, accent, Modifier.padding(top = 8.dp))
+                    ManageAttendance(onOpen, accent, Modifier.align(Alignment.End))
+                }
+            } else {
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 48.dp),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TicketVenue(event.venue.name, ink, accent, Modifier.weight(1f))
+                    if (upcoming) ManageAttendance(onOpen, accent)
                 }
             }
         }
@@ -345,11 +433,28 @@ private fun AttendanceTicket(event: Event, upcoming: Boolean, onOpen: () -> Unit
 }
 
 @Composable
-private fun TicketMetadata(@DrawableRes icon: Int, value: String) {
-    val colors = MaterialTheme.colorScheme
-    Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-        Icon(painterResource(icon), null, Modifier.size(17.dp), tint = colors.primary)
-        Text(value, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
+private fun TicketVenue(name: String, ink: Color, accent: Color, modifier: Modifier = Modifier) {
+    Row(modifier, horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
+        if (name.isNotBlank()) {
+            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(17.dp), tint = accent)
+            Text(name, style = MaterialTheme.typography.bodySmall, color = ink)
+        }
+    }
+}
+
+@Composable
+private fun ManageAttendance(onOpen: () -> Unit, accent: Color, modifier: Modifier = Modifier) {
+    TextButton(
+        onClick = onOpen,
+        modifier = modifier.heightIn(min = 48.dp),
+        contentPadding = PaddingValues(horizontal = 4.dp)
+    ) {
+        Text(
+            stringResource(R.string.profile_manage_attendance),
+            style = MaterialTheme.typography.labelMedium,
+            color = accent,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 

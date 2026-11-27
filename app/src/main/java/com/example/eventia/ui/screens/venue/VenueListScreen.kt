@@ -81,7 +81,8 @@ internal fun VenueListContent(
         ExploreSearch(
             state.query,
             onQueryChange,
-            stringResource(R.string.venue_search)
+            stringResource(R.string.venue_search),
+            inlineHint = true
         )
         sections()
         if (venues != null) {

@@ -1,6 +1,8 @@
 package com.example.eventia.ui.screens.eventdetail
 
 import android.content.Intent
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -13,8 +15,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,7 +37,6 @@ import com.example.eventia.domain.model.hasStarted
 import com.example.eventia.ui.components.DetailLocationMap
 import com.example.eventia.ui.components.DetailTopBar
 import com.example.eventia.ui.components.DetailArtwork
-import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.eventLocalDateTime
@@ -45,7 +50,18 @@ import com.example.eventia.ui.screens.explore.ExploreBadge
 import com.example.eventia.ui.theme.EventiaTheme
 import java.time.Instant
 import java.time.OffsetDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 import kotlinx.coroutines.delay
+
+private val EventIvory = Color(0xFFFAF6EF)
+private val EventSage = Color(0xFFD5E4B5)
+private val EventForest = Color(0xFF234617)
+private val EventCoral = Color(0xFFC84639)
+private val EventSecondary = Color(0xFF575E50)
+private val EventCoverHeight = 300.dp
+private val EventPanelOverlap = 24.dp
 
 @Composable
 internal fun EventDetailScreen(
@@ -85,7 +101,8 @@ internal fun EventDetailScreen(
             favoriteIcon(selected),
             stringResource(favoriteLabel(selected)),
             onClick = { onFavoriteChange(event, !selected) },
-            enabled = favorites.canChange(event.id)
+            enabled = favorites.canChange(event.id),
+            tint = if (selected) EventCoral else EventForest
         )
     }
     if (visible is EventDetailUiState.Content && visible.conflict == AttendanceConflict.Full &&
@@ -160,7 +177,11 @@ private fun EventDetails(
     val event = state.event
     val point = MapPoint.from(event.venue.latitude, event.venue.longitude)
     val context = LocalContext.current
-    val colors = exploreColors()
+    val colors = exploreColors().copy(
+        primary = EventForest, onPrimary = Color.White,
+        primaryContainer = EventSage, onPrimaryContainer = EventForest,
+        surface = EventIvory, onSurface = EventForest, onSurfaceVariant = EventSecondary
+    )
     val dateTime = eventLocalDateTime(event)
     val shareLabel = stringResource(R.string.event_share)
     val shareText = stringResource(
@@ -182,7 +203,6 @@ private fun EventDetails(
         Scaffold(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
             containerColor = colors.surface,
-            topBar = { DetailTopBar(title = stringResource(R.string.detail_event), onBack = onBack) },
             bottomBar = {
                 EventAttendanceBar(
                     event = event,
@@ -193,79 +213,47 @@ private fun EventDetails(
                 )
             }
         ) { padding ->
-            Column(Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState())) {
-                EventHero(
-                    event = event,
-                    shareLabel = shareLabel,
-                    onShare = {
-                        val intent = Intent(Intent.ACTION_SEND).apply {
-                            type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, shareText)
+            Box(
+                Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                Box(Modifier.fillMaxWidth().height(EventCoverHeight)) {
+                    DetailArtwork(event.imageUrl, R.drawable.ic_catalog_ticket, Modifier.fillMaxSize())
+                    Box(
+                        Modifier.fillMaxWidth().height(96.dp).background(
+                            Brush.verticalGradient(listOf(Color.Black.copy(alpha = 0.48f), Color.Transparent))
+                        )
+                    )
+                    Row(
+                        Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        EventCoverAction(R.drawable.ic_back, stringResource(R.string.navigate_back), onBack)
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            favoriteAction?.invoke(event)
+                            EventCoverAction(R.drawable.ic_event_share, shareLabel, onClick = {
+                                val intent = Intent(Intent.ACTION_SEND).apply {
+                                    type = "text/plain"
+                                    putExtra(Intent.EXTRA_TEXT, shareText)
+                                }
+                                context.startActivity(Intent.createChooser(intent, shareLabel))
+                            })
                         }
-                        context.startActivity(Intent.createChooser(intent, shareLabel))
-                    },
-                    favoriteAction = favoriteAction
-                )
-
-                Column(
-                    Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 18.dp),
-                    verticalArrangement = Arrangement.spacedBy(20.dp)
+                    }
+                }
+                Surface(
+                    modifier = Modifier.fillMaxWidth().padding(top = EventCoverHeight - EventPanelOverlap),
+                    shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
                 ) {
-                    Text(event.title, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
-                    Surface(color = colors.surfaceContainer, shape = RoundedCornerShape(14.dp)) {
-                        Row(
-                            Modifier.fillMaxWidth().padding(14.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            Surface(color = colors.primaryContainer, shape = RoundedCornerShape(12.dp)) {
-                                Icon(
-                                    painterResource(R.drawable.ic_event_calendar), null,
-                                    Modifier.padding(12.dp).size(20.dp), tint = colors.primary
-                                )
-                            }
-                            Text(dateTime, style = MaterialTheme.typography.titleSmall)
-                        }
+                    Column(
+                        Modifier.padding(horizontal = 20.dp, vertical = 18.dp),
+                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                        EventHeading(event)
+                        HorizontalDivider(color = EventForest.copy(alpha = 0.54f))
+                        EventDescription(event)
+                        EventLocation(event, point, onVenueClick, openDirections)
                     }
-
-                    Surface(color = colors.surfaceContainer, shape = RoundedCornerShape(16.dp)) {
-                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Text(stringResource(R.string.venue_location), style = MaterialTheme.typography.titleSmall)
-                            Row(
-                                Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp))
-                                    .clickable { onVenueClick(event.venue.id) }
-                                    .padding(vertical = 4.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(12.dp)
-                            ) {
-                                Surface(color = colors.primaryContainer, shape = RoundedCornerShape(12.dp)) {
-                                    Icon(
-                                        painterResource(R.drawable.ic_map), null,
-                                        Modifier.padding(12.dp).size(22.dp), tint = colors.primary
-                                    )
-                                }
-                                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                                    Text(event.venue.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                                    Text(
-                                        event.venue.address.ifBlank { stringResource(R.string.venue_address_unavailable) },
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = colors.onSurfaceVariant
-                                    )
-                                }
-                                Icon(
-                                    painterResource(R.drawable.ic_back), contentDescription = null,
-                                    modifier = Modifier.size(16.dp).graphicsLayer { rotationZ = 180f },
-                                    tint = colors.primary
-                                )
-                            }
-                            DetailLocationMap(event.venue, point, Modifier.fillMaxWidth().height(132.dp))
-                            OutlinedButton(onClick = openDirections, enabled = point != null, modifier = Modifier.fillMaxWidth()) {
-                                Text(stringResource(R.string.venue_directions))
-                            }
-                        }
-                    }
-
-                    EventDescription(event)
                 }
             }
         }
@@ -273,55 +261,94 @@ private fun EventDetails(
 }
 
 @Composable
-private fun EventHero(
-    event: Event,
-    shareLabel: String,
-    onShare: () -> Unit,
-    favoriteAction: (@Composable (Event) -> Unit)?
-) {
-    val colors = exploreColors()
-    Box(Modifier.fillMaxWidth().height(292.dp)) {
-        DetailArtwork(event.imageUrl, R.drawable.ic_catalog_ticket, Modifier.fillMaxSize())
-        Row(
-            Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 14.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            ExploreBadge(
-                event.category.name,
-                Modifier.weight(1f, fill = false),
-                icon = R.drawable.ic_catalog_ticket,
-                containerColor = colors.surface.copy(alpha = 0.92f)
+private fun EventHeading(event: Event) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            ExploreBadge(event.category.name, containerColor = EventSage, contentColor = EventForest)
+            Text(
+                event.title,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                color = EventForest
             )
-            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                EventCoverAction(R.drawable.ic_event_share, shareLabel, onClick = onShare)
-                favoriteAction?.invoke(event)
-            }
         }
-        Column(
-            Modifier.align(Alignment.BottomStart).fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 14.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+        EventDateBadge(event)
+    }
+}
+
+@Composable
+private fun EventDateBadge(event: Event) {
+    val locale = LocalConfiguration.current.locales[0]
+    val start = event.startsAt.atZoneSameInstant(ZoneId.systemDefault())
+    val day = start.format(DateTimeFormatter.ofPattern("d", locale))
+    val month = start.format(DateTimeFormatter.ofPattern("MMM", locale)).trimEnd('.').uppercase(locale)
+    val time = start.format(DateTimeFormatter.ofPattern("HH:mm", locale))
+    val typography = MaterialTheme.typography
+    val density = LocalDensity.current
+    val monthEnd = with(density) { (typography.headlineLarge.lineHeight.toPx() + typography.labelLarge.lineHeight.toPx() + 4.dp.toPx()) }
+    val transition = with(density) { 14.dp.toPx() }
+    Column(
+        Modifier.widthIn(min = 88.dp).clip(RoundedCornerShape(16.dp)).background(
+            Brush.verticalGradient(
+                colors = listOf(EventSage, EventForest),
+                startY = monthEnd,
+                endY = monthEnd + transition
+            )
+        ).padding(start = 10.dp, top = 4.dp, end = 10.dp, bottom = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(day, style = typography.headlineLarge, fontWeight = FontWeight.Bold, color = EventForest)
+        Text(month, style = typography.labelLarge, fontWeight = FontWeight.Bold, color = EventForest)
+        Spacer(Modifier.height(14.dp))
+        Text(time, style = typography.labelLarge, fontWeight = FontWeight.SemiBold, color = Color.White)
+    }
+}
+
+@Composable
+private fun EventLocation(
+    event: Event,
+    point: MapPoint?,
+    onVenueClick: (Long) -> Unit,
+    openDirections: () -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text(
+            stringResource(R.string.venue_location),
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
+        )
+        Row(
+            Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp))
+                .clickable { onVenueClick(event.venue.id) }
+                .heightIn(min = 48.dp).padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Surface(color = colors.surface.copy(alpha = 0.94f), shape = RoundedCornerShape(50)) {
-                Text(
-                    eventCapacityLabel(event),
-                    Modifier.padding(horizontal = 12.dp, vertical = 7.dp),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = colors.primary,
-                    fontWeight = FontWeight.SemiBold
-                )
+            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(24.dp), tint = EventForest)
+            Column(Modifier.weight(1f)) {
+                Text(event.venue.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                if (event.venue.address.isNotBlank()) {
+                    Text(event.venue.address, style = MaterialTheme.typography.bodyMedium, color = EventSecondary)
+                }
             }
-            if (event.capacity > 0) {
-                LinearProgressIndicator(
-                    progress = { (event.availableSpots.toFloat() / event.capacity).coerceIn(0f, 1f) },
-                    modifier = Modifier.fillMaxWidth(),
-                    color = colors.primary,
-                    trackColor = colors.surface.copy(alpha = 0.72f),
-                    gapSize = 0.dp,
-                    drawStopIndicator = {}
-                )
-            }
+            Icon(
+                painterResource(R.drawable.ic_back), null,
+                Modifier.size(16.dp).graphicsLayer { rotationZ = 180f },
+                tint = EventForest
+            )
+        }
+        DetailLocationMap(event.venue, point, Modifier.fillMaxWidth().height(124.dp).clip(RoundedCornerShape(16.dp)))
+        OutlinedButton(
+            onClick = openDirections,
+            enabled = point != null,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+            shape = RoundedCornerShape(14.dp),
+            border = BorderStroke(1.dp, EventForest.copy(alpha = if (point != null) 1f else 0.38f))
+        ) {
+            Text(stringResource(R.string.venue_directions), fontWeight = FontWeight.SemiBold)
         }
     }
 }
@@ -334,44 +361,58 @@ private fun EventAttendanceBar(
     onAttend: ((Event) -> Unit)?,
     onRefresh: () -> Unit
 ) {
-    val colors = exploreColors()
-    Surface(color = colors.surface, shadowElevation = 8.dp) {
-        Column(
-            Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Column(Modifier.weight(1f)) {
-                    Text(eventCapacityLabel(event), style = MaterialTheme.typography.labelMedium)
-                }
-                Button(
-                    onClick = { onAttend?.invoke(event) },
-                    enabled = onAttend != null && !attendanceClosed && !state.updating && !state.refreshRequired &&
-                        (!state.authenticated || event.isAttending != null),
-                    modifier = Modifier.weight(1.15f).heightIn(min = 52.dp),
-                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
-                ) {
-                    Text(stringResource(when {
-                        state.updating -> R.string.event_attendance_updating
-                        event.isAttending == true -> R.string.event_cancel_attendance
-                        else -> R.string.event_attend
-                    }))
-                }
-            }
-            if (attendanceClosed) {
-                Text(stringResource(R.string.event_attendance_closed), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
-            } else if (!state.updating) {
-                when (state.conflict) {
-                    AttendanceConflict.AlreadyRegistered -> Text(stringResource(R.string.event_already_registered), style = MaterialTheme.typography.bodySmall)
-                    AttendanceConflict.PendingRegistration, AttendanceConflict.Unconfirmed ->
-                        Text(stringResource(R.string.event_attendance_conflict), style = MaterialTheme.typography.bodySmall, color = colors.error)
-                    else -> if (state.refreshRequired) {
-                        val message = if (state.attendanceError) R.string.event_attendance_error else R.string.event_detail_error
-                        Text(stringResource(message), style = MaterialTheme.typography.bodySmall, color = colors.error)
+    val colors = MaterialTheme.colorScheme
+    Surface(color = EventIvory) {
+        Column(Modifier.fillMaxWidth()) {
+            HorizontalDivider(color = EventForest.copy(alpha = 0.18f))
+            Column(
+                Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Button(
+                        onClick = { onAttend?.invoke(event) },
+                        enabled = onAttend != null && !attendanceClosed && !state.updating && !state.refreshRequired &&
+                            (!state.authenticated || event.isAttending != null),
+                        modifier = Modifier.weight(1.6f).heightIn(min = 52.dp),
+                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
+                    ) {
+                        Text(stringResource(when {
+                            state.updating -> R.string.event_attendance_updating
+                            event.isAttending == true -> R.string.event_cancel_attendance
+                            else -> R.string.event_attend
+                        }))
+                    }
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            stringResource(R.string.event_available_count, event.availableSpots),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                        if (event.capacity > 0) {
+                            Text(
+                                stringResource(R.string.event_total_capacity, event.capacity),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = EventSecondary
+                            )
+                        }
                     }
                 }
-                if (state.refreshRequired) {
-                    TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
+                if (attendanceClosed) {
+                    Text(stringResource(R.string.event_attendance_closed), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
+                } else if (!state.updating) {
+                    when (state.conflict) {
+                        AttendanceConflict.AlreadyRegistered -> Text(stringResource(R.string.event_already_registered), style = MaterialTheme.typography.bodySmall)
+                        AttendanceConflict.PendingRegistration, AttendanceConflict.Unconfirmed ->
+                            Text(stringResource(R.string.event_attendance_conflict), style = MaterialTheme.typography.bodySmall, color = colors.error)
+                        else -> if (state.refreshRequired) {
+                            val message = if (state.attendanceError) R.string.event_attendance_error else R.string.event_detail_error
+                            Text(stringResource(message), style = MaterialTheme.typography.bodySmall, color = colors.error)
+                        }
+                    }
+                    if (state.refreshRequired) {
+                        TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
+                    }
                 }
             }
         }
@@ -386,17 +427,26 @@ private fun eventCapacityLabel(event: Event): String = if (event.capacity > 0) {
 }
 
 @Composable
-private fun EventCoverAction(icon: Int, label: String, onClick: () -> Unit, enabled: Boolean = true) {
-    val colors = exploreColors()
-    IconButton(onClick = onClick, enabled = enabled) {
-        Surface(shape = CircleShape, color = colors.surface.copy(alpha = 0.92f)) {
-            Icon(
-                painterResource(icon),
-                contentDescription = label,
-                modifier = Modifier.padding(7.dp).size(16.dp),
-                tint = colors.onSurface.copy(alpha = if (enabled) 1f else 0.38f)
-            )
-        }
+private fun EventCoverAction(
+    icon: Int,
+    label: String,
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+    tint: Color = EventForest
+) {
+    FilledIconButton(
+        onClick = onClick,
+        enabled = enabled,
+        modifier = Modifier.size(48.dp),
+        shape = CircleShape,
+        colors = IconButtonDefaults.filledIconButtonColors(
+            containerColor = EventIvory,
+            contentColor = tint,
+            disabledContainerColor = EventIvory,
+            disabledContentColor = tint.copy(alpha = 0.38f)
+        )
+    ) {
+        Icon(painterResource(icon), contentDescription = label, modifier = Modifier.size(22.dp))
     }
 }
 
@@ -408,7 +458,7 @@ private fun EventDescription(event: Event) {
     if (description.isBlank()) return
 
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(stringResource(R.string.event_description_title), style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(R.string.event_description_title), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
         Text(
             description,
             style = MaterialTheme.typography.bodyMedium,
@@ -433,7 +483,7 @@ private fun EventDetailPreview() {
             EventDetailContent(
                 state = EventDetailUiState.Content(Event(
                     id = 1,
-                    title = "Noche de jazz en la plaza",
+                    title = "Noche de jazz al aire libre con músicos invitados de toda la región",
                     summary = "Un recorrido por los clásicos del jazz con músicos invitados de la región. Trae abrigo para disfrutar de la música al aire libre.",
                     description = null,
                     startsAt = OffsetDateTime.parse("2030-11-14T20:00:00-04:00"),
@@ -449,7 +499,7 @@ private fun EventDetailPreview() {
                 onBack = {},
                 onVenueClick = {},
                 onAttend = {},
-                favoriteAction = { FavoriteButton(selected = false, enabled = true) {} }
+                favoriteAction = { EventCoverAction(favoriteIcon(false), stringResource(favoriteLabel(false)), {}) }
             )
         }
     }
