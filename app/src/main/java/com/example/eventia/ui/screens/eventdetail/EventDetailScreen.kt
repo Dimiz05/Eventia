@@ -404,10 +404,10 @@ private fun EventAttendanceBar(
                     when (state.conflict) {
                         AttendanceConflict.AlreadyRegistered -> Text(stringResource(R.string.event_already_registered), style = MaterialTheme.typography.bodySmall)
                         AttendanceConflict.PendingRegistration, AttendanceConflict.Unconfirmed ->
-                            Text(stringResource(R.string.event_attendance_conflict), style = MaterialTheme.typography.bodySmall, color = colors.error)
+                            AttendanceErrorNotice(R.string.event_attendance_conflict)
                         else -> if (state.refreshRequired) {
                             val message = if (state.attendanceError) R.string.event_attendance_error else R.string.event_detail_error
-                            Text(stringResource(message), style = MaterialTheme.typography.bodySmall, color = colors.error)
+                            AttendanceErrorNotice(message)
                         }
                     }
                     if (state.refreshRequired) {
@@ -416,6 +416,22 @@ private fun EventAttendanceBar(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun AttendanceErrorNotice(message: Int) {
+    val colors = MaterialTheme.colorScheme
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        color = colors.errorContainer,
+        contentColor = colors.onErrorContainer
+    ) {
+        Text(
+            stringResource(message),
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+            style = MaterialTheme.typography.bodySmall
+        )
     }
 }
 

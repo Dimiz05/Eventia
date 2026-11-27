@@ -86,6 +86,10 @@
     <string name="map_location_disabled">Activa la ubicación del dispositivo.</string>
     <string name="map_location_unavailable">Aún no pudimos obtener tu ubicación.</string>
     <string name="map_location_denied">Permite el acceso a tu ubicación para centrar el mapa.</string>
+    <string name="map_venue_distance">%1$s · a %2$s</string>
+    <string name="map_venue_distance_estimated">%1$s · a %2$s aprox.</string>
+    <string name="map_no_events_in_area">No hay eventos en esta zona</string>
+    <string name="map_frame_events">Ver eventos en el mapa</string>
     <string name="map_selected_event">Evento seleccionado</string>
     <string name="map_close_event">Cerrar ficha del evento</string>
     <string name="favorites_loading">Cargando favoritos…</string>

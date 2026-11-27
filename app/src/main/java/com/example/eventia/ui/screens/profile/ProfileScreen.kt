@@ -371,7 +371,7 @@ private fun AttendanceTicket(event: Event, upcoming: Boolean, onOpen: () -> Unit
                 ) {
                     EventArtwork(event.imageUrl, Modifier.size(62.dp).clip(RoundedCornerShape(10.dp)))
                     Column(
-                        Modifier.weight(1f).background(Color.White.copy(alpha = 0.74f), RoundedCornerShape(8.dp))
+                        Modifier.weight(1f).background(paper, RoundedCornerShape(8.dp))
                             .padding(horizontal = 4.dp, vertical = 2.dp),
                         verticalArrangement = Arrangement.spacedBy(2.dp)
                     ) {

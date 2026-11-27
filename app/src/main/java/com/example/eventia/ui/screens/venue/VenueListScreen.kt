@@ -52,6 +52,7 @@ import com.example.eventia.ui.screens.explore.ExplorePreviewFrame
 import com.example.eventia.ui.screens.explore.ExplorePullToRefresh
 import com.example.eventia.ui.screens.explore.ExploreSearch
 import com.example.eventia.ui.screens.explore.ExploreSections
+import com.example.eventia.ui.screens.explore.panoramicCaptionScrim
 
 @Composable
 internal fun VenueListScreen(
@@ -209,12 +210,14 @@ private fun VenueCard(venue: Venue, onVenueClick: (Long) -> Unit, height: Dp, mu
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            Column(Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(16.dp)) {
+            Column(
+                Modifier.align(Alignment.BottomStart).fillMaxWidth().panoramicCaptionScrim().padding(16.dp)
+            ) {
                 Text(
                     venue.name,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White,
+                    color = Color(0xFFFFFFFF),
                     maxLines = if (multiline) 2 else 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -222,7 +225,7 @@ private fun VenueCard(venue: Venue, onVenueClick: (Long) -> Unit, height: Dp, mu
                     Text(
                         venue.address,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White,
+                        color = Color(0xFFFFFFFF),
                         maxLines = if (multiline) 2 else 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -232,7 +235,7 @@ private fun VenueCard(venue: Venue, onVenueClick: (Long) -> Unit, height: Dp, mu
                     Text(
                         hours,
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.White,
+                        color = Color(0xFFFFFFFF),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -324,6 +325,7 @@ internal fun ExploreEventCard(
     height: Dp,
     multiline: Boolean
 ) {
+    val colors = MaterialTheme.colorScheme
     Surface(
         onClick = { onEventClick(event.id) },
         modifier = Modifier.fillMaxWidth().height(height),
@@ -347,18 +349,23 @@ internal fun ExploreEventCard(
                 Modifier.align(Alignment.TopCenter).fillMaxWidth().padding(start = 16.dp, end = 6.dp, top = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    eventLocalDateTime(event),
-                    modifier = Modifier.weight(1f).padding(end = 8.dp),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.White,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+                Box(Modifier.weight(1f).padding(end = 8.dp)) {
+                    Text(
+                        eventLocalDateTime(event),
+                        modifier = Modifier.background(colors.scrim.copy(alpha = 0.55f), RoundedCornerShape(8.dp))
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFFFFFFFF),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
                 favorite?.invoke(event)
             }
-            BoxWithConstraints(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(16.dp)) {
+            BoxWithConstraints(
+                Modifier.align(Alignment.BottomCenter).fillMaxWidth().panoramicCaptionScrim().padding(16.dp)
+            ) {
                 val categoryMaxWidth = maxWidth * 0.38f
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -369,14 +376,14 @@ internal fun ExploreEventCard(
                             event.title,
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
-                            color = Color.White,
+                            color = Color(0xFFFFFFFF),
                             maxLines = if (multiline) 2 else 1,
                             overflow = TextOverflow.Ellipsis
                         )
                         Text(
                             event.venue.name,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = Color.White,
+                            color = Color(0xFFFFFFFF),
                             maxLines = if (multiline) 2 else 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -404,14 +411,20 @@ internal fun ExploreEventCard(
 
 @Composable
 internal fun ExploreFavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
-    val tint = if (selected) Color(0xFFFF765F) else Color.White
+    val colors = MaterialTheme.colorScheme
+    val tint = if (selected) colors.onPrimaryContainer else colors.onSurface
+    val container = if (selected) colors.primaryContainer else colors.surface
     IconButton(onClick = onClick, enabled = enabled, modifier = Modifier.size(48.dp)) {
-        Icon(
-            painterResource(favoriteIcon(selected)),
-            stringResource(favoriteLabel(selected)),
-            Modifier.size(28.dp),
-            tint = tint.copy(alpha = if (enabled) 1f else 0.5f)
-        )
+        Surface(modifier = Modifier.size(40.dp), shape = CircleShape, color = container) {
+            Box(contentAlignment = Alignment.Center) {
+                Icon(
+                    painterResource(favoriteIcon(selected)),
+                    stringResource(favoriteLabel(selected)),
+                    Modifier.size(28.dp),
+                    tint = tint.copy(alpha = if (enabled) 1f else 0.5f)
+                )
+            }
+        }
     }
 }
 
