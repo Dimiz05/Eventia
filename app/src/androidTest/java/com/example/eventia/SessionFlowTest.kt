@@ -122,17 +122,26 @@ class SessionFlowTest {
                 )
             }
         }
-        val password = compose.onNode(hasSetTextAction() and hasContentDescription("Contraseña"))
+        fun field(label: String) = compose.onNode(hasSetTextAction() and hasContentDescription(label))
+        val password = field("Contraseña")
         password.performScrollTo().performTextInput("eventia123")
         compose.onNode(hasContentDescription("Mostrar contraseña")).performClick()
         password.assert(SemanticsMatcher.expectValue(SemanticsProperties.EditableText, AnnotatedString("eventia123")))
 
         compose.onNode(
-            hasText("Crear cuenta") and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Tab)
+            hasText("Crear cuenta") and SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Button)
         ).performScrollTo().performClick()
 
+        compose.onNode(hasContentDescription("Eventia")).assertExists()
+        field("Nombre completo").performScrollTo().assertIsDisplayed()
+        field("Confirmar contraseña").performScrollTo().assertIsDisplayed()
         password.assert(SemanticsMatcher.keyIsDefined(SemanticsProperties.Password))
         password.assert(SemanticsMatcher.expectValue(SemanticsProperties.EditableText, AnnotatedString("")))
+
+        compose.onNode(hasText("Iniciar sesión") and hasClickAction()).performScrollTo().performClick()
+        field("Nombre completo").assertDoesNotExist()
+        field("Confirmar contraseña").assertDoesNotExist()
+        compose.onNode(hasContentDescription("Eventia")).assertExists()
     }
 
     @Test
@@ -152,7 +161,7 @@ class SessionFlowTest {
             }
         }
         val email = compose.onNode(hasSetTextAction() and hasContentDescription(context.getString(R.string.auth_email)))
-        email.performTextInput(context.getString(R.string.app_name))
+        email.performScrollTo().performTextInput(context.getString(R.string.app_name))
         compose.onNode(
             hasText(context.getString(R.string.auth_sign_in)) and
                 SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Button)
