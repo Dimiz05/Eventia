@@ -1,6 +1,7 @@
 package com.example.eventia.ui.screens.explore
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,14 +19,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -37,6 +38,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -48,7 +50,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -67,6 +71,7 @@ import com.example.eventia.domain.model.Venue
 import com.example.eventia.ui.screens.favorites.FavoritesUiState
 import com.example.eventia.ui.screens.venue.VenueListScreen
 import java.time.OffsetDateTime
+import java.util.Locale
 
 @Composable
 internal fun ExploreScreen(
@@ -113,21 +118,49 @@ internal fun ExploreScreen(
 }
 
 @Composable
-private fun CategoryPill(label: String, selected: Boolean, onClick: () -> Unit) {
+private fun CategoryTile(label: String, icon: Int, selected: Boolean, onClick: () -> Unit) {
     val colors = MaterialTheme.colorScheme
-    FilterChip(
-        selected = selected,
-        onClick = onClick,
-        label = { Text(label) },
-        shape = RoundedCornerShape(50),
-        border = null,
-        colors = FilterChipDefaults.filterChipColors(
-            containerColor = colors.primaryContainer,
-            labelColor = colors.onPrimaryContainer,
-            selectedContainerColor = colors.primary,
-            selectedLabelColor = colors.onPrimary
+    val tint = if (selected) colors.primary else colors.onSurfaceVariant
+    val shape = RoundedCornerShape(12.dp)
+    Column(
+        Modifier.widthIn(min = 60.dp, max = 144.dp).clip(shape)
+            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
+            .padding(horizontal = 2.dp, vertical = 2.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Surface(
+            modifier = Modifier.size(width = 56.dp, height = 44.dp),
+            shape = shape,
+            color = if (selected) colors.primaryContainer else colors.surfaceContainer.copy(alpha = 0.55f),
+            border = BorderStroke(
+                if (selected) 1.5.dp else 1.dp,
+                if (selected) colors.primary else colors.outlineVariant
+            )
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Icon(painterResource(icon), null, Modifier.size(24.dp), tint = tint)
+            }
+        }
+        Text(
+            label,
+            style = MaterialTheme.typography.labelMedium,
+            color = tint,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Center
         )
-    )
+    }
+}
+
+internal fun categoryIcon(name: String): Int = when (name.trim().lowercase(Locale.ROOT)) {
+    "arte" -> R.drawable.ic_category_art
+    "deporte" -> R.drawable.ic_category_sport
+    "gastronomía", "gastronomia" -> R.drawable.ic_category_food
+    "música", "musica" -> R.drawable.ic_category_music
+    "taller", "talleres" -> R.drawable.ic_category_workshop
+    "teatro" -> R.drawable.ic_category_theater
+    "tecnología", "tecnologia" -> R.drawable.ic_category_technology
+    else -> R.drawable.ic_category_tag
 }
 
 @Composable
@@ -151,7 +184,7 @@ internal fun ExploreContent(
         isLoading = state.isLoading,
         hasScrollableContent = !events.isNullOrEmpty() || state.isLoading
     ) {
-        ExploreSearch(filters.query, onQueryChange, stringResource(R.string.catalog_search))
+        ExploreSearch(filters.query, onQueryChange, stringResource(R.string.catalog_search), inlineHint = true)
         sections()
         val categories = content?.categories.orEmpty()
         if (categories.isNotEmpty() || filters.isActive) {
@@ -163,7 +196,8 @@ internal fun ExploreContent(
                 Text(
                     stringResource(R.string.catalog_categories),
                     Modifier.weight(1f).semantics { heading() },
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 if (filters.isActive && (events?.isEmpty() != true || state.hasError)) {
@@ -173,19 +207,22 @@ internal fun ExploreContent(
         }
         if (categories.isNotEmpty()) {
             LazyRow(
+                modifier = Modifier.fillMaxWidth().selectableGroup().padding(top = 7.dp, bottom = 6.dp),
                 contentPadding = PaddingValues(horizontal = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 item {
-                    CategoryPill(
+                    CategoryTile(
                         stringResource(R.string.catalog_all_categories),
+                        icon = R.drawable.ic_category_all,
                         selected = filters.categoryId == null,
                         onClick = { filters.categoryId?.let(onCategorySelect) }
                     )
                 }
                 items(categories, key = { it.id }) { category ->
-                    CategoryPill(
+                    CategoryTile(
                         category.name,
+                        icon = categoryIcon(category.name),
                         selected = filters.categoryId == category.id,
                         onClick = { onCategorySelect(category.id) }
                     )
@@ -280,7 +317,7 @@ internal fun ExploreContent(
 }
 
 @Composable
-private fun ExploreEventCard(
+internal fun ExploreEventCard(
     event: Event,
     onEventClick: (Long) -> Unit,
     favorite: (@Composable (Event) -> Unit)?,
@@ -366,7 +403,7 @@ private fun ExploreEventCard(
 }
 
 @Composable
-private fun ExploreFavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
+internal fun ExploreFavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
     val tint = if (selected) Color(0xFFFF765F) else Color.White
     IconButton(onClick = onClick, enabled = enabled, modifier = Modifier.size(48.dp)) {
         Icon(

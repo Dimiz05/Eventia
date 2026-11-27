@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -21,11 +20,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,12 +44,11 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
-import com.example.eventia.ui.components.DetailArtwork
-import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.ScreenMessage
-import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.screens.explore.ExploreBadge
+import com.example.eventia.ui.screens.explore.ExploreEventCard
+import com.example.eventia.ui.screens.explore.ExploreFavoriteButton
 import com.example.eventia.ui.screens.explore.exploreColors
 import com.example.eventia.ui.theme.EventiaTheme
 import java.time.OffsetDateTime
@@ -202,51 +198,13 @@ private fun EmptyFavorites(onExplore: () -> Unit) {
 
 @Composable
 private fun SavedEventCard(event: Event, canRemove: Boolean, onOpen: () -> Unit, onRemove: () -> Unit) {
-    val colors = MaterialTheme.colorScheme
-    OutlinedCard(
-        onClick = onOpen,
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.outlinedCardColors(containerColor = colors.surface),
-        border = BorderStroke(1.dp, colors.outlineVariant)
-    ) {
-        Box(Modifier.fillMaxWidth().aspectRatio(16f / 9f)) {
-            DetailArtwork(event.imageUrl, R.drawable.ic_catalog_ticket, Modifier.matchParentSize())
-            ExploreBadge(
-                event.category.name,
-                Modifier.align(Alignment.TopStart).padding(start = 12.dp, top = 12.dp, end = 68.dp),
-                icon = R.drawable.ic_catalog_ticket,
-                contentColor = colors.primary
-            )
-            Surface(
-                modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
-                shape = CircleShape,
-                color = colors.surface,
-                contentColor = colors.primary
-            ) {
-                FavoriteButton(selected = true, enabled = canRemove, onClick = onRemove)
-            }
-        }
-        Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text(event.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-            SavedEventMetadata(R.drawable.ic_event_calendar, eventLocalDateTime(event))
-            if (event.venue.name.isNotBlank()) {
-                SavedEventMetadata(R.drawable.ic_catalog_pin, event.venue.name)
-            }
-        }
-    }
-}
-
-@Composable
-private fun SavedEventMetadata(icon: Int, text: String) {
-    val colors = MaterialTheme.colorScheme
-    Row(
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(6.dp)
-    ) {
-        Icon(painterResource(icon), null, Modifier.size(17.dp), tint = colors.primary)
-        Text(text, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
-    }
+    ExploreEventCard(
+        event = event,
+        onEventClick = { onOpen() },
+        favorite = { ExploreFavoriteButton(selected = true, enabled = canRemove, onClick = onRemove) },
+        height = 164.dp,
+        multiline = true
+    )
 }
 
 @Preview(showBackground = true, widthDp = 390, heightDp = 850)

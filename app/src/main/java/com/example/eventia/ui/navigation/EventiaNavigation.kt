@@ -189,7 +189,7 @@ fun EventiaNavigation(
             composable(Tab.Map.route) {
                 MapScreen(onEventClick = openEvent, favoriteAction = { event ->
                     val selected = event.id in favorites.ids
-                    FavoriteButton(selected, favorites.canChange(event.id)) {
+                    FavoriteButton(selected, favorites.canChange(event.id), selectedTint = androidx.compose.ui.graphics.Color(0xFFC84639)) {
                         favoritesViewModel.changeFavorite(event, !selected)
                     }
                 })

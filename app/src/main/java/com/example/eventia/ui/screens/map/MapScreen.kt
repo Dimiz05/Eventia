@@ -3,7 +3,6 @@ package com.example.eventia.ui.screens.map
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,18 +18,12 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.BottomSheetScaffold
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,10 +41,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -59,8 +51,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -72,8 +62,8 @@ import com.example.eventia.domain.model.Venue
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.components.ScreenMessage
-import com.example.eventia.ui.screens.explore.ExploreBadge
 import com.example.eventia.ui.screens.explore.ExploreSearch
+import com.example.eventia.ui.screens.explore.categoryIcon
 import com.example.eventia.ui.screens.explore.exploreColors
 import com.example.eventia.ui.theme.EventiaTheme
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -103,7 +93,6 @@ fun MapScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     MaterialTheme(colorScheme = exploreColors()) {
         Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
-            MapHeader()
             when (val current = state) {
                 MapUiState.NotConfigured -> MapMessage(R.string.map_not_configured)
                 MapUiState.ServicesUnavailable -> MapMessage(R.string.map_services_unavailable, viewModel::retryMap)
@@ -126,37 +115,6 @@ fun MapScreen(
     }
 }
 
-@Composable
-private fun MapHeader() {
-    val colors = MaterialTheme.colorScheme
-    Row(
-        modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp).padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        Image(
-            painterResource(R.drawable.eventia_app_icon),
-            contentDescription = null,
-            modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
-        )
-        Column {
-            Text(
-                stringResource(R.string.app_name),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = colors.primary
-            )
-            Text(
-                stringResource(R.string.tab_map),
-                style = MaterialTheme.typography.labelMedium,
-                color = colors.onSurfaceVariant
-            )
-        }
-    }
-    HorizontalDivider(color = colors.outlineVariant)
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MapContent(
     state: MapUiState.Ready,
@@ -195,31 +153,23 @@ private fun MapContent(
     }
     BackHandler(enabled = hasSelection) { onPointSelected(null) }
 
+    val (locationEnabled, centerOnLocation) = if (preview) false to {} else rememberMapLocation { point ->
+        if (loaded && !timedOut && !preview) {
+            camera.move(CameraUpdateFactory.newLatLngZoom(point.toLatLng(), maxOf(camera.position.zoom, 15f)))
+        }
+    }
+    LaunchedEffect(state.selectedPoint, loaded) {
+        val point = state.selectedPoint
+        if (point != null && loaded && !preview) {
+            val zoom = maxOf(camera.position.zoom, SelectedMarkerZoom)
+            camera.move(CameraUpdateFactory.newLatLngZoom(point.toLatLng(), zoom))
+        }
+    }
+
     BoxWithConstraints(Modifier.fillMaxSize()) {
-        val availableHeight = maxHeight
-        val peekHeight = if (hasSelection) minOf(300.dp, availableHeight * 0.6f) else 0.dp
-        BottomSheetScaffold(
-            sheetPeekHeight = peekHeight,
-            sheetShape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
-            sheetContainerColor = colors.surface,
-            sheetShadowElevation = if (hasSelection) 8.dp else 0.dp,
-            sheetSwipeEnabled = hasSelection,
-            sheetDragHandle = if (hasSelection) {
-                { BottomSheetDefaults.DragHandle(color = colors.outlineVariant) }
-            } else null,
-            sheetContent = {
-                if (hasSelection) {
-                    MapEventSheet(
-                        selectedEvents,
-                        onDismiss = { onPointSelected(null) },
-                        onEventClick = onEventClick,
-                        favoriteAction = favoriteAction,
-                        modifier = Modifier.heightIn(max = availableHeight * 0.73f)
-                    )
-                }
-            }
-        ) { padding ->
-            Box(Modifier.fillMaxSize().padding(bottom = padding.calculateBottomPadding())) {
+        val panelMaxHeight = maxHeight * 0.52f
+        Column(Modifier.fillMaxSize()) {
+            Box(Modifier.fillMaxWidth().weight(1f)) {
                 when {
                     waitsForEvents -> LoadingScreen(stringResource(R.string.catalog_loading))
                     eventLoadFailed -> MapMessage(R.string.catalog_error, onRetryEvents)
@@ -233,6 +183,7 @@ private fun MapContent(
                                 selectedPoint = state.selectedPoint,
                                 camera = camera,
                                 satellite = satellite,
+                                locationEnabled = locationEnabled,
                                 onLoaded = { loaded = true },
                                 onPointSelected = { point ->
                                     focus.clearFocus()
@@ -256,19 +207,19 @@ private fun MapContent(
                         ExploreSearch(query, onQueryChange = { value ->
                             query = value
                             onPointSelected(null)
-                        }, label = stringResource(R.string.map_search))
+                        }, label = stringResource(R.string.map_search), inlineHint = true, solidSurface = true)
                         if (state.categories.isNotEmpty()) {
                             LazyRow(
                                 contentPadding = PaddingValues(horizontal = 16.dp),
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
                                 item {
-                                    MapCategoryChip(stringResource(R.string.map_all_categories), state.categoryId == null) {
+                                    MapCategoryChip(stringResource(R.string.map_all_categories), R.drawable.ic_category_all, state.categoryId == null) {
                                         onCategorySelected(null)
                                     }
                                 }
                                 items(state.categories, key = { it.id }) { category ->
-                                    MapCategoryChip(category.name, state.categoryId == category.id) {
+                                    MapCategoryChip(category.name, categoryIcon(category.name), state.categoryId == category.id) {
                                         onCategorySelected(category.id)
                                     }
                                 }
@@ -295,14 +246,27 @@ private fun MapContent(
                     MapControls(
                         satellite = satellite,
                         onToggleLayer = { satellite = !satellite },
-                        onRecenter = {
-                            val point = state.selectedPoint?.takeIf(markers::containsKey) ?: markers.keys.firstOrNull()
-                            if (!preview) {
-                                camera.move(CameraUpdateFactory.newLatLngZoom(point?.toLatLng() ?: DefaultMapCenter, 14f))
-                            }
-                        },
+                        onRecenter = centerOnLocation,
                         modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp)
                     )
+                }
+            }
+
+            if (hasSelection && loaded && !timedOut) {
+                key(state.selectedPoint) {
+                    Surface(
+                        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+                        color = colors.surface,
+                        shadowElevation = 6.dp
+                    ) {
+                        MapEventSheet(
+                            selectedEvents,
+                            onDismiss = { onPointSelected(null) },
+                            onEventClick = onEventClick,
+                            favoriteAction = favoriteAction,
+                            modifier = Modifier.heightIn(max = panelMaxHeight)
+                        )
+                    }
                 }
             }
         }
@@ -310,12 +274,18 @@ private fun MapContent(
 }
 
 @Composable
-private fun MapCategoryChip(label: String, selected: Boolean, onClick: () -> Unit) {
+private fun MapCategoryChip(label: String, icon: Int, selected: Boolean, onClick: () -> Unit) {
     val colors = MaterialTheme.colorScheme
     FilterChip(
         selected = selected,
         onClick = onClick,
         label = { Text(label) },
+        leadingIcon = {
+            Icon(
+                painterResource(icon), null, Modifier.size(16.dp),
+                tint = if (selected) colors.onPrimary else colors.primary
+            )
+        },
         shape = CircleShape,
         border = BorderStroke(1.dp, if (selected) colors.primary else colors.outlineVariant),
         colors = FilterChipDefaults.filterChipColors(
@@ -354,6 +324,7 @@ private fun EventMap(
     selectedPoint: MapPoint?,
     camera: CameraPositionState,
     satellite: Boolean,
+    locationEnabled: Boolean,
     onLoaded: () -> Unit,
     onPointSelected: (MapPoint) -> Unit,
     onMapClick: () -> Unit
@@ -362,8 +333,15 @@ private fun EventMap(
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = camera,
-        properties = MapProperties(mapType = if (satellite) MapType.SATELLITE else MapType.NORMAL),
-        uiSettings = MapUiSettings(mapToolbarEnabled = false),
+        properties = MapProperties(
+            mapType = if (satellite) MapType.SATELLITE else MapType.NORMAL,
+            isMyLocationEnabled = locationEnabled
+        ),
+        uiSettings = MapUiSettings(
+            mapToolbarEnabled = false,
+            myLocationButtonEnabled = false,
+            zoomControlsEnabled = false
+        ),
         onMapLoaded = onLoaded,
         onMapClick = { onMapClick() }
     ) {
@@ -374,54 +352,48 @@ private fun EventMap(
                 MarkerComposable(
                     selected, title, colors.primary, colors.surface,
                     state = rememberUpdatedMarkerState(point.toLatLng()),
+                    anchor = Offset(0.5f, 1f),
                     title = title,
                     contentDescription = title,
                     zIndex = if (selected) 1f else 0f,
-                    onClick = { marker ->
-                        val zoom = maxOf(camera.position.zoom, SelectedMarkerZoom)
-                        camera.move(CameraUpdateFactory.newLatLngZoom(marker.position, zoom))
+                    onClick = {
                         onPointSelected(point)
                         true
                     }
-                ) { MapPin(title, selected) }
+                ) { MapPin(selected) }
             }
         }
     }
 }
 
 @Composable
-private fun MapPin(title: String, selected: Boolean) {
-    val colors = MaterialTheme.colorScheme
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        if (selected) {
-            Surface(
-                modifier = Modifier.padding(bottom = 4.dp),
-                shape = CircleShape,
-                color = colors.surface
-            ) {
-                Text(
-                    title,
-                    modifier = Modifier.widthIn(max = 168.dp).padding(horizontal = 10.dp, vertical = 5.dp),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.Bold
+private fun MapPin(selected: Boolean) {
+    val teal = Color(0xFF007A85)
+    val diameter = if (selected) 48.dp else 36.dp
+    Box(Modifier.size(width = diameter + 8.dp, height = diameter + 12.dp)) {
+        Canvas(Modifier.fillMaxSize()) {
+            val tip = Path().apply {
+                moveTo(center.x - 6.dp.toPx(), size.height - 14.dp.toPx())
+                lineTo(center.x + 6.dp.toPx(), size.height - 14.dp.toPx())
+                lineTo(center.x, size.height)
+                close()
+            }
+            drawPath(tip, teal)
+        }
+        Surface(
+            modifier = Modifier.align(Alignment.TopCenter).padding(top = 4.dp).size(diameter),
+            shape = CircleShape,
+            color = teal,
+            shadowElevation = if (selected) 4.dp else 1.dp,
+            border = BorderStroke(if (selected) 4.dp else 1.5.dp, Color.White)
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Icon(
+                    painterResource(R.drawable.ic_catalog_ticket), null,
+                    Modifier.size(if (selected) 24.dp else 18.dp), tint = Color.White
                 )
             }
         }
-        Surface(
-            shape = CircleShape,
-            color = if (selected) colors.primary else colors.onPrimaryContainer,
-            border = BorderStroke(2.dp, colors.surface)
-        ) {
-            Icon(
-                painterResource(R.drawable.ic_catalog_ticket),
-                contentDescription = null,
-                modifier = Modifier.size(if (selected) 44.dp else 36.dp).padding(10.dp),
-                tint = if (selected) colors.onPrimary else colors.primaryContainer
-            )
-        }
-        Box(Modifier.offset(y = (-2).dp).rotate(45f).size(7.dp).background(colors.primary))
     }
 }
 
@@ -455,9 +427,9 @@ private fun MapPreviewBackdrop(hasSelection: Boolean) {
                 drawLine(colors.surface, Offset(0f, y), Offset(size.width, y + size.height * 0.12f), 8.dp.toPx())
             }
         }
-        Box(Modifier.offset(x = maxWidth * 0.68f, y = maxHeight * 0.32f)) { MapPin("Feria del Libro", false) }
-        Box(Modifier.offset(x = maxWidth * 0.17f, y = maxHeight * 0.65f)) { MapPin("Encuentro de tecnología", false) }
-        Box(Modifier.align(Alignment.Center)) { MapPin("Noche de jazz", hasSelection) }
+        Box(Modifier.offset(x = maxWidth * 0.68f, y = maxHeight * 0.32f)) { MapPin(false) }
+        Box(Modifier.offset(x = maxWidth * 0.17f, y = maxHeight * 0.65f)) { MapPin(false) }
+        Box(Modifier.align(Alignment.Center)) { MapPin(hasSelection) }
     }
 }
 
@@ -487,8 +459,7 @@ private fun MapSelectedPreview() {
                     Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)
                         .statusBarsPadding().navigationBarsPadding()
                 ) {
-                    MapHeader()
-                    MapContent(
+                            MapContent(
                         state = MapUiState.Ready(
                             attempt = 0,
                             categoryId = null,

@@ -3,14 +3,24 @@ package com.example.eventia.ui.components
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.eventia.R
 
 @Composable
-internal fun FavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
+internal fun FavoriteButton(
+    selected: Boolean,
+    enabled: Boolean,
+    selectedTint: Color = Color.Unspecified,
+    onClick: () -> Unit
+) {
     IconButton(enabled = enabled, onClick = onClick) {
-        Icon(painterResource(favoriteIcon(selected)), stringResource(favoriteLabel(selected)))
+        Icon(
+            painterResource(favoriteIcon(selected)), stringResource(favoriteLabel(selected)),
+            tint = if (selected && enabled && selectedTint != Color.Unspecified) selectedTint
+            else androidx.compose.material3.LocalContentColor.current
+        )
     }
 }
 

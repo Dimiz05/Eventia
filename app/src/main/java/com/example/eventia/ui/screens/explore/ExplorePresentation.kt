@@ -27,7 +27,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -58,6 +57,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -102,33 +102,22 @@ internal fun exploreColors() = if (isSystemInDarkTheme()) ExploreDarkColors else
 
 @Composable
 internal fun ExploreHeader() {
-    val colors = MaterialTheme.colorScheme
-    Column(Modifier.fillMaxWidth()) {
-        Row(
-            Modifier.fillMaxWidth().heightIn(min = 64.dp).padding(horizontal = 16.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Box(
-                Modifier.size(36.dp).background(colors.primary, RoundedCornerShape(12.dp)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(painterResource(R.drawable.ic_catalog_ticket), null, Modifier.size(20.dp), tint = colors.onPrimary)
-            }
-            Text(stringResource(R.string.app_name), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-            ExploreBadge(stringResource(R.string.tab_explore), containerColor = colors.primaryContainer)
-        }
-        HorizontalDivider(color = colors.primaryContainer)
-    }
+    Text(
+        stringResource(R.string.tab_explore),
+        Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp)
+            .semantics { heading() },
+        style = MaterialTheme.typography.headlineMedium,
+        fontWeight = FontWeight.Bold,
+        color = MaterialTheme.colorScheme.onSurface
+    )
 }
 
 @Composable
 internal fun ExploreSections(showVenues: Boolean, onSelect: (Boolean) -> Unit) {
     val colors = MaterialTheme.colorScheme
     Row(
-        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp)
-            .background(colors.primaryContainer, CircleShape).padding(4.dp).selectableGroup(),
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 5.dp)
+            .background(colors.primaryContainer, CircleShape).padding(2.dp).selectableGroup()
     ) {
         listOf(false, true).forEach { venues ->
             val selected = showVenues == venues
@@ -144,20 +133,36 @@ internal fun ExploreSections(showVenues: Boolean, onSelect: (Boolean) -> Unit) {
                 val icon = if (venues) R.drawable.ic_catalog_buildings else R.drawable.ic_catalog_ticket
                 val label = if (venues) R.string.venues_title else R.string.events_title
                 Icon(painterResource(icon), null, Modifier.size(18.dp), tint = contentColor)
-                Text(stringResource(label), color = contentColor, style = MaterialTheme.typography.labelLarge)
+                Text(
+                    stringResource(label),
+                    color = contentColor,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
             }
         }
     }
 }
 
 @Composable
-internal fun ExploreSearch(query: String, onQueryChange: (String) -> Unit, label: String) {
+internal fun ExploreSearch(
+    query: String,
+    onQueryChange: (String) -> Unit,
+    label: String,
+    inlineHint: Boolean = false,
+    solidSurface: Boolean = false
+) {
     val colors = MaterialTheme.colorScheme
+    val container = if (solidSurface) colors.surface else colors.primaryContainer
     OutlinedTextField(
         value = query,
         onValueChange = onQueryChange,
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
-        label = { Text(label) },
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)
+            .then(if (inlineHint) Modifier.semantics { contentDescription = label } else Modifier),
+        label = if (inlineHint) null else { { Text(label) } },
+        placeholder = if (inlineHint) {
+            { Text(label, color = colors.onSurfaceVariant) }
+        } else null,
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         shape = CircleShape,
@@ -178,8 +183,8 @@ internal fun ExploreSearch(query: String, onQueryChange: (String) -> Unit, label
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = colors.primary,
             unfocusedBorderColor = colors.outlineVariant,
-            focusedContainerColor = colors.primaryContainer,
-            unfocusedContainerColor = colors.primaryContainer,
+            focusedContainerColor = container,
+            unfocusedContainerColor = container,
             cursorColor = colors.primary
         )
     )

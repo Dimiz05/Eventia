@@ -1,19 +1,23 @@
 package com.example.eventia.ui.screens.map
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.eventia.R
 import com.example.eventia.domain.model.Event
-import com.example.eventia.ui.components.DetailArtwork
+import com.example.eventia.ui.components.EventArtwork
 import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.components.rememberVenueDirections
 import com.example.eventia.ui.screens.explore.ExploreBadge
@@ -45,29 +49,43 @@ internal fun MapEventSheet(
     modifier: Modifier = Modifier
 ) {
     val colors = MaterialTheme.colorScheme
-    LazyColumn(
-        modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        item {
+    Column(modifier.fillMaxWidth()) {
+        Box(
+            Modifier.align(Alignment.CenterHorizontally).padding(top = 10.dp)
+                .width(32.dp).height(4.dp).background(colors.outlineVariant, RoundedCornerShape(50))
+        )
+        Row(
+            Modifier.fillMaxWidth().padding(start = 16.dp, end = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Row(
-                Modifier.fillMaxWidth(),
+                Modifier.weight(1f),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                Text(
+                    stringResource(R.string.map_shared_point),
+                    Modifier.weight(1f, fill = false),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
                 ExploreBadge(
-                    stringResource(if (events.size == 1) R.string.map_selected_event else R.string.map_shared_point),
+                    stringResource(R.string.venue_list_count, events.size),
                     containerColor = colors.primaryContainer,
                     contentColor = colors.onPrimaryContainer
                 )
-                IconButton(onClick = onDismiss) {
-                    Icon(painterResource(R.drawable.ic_catalog_close), stringResource(R.string.map_close_event))
-                }
+            }
+            IconButton(onClick = onDismiss) {
+                Icon(painterResource(R.drawable.ic_catalog_close), stringResource(R.string.map_close_event))
             }
         }
-        items(events, key = { it.id }) { event ->
-            MapEventSummary(event, onEventClick = { onEventClick(event.id) }, favoriteAction = favoriteAction)
+        LazyColumn(
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(events, key = { it.id }) { event ->
+                MapEventSummary(event, onEventClick = { onEventClick(event.id) }, favoriteAction = favoriteAction)
+            }
         }
     }
 }
@@ -84,7 +102,7 @@ private fun MapEventSummary(event: Event, onEventClick: () -> Unit, favoriteActi
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                DetailArtwork(event.imageUrl, R.drawable.ic_catalog_ticket, Modifier.size(80.dp).clip(RoundedCornerShape(12.dp)))
+                EventArtwork(event.imageUrl, Modifier.size(70.dp).clip(RoundedCornerShape(12.dp)))
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
                         event.title,
@@ -108,15 +126,12 @@ private fun MapEventSummary(event: Event, onEventClick: () -> Unit, favoriteActi
             }
         }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            FilledTonalButton(
+            OutlinedButton(
                 onClick = directions,
                 enabled = point != null,
                 modifier = Modifier.weight(1f).heightIn(min = 48.dp),
                 contentPadding = PaddingValues(horizontal = 8.dp),
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = colors.primaryContainer,
-                    contentColor = colors.onPrimaryContainer
-                )
+                border = BorderStroke(1.dp, if (point == null) colors.outlineVariant else colors.primary)
             ) { Text(stringResource(R.string.venue_directions)) }
             Button(
                 onClick = onEventClick,
