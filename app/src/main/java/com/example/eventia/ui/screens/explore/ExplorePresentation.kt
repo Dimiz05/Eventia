@@ -53,6 +53,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -99,6 +100,17 @@ private val ExploreDarkColors = darkColorScheme(
 
 @Composable
 internal fun exploreColors() = if (isSystemInDarkTheme()) ExploreDarkColors else ExploreLightColors
+
+@Composable
+internal fun Modifier.panoramicCaptionScrim(): Modifier {
+    val fade = 12.dp
+    return background(
+        Brush.verticalGradient(
+            colors = listOf(Color.Transparent, MaterialTheme.colorScheme.scrim.copy(alpha = 0.55f)),
+            endY = with(LocalDensity.current) { fade.toPx() }
+        )
+    ).padding(top = fade)
+}
 
 @Composable
 internal fun ExploreHeader() {
@@ -182,7 +194,7 @@ internal fun ExploreSearch(
         } else null,
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = colors.primary,
-            unfocusedBorderColor = colors.outlineVariant,
+            unfocusedBorderColor = colors.outline,
             focusedContainerColor = container,
             unfocusedContainerColor = container,
             cursorColor = colors.primary

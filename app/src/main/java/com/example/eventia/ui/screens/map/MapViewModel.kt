@@ -59,6 +59,12 @@ class MapViewModel @Inject constructor(
     private var events = emptyList<Event>()
     private val _state = MutableStateFlow(checkAvailability())
     val state = _state.asStateFlow()
+    private val _userLocation = MutableStateFlow<MapUserLocation?>(null)
+    internal val userLocation = _userLocation.asStateFlow()
+
+    internal fun updateUserLocation(location: MapUserLocation?) {
+        _userLocation.value = location
+    }
 
     init {
         if (state.value is MapUiState.Ready) loadEvents()

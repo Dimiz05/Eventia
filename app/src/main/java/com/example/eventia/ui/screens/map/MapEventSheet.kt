@@ -24,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,6 +47,7 @@ internal fun MapEventSheet(
     onDismiss: () -> Unit,
     onEventClick: (Long) -> Unit,
     favoriteAction: (@Composable (Event) -> Unit)?,
+    userLocation: MapUserLocation?,
     modifier: Modifier = Modifier
 ) {
     val colors = MaterialTheme.colorScheme
@@ -84,16 +86,31 @@ internal fun MapEventSheet(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(events, key = { it.id }) { event ->
-                MapEventSummary(event, onEventClick = { onEventClick(event.id) }, favoriteAction = favoriteAction)
+                MapEventSummary(event, userLocation, onEventClick = { onEventClick(event.id) }, favoriteAction = favoriteAction)
             }
         }
     }
 }
 
 @Composable
-private fun MapEventSummary(event: Event, onEventClick: () -> Unit, favoriteAction: (@Composable (Event) -> Unit)?) {
+private fun MapEventSummary(
+    event: Event,
+    userLocation: MapUserLocation?,
+    onEventClick: () -> Unit,
+    favoriteAction: (@Composable (Event) -> Unit)?
+) {
     val colors = MaterialTheme.colorScheme
     val point = MapPoint.from(event.venue.latitude, event.venue.longitude)
+    val distance = remember(userLocation, point) {
+        if (userLocation != null && point != null) formatMapDistance(userLocation.distanceTo(point)) else null
+    }
+    val venueLabel = if (distance != null && userLocation != null) {
+        stringResource(
+            if (userLocation.precise) R.string.map_venue_distance else R.string.map_venue_distance_estimated,
+            event.venue.name,
+            distance
+        )
+    } else event.venue.name
     val directions = rememberVenueDirections(event.venue, point)
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Surface(shape = RoundedCornerShape(16.dp), color = colors.surfaceContainer) {
@@ -112,7 +129,7 @@ private fun MapEventSummary(event: Event, onEventClick: () -> Unit, favoriteActi
                         overflow = TextOverflow.Ellipsis
                     )
                     MapEventLine(R.drawable.ic_catalog_clock, eventLocalDateTime(event))
-                    MapEventLine(R.drawable.ic_catalog_pin, event.venue.name)
+                    MapEventLine(R.drawable.ic_catalog_pin, venueLabel)
                     ExploreBadge(
                         label = if (event.availableSpots <= 0) stringResource(R.string.catalog_sold_out)
                         else pluralStringResource(

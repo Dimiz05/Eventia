@@ -47,12 +47,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.IntSize
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
@@ -69,6 +72,7 @@ import com.example.eventia.ui.theme.EventiaTheme
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
@@ -91,6 +95,7 @@ fun MapScreen(
     favoriteAction: (@Composable (Event) -> Unit)? = null
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val userLocation by viewModel.userLocation.collectAsStateWithLifecycle()
     MaterialTheme(colorScheme = exploreColors()) {
         Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
             when (val current = state) {
@@ -107,7 +112,9 @@ fun MapScreen(
                             viewModel.selectPoint(null)
                             onEventClick(id)
                         },
-                        favoriteAction = favoriteAction
+                        favoriteAction = favoriteAction,
+                        userLocation = userLocation,
+                        onUserLocationChanged = viewModel::updateUserLocation
                     )
                 }
             }
@@ -123,7 +130,9 @@ private fun MapContent(
     onRetryMap: () -> Unit,
     onRetryEvents: () -> Unit,
     onEventClick: (Long) -> Unit,
-    favoriteAction: (@Composable (Event) -> Unit)?
+    favoriteAction: (@Composable (Event) -> Unit)?,
+    userLocation: MapUserLocation? = null,
+    onUserLocationChanged: (MapUserLocation?) -> Unit = {}
 ) {
     val colors = MaterialTheme.colorScheme
     var query by rememberSaveable { mutableStateOf("") }
@@ -153,23 +162,39 @@ private fun MapContent(
     }
     BackHandler(enabled = hasSelection) { onPointSelected(null) }
 
-    val (locationEnabled, centerOnLocation) = if (preview) false to {} else rememberMapLocation { point ->
-        if (loaded && !timedOut && !preview) {
-            camera.move(CameraUpdateFactory.newLatLngZoom(point.toLatLng(), maxOf(camera.position.zoom, 15f)))
+    val (precision, centerOnLocation) = if (preview) null to {} else rememberMapLocation(
+        onAccessChanged = { access ->
+            if (userLocation != null && userLocation.precise != access) onUserLocationChanged(null)
+        },
+        onPosition = { location ->
+            onUserLocationChanged(location)
+            if (loaded && !timedOut) {
+                val zoom = maxOf(camera.position.zoom, 15f)
+                camera.move(CameraUpdateFactory.newLatLngZoom(location.point.toLatLng(), zoom))
+            }
         }
-    }
-    LaunchedEffect(state.selectedPoint, loaded) {
-        val point = state.selectedPoint
-        if (point != null && loaded && !preview) {
-            val zoom = maxOf(camera.position.zoom, SelectedMarkerZoom)
-            camera.move(CameraUpdateFactory.newLatLngZoom(point.toLatLng(), zoom))
-        }
+    )
+    val accessibleLocation = userLocation?.takeIf { it.precise == precision }
+    var mapSize by remember { mutableStateOf(IntSize.Zero) }
+    var toolbarHeight by remember { mutableStateOf(0) }
+    val density = LocalDensity.current
+    val margin = with(density) { 20.dp.roundToPx() }
+    val mapTop = toolbarHeight.coerceAtMost(mapSize.height / 2)
+    val mapPadding = PaddingValues(top = with(density) { mapTop.toDp() })
+    val projection = camera.projection
+    val cameraMoving = camera.isMoving
+    val outsideResults = remember(camera.position, cameraMoving, projection, markers, mapSize, mapTop) {
+        !cameraMoving && markers.isNotEmpty() && mapSize.height > mapTop && projection != null &&
+            markers.keys.none { point ->
+                val pixel = projection.toScreenLocation(point.toLatLng())
+                pixel.x in 0 until mapSize.width && pixel.y in mapTop until mapSize.height
+            }
     }
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val panelMaxHeight = maxHeight * 0.52f
         Column(Modifier.fillMaxSize()) {
-            Box(Modifier.fillMaxWidth().weight(1f)) {
+            Box(Modifier.fillMaxWidth().weight(1f).onSizeChanged { mapSize = it }) {
                 when {
                     waitsForEvents -> LoadingScreen(stringResource(R.string.catalog_loading))
                     eventLoadFailed -> MapMessage(R.string.catalog_error, onRetryEvents)
@@ -183,11 +208,14 @@ private fun MapContent(
                                 selectedPoint = state.selectedPoint,
                                 camera = camera,
                                 satellite = satellite,
-                                locationEnabled = locationEnabled,
+                                locationEnabled = accessibleLocation != null,
+                                contentPadding = mapPadding,
                                 onLoaded = { loaded = true },
                                 onPointSelected = { point ->
                                     focus.clearFocus()
                                     onPointSelected(point)
+                                    val zoom = maxOf(camera.position.zoom, SelectedMarkerZoom)
+                                    camera.move(CameraUpdateFactory.newLatLngZoom(point.toLatLng(), zoom))
                                 },
                                 onMapClick = {
                                     focus.clearFocus()
@@ -203,7 +231,7 @@ private fun MapContent(
                     }
                 }
                 if (loaded && !timedOut && showMap) {
-                    Column(Modifier.align(Alignment.TopCenter).padding(top = 8.dp)) {
+                    Column(Modifier.align(Alignment.TopCenter).onSizeChanged { toolbarHeight = it.height }.padding(top = 8.dp)) {
                         ExploreSearch(query, onQueryChange = { value ->
                             query = value
                             onPointSelected(null)
@@ -243,6 +271,29 @@ private fun MapContent(
                             }
                         }
                     }
+                    if (outsideResults) {
+                        Surface(
+                            modifier = Modifier.align(Alignment.BottomStart).padding(start = 16.dp, end = 88.dp, bottom = 16.dp),
+                            shape = RoundedCornerShape(16.dp),
+                            shadowElevation = 4.dp
+                        ) {
+                            Column(Modifier.padding(horizontal = 12.dp, vertical = 4.dp)) {
+                                Text(stringResource(R.string.map_no_events_in_area), style = MaterialTheme.typography.bodyMedium)
+                                TextButton(onClick = {
+                                    focus.clearFocus()
+                                    val points = markers.keys.map { it.toLatLng() }
+                                    val update = if (points.size == 1) {
+                                        CameraUpdateFactory.newLatLngZoom(points.single(), 15f)
+                                    } else {
+                                        val bounds = LatLngBounds.builder().apply { points.forEach { include(it) } }.build()
+                                        val padding = minOf(margin, (minOf(mapSize.width, mapSize.height - mapTop) - 1) / 4)
+                                        CameraUpdateFactory.newLatLngBounds(bounds, padding)
+                                    }
+                                    camera.move(update)
+                                }) { Text(stringResource(R.string.map_frame_events)) }
+                            }
+                        }
+                    }
                     MapControls(
                         satellite = satellite,
                         onToggleLayer = { satellite = !satellite },
@@ -264,6 +315,7 @@ private fun MapContent(
                             onDismiss = { onPointSelected(null) },
                             onEventClick = onEventClick,
                             favoriteAction = favoriteAction,
+                            userLocation = accessibleLocation,
                             modifier = Modifier.heightIn(max = panelMaxHeight)
                         )
                     }
@@ -325,6 +377,7 @@ private fun EventMap(
     camera: CameraPositionState,
     satellite: Boolean,
     locationEnabled: Boolean,
+    contentPadding: PaddingValues,
     onLoaded: () -> Unit,
     onPointSelected: (MapPoint) -> Unit,
     onMapClick: () -> Unit
@@ -333,6 +386,7 @@ private fun EventMap(
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = camera,
+        contentPadding = contentPadding,
         properties = MapProperties(
             mapType = if (satellite) MapType.SATELLITE else MapType.NORMAL,
             isMyLocationEnabled = locationEnabled
