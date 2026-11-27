@@ -1,9 +1,11 @@
 package com.example.eventia
 
+import androidx.lifecycle.Lifecycle
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ActivityScenario
@@ -20,21 +22,26 @@ class LaunchSplashTest {
     @Test
     fun launchShowsBrandBeforeOpeningTheSignInForm() {
         compose.mainClock.autoAdvance = false
-        ActivityScenario.launch(MainActivity::class.java).use {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             compose.mainClock.advanceTimeBy(500)
-            compose.onNodeWithText("Eventia").assertIsDisplayed()
+            compose.onNodeWithText("Bienvenido a").assertIsDisplayed()
+            compose.onNodeWithContentDescription("Eventia").assertIsDisplayed()
+            compose.onNodeWithText("Descubre eventos cerca de ti").assertIsDisplayed()
             compose.onAllNodesWithText("Iniciar sesión").assertCountEquals(0)
             compose.onAllNodesWithText("Cargando sesión…").assertCountEquals(0)
 
             compose.mainClock.advanceTimeBy(1_000)
-            compose.onNodeWithTag("launchSplash").assertIsDisplayed()
-
-            compose.mainClock.advanceTimeBy(1_000)
-            compose.onNodeWithTag("launchSplash").assertDoesNotExist()
             compose.mainClock.autoAdvance = true
             compose.waitUntil(timeoutMillis = 5_000) {
                 compose.onAllNodesWithText("Iniciar sesión").fetchSemanticsNodes().isNotEmpty()
             }
+            compose.onNodeWithTag("launchSplash").assertDoesNotExist()
+
+            scenario.recreate()
+            scenario.moveToState(Lifecycle.State.CREATED)
+            scenario.moveToState(Lifecycle.State.RESUMED)
+            compose.onNodeWithTag("launchSplash").assertDoesNotExist()
+            compose.onNodeWithContentDescription("Correo electrónico").assertIsDisplayed()
         }
     }
 }

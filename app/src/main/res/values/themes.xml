@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.Eventia" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/eventia_splash_background</item>
         <item name="android:windowSplashScreenBackground">@color/eventia_splash_background</item>
         <item name="android:windowSplashScreenAnimatedIcon">@android:color/transparent</item>
     </style>
