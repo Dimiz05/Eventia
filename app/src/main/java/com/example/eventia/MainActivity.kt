@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameNanos
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.data.connectivity.AndroidCatalogConnectivity
@@ -26,8 +27,9 @@ import com.example.eventia.ui.theme.EventiaTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 
-private const val SplashDurationMillis = 2_000L
+private const val SplashDurationMillis = 1_000L
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -41,21 +43,26 @@ class MainActivity : ComponentActivity() {
                 Surface {
                     val session: SessionViewModel = hiltViewModel()
                     val navigationState = rememberSaveableStateHolder()
-                    var splashDeadline by rememberSaveable {
-                        mutableStateOf<Long?>(SystemClock.elapsedRealtime() + SplashDurationMillis)
-                    }
-                    LaunchedEffect(Unit) {
-                        splashDeadline?.let { deadline ->
-                            delay((deadline - SystemClock.elapsedRealtime()).coerceIn(0L, SplashDurationMillis))
-                            splashDeadline = null
-                        }
-                    }
-                    if (splashDeadline != null) {
+                    val state = session.state.collectAsStateWithLifecycle().value
+                    var splashDeadline by rememberSaveable { mutableStateOf(0L) }
+                    var splashFinished by rememberSaveable { mutableStateOf(false) }
+                    if (!splashFinished) {
                         LaunchSplash()
+                        LaunchedEffect(session) {
+                            if (splashDeadline == 0L) {
+                                withFrameNanos { }
+                                splashDeadline = SystemClock.elapsedRealtime() + SplashDurationMillis
+                            }
+                            delay((splashDeadline - SystemClock.elapsedRealtime()).coerceAtLeast(0L))
+                            session.state.first { startup ->
+                                startup != SessionUiState.Starting &&
+                                    !(startup is SessionUiState.Active && startup.loading)
+                            }
+                            splashFinished = true
+                        }
                         return@Surface
                     }
 
-                    val state = session.state.collectAsStateWithLifecycle().value
                     val returnEventId = session.returnEventId
                     when (state) {
                         SessionUiState.Starting -> SessionStartup(false, session::retryStartup)
