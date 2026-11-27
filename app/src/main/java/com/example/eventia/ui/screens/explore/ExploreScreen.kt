@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -19,16 +20,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -41,7 +41,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,7 +57,9 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.ui.components.CachedDataNotice
-import com.example.eventia.ui.components.FavoriteButton
+import com.example.eventia.ui.components.EventArtwork
+import com.example.eventia.ui.components.favoriteIcon
+import com.example.eventia.ui.components.favoriteLabel
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.cachedCatalogNotice
 import com.example.eventia.ui.components.eventLocalDateTime
@@ -93,11 +100,8 @@ internal fun ExploreScreen(
                             onFavoritesClick = onFavoritesClick,
                             favoriteAction = { event ->
                                 val selected = event.id in favorites.ids
-                                val colors = MaterialTheme.colorScheme
-                                CompositionLocalProvider(LocalContentColor provides if (selected) colors.tertiary else colors.onSurfaceVariant) {
-                                    FavoriteButton(selected, favorites.canChange(event.id)) {
-                                        onFavoriteChange(event, !selected)
-                                    }
+                                ExploreFavoriteButton(selected, favorites.canChange(event.id)) {
+                                    onFavoriteChange(event, !selected)
                                 }
                             }
                         )
@@ -249,14 +253,25 @@ internal fun ExploreContent(
             }
             !events.isNullOrEmpty() -> key(filters) {
                 val listState = rememberLazyListState()
-                LazyColumn(
-                    modifier = Modifier.weight(1f),
-                    state = listState,
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(events, key = { it.id }) { event ->
-                        ExploreEventCard(event, onEventClick, favoriteAction)
+                BoxWithConstraints(Modifier.weight(1f).fillMaxWidth().background(Color(0xFFFBF6EE))) {
+                    val spacing = 12.dp
+                    val density = LocalDensity.current
+                    val minimumHeight = with(density) { 72.dp + 42.sp.toDp() }
+                    val pairHeight = with(density) {
+                        // Round the padding and gap separately, as LazyColumn does.
+                        ((constraints.maxHeight - 3 * spacing.roundToPx()) / 2).toDp()
+                    }
+                    val cardHeight = pairHeight.coerceAtLeast(minimumHeight)
+                    val multiline = cardHeight >= with(density) { 72.dp + 84.sp.toDp() }
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        state = listState,
+                        contentPadding = PaddingValues(spacing),
+                        verticalArrangement = Arrangement.spacedBy(spacing)
+                    ) {
+                        items(events, key = { it.id }) { event ->
+                            ExploreEventCard(event, onEventClick, favoriteAction, cardHeight, multiline)
+                        }
                     }
                 }
             }
@@ -265,54 +280,101 @@ internal fun ExploreContent(
 }
 
 @Composable
-private fun ExploreEventCard(event: Event, onEventClick: (Long) -> Unit, favorite: (@Composable (Event) -> Unit)?) {
-    val colors = MaterialTheme.colorScheme
-    ExploreCard(
-        imageUrl = event.imageUrl,
-        fallback = R.drawable.ic_catalog_ticket,
+private fun ExploreEventCard(
+    event: Event,
+    onEventClick: (Long) -> Unit,
+    favorite: (@Composable (Event) -> Unit)?,
+    height: Dp,
+    multiline: Boolean
+) {
+    Surface(
         onClick = { onEventClick(event.id) },
-        cover = {
-            ExploreBadge(
-                event.category.name,
-                Modifier.align(Alignment.TopStart).padding(start = 12.dp, top = 12.dp, end = 64.dp),
-                icon = R.drawable.ic_catalog_ticket
-            )
-            if (favorite != null) {
-                Surface(
-                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
-                    shape = RoundedCornerShape(50),
-                    color = colors.surface
-                ) { favorite(event) }
-            }
-        }
+        modifier = Modifier.fillMaxWidth().height(height),
+        shape = RoundedCornerShape(18.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerHighest,
+        shadowElevation = 2.dp
     ) {
-        FlowRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            Row(
-                Modifier.align(Alignment.CenterVertically),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                Icon(painterResource(R.drawable.ic_event_calendar), null, Modifier.size(16.dp), tint = colors.primary)
-                Text(eventLocalDateTime(event), style = MaterialTheme.typography.labelLarge, color = colors.primary)
-            }
-            val spots = event.availableSpots
-            val soldOut = spots <= 0
-            ExploreBadge(
-                label = if (soldOut) stringResource(R.string.catalog_sold_out)
-                else pluralStringResource(R.plurals.catalog_spots_available, spots, spots),
-                containerColor = if (soldOut) colors.errorContainer else colors.primaryContainer,
-                contentColor = if (soldOut) colors.onErrorContainer else colors.onPrimaryContainer
+        Box(Modifier.fillMaxSize()) {
+            EventArtwork(event.imageUrl, Modifier.matchParentSize())
+            Box(
+                Modifier.matchParentSize().background(
+                    Brush.verticalGradient(
+                        0f to Color.Black.copy(alpha = 0.76f),
+                        0.42f to Color.Transparent,
+                        0.52f to Color.Transparent,
+                        1f to Color.Black.copy(alpha = 0.9f)
+                    )
+                )
             )
+            Row(
+                Modifier.align(Alignment.TopCenter).fillMaxWidth().padding(start = 16.dp, end = 6.dp, top = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    eventLocalDateTime(event),
+                    modifier = Modifier.weight(1f).padding(end = 8.dp),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                favorite?.invoke(event)
+            }
+            BoxWithConstraints(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(16.dp)) {
+                val categoryMaxWidth = maxWidth * 0.38f
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            event.title,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            maxLines = if (multiline) 2 else 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Text(
+                            event.venue.name,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Color.White,
+                            maxLines = if (multiline) 2 else 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                    Surface(
+                        modifier = Modifier.widthIn(max = categoryMaxWidth),
+                        shape = RoundedCornerShape(50),
+                        color = Color(0xFFC4DAB3),
+                        contentColor = Color(0xFF0B342B)
+                    ) {
+                        Text(
+                            event.category.name,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.SemiBold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
+            }
         }
-        Text(event.title, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        val venue = event.venue
-        val location = if (venue.address.isBlank()) venue.name
-        else stringResource(R.string.catalog_event_venue, venue.name, venue.address)
-        if (location.isNotBlank()) ExploreMetadata(R.drawable.ic_catalog_pin, location)
+    }
+}
+
+@Composable
+private fun ExploreFavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
+    val tint = if (selected) Color(0xFFFF765F) else Color.White
+    IconButton(onClick = onClick, enabled = enabled, modifier = Modifier.size(48.dp)) {
+        Icon(
+            painterResource(favoriteIcon(selected)),
+            stringResource(favoriteLabel(selected)),
+            Modifier.size(28.dp),
+            tint = tint.copy(alpha = if (enabled) 1f else 0.5f)
+        )
     }
 }
 
@@ -397,7 +459,7 @@ private fun ExploreStatePreview(state: ExploreUiState) {
         ExploreContent(
             state, {}, {}, {}, {}, {},
             sections = { ExploreSections(showVenues = false, onSelect = {}) },
-            favoriteAction = { FavoriteButton(it.id == 1L, true) {} }
+            favoriteAction = { ExploreFavoriteButton(it.id == 2L, true) {} }
         )
     }
 }
