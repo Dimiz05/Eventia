@@ -46,19 +46,23 @@ class MainActivity : ComponentActivity() {
                     val state = session.state.collectAsStateWithLifecycle().value
                     var splashDeadline by rememberSaveable { mutableStateOf(0L) }
                     var splashFinished by rememberSaveable { mutableStateOf(false) }
-                    if (!splashFinished) {
-                        LaunchSplash()
+                    var startupFinished by rememberSaveable { mutableStateOf(false) }
+                    if (!startupFinished) {
+                        if (splashFinished) SessionStartup(false, session::retryStartup) else LaunchSplash()
                         LaunchedEffect(session) {
-                            if (splashDeadline == 0L) {
-                                withFrameNanos { }
-                                splashDeadline = SystemClock.elapsedRealtime() + SplashDurationMillis
+                            if (!splashFinished) {
+                                if (splashDeadline == 0L) {
+                                    withFrameNanos { }
+                                    splashDeadline = SystemClock.elapsedRealtime() + SplashDurationMillis
+                                }
+                                delay((splashDeadline - SystemClock.elapsedRealtime()).coerceAtLeast(0L))
+                                splashFinished = true
                             }
-                            delay((splashDeadline - SystemClock.elapsedRealtime()).coerceAtLeast(0L))
                             session.state.first { startup ->
                                 startup != SessionUiState.Starting &&
                                     !(startup is SessionUiState.Active && startup.loading)
                             }
-                            splashFinished = true
+                            startupFinished = true
                         }
                         return@Surface
                     }

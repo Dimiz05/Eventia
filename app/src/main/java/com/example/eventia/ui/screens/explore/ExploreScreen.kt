@@ -42,7 +42,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -65,6 +64,7 @@ import com.example.eventia.domain.model.Event
 import com.example.eventia.ui.components.CachedDataNotice
 import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.components.EventArtwork
+import com.example.eventia.ui.components.loadingSemantics
 import com.example.eventia.ui.components.favoriteIcon
 import com.example.eventia.ui.components.favoriteLabel
 import com.example.eventia.ui.components.ScreenMessage
@@ -130,28 +130,28 @@ private fun CategoryTile(
     onClick: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    val tint = when {
-        !enabled -> colors.onSurfaceVariant.copy(alpha = 0.62f)
-        selected -> colors.primary
-        else -> colors.onSurfaceVariant
-    }
-    val shape = RoundedCornerShape(13.dp)
+    val labelColor = if (enabled) colors.onSurface else colors.onSurfaceVariant.copy(alpha = 0.62f)
+    val iconBackground = if (enabled) colors.onPrimaryContainer else colors.onSurfaceVariant
     Surface(
-        shape = shape,
-        color = if (selected) colors.primaryContainer else colors.surface,
-        border = BorderStroke(if (selected) 1.5.dp else 1.dp,
-            if (selected) colors.primary else colors.outlineVariant)
+        shape = CircleShape,
+        color = if (selected) colors.surfaceContainerHigh else colors.surface,
+        border = if (selected) BorderStroke(1.dp, colors.outline) else null,
+        shadowElevation = 2.dp
     ) {
         Row(
-            Modifier.clip(shape)
-                .selectable(selected, enabled = enabled,
-                    role = if (opensMenu) Role.Button else Role.RadioButton, onClick = onClick)
-                .heightIn(min = 48.dp).padding(horizontal = 8.dp, vertical = 4.dp),
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
+            Modifier.selectable(selected, enabled = enabled,
+                role = if (opensMenu) Role.Button else Role.RadioButton, onClick = onClick)
+                .heightIn(min = 48.dp).padding(start = 6.dp, end = 7.dp, top = 4.dp, bottom = 4.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(painterResource(icon), null, Modifier.size(17.dp), tint = tint)
-            Text(label, color = tint, style = MaterialTheme.typography.labelMedium)
+            Box(
+                Modifier.size(28.dp).background(iconBackground, CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(painterResource(icon), null, Modifier.size(16.dp), tint = colors.onPrimary)
+            }
+            Text(label, color = labelColor, style = MaterialTheme.typography.labelMedium, maxLines = 1)
         }
     }
 }
@@ -259,7 +259,7 @@ internal fun ExploreContent(
                 Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
             )
         }
-        if (state.isLoading) {
+        if (state.isLoading && !events.isNullOrEmpty()) {
             val loadingLabel = stringResource(R.string.catalog_loading)
             LinearProgressIndicator(
                 Modifier.fillMaxWidth().padding(horizontal = 16.dp)
@@ -459,7 +459,7 @@ private fun CatalogSkeleton(modifier: Modifier = Modifier) {
     val tint = MaterialTheme.colorScheme.surfaceContainerHighest
     val shape = RoundedCornerShape(8.dp)
     LazyColumn(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().loadingSemantics(stringResource(R.string.catalog_loading)),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {

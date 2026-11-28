@@ -1,5 +1,9 @@
 package com.example.eventia.ui.navigation
 
+import androidx.activity.compose.LocalActivity
+import androidx.core.view.WindowCompat
+import androidx.compose.runtime.DisposableEffect
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -128,6 +132,18 @@ fun EventiaNavigation(
     val route = entry?.destination?.route
     val selectedTab = Tab.entries.firstOrNull { it.route == route } ?: Tab.Explore
     val detail = DetailDestination.entries.firstOrNull { it.pattern == route }
+    val isProfile = route == Tab.Profile.route
+    val window = LocalActivity.current?.window
+    DisposableEffect(window, isProfile) {
+        if (window != null && isProfile) {
+            val controller = WindowCompat.getInsetsController(window, window.decorView)
+            val previous = controller.isAppearanceLightStatusBars
+            controller.isAppearanceLightStatusBars = false
+            onDispose { controller.isAppearanceLightStatusBars = previous }
+        } else {
+            onDispose { }
+        }
+    }
     val openTab: (Tab) -> Unit = { tab ->
         if (route != tab.route) {
             controller.navigate(tab.route) {
@@ -160,7 +176,7 @@ fun EventiaNavigation(
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
-        contentWindowInsets = if (detail != null) {
+        contentWindowInsets = if (detail != null || isProfile) {
             ScaffoldDefaults.contentWindowInsets.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
         } else {
             ScaffoldDefaults.contentWindowInsets
@@ -193,7 +209,7 @@ fun EventiaNavigation(
                 })
             }
             composable(Tab.Profile.route) {
-                ProfileRoute(session, onRetryAccount, onSignIn, onSignOut, openEvent, onProfileSessionExpired, avatar)
+                ProfileRoute(session, onRetryAccount, onSignIn, onSignOut, openEvent, onProfileSessionExpired)
             }
             composable(Tab.Favorites.route) {
                 FavoritesScreen(

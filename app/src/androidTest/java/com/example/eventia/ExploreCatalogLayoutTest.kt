@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
@@ -70,12 +71,21 @@ class ExploreCatalogLayoutTest {
 
     @Test
     fun quickFiltersAndExtraCategoriesUseRealIdentifiers() {
-        showCatalog(height = 600, fontScale = 1f)
-        compose.onNodeWithText("Todos").assertIsSelected()
+        showCatalog(height = 600, fontScale = 1f, width = 320)
+        val filterRow = compose.onNode(
+            hasScrollToIndexAction() and SemanticsMatcher.keyIsDefined(SemanticsProperties.HorizontalScrollAxisRange)
+        )
+        compose.onNodeWithText("Todos").assertIsSelected().assertHeightIsAtLeast(48.dp)
         compose.onNodeWithText(music.name).performClick().assertIsSelected()
-        compose.onNodeWithText("Filtros").performClick()
+        filterRow.performScrollToIndex(2)
+        val foodChip = compose.onNodeWithText(food.name).assertIsDisplayed()
+        assertTrue(foodChip.getUnclippedBoundsInRoot().right <= 320.dp)
+        foodChip.performClick().assertIsSelected()
+        filterRow.performScrollToIndex(3)
+        compose.onNodeWithText("Filtros").assertIsDisplayed().performClick()
         compose.onNodeWithText(art.name).performClick()
         compose.onNodeWithText("Filtros · Arte").assertIsSelected()
+        filterRow.performScrollToIndex(0)
         compose.onNodeWithText("Todos").performClick().assertIsSelected()
     }
 
@@ -88,14 +98,13 @@ class ExploreCatalogLayoutTest {
         compose.onNodeWithText("Evento 4").assertIsDisplayed()
     }
 
-    private fun showCatalog(height: Int, fontScale: Float) {
+    private fun showCatalog(height: Int, fontScale: Float, width: Int = if (fontScale > 1f) 320 else 380) {
         compose.setContent {
             val density = LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density, fontScale)) {
                 EventiaTheme {
                     var category by remember { mutableStateOf<Long?>(null) }
-                    val width = if (fontScale > 1f) 320.dp else 380.dp
-                    Box(Modifier.size(width = width, height = height.dp)) {
+                    Box(Modifier.size(width = width.dp, height = height.dp)) {
                         ExploreContent(
                             state = ExploreUiState(
                                 filters = ExploreFilters(categoryId = category),

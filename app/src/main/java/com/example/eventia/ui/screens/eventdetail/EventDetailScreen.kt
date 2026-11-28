@@ -18,14 +18,28 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.PathOperation
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +56,7 @@ import com.example.eventia.domain.model.hasStarted
 import com.example.eventia.ui.components.DetailLocationMap
 import com.example.eventia.ui.components.DetailTopBar
 import com.example.eventia.ui.components.DetailArtwork
-import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.DetailSkeleton
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.components.EventDisplayLocale
@@ -127,7 +141,7 @@ internal fun EventDetailScreen(
 }
 
 @Composable
-private fun EventDetailContent(
+internal fun EventDetailContent(
     state: EventDetailUiState,
     onRetry: () -> Unit,
     onBack: () -> Unit,
@@ -144,11 +158,11 @@ private fun EventDetailContent(
     MaterialTheme(colorScheme = exploreColors()) {
         Scaffold(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
-            topBar = { DetailTopBar(stringResource(R.string.detail_event), onBack) }
+            topBar = { DetailTopBar(onBack) }
         ) { padding ->
             Box(Modifier.fillMaxSize().padding(padding)) {
                 when (state) {
-                    EventDetailUiState.Loading -> LoadingScreen(stringResource(R.string.event_detail_loading))
+                    EventDetailUiState.Loading -> DetailSkeleton(stringResource(R.string.event_detail_loading), EventCoverHeight)
                     EventDetailUiState.Empty -> ScreenMessage(
                         title = stringResource(R.string.event_detail_empty),
                         actionLabel = stringResource(R.string.navigate_back),
@@ -360,9 +374,27 @@ private fun EventAttendanceBar(
     onRefresh: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    Surface(color = EventSurface) {
-        Column(Modifier.fillMaxWidth()) {
-            HorizontalDivider(color = Sage.copy(alpha = 0.18f))
+    val radius = 14.dp
+    val panelBorder = colors.outlineVariant
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = EventSurface,
+        shape = RoundedCornerShape(topStart = radius, topEnd = radius)
+    ) {
+        Column(Modifier.fillMaxWidth().drawWithCache {
+            val corner = radius.toPx()
+            val stroke = 1.dp.toPx()
+            val inset = stroke / 2
+            val topEdge = Path().apply {
+                arcTo(Rect(inset, inset, inset + 2 * corner, inset + 2 * corner), 180f, 90f, true)
+                arcTo(Rect(size.width - inset - 2 * corner, inset, size.width - inset, inset + 2 * corner),
+                    270f, 90f, false)
+            }
+            onDrawWithContent {
+                drawContent()
+                drawPath(topEdge, panelBorder, style = Stroke(stroke))
+            }
+        }) {
             state.attendanceConfirmation?.let { attending ->
                 Text(
                     stringResource(if (attending) R.string.attendance_confirmed else R.string.attendance_canceled),
@@ -391,20 +423,7 @@ private fun EventAttendanceBar(
                             else -> R.string.event_attend
                         }))
                     }
-                    Column(Modifier.weight(1f)) {
-                        Text(
-                            stringResource(R.string.event_available_count, event.availableSpots),
-                            style = MaterialTheme.typography.titleSmall,
-                            fontWeight = FontWeight.Bold
-                        )
-                        if (event.capacity > 0) {
-                            Text(
-                                stringResource(R.string.event_total_capacity, event.capacity),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MutedInk
-                            )
-                        }
-                    }
+                    EventCapacityTicket(event, Modifier.weight(1f))
                 }
                 if (attendanceClosed) {
                     Text(stringResource(R.string.event_attendance_closed), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
@@ -422,6 +441,80 @@ private fun EventAttendanceBar(
                         TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EventCapacityTicket(event: Event, modifier: Modifier = Modifier) {
+    val colors = MaterialTheme.colorScheme
+    val type = MaterialTheme.typography
+    var footerHeight by remember { mutableIntStateOf(0) }
+    val hasCapacity = event.capacity > 0
+    val available = event.availableSpots.toString()
+    val label = stringResource(R.string.event_available_count, event.availableSpots)
+    val numberStart = label.indexOf(available)
+    val emphasis = SpanStyle(fontSize = type.headlineSmall.fontSize)
+    val availableText = buildAnnotatedString {
+        if (numberStart < 0) {
+            append(label)
+        } else {
+            append(label.substring(0, numberStart))
+            withStyle(emphasis) { append(available) }
+            append(label.substring(numberStart + available.length))
+        }
+    }
+
+    Column(
+        modifier.drawWithCache {
+            val stroke = 1.dp.toPx()
+            val inset = stroke / 2
+            val notch = 5.dp.toPx()
+            val seam = size.height - footerHeight
+            val outline = Path().apply {
+                addRoundRect(RoundRect(Rect(inset, inset, size.width - inset, size.height - inset),
+                    CornerRadius(10.dp.toPx())))
+            }
+            val perforated = hasCapacity && footerHeight > 0
+            val ticket = if (perforated) {
+                val cutouts = Path().apply {
+                    addOval(Rect(Offset(inset, seam), notch))
+                    addOval(Rect(Offset(size.width - inset, seam), notch))
+                }
+                Path.combine(PathOperation.Difference, outline, cutouts)
+            } else outline
+            val dashes = PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx()))
+            onDrawWithContent {
+                drawPath(ticket, colors.primaryContainer)
+                clipPath(ticket) {
+                    if (perforated) {
+                        drawLine(colors.outline, Offset(notch, seam), Offset(size.width - notch, seam),
+                            strokeWidth = stroke, pathEffect = dashes)
+                    }
+                    this@onDrawWithContent.drawContent()
+                }
+                drawPath(ticket, colors.outline, style = Stroke(stroke))
+            }
+        },
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            availableText,
+            Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+            style = type.labelLarge.copy(lineHeight = type.headlineSmall.lineHeight),
+            color = colors.onPrimaryContainer,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
+        if (hasCapacity) {
+            Box(Modifier.fillMaxWidth().onSizeChanged { footerHeight = it.height }, contentAlignment = Alignment.Center) {
+                Text(
+                    stringResource(R.string.event_total_capacity, event.capacity),
+                    Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                    style = type.bodySmall,
+                    color = colors.onPrimaryContainer,
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                )
             }
         }
     }
@@ -534,5 +627,14 @@ private fun EventDetailPreview() {
 private fun EventDetailErrorPreview() {
     EventiaTheme {
         EventDetailContent(EventDetailUiState.Error, onRetry = {}, onBack = {}, onVenueClick = {})
+    }
+}
+
+
+@Preview(showBackground = true, widthDp = 360, heightDp = 800)
+@Composable
+private fun EventLoadingPreview() {
+    EventiaTheme {
+        EventDetailContent(EventDetailUiState.Loading, onRetry = {}, onBack = {}, onVenueClick = {})
     }
 }

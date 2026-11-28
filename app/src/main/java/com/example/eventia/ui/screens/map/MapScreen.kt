@@ -62,7 +62,7 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
-import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.MapSkeleton
 import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.screens.explore.ExploreSearch
@@ -199,7 +199,7 @@ private fun MapContent(
         Column(Modifier.fillMaxSize()) {
             Box(Modifier.fillMaxWidth().weight(1f).onSizeChanged { mapSize = it }) {
                 when {
-                    waitsForEvents -> LoadingScreen(stringResource(R.string.catalog_loading))
+                    waitsForEvents -> MapSkeleton(stringResource(R.string.catalog_loading))
                     eventLoadFailed -> MapMessage(R.string.catalog_error, onRetryEvents)
                     timedOut -> MapMessage(R.string.map_load_error, onRetryMap)
                     else -> {
@@ -228,7 +228,7 @@ private fun MapContent(
                         }
                         if (!loaded) {
                             Surface(Modifier.fillMaxSize()) {
-                                LoadingScreen(stringResource(R.string.map_loading))
+                                MapSkeleton(stringResource(R.string.map_loading))
                             }
                         }
                     }
