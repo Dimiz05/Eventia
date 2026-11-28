@@ -7,10 +7,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.getUnclippedBoundsInRoot
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -25,6 +28,7 @@ import com.example.eventia.ui.screens.session.SessionUiState
 import com.example.eventia.ui.theme.EventiaTheme
 import java.time.OffsetDateTime
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,7 +38,7 @@ class ProfileAttendanceTicketTest {
     @get:Rule val compose = createComposeRule()
 
     @Test
-    fun twoTicketsFitAndManageOpensTheSelectedEvent() {
+    fun scrollingToTheLastTicketKeepsItsManageActionAccessible() {
         val first = event(1, "Festival al aire libre", "Parque Urbano Central")
         val second = event(
             2,
@@ -62,11 +66,45 @@ class ProfileAttendanceTicketTest {
 
         compose.onNodeWithText(first.title, useUnmergedTree = true).assertIsDisplayed()
         compose.onNodeWithText(second.title, useUnmergedTree = true).assertIsDisplayed()
-        compose.onNodeWithText(second.venue.name, useUnmergedTree = true).assertIsDisplayed()
         val actions = compose.onAllNodesWithText("Gestionar inscripción")
         actions[0].assertIsDisplayed().assertHeightIsAtLeast(48.dp)
-        actions[1].assertIsDisplayed().assertHeightIsAtLeast(48.dp).performClick()
+        actions[1].performScrollTo().assertIsDisplayed().assertHeightIsAtLeast(48.dp)
+        compose.onNodeWithText(second.venue.name, useUnmergedTree = true).assertIsDisplayed()
+        actions[1].performClick()
         compose.runOnIdle { assertEquals(second.id, openedEvent) }
+    }
+
+    @Test
+    fun longAccountDetailsStackSignOutAndAttendanceTabsStillSwitch() {
+        val email = "events.with.a.long.address@example.com"
+        val past = event(3, "Previous concert", "Town hall")
+        var signedOut = false
+        compose.setContent {
+            CompositionLocalProvider(LocalDensity provides Density(LocalDensity.current.density, fontScale = 1.5f)) {
+                EventiaTheme {
+                    Box(Modifier.size(width = 320.dp, height = 720.dp)) {
+                        ProfileScreen(
+                            session = SessionUiState.Active(Account(email, "Camila Rodríguez Fernández"), loading = false),
+                            state = ProfileUiState(AttendanceGroups(emptyList(), listOf(past)), loading = false),
+                            onRetryAccount = {},
+                            onSignIn = {},
+                            onSignOut = { signedOut = true },
+                            onRetryAttendances = {},
+                            onEventClick = {}
+                        )
+                    }
+                }
+            }
+        }
+
+        val emailText = compose.onNodeWithText(email).assertIsDisplayed()
+        val signOut = compose.onNodeWithText("Cerrar sesión").assertIsDisplayed().assertHeightIsAtLeast(48.dp)
+        assertTrue(emailText.getUnclippedBoundsInRoot().bottom <= signOut.getUnclippedBoundsInRoot().top)
+        signOut.performClick()
+        compose.runOnIdle { assertTrue(signedOut) }
+        compose.onNodeWithText("Próximas (0)").assertIsSelected()
+        compose.onNodeWithText("Pasadas (1)").performClick().assertIsSelected()
+        compose.onNodeWithText(past.title, useUnmergedTree = true).assertIsDisplayed()
     }
 
     private fun event(id: Long, title: String, venue: String) = Event(

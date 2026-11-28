@@ -30,7 +30,8 @@ internal sealed interface EventDetailUiState {
         val updating: Boolean = false,
         val attendanceError: Boolean = false,
         val refreshRequired: Boolean = false,
-        val conflict: AttendanceConflict? = null
+        val conflict: AttendanceConflict? = null,
+        val attendanceConfirmation: Boolean? = null
     ) : EventDetailUiState
     data object Empty : EventDetailUiState
     data object Error : EventDetailUiState
@@ -78,7 +79,7 @@ class EventDetailViewModel @Inject constructor(
         val attending = content.event.isAttending ?: return
         if (!content.authenticated || content.updating || content.refreshRequired) return
         if (content.event.hasStarted(Instant.now())) return
-        val previous = content.copy(attendanceError = false, conflict = null)
+        val previous = content.copy(attendanceError = false, conflict = null, attendanceConfirmation = null)
         mutableState.value = previous.copy(updating = true)
         request = viewModelScope.launch {
             try {
@@ -100,14 +101,15 @@ class EventDetailViewModel @Inject constructor(
                 return@launch
             }
             onAttendanceChanged()
-            loadEvent(true, onSessionExpired, previous)
+            loadEvent(true, onSessionExpired, previous, expectedAttendance = !attending)
         }
     }
 
     private suspend fun loadEvent(
         authenticated: Boolean,
         onSessionExpired: (Long) -> Unit,
-        previous: EventDetailUiState.Content? = null
+        previous: EventDetailUiState.Content? = null,
+        expectedAttendance: Boolean? = null
     ) {
         val failure = previous?.copy(updating = false, refreshRequired = true) ?: EventDetailUiState.Error
         mutableState.value = try {
@@ -116,7 +118,9 @@ class EventDetailViewModel @Inject constructor(
                 event,
                 authenticated,
                 refreshRequired = authenticated && event.isAttending == null,
+                attendanceConfirmation = expectedAttendance?.takeIf { it == event.isAttending },
                 conflict = when {
+                    expectedAttendance != null && expectedAttendance != event.isAttending -> AttendanceConflict.Unconfirmed
                     previous?.conflict != AttendanceConflict.PendingRegistration -> previous?.conflict
                     event.isAttending == null -> AttendanceConflict.PendingRegistration
                     event.isAttending -> AttendanceConflict.AlreadyRegistered

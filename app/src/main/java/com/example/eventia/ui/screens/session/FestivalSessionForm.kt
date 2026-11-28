@@ -1,15 +1,12 @@
 package com.example.eventia.ui.screens.session
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,7 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -65,9 +62,9 @@ import androidx.compose.ui.unit.dp
 import com.example.eventia.R
 import com.example.eventia.repositories.AccountField
 
-private val FestivalForest = Color(0xFF0B3C29)
+private val FestivalForest = com.example.eventia.ui.theme.Ink
 private val FestivalShade = Color(0xFF102C1A)
-private val FestivalMint = Color(0xFF8FFFD0)
+private val FestivalMint = com.example.eventia.ui.theme.PaleSage
 private val FestivalError = Color(0xFFFFDAD7)
 private val FestivalButtonShape = RoundedCornerShape(9.dp)
 
@@ -212,31 +209,27 @@ internal fun FestivalSessionForm(
                                 style = MaterialTheme.typography.bodySmall
                             )
                         }
-                        Row(
-                            Modifier.fillMaxWidth().padding(top = 16.dp),
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        FestivalAction(
+                            label = when {
+                                form.submitting -> R.string.auth_submitting
+                                registering -> R.string.auth_register
+                                else -> R.string.auth_sign_in
+                            },
+                            enabled = enabled,
+                            onClick = onSubmit,
+                            modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                            loading = form.submitting
+                        )
+                        TextButton(
+                            onClick = onSwitch,
+                            enabled = enabled,
+                            colors = ButtonDefaults.textButtonColors(contentColor = Color.White)
                         ) {
-                            FestivalAction(
-                                if (registering && form.submitting) R.string.auth_submitting else R.string.auth_register,
-                                if (registering) FestivalMint else Color.White,
-                                enabled,
-                                if (registering) onSubmit else onSwitch,
-                                Modifier.weight(1f),
-                                loading = registering && form.submitting
-                            )
-                            FestivalAction(
-                                if (!registering && form.submitting) R.string.auth_submitting else R.string.auth_sign_in,
-                                if (registering) Color.White else FestivalMint,
-                                enabled,
-                                if (registering) onSwitch else onSubmit,
-                                Modifier.weight(1f),
-                                loading = !registering && form.submitting
-                            )
+                            Text(stringResource(if (registering) R.string.auth_sign_in else R.string.auth_register))
                         }
                         TextButton(
                             onClick = onGuest,
                             enabled = enabled,
-                            modifier = Modifier.padding(top = 4.dp),
                             colors = ButtonDefaults.textButtonColors(contentColor = FestivalMint)
                         ) {
                             Text(stringResource(R.string.auth_continue_guest), textAlign = TextAlign.Center)
@@ -251,28 +244,29 @@ internal fun FestivalSessionForm(
 @Composable
 private fun FestivalAction(
     label: Int,
-    color: Color,
     enabled: Boolean,
     onClick: () -> Unit,
     modifier: Modifier,
     loading: Boolean = false
 ) {
-    OutlinedButton(
+    val colors = MaterialTheme.colorScheme
+    Button(
         onClick = onClick,
         modifier = modifier.heightIn(min = 48.dp),
         enabled = enabled,
         shape = FestivalButtonShape,
-        border = BorderStroke(1.5.dp, color.copy(alpha = if (enabled || loading) 1f else 0.55f)),
-        colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = color,
-            disabledContentColor = color.copy(alpha = if (loading) 1f else 0.65f)
+        colors = ButtonDefaults.buttonColors(
+            containerColor = colors.primaryContainer,
+            contentColor = colors.onPrimaryContainer,
+            disabledContainerColor = colors.primaryContainer,
+            disabledContentColor = colors.onPrimaryContainer
         ),
         contentPadding = PaddingValues(horizontal = 6.dp, vertical = 8.dp)
     ) {
         if (loading) {
             CircularProgressIndicator(
                 Modifier.padding(end = 4.dp).size(14.dp),
-                color = color,
+                color = colors.onPrimaryContainer,
                 strokeWidth = 2.dp
             )
         }

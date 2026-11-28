@@ -62,7 +62,7 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
-import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.MapSkeleton
 import com.example.eventia.ui.components.FavoriteButton
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.screens.explore.ExploreSearch
@@ -92,7 +92,8 @@ private const val SelectedMarkerZoom = 17f
 fun MapScreen(
     onEventClick: (Long) -> Unit,
     viewModel: MapViewModel = hiltViewModel(),
-    favoriteAction: (@Composable (Event) -> Unit)? = null
+    favoriteAction: (@Composable (Event) -> Unit)? = null,
+    avatar: @Composable () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val userLocation by viewModel.userLocation.collectAsStateWithLifecycle()
@@ -113,6 +114,7 @@ fun MapScreen(
                             onEventClick(id)
                         },
                         favoriteAction = favoriteAction,
+                        avatar = avatar,
                         userLocation = userLocation,
                         onUserLocationChanged = viewModel::updateUserLocation
                     )
@@ -132,7 +134,8 @@ private fun MapContent(
     onEventClick: (Long) -> Unit,
     favoriteAction: (@Composable (Event) -> Unit)?,
     userLocation: MapUserLocation? = null,
-    onUserLocationChanged: (MapUserLocation?) -> Unit = {}
+    onUserLocationChanged: (MapUserLocation?) -> Unit = {},
+    avatar: @Composable () -> Unit = {}
 ) {
     val colors = MaterialTheme.colorScheme
     var query by rememberSaveable { mutableStateOf("") }
@@ -196,7 +199,7 @@ private fun MapContent(
         Column(Modifier.fillMaxSize()) {
             Box(Modifier.fillMaxWidth().weight(1f).onSizeChanged { mapSize = it }) {
                 when {
-                    waitsForEvents -> LoadingScreen(stringResource(R.string.catalog_loading))
+                    waitsForEvents -> MapSkeleton(stringResource(R.string.catalog_loading))
                     eventLoadFailed -> MapMessage(R.string.catalog_error, onRetryEvents)
                     timedOut -> MapMessage(R.string.map_load_error, onRetryMap)
                     else -> {
@@ -225,17 +228,24 @@ private fun MapContent(
                         }
                         if (!loaded) {
                             Surface(Modifier.fillMaxSize()) {
-                                LoadingScreen(stringResource(R.string.map_loading))
+                                MapSkeleton(stringResource(R.string.map_loading))
                             }
                         }
                     }
                 }
                 if (loaded && !timedOut && showMap) {
                     Column(Modifier.align(Alignment.TopCenter).onSizeChanged { toolbarHeight = it.height }.padding(top = 8.dp)) {
-                        ExploreSearch(query, onQueryChange = { value ->
-                            query = value
-                            onPointSelected(null)
-                        }, label = stringResource(R.string.map_search), inlineHint = true, solidSurface = true)
+                        Row(
+                            Modifier.fillMaxWidth().padding(end = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            ExploreSearch(query, onQueryChange = { value ->
+                                query = value
+                                onPointSelected(null)
+                            }, label = stringResource(R.string.map_search), inlineHint = true,
+                                modifier = Modifier.weight(1f))
+                            avatar()
+                        }
                         if (state.categories.isNotEmpty()) {
                             LazyRow(
                                 contentPadding = PaddingValues(horizontal = 16.dp),
@@ -422,7 +432,7 @@ private fun EventMap(
 
 @Composable
 private fun MapPin(selected: Boolean) {
-    val teal = Color(0xFF007A85)
+    val pinColor = MaterialTheme.colorScheme.primary
     val diameter = if (selected) 48.dp else 36.dp
     Box(Modifier.size(width = diameter + 8.dp, height = diameter + 12.dp)) {
         Canvas(Modifier.fillMaxSize()) {
@@ -432,12 +442,12 @@ private fun MapPin(selected: Boolean) {
                 lineTo(center.x, size.height)
                 close()
             }
-            drawPath(tip, teal)
+            drawPath(tip, pinColor)
         }
         Surface(
             modifier = Modifier.align(Alignment.TopCenter).padding(top = 4.dp).size(diameter),
             shape = CircleShape,
-            color = teal,
+            color = pinColor,
             shadowElevation = if (selected) 4.dp else 1.dp,
             border = BorderStroke(if (selected) 4.dp else 1.5.dp, Color.White)
         ) {

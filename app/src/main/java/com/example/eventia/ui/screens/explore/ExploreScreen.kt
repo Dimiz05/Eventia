@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
@@ -22,6 +23,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,7 +42,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -50,10 +52,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -62,12 +62,13 @@ import com.example.eventia.R
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.ui.components.CachedDataNotice
+import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.components.EventArtwork
+import com.example.eventia.ui.components.loadingSemantics
 import com.example.eventia.ui.components.favoriteIcon
 import com.example.eventia.ui.components.favoriteLabel
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.cachedCatalogNotice
-import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.domain.model.Venue
 import com.example.eventia.ui.screens.favorites.FavoritesUiState
 import com.example.eventia.ui.screens.venue.VenueListScreen
@@ -81,7 +82,8 @@ internal fun ExploreScreen(
     favorites: FavoritesUiState,
     onFavoriteChange: (Event, Boolean) -> Unit,
     viewModel: ExploreViewModel = hiltViewModel(),
-    onFavoritesClick: (() -> Unit)? = null
+    onFavoritesClick: (() -> Unit)? = null,
+    avatar: @Composable () -> Unit = {}
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     var showVenues by rememberSaveable { mutableStateOf(false) }
@@ -90,7 +92,7 @@ internal fun ExploreScreen(
     MaterialTheme(colorScheme = exploreColors()) {
         Surface(Modifier.fillMaxSize()) {
             Column {
-                ExploreHeader()
+                ExploreHeader(avatar)
                 sectionState.SaveableStateProvider(showVenues) {
                     if (showVenues) {
                         VenueListScreen(onVenueClick, sections)
@@ -119,37 +121,38 @@ internal fun ExploreScreen(
 }
 
 @Composable
-private fun CategoryTile(label: String, icon: Int, selected: Boolean, onClick: () -> Unit) {
+private fun CategoryTile(
+    label: String,
+    icon: Int,
+    selected: Boolean,
+    enabled: Boolean = true,
+    opensMenu: Boolean = false,
+    onClick: () -> Unit
+) {
     val colors = MaterialTheme.colorScheme
-    val tint = if (selected) colors.primary else colors.onSurfaceVariant
-    val shape = RoundedCornerShape(12.dp)
-    Column(
-        Modifier.widthIn(min = 60.dp, max = 144.dp).clip(shape)
-            .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
-            .padding(horizontal = 2.dp, vertical = 2.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+    val labelColor = if (enabled) colors.onSurface else colors.onSurfaceVariant.copy(alpha = 0.62f)
+    val iconBackground = if (enabled) colors.onPrimaryContainer else colors.onSurfaceVariant
+    Surface(
+        shape = CircleShape,
+        color = if (selected) colors.surfaceContainerHigh else colors.surface,
+        border = if (selected) BorderStroke(1.dp, colors.outline) else null,
+        shadowElevation = 2.dp
     ) {
-        Surface(
-            modifier = Modifier.size(width = 56.dp, height = 44.dp),
-            shape = shape,
-            color = if (selected) colors.primaryContainer else colors.surfaceContainer.copy(alpha = 0.55f),
-            border = BorderStroke(
-                if (selected) 1.5.dp else 1.dp,
-                if (selected) colors.primary else colors.outlineVariant
-            )
+        Row(
+            Modifier.selectable(selected, enabled = enabled,
+                role = if (opensMenu) Role.Button else Role.RadioButton, onClick = onClick)
+                .heightIn(min = 48.dp).padding(start = 6.dp, end = 7.dp, top = 4.dp, bottom = 4.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                Icon(painterResource(icon), null, Modifier.size(24.dp), tint = tint)
+            Box(
+                Modifier.size(28.dp).background(iconBackground, CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(painterResource(icon), null, Modifier.size(16.dp), tint = colors.onPrimary)
             }
+            Text(label, color = labelColor, style = MaterialTheme.typography.labelMedium, maxLines = 1)
         }
-        Text(
-            label,
-            style = MaterialTheme.typography.labelMedium,
-            color = tint,
-            fontWeight = FontWeight.SemiBold,
-            textAlign = TextAlign.Center
-        )
     }
 }
 
@@ -188,45 +191,65 @@ internal fun ExploreContent(
         ExploreSearch(filters.query, onQueryChange, stringResource(R.string.catalog_search), inlineHint = true)
         sections()
         val categories = content?.categories.orEmpty()
-        if (categories.isNotEmpty() || filters.isActive) {
-            Row(
-                Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    stringResource(R.string.catalog_categories),
-                    Modifier.weight(1f).semantics { heading() },
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                if (filters.isActive && (events?.isEmpty() != true || state.hasError)) {
-                    TextButton(onClick = onClearFilters) { Text(stringResource(R.string.catalog_clear_filters)) }
+        val music = categories.firstOrNull { categoryIcon(it.name) == R.drawable.ic_category_music }
+        val food = categories.firstOrNull { categoryIcon(it.name) == R.drawable.ic_category_food }
+        val remaining = categories.filter { it.id != music?.id && it.id != food?.id }
+        val extraSelection = remaining.firstOrNull { it.id == filters.categoryId }
+        var showFilters by rememberSaveable { mutableStateOf(false) }
+        LazyRow(
+            modifier = Modifier.fillMaxWidth().selectableGroup().padding(top = 5.dp, bottom = 4.dp),
+            contentPadding = PaddingValues(horizontal = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            item {
+                CategoryTile(stringResource(R.string.catalog_all_categories),
+                    R.drawable.ic_category_all, filters.categoryId == null) {
+                    filters.categoryId?.let(onCategorySelect)
                 }
             }
-        }
-        if (categories.isNotEmpty()) {
-            LazyRow(
-                modifier = Modifier.fillMaxWidth().selectableGroup().padding(top = 7.dp, bottom = 6.dp),
-                contentPadding = PaddingValues(horizontal = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(5.dp)
-            ) {
-                item {
-                    CategoryTile(
-                        stringResource(R.string.catalog_all_categories),
-                        icon = R.drawable.ic_category_all,
-                        selected = filters.categoryId == null,
-                        onClick = { filters.categoryId?.let(onCategorySelect) }
-                    )
+            item {
+                CategoryTile(stringResource(R.string.catalog_music), R.drawable.ic_category_music,
+                    music != null && filters.categoryId == music.id, enabled = music != null) {
+                    music?.let { onCategorySelect(it.id) }
                 }
-                items(categories, key = { it.id }) { category ->
-                    CategoryTile(
-                        category.name,
-                        icon = categoryIcon(category.name),
-                        selected = filters.categoryId == category.id,
-                        onClick = { onCategorySelect(category.id) }
-                    )
+            }
+            item {
+                CategoryTile(stringResource(R.string.catalog_food), R.drawable.ic_category_food,
+                    food != null && filters.categoryId == food.id, enabled = food != null) {
+                    food?.let { onCategorySelect(it.id) }
+                }
+            }
+            item {
+                Box {
+                    val label = if (extraSelection == null) stringResource(R.string.catalog_more_filters)
+                    else stringResource(R.string.catalog_active_more_filters, extraSelection.name)
+                    CategoryTile(label, R.drawable.ic_catalog_filters, extraSelection != null,
+                        enabled = remaining.isNotEmpty() || filters.isActive, opensMenu = true) {
+                        showFilters = true
+                    }
+                    DropdownMenu(expanded = showFilters, onDismissRequest = { showFilters = false }) {
+                        remaining.forEach { category ->
+                            val selected = category.id == filters.categoryId
+                            DropdownMenuItem(
+                                text = { Text(category.name) },
+                                leadingIcon = { Icon(painterResource(categoryIcon(category.name)), null) },
+                                trailingIcon = if (selected) {
+                                    { Icon(painterResource(R.drawable.ic_session_check), null) }
+                                } else null,
+                                onClick = {
+                                    onCategorySelect(category.id)
+                                    showFilters = false
+                                }
+                            )
+                        }
+                        if (filters.isActive) {
+                            DropdownMenuItem(text = { Text(stringResource(R.string.catalog_clear_filters)) },
+                                onClick = {
+                                    onClearFilters()
+                                    showFilters = false
+                                })
+                        }
+                    }
                 }
             }
         }
@@ -236,7 +259,7 @@ internal fun ExploreContent(
                 Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
             )
         }
-        if (state.isLoading) {
+        if (state.isLoading && !events.isNullOrEmpty()) {
             val loadingLabel = stringResource(R.string.catalog_loading)
             LinearProgressIndicator(
                 Modifier.fillMaxWidth().padding(horizontal = 16.dp)
@@ -291,24 +314,25 @@ internal fun ExploreContent(
             }
             !events.isNullOrEmpty() -> key(filters) {
                 val listState = rememberLazyListState()
-                BoxWithConstraints(Modifier.weight(1f).fillMaxWidth().background(Color(0xFFFBF6EE))) {
-                    val spacing = 12.dp
+                BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
+                    val spacing = 8.dp
                     val density = LocalDensity.current
-                    val minimumHeight = with(density) { 72.dp + 42.sp.toDp() }
-                    val pairHeight = with(density) {
+                    val minimumHeight = with(density) { 55.dp + 68.sp.toDp() }
+                    val fittedHeight = with(density) {
                         // Round the padding and gap separately, as LazyColumn does.
-                        ((constraints.maxHeight - 3 * spacing.roundToPx()) / 2).toDp()
+                        val available = constraints.maxHeight - 4 * spacing.roundToPx()
+                        // Round up so the fourth card begins beyond the viewport.
+                        ((available.coerceAtLeast(0) + 2) / 3).toDp()
                     }
-                    val cardHeight = pairHeight.coerceAtLeast(minimumHeight)
-                    val multiline = cardHeight >= with(density) { 72.dp + 84.sp.toDp() }
+                    val cardHeight = fittedHeight.coerceAtLeast(minimumHeight)
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         state = listState,
-                        contentPadding = PaddingValues(spacing),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = spacing),
                         verticalArrangement = Arrangement.spacedBy(spacing)
                     ) {
                         items(events, key = { it.id }) { event ->
-                            ExploreEventCard(event, onEventClick, favoriteAction, cardHeight, multiline)
+                            ExploreEventCard(event, onEventClick, favoriteAction, cardHeight, multiline = true)
                         }
                     }
                 }
@@ -350,21 +374,23 @@ internal fun ExploreEventCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Box(Modifier.weight(1f).padding(end = 8.dp)) {
-                    Text(
-                        eventLocalDateTime(event),
-                        modifier = Modifier.background(colors.scrim.copy(alpha = 0.55f), RoundedCornerShape(8.dp))
+                    Row(
+                        Modifier.background(colors.scrim.copy(alpha = 0.72f), RoundedCornerShape(8.dp))
                             .padding(horizontal = 8.dp, vertical = 4.dp),
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color(0xFFFFFFFF),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(painterResource(R.drawable.ic_event_calendar), null,
+                            Modifier.size(15.dp), tint = Color.White)
+                        Text(eventLocalDateTime(event, compact = true),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Color.White, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
                 }
                 favorite?.invoke(event)
             }
             BoxWithConstraints(
-                Modifier.align(Alignment.BottomCenter).fillMaxWidth().panoramicCaptionScrim().padding(16.dp)
+                Modifier.align(Alignment.BottomCenter).fillMaxWidth().panoramicCaptionScrim().padding(horizontal = 12.dp, vertical = 7.dp)
             ) {
                 val categoryMaxWidth = maxWidth * 0.38f
                 Row(
@@ -384,15 +410,15 @@ internal fun ExploreEventCard(
                             event.venue.name,
                             style = MaterialTheme.typography.bodyMedium,
                             color = Color(0xFFFFFFFF),
-                            maxLines = if (multiline) 2 else 1,
+                            maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
                     }
                     Surface(
                         modifier = Modifier.widthIn(max = categoryMaxWidth),
                         shape = RoundedCornerShape(50),
-                        color = Color(0xFFC4DAB3),
-                        contentColor = Color(0xFF0B342B)
+                        color = colors.primaryContainer,
+                        contentColor = colors.onPrimaryContainer
                     ) {
                         Text(
                             event.category.name,
@@ -412,8 +438,8 @@ internal fun ExploreEventCard(
 @Composable
 internal fun ExploreFavoriteButton(selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
     val colors = MaterialTheme.colorScheme
-    val tint = if (selected) colors.onPrimaryContainer else colors.onSurface
-    val container = if (selected) colors.primaryContainer else colors.surface
+    val tint = if (selected) colors.primary else colors.onSurfaceVariant
+    val container = colors.surface
     IconButton(onClick = onClick, enabled = enabled, modifier = Modifier.size(48.dp)) {
         Surface(modifier = Modifier.size(40.dp), shape = CircleShape, color = container) {
             Box(contentAlignment = Alignment.Center) {
@@ -433,7 +459,7 @@ private fun CatalogSkeleton(modifier: Modifier = Modifier) {
     val tint = MaterialTheme.colorScheme.surfaceContainerHighest
     val shape = RoundedCornerShape(8.dp)
     LazyColumn(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().loadingSemantics(stringResource(R.string.catalog_loading)),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {

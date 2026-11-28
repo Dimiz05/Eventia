@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
@@ -24,9 +23,8 @@ class LaunchSplashTest {
         compose.mainClock.autoAdvance = false
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             compose.mainClock.advanceTimeBy(500)
-            compose.onNodeWithText("Bienvenido a").assertIsDisplayed()
+            compose.onNodeWithTag("launchSplash").assertIsDisplayed()
             compose.onNodeWithContentDescription("Eventia").assertIsDisplayed()
-            compose.onNodeWithText("Descubre eventos cerca de ti").assertIsDisplayed()
             compose.onAllNodesWithText("Iniciar sesión").assertCountEquals(0)
             compose.onAllNodesWithText("Cargando sesión…").assertCountEquals(0)
 

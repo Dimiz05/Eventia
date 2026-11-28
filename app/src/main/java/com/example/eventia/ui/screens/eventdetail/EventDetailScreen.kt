@@ -14,22 +14,41 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.PathOperation
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.eventia.R
+import com.example.eventia.ui.theme.Sage
+import com.example.eventia.ui.theme.PaleSage
+import com.example.eventia.ui.theme.MutedInk
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
@@ -37,9 +56,11 @@ import com.example.eventia.domain.model.hasStarted
 import com.example.eventia.ui.components.DetailLocationMap
 import com.example.eventia.ui.components.DetailTopBar
 import com.example.eventia.ui.components.DetailArtwork
-import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.DetailSkeleton
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.eventLocalDateTime
+import com.example.eventia.ui.components.EventDisplayLocale
+import com.example.eventia.ui.components.EventDisplayTime
 import com.example.eventia.ui.components.favoriteIcon
 import com.example.eventia.ui.components.favoriteLabel
 import com.example.eventia.ui.components.rememberVenueDirections
@@ -50,16 +71,11 @@ import com.example.eventia.ui.screens.explore.ExploreBadge
 import com.example.eventia.ui.theme.EventiaTheme
 import java.time.Instant
 import java.time.OffsetDateTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlinx.coroutines.delay
 
-private val EventIvory = Color(0xFFFAF6EF)
-private val EventSage = Color(0xFFD5E4B5)
-private val EventForest = Color(0xFF234617)
-private val EventCoral = Color(0xFFC84639)
-private val EventSecondary = Color(0xFF575E50)
+private val EventSurface = Color.White
 private val EventCoverHeight = 300.dp
 private val EventPanelOverlap = 24.dp
 
@@ -102,7 +118,7 @@ internal fun EventDetailScreen(
             stringResource(favoriteLabel(selected)),
             onClick = { onFavoriteChange(event, !selected) },
             enabled = favorites.canChange(event.id),
-            tint = if (selected) EventCoral else EventForest
+            tint = if (selected) Sage else MutedInk
         )
     }
     if (visible is EventDetailUiState.Content && visible.conflict == AttendanceConflict.Full &&
@@ -125,7 +141,7 @@ internal fun EventDetailScreen(
 }
 
 @Composable
-private fun EventDetailContent(
+internal fun EventDetailContent(
     state: EventDetailUiState,
     onRetry: () -> Unit,
     onBack: () -> Unit,
@@ -142,11 +158,11 @@ private fun EventDetailContent(
     MaterialTheme(colorScheme = exploreColors()) {
         Scaffold(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
-            topBar = { DetailTopBar(stringResource(R.string.detail_event), onBack) }
+            topBar = { DetailTopBar(onBack) }
         ) { padding ->
             Box(Modifier.fillMaxSize().padding(padding)) {
                 when (state) {
-                    EventDetailUiState.Loading -> LoadingScreen(stringResource(R.string.event_detail_loading))
+                    EventDetailUiState.Loading -> DetailSkeleton(stringResource(R.string.event_detail_loading), EventCoverHeight)
                     EventDetailUiState.Empty -> ScreenMessage(
                         title = stringResource(R.string.event_detail_empty),
                         actionLabel = stringResource(R.string.navigate_back),
@@ -177,11 +193,7 @@ private fun EventDetails(
     val event = state.event
     val point = MapPoint.from(event.venue.latitude, event.venue.longitude)
     val context = LocalContext.current
-    val colors = exploreColors().copy(
-        primary = EventForest, onPrimary = Color.White,
-        primaryContainer = EventSage, onPrimaryContainer = EventForest,
-        surface = EventIvory, onSurface = EventForest, onSurfaceVariant = EventSecondary
-    )
+    val colors = MaterialTheme.colorScheme
     val dateTime = eventLocalDateTime(event)
     val shareLabel = stringResource(R.string.event_share)
     val shareText = stringResource(
@@ -250,7 +262,7 @@ private fun EventDetails(
                         verticalArrangement = Arrangement.spacedBy(14.dp)
                     ) {
                         EventHeading(event)
-                        HorizontalDivider(color = EventForest.copy(alpha = 0.54f))
+                        HorizontalDivider(color = Sage.copy(alpha = 0.54f))
                         EventDescription(event)
                         EventLocation(event, point, onVenueClick, openDirections)
                     }
@@ -267,12 +279,12 @@ private fun EventHeading(event: Event) {
         horizontalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            ExploreBadge(event.category.name, containerColor = EventSage, contentColor = EventForest)
+            ExploreBadge(event.category.name, containerColor = PaleSage, contentColor = Sage)
             Text(
                 event.title,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
-                color = EventForest
+                color = Sage
             )
         }
         EventDateBadge(event)
@@ -281,11 +293,11 @@ private fun EventHeading(event: Event) {
 
 @Composable
 private fun EventDateBadge(event: Event) {
-    val locale = LocalConfiguration.current.locales[0]
-    val start = event.startsAt.atZoneSameInstant(ZoneId.systemDefault())
+    val locale = EventDisplayLocale
+    val start = event.startsAt
     val day = start.format(DateTimeFormatter.ofPattern("d", locale))
     val month = start.format(DateTimeFormatter.ofPattern("MMM", locale)).trimEnd('.').uppercase(locale)
-    val time = start.format(DateTimeFormatter.ofPattern("HH:mm", locale))
+    val time = start.format(EventDisplayTime)
     val typography = MaterialTheme.typography
     val density = LocalDensity.current
     val monthEnd = with(density) { (typography.headlineLarge.lineHeight.toPx() + typography.labelLarge.lineHeight.toPx() + 4.dp.toPx()) }
@@ -293,15 +305,15 @@ private fun EventDateBadge(event: Event) {
     Column(
         Modifier.widthIn(min = 88.dp).clip(RoundedCornerShape(16.dp)).background(
             Brush.verticalGradient(
-                colors = listOf(EventSage, EventForest),
+                colors = listOf(PaleSage, Sage),
                 startY = monthEnd,
                 endY = monthEnd + transition
             )
         ).padding(start = 10.dp, top = 4.dp, end = 10.dp, bottom = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(day, style = typography.headlineLarge, fontWeight = FontWeight.Bold, color = EventForest)
-        Text(month, style = typography.labelLarge, fontWeight = FontWeight.Bold, color = EventForest)
+        Text(day, style = typography.headlineLarge, fontWeight = FontWeight.Bold, color = Sage)
+        Text(month, style = typography.labelLarge, fontWeight = FontWeight.Bold, color = Sage)
         Spacer(Modifier.height(14.dp))
         Text(time, style = typography.labelLarge, fontWeight = FontWeight.SemiBold, color = Color.White)
     }
@@ -327,17 +339,17 @@ private fun EventLocation(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(24.dp), tint = EventForest)
+            Icon(painterResource(R.drawable.ic_catalog_pin), null, Modifier.size(24.dp), tint = Sage)
             Column(Modifier.weight(1f)) {
                 Text(event.venue.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                 if (event.venue.address.isNotBlank()) {
-                    Text(event.venue.address, style = MaterialTheme.typography.bodyMedium, color = EventSecondary)
+                    Text(event.venue.address, style = MaterialTheme.typography.bodyMedium, color = MutedInk)
                 }
             }
             Icon(
                 painterResource(R.drawable.ic_back), null,
                 Modifier.size(16.dp).graphicsLayer { rotationZ = 180f },
-                tint = EventForest
+                tint = Sage
             )
         }
         DetailLocationMap(event.venue, point, Modifier.fillMaxWidth().height(124.dp).clip(RoundedCornerShape(16.dp)))
@@ -346,7 +358,7 @@ private fun EventLocation(
             enabled = point != null,
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
             shape = RoundedCornerShape(14.dp),
-            border = BorderStroke(1.dp, EventForest.copy(alpha = if (point != null) 1f else 0.38f))
+            border = BorderStroke(1.dp, Sage.copy(alpha = if (point != null) 1f else 0.38f))
         ) {
             Text(stringResource(R.string.venue_directions), fontWeight = FontWeight.SemiBold)
         }
@@ -362,9 +374,37 @@ private fun EventAttendanceBar(
     onRefresh: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
-    Surface(color = EventIvory) {
-        Column(Modifier.fillMaxWidth()) {
-            HorizontalDivider(color = EventForest.copy(alpha = 0.18f))
+    val radius = 14.dp
+    val panelBorder = colors.outlineVariant
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = EventSurface,
+        shape = RoundedCornerShape(topStart = radius, topEnd = radius)
+    ) {
+        Column(Modifier.fillMaxWidth().drawWithCache {
+            val corner = radius.toPx()
+            val stroke = 1.dp.toPx()
+            val inset = stroke / 2
+            val topEdge = Path().apply {
+                arcTo(Rect(inset, inset, inset + 2 * corner, inset + 2 * corner), 180f, 90f, true)
+                arcTo(Rect(size.width - inset - 2 * corner, inset, size.width - inset, inset + 2 * corner),
+                    270f, 90f, false)
+            }
+            onDrawWithContent {
+                drawContent()
+                drawPath(topEdge, panelBorder, style = Stroke(stroke))
+            }
+        }) {
+            state.attendanceConfirmation?.let { attending ->
+                Text(
+                    stringResource(if (attending) R.string.attendance_confirmed else R.string.attendance_canceled),
+                    Modifier.padding(horizontal = 16.dp, vertical = 4.dp).semantics {
+                        liveRegion = LiveRegionMode.Polite
+                    },
+                    color = Sage,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
             Column(
                 Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -383,20 +423,7 @@ private fun EventAttendanceBar(
                             else -> R.string.event_attend
                         }))
                     }
-                    Column(Modifier.weight(1f)) {
-                        Text(
-                            stringResource(R.string.event_available_count, event.availableSpots),
-                            style = MaterialTheme.typography.titleSmall,
-                            fontWeight = FontWeight.Bold
-                        )
-                        if (event.capacity > 0) {
-                            Text(
-                                stringResource(R.string.event_total_capacity, event.capacity),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = EventSecondary
-                            )
-                        }
-                    }
+                    EventCapacityTicket(event, Modifier.weight(1f))
                 }
                 if (attendanceClosed) {
                     Text(stringResource(R.string.event_attendance_closed), style = MaterialTheme.typography.bodySmall, color = colors.onSurfaceVariant)
@@ -414,6 +441,80 @@ private fun EventAttendanceBar(
                         TextButton(onClick = onRefresh) { Text(stringResource(R.string.retry)) }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EventCapacityTicket(event: Event, modifier: Modifier = Modifier) {
+    val colors = MaterialTheme.colorScheme
+    val type = MaterialTheme.typography
+    var footerHeight by remember { mutableIntStateOf(0) }
+    val hasCapacity = event.capacity > 0
+    val available = event.availableSpots.toString()
+    val label = stringResource(R.string.event_available_count, event.availableSpots)
+    val numberStart = label.indexOf(available)
+    val emphasis = SpanStyle(fontSize = type.headlineSmall.fontSize)
+    val availableText = buildAnnotatedString {
+        if (numberStart < 0) {
+            append(label)
+        } else {
+            append(label.substring(0, numberStart))
+            withStyle(emphasis) { append(available) }
+            append(label.substring(numberStart + available.length))
+        }
+    }
+
+    Column(
+        modifier.drawWithCache {
+            val stroke = 1.dp.toPx()
+            val inset = stroke / 2
+            val notch = 5.dp.toPx()
+            val seam = size.height - footerHeight
+            val outline = Path().apply {
+                addRoundRect(RoundRect(Rect(inset, inset, size.width - inset, size.height - inset),
+                    CornerRadius(10.dp.toPx())))
+            }
+            val perforated = hasCapacity && footerHeight > 0
+            val ticket = if (perforated) {
+                val cutouts = Path().apply {
+                    addOval(Rect(Offset(inset, seam), notch))
+                    addOval(Rect(Offset(size.width - inset, seam), notch))
+                }
+                Path.combine(PathOperation.Difference, outline, cutouts)
+            } else outline
+            val dashes = PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx()))
+            onDrawWithContent {
+                drawPath(ticket, colors.primaryContainer)
+                clipPath(ticket) {
+                    if (perforated) {
+                        drawLine(colors.outline, Offset(notch, seam), Offset(size.width - notch, seam),
+                            strokeWidth = stroke, pathEffect = dashes)
+                    }
+                    this@onDrawWithContent.drawContent()
+                }
+                drawPath(ticket, colors.outline, style = Stroke(stroke))
+            }
+        },
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            availableText,
+            Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+            style = type.labelLarge.copy(lineHeight = type.headlineSmall.lineHeight),
+            color = colors.onPrimaryContainer,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
+        if (hasCapacity) {
+            Box(Modifier.fillMaxWidth().onSizeChanged { footerHeight = it.height }, contentAlignment = Alignment.Center) {
+                Text(
+                    stringResource(R.string.event_total_capacity, event.capacity),
+                    Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                    style = type.bodySmall,
+                    color = colors.onPrimaryContainer,
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                )
             }
         }
     }
@@ -448,7 +549,7 @@ private fun EventCoverAction(
     label: String,
     onClick: () -> Unit,
     enabled: Boolean = true,
-    tint: Color = EventForest
+    tint: Color = Sage
 ) {
     FilledIconButton(
         onClick = onClick,
@@ -456,9 +557,9 @@ private fun EventCoverAction(
         modifier = Modifier.size(48.dp),
         shape = CircleShape,
         colors = IconButtonDefaults.filledIconButtonColors(
-            containerColor = EventIvory,
+            containerColor = EventSurface,
             contentColor = tint,
-            disabledContainerColor = EventIvory,
+            disabledContainerColor = EventSurface,
             disabledContentColor = tint.copy(alpha = 0.38f)
         )
     ) {
@@ -526,5 +627,14 @@ private fun EventDetailPreview() {
 private fun EventDetailErrorPreview() {
     EventiaTheme {
         EventDetailContent(EventDetailUiState.Error, onRetry = {}, onBack = {}, onVenueClick = {})
+    }
+}
+
+
+@Preview(showBackground = true, widthDp = 360, heightDp = 800)
+@Composable
+private fun EventLoadingPreview() {
+    EventiaTheme {
+        EventDetailContent(EventDetailUiState.Loading, onRetry = {}, onBack = {}, onVenueClick = {})
     }
 }

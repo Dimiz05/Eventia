@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
@@ -26,8 +29,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -46,11 +47,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathOperation
@@ -65,6 +68,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -79,6 +83,7 @@ import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
 import com.example.eventia.ui.components.EventArtwork
+import com.example.eventia.ui.components.LoadingCard
 import com.example.eventia.ui.components.LoadingScreen
 import com.example.eventia.ui.components.eventLocalDateTime
 import com.example.eventia.ui.screens.explore.exploreColors
@@ -125,31 +130,32 @@ internal fun ProfileScreen(
     MaterialTheme(colorScheme = exploreColors()) {
         Surface(Modifier.fillMaxSize()) {
             Column {
-                ProfileHeader()
+                ProfileStatusBar()
                 if (session?.signingOut == true) {
+                    ProfileCover()
                     LoadingScreen(stringResource(R.string.auth_loading))
                 } else {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                        contentPadding = PaddingValues(bottom = 24.dp)
                     ) {
                         item { ProfileAccount(session, onRetryAccount, onSignIn, onSignOut) }
                         if (state != null) {
                             item {
-                                AttendanceTabs(groups, showUpcoming) { showUpcoming = it }
+                                Column(Modifier.padding(start = 16.dp, end = 16.dp, top = 18.dp, bottom = 14.dp)) {
+                                    AttendanceTabs(groups, showUpcoming) { showUpcoming = it }
+                                }
                             }
-                            if (state.loading) {
+                            if (state.loading && events.isNullOrEmpty()) {
                                 item {
-                                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                        Text(stringResource(R.string.profile_attendances_loading))
-                                        LinearProgressIndicator(Modifier.fillMaxWidth())
+                                    Box(Modifier.padding(horizontal = 16.dp)) {
+                                        LoadingCard(stringResource(R.string.profile_attendances_loading))
                                     }
                                 }
                             }
                             if (state.failed) {
                                 item {
-                                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    Column(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                         Text(
                                             stringResource(R.string.profile_attendances_error),
                                             color = MaterialTheme.colorScheme.error
@@ -165,7 +171,7 @@ internal fun ProfileScreen(
                                     item {
                                         val message = if (showUpcoming) R.string.profile_upcoming_empty
                                         else R.string.profile_past_empty
-                                        Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceContainer) {
+                                        Surface(Modifier.padding(horizontal = 16.dp), shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceContainer) {
                                             Text(
                                                 stringResource(message),
                                                 Modifier.fillMaxWidth().padding(16.dp),
@@ -175,7 +181,9 @@ internal fun ProfileScreen(
                                     }
                                 }
                                 items(events, key = Event::id) { event ->
-                                    AttendanceTicket(event, showUpcoming) { onEventClick(event.id) }
+                                    Box(Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp)) {
+                                        AttendanceTicket(event, showUpcoming) { onEventClick(event.id) }
+                                    }
                                 }
                             }
                         }
@@ -186,27 +194,42 @@ internal fun ProfileScreen(
     }
 }
 
+private val ProfileCoverHeight = 164.dp
+
 @Composable
-private fun ProfileHeader() {
+private fun ProfileStatusBar() {
+    val primary = MaterialTheme.colorScheme.primary
+    Box(
+        Modifier.fillMaxWidth().windowInsetsTopHeight(WindowInsets.statusBars).drawWithCache {
+            val brush = profileGradient(primary, Offset.Zero, Offset(size.width, size.height + ProfileCoverHeight.toPx()))
+            onDrawBehind { drawRect(brush) }
+        }
+    )
+}
+
+@Composable
+private fun ProfileCover() {
     val colors = MaterialTheme.colorScheme
-    Row(
-        Modifier.fillMaxWidth().heightIn(min = 64.dp).padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+    val statusHeight = WindowInsets.statusBars.getTop(LocalDensity.current)
+    Box(
+        Modifier.fillMaxWidth().heightIn(min = ProfileCoverHeight)
+            .clip(RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp))
+            .drawWithCache {
+                val brush = profileGradient(colors.primary, Offset(0f, -statusHeight.toFloat()), Offset(size.width, size.height))
+                onDrawBehind { drawRect(brush) }
+            }
     ) {
-        Image(
-            painterResource(R.drawable.eventia_app_icon), null,
-            Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
-        )
         Text(
             stringResource(R.string.tab_profile),
-            Modifier.semantics { heading() },
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold
+            Modifier.padding(start = 18.dp, top = 12.dp, bottom = 12.dp).semantics { heading() },
+            style = MaterialTheme.typography.headlineMedium,
+            color = colors.onPrimary
         )
     }
-    HorizontalDivider(color = colors.outlineVariant)
 }
+
+private fun profileGradient(primary: Color, start: Offset, end: Offset) =
+    Brush.linearGradient(listOf(Color(0xFF354824), primary, Color(0xFF758954)), start, end)
 
 @Composable
 private fun ProfileAccount(
@@ -216,46 +239,80 @@ private fun ProfileAccount(
     onSignOut: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
+    val typography = MaterialTheme.typography
     val account = session?.account
-    Surface(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, colors.outlineVariant)
-    ) {
-        Column(Modifier.padding(horizontal = 16.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(14.dp)
+    val name = account?.name?.takeIf { it.isNotBlank() }
+        ?: stringResource(if (session == null) R.string.profile_guest_title else R.string.tab_profile)
+    val secondary = account?.email ?: if (session == null) stringResource(R.string.profile_guest_hint) else null
+    val signOutLabel = stringResource(R.string.auth_sign_out)
+    Column {
+        Box {
+            ProfileCover()
+            Surface(
+                modifier = Modifier.align(Alignment.BottomStart).padding(start = 16.dp)
+                    .offset(y = 42.dp).size(64.dp),
+                shape = CircleShape,
+                color = colors.surface,
+                shadowElevation = 2.dp,
+                border = BorderStroke(4.dp, colors.surface)
             ) {
-                Image(
-                    painterResource(R.drawable.profile_avatar_duck),
-                    stringResource(R.string.profile_avatar),
-                    modifier = Modifier.size(56.dp).clip(CircleShape),
-                    contentScale = ContentScale.Crop
-                )
-                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    val name = account?.name?.takeIf { it.isNotBlank() }
-                        ?: stringResource(if (session == null) R.string.profile_guest_title else R.string.tab_profile)
-                    Text(name, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                    if (account != null) {
-                        Text(account.email, style = MaterialTheme.typography.bodyMedium, color = colors.onSurfaceVariant)
-                    } else if (session == null) {
-                        Text(
-                            stringResource(R.string.profile_guest_hint),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = colors.onSurfaceVariant
-                        )
+                if (session != null) {
+                    Image(
+                        painterResource(R.drawable.profile_avatar_duck), null,
+                        modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(painterResource(R.drawable.ic_profile_outline), null, Modifier.size(26.dp), tint = colors.primary)
                     }
                 }
             }
-            if (session == null) {
-                Button(onClick = onSignIn, modifier = Modifier.align(Alignment.End)) {
-                    Text(stringResource(R.string.auth_sign_in))
+        }
+
+        BoxWithConstraints(
+            Modifier.fillMaxWidth().heightIn(min = 64.dp)
+                .padding(start = 88.dp, end = 16.dp, top = 8.dp)
+        ) {
+            val measure = rememberTextMeasurer()
+            val identityWidth = maxOf(
+                measure.measure(name, typography.titleLarge, maxLines = 1).size.width,
+                secondary?.let { measure.measure(it, typography.bodyMedium, maxLines = 1).size.width } ?: 0
+            )
+            val buttonWidth = measure.measure(signOutLabel, typography.labelLarge, maxLines = 1).size.width
+            val inline = session != null && with(LocalDensity.current) {
+                identityWidth + buttonWidth + 64.dp.roundToPx() <= maxWidth.roundToPx()
+            }
+            val identity: @Composable () -> Unit = {
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text(name, style = typography.titleLarge)
+                    secondary?.let { Text(it, style = typography.bodyMedium, color = colors.onSurfaceVariant) }
+                }
+            }
+            if (inline) {
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(Modifier.weight(1f)) { identity() }
+                    ProfileSignOut(signOutLabel, onSignOut)
                 }
             } else {
-                if (session.loading) {
-                    LinearProgressIndicator(Modifier.fillMaxWidth())
+                Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    identity()
+                    if (session == null) {
+                        Button(onClick = onSignIn, modifier = Modifier.align(Alignment.End)) {
+                            Text(stringResource(R.string.auth_sign_in))
+                        }
+                    } else {
+                        ProfileSignOut(signOutLabel, onSignOut, Modifier.align(Alignment.End))
+                    }
                 }
+            }
+        }
+        if (session != null) {
+            Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                if (session.loading) LinearProgressIndicator(Modifier.fillMaxWidth())
                 if ((account != null && session.refreshFailed) || (account == null && !session.loading)) {
                     Text(stringResource(R.string.auth_account_error), color = colors.error)
                     OutlinedButton(onClick = onRetry) { Text(stringResource(R.string.retry)) }
@@ -263,15 +320,30 @@ private fun ProfileAccount(
                 if (session.signOutFailed) {
                     Text(stringResource(R.string.auth_sign_out_error), color = colors.error)
                 }
-                FilledTonalButton(
-                    onClick = onSignOut,
-                    modifier = Modifier.align(Alignment.End),
-                    colors = ButtonDefaults.filledTonalButtonColors(
-                        containerColor = colors.primaryContainer,
-                        contentColor = colors.onPrimaryContainer
-                    )
-                ) { Text(stringResource(R.string.auth_sign_out)) }
             }
+        }
+    }
+}
+
+@Composable
+private fun ProfileSignOut(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    val colors = MaterialTheme.colorScheme
+    Surface(
+        onClick = onClick,
+        modifier = modifier.heightIn(min = 48.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = colors.surface,
+        contentColor = colors.primary,
+        border = BorderStroke(1.dp, colors.primary),
+        shadowElevation = 2.dp
+    ) {
+        Row(
+            Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(painterResource(R.drawable.ic_profile_sign_out), null, Modifier.size(20.dp))
+            Text(label, style = MaterialTheme.typography.labelLarge)
         }
     }
 }
@@ -279,41 +351,33 @@ private fun ProfileAccount(
 @Composable
 private fun AttendanceTabs(groups: AttendanceGroups?, showUpcoming: Boolean, onSelect: (Boolean) -> Unit) {
     val colors = MaterialTheme.colorScheme
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Text(
             stringResource(R.string.profile_attendances),
             Modifier.semantics { heading() },
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.headlineSmall
         )
-        Row(
-            Modifier.fillMaxWidth().background(colors.primaryContainer, CircleShape).padding(4.dp).selectableGroup(),
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
+        Row(Modifier.fillMaxWidth().selectableGroup()) {
             listOf(true, false).forEach { upcoming ->
                 val selected = upcoming == showUpcoming
                 val count = if (upcoming) groups?.upcoming?.size else groups?.past?.size
                 val label = stringResource(if (upcoming) R.string.profile_upcoming else R.string.profile_past)
-                val contentColor = if (selected) colors.onPrimary else colors.onPrimaryContainer
-                Row(
-                    Modifier.weight(1f).clip(CircleShape)
-                        .background(if (selected) colors.primary else colors.primaryContainer)
+                Box(
+                    Modifier.weight(1f)
                         .selectable(selected, role = Role.Tab, onClick = { onSelect(upcoming) })
-                        .heightIn(min = 48.dp).padding(horizontal = 8.dp, vertical = 6.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterHorizontally)
+                        .heightIn(min = 48.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        painterResource(if (upcoming) R.drawable.ic_event_calendar else R.drawable.ic_catalog_clock),
-                        null,
-                        Modifier.size(16.dp),
-                        tint = contentColor
-                    )
                     Text(
                         if (count == null) label else stringResource(R.string.profile_attendance_tab_count, label, count),
-                        color = contentColor,
-                        style = MaterialTheme.typography.labelLarge
+                        Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
+                        color = colors.primary,
+                        style = MaterialTheme.typography.titleMedium,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
+                    if (selected) {
+                        Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(2.dp).background(colors.primary))
+                    }
                 }
             }
         }
@@ -322,10 +386,10 @@ private fun AttendanceTabs(groups: AttendanceGroups?, showUpcoming: Boolean, onS
 
 @Composable
 private fun AttendanceTicket(event: Event, upcoming: Boolean, onOpen: () -> Unit) {
-    val paper = Color(0xFFF5F5F4)
-    val ink = Color(0xFF192C33)
-    val accent = Color(0xFF007A85)
-    val border = Color(0xFF9ABACB)
+    val paper = MaterialTheme.colorScheme.surfaceContainerLow
+    val ink = MaterialTheme.colorScheme.onSurface
+    val accent = MaterialTheme.colorScheme.primary
+    val border = MaterialTheme.colorScheme.outlineVariant
     var footerHeight by remember { mutableIntStateOf(0) }
 
     Column(
@@ -495,7 +559,7 @@ private fun ProfileGuestPreview() {
 @Composable
 private fun ProfilePreviewFrame(session: SessionUiState.Active?, state: ProfileUiState?) {
     EventiaTheme {
-        Box(Modifier.fillMaxSize().background(exploreColors().surface).statusBarsPadding().navigationBarsPadding()) {
+        Box(Modifier.fillMaxSize().background(exploreColors().surface).navigationBarsPadding()) {
             ProfileScreen(session, state, {}, {}, {}, {}, {})
         }
     }

@@ -36,7 +36,8 @@ import com.example.eventia.domain.model.Venue
 import com.example.eventia.ui.components.DetailArtwork
 import com.example.eventia.ui.components.DetailLocationMap
 import com.example.eventia.ui.components.DetailTopBar
-import com.example.eventia.ui.components.LoadingScreen
+import com.example.eventia.ui.components.DetailSkeleton
+import com.example.eventia.ui.components.LoadingCard
 import com.example.eventia.ui.components.ScreenMessage
 import com.example.eventia.ui.components.rememberVenueDirections
 import com.example.eventia.ui.screens.eventdetail.venueMapUrl
@@ -70,32 +71,19 @@ private fun VenueDetailContent(
     favorites: FavoritesUiState,
     onFavoriteChange: (Event, Boolean) -> Unit
 ) {
-    val baseColors = exploreColors()
-    val colors = if (state is VenueDetailUiState.Content) {
-        baseColors.copy(
-            primary = Color(0xFF234617),
-            onPrimary = Color.White,
-            surface = Color(0xFFFAF6EF),
-            onSurface = Color(0xFF234617),
-            onSurfaceVariant = Color(0xFF575E50),
-            primaryContainer = Color(0xFFD5E4B5),
-            onPrimaryContainer = Color(0xFF234617),
-            error = Color(0xFFBA1A1A)
-        )
-    } else baseColors
-    MaterialTheme(colorScheme = colors) {
+    MaterialTheme(colorScheme = exploreColors()) {
         Scaffold(
             topBar = {
                 if (state !is VenueDetailUiState.Content) {
-                    DetailTopBar(stringResource(R.string.detail_venue), onBack)
+                    DetailTopBar(onBack)
                 }
             },
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = MaterialTheme.colorScheme.surface,
             contentWindowInsets = WindowInsets(0, 0, 0, 0)
         ) { padding ->
             when (state) {
                 VenueDetailUiState.Loading -> Box(Modifier.fillMaxSize().padding(padding)) {
-                    LoadingScreen(stringResource(R.string.venue_detail_loading))
+                    DetailSkeleton(stringResource(R.string.venue_detail_loading), 176.dp)
                 }
                 VenueDetailUiState.Empty -> Box(Modifier.fillMaxSize().padding(padding)) {
                     ScreenMessage(
@@ -182,7 +170,7 @@ private fun VenueDetailBody(
             }
         }
         when (val events = state.events) {
-            VenueEventsUiState.Loading -> item { LoadingScreen(stringResource(R.string.venue_events_loading)) }
+            VenueEventsUiState.Loading -> item { LoadingCard(stringResource(R.string.venue_events_loading)) }
             VenueEventsUiState.Error -> item {
                 Column(Modifier.padding(horizontal = 18.dp)) {
                     Text(stringResource(R.string.venue_events_error), color = colors.error)

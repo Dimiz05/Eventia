@@ -3,7 +3,6 @@ package com.example.eventia.ui.screens.explore
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -35,8 +34,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults
 import androidx.compose.material3.pulltorefresh.pullToRefresh
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
@@ -58,7 +55,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -66,44 +62,15 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.eventia.R
 import com.example.eventia.ui.theme.EventiaTheme
+import com.example.eventia.ui.components.TabHeader
 import kotlinx.coroutines.delay
 
-private val ExploreLightColors = lightColorScheme(
-    primary = Color(0xFF007A85),
-    onPrimary = Color.White,
-    primaryContainer = Color(0xFFE3F0F5),
-    onPrimaryContainer = Color(0xFF005A63),
-    surface = Color.White,
-    onSurface = Color(0xFF192C33),
-    onSurfaceVariant = Color(0xFF4E6065),
-    surfaceContainer = Color(0xFFF0F4F6),
-    surfaceContainerHigh = Color(0xFFE3F0F5),
-    surfaceContainerHighest = Color(0xFFC9DDE7),
-    outlineVariant = Color(0xFFC9DDE7),
-    tertiary = Color(0xFF6A557B)
-)
-
-private val ExploreDarkColors = darkColorScheme(
-    primary = Color(0xFF80D5DD),
-    onPrimary = Color(0xFF00363B),
-    primaryContainer = Color(0xFF253C42),
-    onPrimaryContainer = Color(0xFFBDEDF2),
-    surface = Color(0xFF111B1E),
-    onSurface = Color(0xFFE3F0F3),
-    onSurfaceVariant = Color(0xFFBACBD0),
-    surfaceContainer = Color(0xFF172529),
-    surfaceContainerHigh = Color(0xFF253C42),
-    surfaceContainerHighest = Color(0xFF314A50),
-    outlineVariant = Color(0xFF3B5156),
-    tertiary = Color(0xFFDDC6EA)
-)
-
 @Composable
-internal fun exploreColors() = if (isSystemInDarkTheme()) ExploreDarkColors else ExploreLightColors
+internal fun exploreColors() = MaterialTheme.colorScheme
 
 @Composable
 internal fun Modifier.panoramicCaptionScrim(): Modifier {
-    val fade = 12.dp
+    val fade = 5.dp
     return background(
         Brush.verticalGradient(
             colors = listOf(Color.Transparent, MaterialTheme.colorScheme.scrim.copy(alpha = 0.55f)),
@@ -113,15 +80,8 @@ internal fun Modifier.panoramicCaptionScrim(): Modifier {
 }
 
 @Composable
-internal fun ExploreHeader() {
-    Text(
-        stringResource(R.string.tab_explore),
-        Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp)
-            .semantics { heading() },
-        style = MaterialTheme.typography.headlineMedium,
-        fontWeight = FontWeight.Bold,
-        color = MaterialTheme.colorScheme.onSurface
-    )
+internal fun ExploreHeader(avatar: @Composable () -> Unit = {}) {
+    TabHeader(stringResource(R.string.tab_explore), avatar)
 }
 
 @Composable
@@ -162,14 +122,14 @@ internal fun ExploreSearch(
     onQueryChange: (String) -> Unit,
     label: String,
     inlineHint: Boolean = false,
-    solidSurface: Boolean = false
+    modifier: Modifier = Modifier
 ) {
     val colors = MaterialTheme.colorScheme
-    val container = if (solidSurface) colors.surface else colors.primaryContainer
+    val container = colors.surface
     OutlinedTextField(
         value = query,
         onValueChange = onQueryChange,
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)
+        modifier = modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 4.dp)
             .then(if (inlineHint) Modifier.semantics { contentDescription = label } else Modifier),
         label = if (inlineHint) null else { { Text(label) } },
         placeholder = if (inlineHint) {

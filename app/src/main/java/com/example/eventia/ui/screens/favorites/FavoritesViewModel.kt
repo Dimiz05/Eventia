@@ -25,7 +25,8 @@ internal data class FavoritesUiState(
 }
 
 internal sealed interface FavoriteNotice {
-    data class Removed(val event: Event) : FavoriteNotice
+    data object Saved : FavoriteNotice
+    data class Removed(val event: Event, val offerUndo: Boolean) : FavoriteNotice
     data class Failed(val retry: () -> Unit) : FavoriteNotice
 }
 
@@ -66,9 +67,10 @@ internal class FavoritesViewModel @Inject constructor(
             try {
                 if (save) {
                     repository.addFavorite(event)
+                    noticeChannel.send(FavoriteNotice.Saved)
                 } else {
                     val removed = repository.removeFavorite(event.id)
-                    if (offerUndo && removed != null) noticeChannel.send(FavoriteNotice.Removed(removed))
+                    if (removed != null) noticeChannel.send(FavoriteNotice.Removed(removed, offerUndo))
                 }
             } catch (error: CancellationException) {
                 throw error

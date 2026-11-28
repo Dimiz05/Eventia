@@ -112,10 +112,10 @@ private fun MapEventSummary(
         )
     } else event.venue.name
     val directions = rememberVenueDirections(event.venue, point)
-    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Surface(shape = RoundedCornerShape(16.dp), color = colors.surfaceContainer) {
+    Surface(shape = RoundedCornerShape(16.dp), color = colors.surfaceContainer) {
+        Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(
-                Modifier.fillMaxWidth().padding(8.dp),
+                Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -141,20 +141,20 @@ private fun MapEventSummary(
                 }
                 favoriteAction?.invoke(event)
             }
-        }
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedButton(
-                onClick = directions,
-                enabled = point != null,
-                modifier = Modifier.weight(1f).heightIn(min = 48.dp),
-                contentPadding = PaddingValues(horizontal = 8.dp),
-                border = BorderStroke(1.dp, if (point == null) colors.outlineVariant else colors.primary)
-            ) { Text(stringResource(R.string.venue_directions)) }
-            Button(
-                onClick = onEventClick,
-                modifier = Modifier.weight(1f).heightIn(min = 48.dp),
-                contentPadding = PaddingValues(horizontal = 8.dp)
-            ) { Text(stringResource(R.string.map_view_detail)) }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(
+                    onClick = directions,
+                    enabled = point != null,
+                    modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp),
+                    border = BorderStroke(1.dp, if (point == null) colors.outlineVariant else colors.primary)
+                ) { Text(stringResource(R.string.venue_directions)) }
+                Button(
+                    onClick = onEventClick,
+                    modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp)
+                ) { Text(stringResource(R.string.map_view_detail)) }
+            }
         }
     }
 }

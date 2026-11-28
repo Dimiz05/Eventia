@@ -135,7 +135,7 @@ internal fun VenueListContent(
             )
             else -> key(state.query.trim()) {
                 val listState = rememberLazyListState()
-                BoxWithConstraints(Modifier.weight(1f).fillMaxWidth().background(Color(0xFFFBF6EE))) {
+                BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
                     val spacing = 12.dp
                     val density = LocalDensity.current
                     val pairHeight = with(density) {
@@ -198,8 +198,8 @@ private fun VenueCard(venue: Venue, onVenueClick: (Long) -> Unit, height: Dp, mu
             Surface(
                 modifier = Modifier.align(Alignment.TopEnd).padding(horizontal = 16.dp, vertical = 8.dp),
                 shape = RoundedCornerShape(50),
-                color = Color(0xFFC4DAB3),
-                contentColor = Color(0xFF0B342B)
+                color = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
             ) {
                 Text(
                     countLabel,

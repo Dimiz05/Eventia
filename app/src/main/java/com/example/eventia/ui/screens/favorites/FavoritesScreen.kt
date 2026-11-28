@@ -1,7 +1,6 @@
 package com.example.eventia.ui.screens.favorites
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -41,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.eventia.R
+import com.example.eventia.ui.components.TabHeader
 import com.example.eventia.domain.model.Category
 import com.example.eventia.domain.model.Event
 import com.example.eventia.domain.model.Venue
@@ -59,13 +57,14 @@ internal fun FavoritesScreen(
     onEventClick: (Long) -> Unit,
     onRemove: (Event) -> Unit,
     onRetry: () -> Unit,
-    onExplore: () -> Unit
+    onExplore: () -> Unit,
+    avatar: @Composable () -> Unit = {}
 ) {
     val events = state.events
     MaterialTheme(colorScheme = exploreColors()) {
         Surface(Modifier.fillMaxSize()) {
             Column {
-                FavoritesHeader()
+                TabHeader(stringResource(R.string.tab_favorites), avatar)
                 when {
                     state.hasError -> ScreenMessage(
                         title = stringResource(R.string.favorites_load_error),
@@ -79,7 +78,7 @@ internal fun FavoritesScreen(
                         contentPadding = PaddingValues(start = 16.dp, top = 12.dp, end = 16.dp, bottom = 24.dp),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        item { FavoritesStorageBanner(events.size) }
+                        if (events.isNotEmpty()) item { FavoritesStorageBanner(events.size) }
                         if (events.isEmpty()) {
                             item { EmptyFavorites(onExplore) }
                         }
@@ -96,36 +95,6 @@ internal fun FavoritesScreen(
             }
         }
     }
-}
-
-@Composable
-private fun FavoritesHeader() {
-    val colors = MaterialTheme.colorScheme
-    Row(
-        Modifier.fillMaxWidth().heightIn(min = 64.dp).padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        Image(
-            painterResource(R.drawable.eventia_app_icon),
-            contentDescription = null,
-            modifier = Modifier.size(34.dp).clip(RoundedCornerShape(9.dp))
-        )
-        Column {
-            Text(
-                stringResource(R.string.tab_favorites),
-                Modifier.semantics { heading() },
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                stringResource(R.string.favorites_offline),
-                style = MaterialTheme.typography.labelMedium,
-                color = colors.onSurfaceVariant
-            )
-        }
-    }
-    HorizontalDivider(color = colors.outlineVariant)
 }
 
 @Composable

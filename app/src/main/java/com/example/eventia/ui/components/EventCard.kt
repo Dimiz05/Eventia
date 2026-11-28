@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -24,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.eventia.R
 import com.example.eventia.domain.model.Event
-import java.util.Date
-import android.text.format.DateFormat
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 @Composable
 fun EventCard(
@@ -100,13 +99,17 @@ internal fun EventArtwork(
     )
 }
 
+internal val EventDisplayLocale = Locale.forLanguageTag("es-BO")
+private val ShortEventDate = DateTimeFormatter.ofPattern("d MMM", EventDisplayLocale)
+private val FullEventDate = DateTimeFormatter.ofPattern("d MMM uuuu", EventDisplayLocale)
+internal val EventDisplayTime: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm", EventDisplayLocale)
+
 @Composable
-internal fun eventLocalDateTime(event: Event): String {
-    val context = LocalContext.current
-    val start = Date.from(event.startsAt.toInstant())
+internal fun eventLocalDateTime(event: Event, compact: Boolean = false): String {
+    val date = event.startsAt.format(if (compact) ShortEventDate else FullEventDate)
     return stringResource(
         R.string.event_date_time,
-        DateFormat.getMediumDateFormat(context).format(start),
-        DateFormat.getTimeFormat(context).format(start)
+        date.trimEnd('.'),
+        event.startsAt.format(EventDisplayTime)
     )
 }
